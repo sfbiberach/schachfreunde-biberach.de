@@ -1,5 +1,6 @@
 {
-  "name": "alpine-starter",
+  "name": "schachfreunde-biberach.de",
+  "type": "module",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,15 +8,22 @@
     "build": "nuxi build",
     "generate": "nuxi generate",
     "preview": "nuxi preview",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "@iconify-json/ph": "^1.1.6",
+    "@nuxt/content": "^2.9.0",
+    "@nuxt/ui": "^2.10.0",
+    "@nuxt/ui-pro": "^0.3.1",
+    "@nuxtjs/plausible": "^0.2.3",
+    "nuxt": "^3.8.1"
   },
   "devDependencies": {
-    "@nuxt-themes/alpine": "^1.6.4",
-    "@nuxt/devtools": "^0.6.7",
-    "@nuxt/eslint-config": "^0.1.1",
-    "@nuxtjs/plausible": "^0.2.3",
-    "@types/node": "^20.6.1",
-    "eslint": "^8.49.0",
-    "nuxt": "^3.8.0"
+    "@antfu/eslint-config": "^2.0.0",
+    "@types/node": "^20.9.2",
+    "eslint": "^8.54.0",
+    "nuxt-og-image": "^2.2.4",
+    "typescript": "^5.2.2"
   }
 }
