@@ -1,11 +1,14 @@
 export default defineNuxtConfig({
-  // https://github.com/nuxt-themes/alpine
-  extends: '@nuxt-themes/alpine',
-
+  devtools: { enabled: true },
+  extends: ['@nuxt/ui-pro'],
   modules: [
-    // https://github.com/nuxt-modules/plausible
     '@nuxtjs/plausible',
-    // https://github.com/nuxt/devtools
-    '@nuxt/devtools'
-  ]
+    '@nuxt/devtools',
+    '@nuxt/content',
+    '@nuxt/ui',
+    'nuxt-og-image',
+  ],
+  ui: {
+    icons: ['ph'],
+  },
 })

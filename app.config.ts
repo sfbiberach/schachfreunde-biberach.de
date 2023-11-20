@@ -1,41 +1,30 @@
 export default defineAppConfig({
-  alpine: {
-    title: 'Alpine',
-    description: 'The minimalist blog theme',
-    image: {
-      src: '/social-card-preview.png',
-      alt: 'An image showcasing my project.',
-      width: 400,
-      height: 300
+  ui: {
+    primary: 'red',
+    gray: 'cool',
+  },
+  button: {
+    rounded: 'rounded-full',
+    default: {
+      size: 'md',
+      color: 'black',
     },
-    header: {
-      position: 'right', // possible value are : | 'left' | 'center' | 'right'
-      logo: {
-        path: '/logo.svg', // path of the logo
-        pathDark: '/logo-dark.svg', // path of the logo in dark mode, leave this empty if you want to use the same logo
-        alt: 'alpine' // alt of the logo
-      }
+  },
+  input: {
+    rounded: 'rounded-full',
+  },
+  header: {
+    wrapper: 'lg:border-b-0 lg:top-4 lg:mb-8 backdrop-blur-none bg-transparent lg:mx-4',
+    container: 'lg:rounded-full bg-white lg:shadow',
+  },
+  footer: {
+    wrapper: 'bg-black dark',
+    top: {
+      container: 'py-8 lg:py-16',
     },
-    footer: {
-      credits: {
-        enabled: true, // possible value are : true | false
-        repository: 'https://www.github.com/nuxt-themes/alpine' // our github repository
-      },
-      navigation: true, // possible value are : true | false
-      alignment: 'center', // possible value are : 'none' | 'left' | 'center' | 'right'
-      message: 'Follow me on' // string that will be displayed in the footer (leave empty or delete to disable)
+    bottom: {
+      wrapper: 'border-t border-gray-200 dark:border-gray-800',
+      container: 'lg:py-8',
     },
-    socials: {
-      twitter: 'nuxtlabs',
-      instagram: 'atinuxt',
-      linkedin: {
-        icon: 'uil:linkedin',
-        label: 'LinkedIn',
-        href: 'https://www.linkedin.com/company/nuxtlabs'
-      }
-    },
-    form: {
-      successMessage: 'Message sent. Thank you!'
-    }
-  }
+  },
 })
