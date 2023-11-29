@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxt/ui',
     'nuxt-og-image',
+    '@nuxt/image',
   ],
   ui: {
     icons: ['ph'],
