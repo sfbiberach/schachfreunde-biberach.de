@@ -1,35 +1,35 @@
 <script setup lang="ts">
 const links = [
   {
-    label: 'Über uns',
-    icon: 'i-ph-user-duotone',
-    to: '/ueber-uns',
+    label: 'Aktuelles',
+    icon: 'i-ph-newspaper-duotone',
+    to: '/',
   },
   {
-    label: 'Restaurierungen',
-    description: 'Fachgemäße Restaurierung von historischen Gebäuden, Baudenkmalen und Bildhauerarbeiten.',
-    icon: 'i-ph-bank-duotone',
-    to: '/restaurierungen',
+    label: 'Verein',
+    icon: 'i-ph-horse-duotone',
+    to: '/verein',
   },
   {
-    label: 'Grabmale',
-    description: 'Ein sichtbares und individuelles Andenken an einen geliebten Menschen.',
-    icon: 'i-ph-cross-duotone',
-    to: '/grabmale',
+    label: 'Mannschaften',
+    icon: 'i-ph-castle-turret-duotone',
+    to: '/mannschaften',
   },
   {
-    label: 'Galerie',
-    icon: 'i-ph-image-duotone',
-    to: '/galerie',
+    label: 'Turniere',
+    icon: 'i-ph-trophy-duotone',
+    to: '/turniere',
   },
-
 ]
 </script>
 
 <template>
   <UHeader :links="links">
     <template #logo>
-      <Logo class="w-auto h-10" />
+      <div class="flex gap-2 items-center">
+        <UIcon name="i-ph-horse-duotone" class="text-3xl" />
+        Sfr. HN-Biberach 1978 e.&nbsp;V.
+      </div>
     </template>
 
     <template #panel>
