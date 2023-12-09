@@ -37,7 +37,12 @@ const links = [{
 </script>
 
 <template>
-  <UFooter>
+  <UFooter
+    :ui="{
+      bottom: { wrapper: 'border-t border-gray-200 dark:border-gray-800', container: '!py-6' },
+      top: { wrapper: 'border-t border-gray-200 dark:border-gray-800', container: 'py-8 lg:py-12' },
+    }"
+  >
     <template #top>
       <UFooterColumns :links="links">
         <template #right>
