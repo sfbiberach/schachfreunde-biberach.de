@@ -1,8 +1,5 @@
 ---
-layout: default
-head.title: Aktuelles
-description: An open source blog theme powered by Nuxt.
-title: About
+title: Aktuelles
 ---
 
 ::landing-hero
