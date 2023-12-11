@@ -55,14 +55,14 @@ const links = [{
     <template #top>
       <UFooterColumns :links="links">
         <template #right>
-          <UFormGroup name="email" label="Subscribe to our newsletter" size="lg">
+          <UColorModeSelect class="w-32 mb-6" />
+          <UFormGroup name="email" label="Abboniere unseren Newsletter" size="lg">
             <UInput type="email" :ui="{ icon: { trailing: { pointer: '' } } }">
               <template #trailing>
                 <UButton type="submit" size="2xs" color="black" label="Subscribe" />
               </template>
             </UInput>
           </UFormGroup>
-          <UColorModeSelect class="w-32 mt-4" />
         </template>
       </UFooterColumns>
     </template>

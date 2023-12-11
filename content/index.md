@@ -8,7 +8,7 @@ title: Hi, I am Alpine...
 orientation: horizontal
 ---
 #default
-:Logo{class="h-72 m-auto"}
+<!-- :Logo{class="h-72 m-auto"} -->
 <!-- :nuxt-img{src="/" class="w-full rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700"} -->
 
 #description
