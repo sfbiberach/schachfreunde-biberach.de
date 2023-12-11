@@ -1,36 +1,36 @@
 <script setup>
 const links = [{
-  label: 'Community',
+  label: 'Homepage',
   children: [{
-    label: 'Nuxters',
-    to: 'https://nuxters.nuxt.com',
-    target: '_blank',
+    label: 'Aktuelles',
+    to: '/',
   }, {
-    label: 'Video Courses',
-    to: 'https://masteringnuxt.com/nuxt3?ref=nuxt',
-    target: '_blank',
+    label: 'Verein',
+    to: '/verein',
   }, {
-    label: 'Nuxt on GitHub',
-    to: 'https://github.com/nuxt',
-    target: '_blank',
+    label: 'Mannschaften',
+    to: '/mannschaften',
+  }, {
+    label: 'Turniere',
+    to: '/turniere',
   }],
 }, {
-  label: 'Solutions',
+  label: 'Wichtige Links',
   children: [{
-    label: 'Nuxt Content',
-    to: 'https://content.nuxt.com/',
+    label: 'Unterländer Schachtage',
+    to: 'https://www.unterlaender-schachtage.de/',
     target: '_blank',
   }, {
-    label: 'Nuxt DevTools',
-    to: 'https://devtools.nuxt.com/',
+    label: 'Aktuelle DWZ-Liste',
+    to: 'https://schach.in/zahlen/C0652/',
     target: '_blank',
   }, {
-    label: 'Nuxt Image',
-    to: 'https://image.nuxt.com/',
+    label: 'Facebook-Seite',
+    to: 'https://www.facebook.com/Schachfreunde.HN.Biberach/',
     target: '_blank',
   }, {
-    label: 'Nuxt UI',
-    to: 'https://ui.nuxt.com/',
+    label: 'Google Vereinskalender',
+    to: 'https://calendar.google.com/calendar/embed?src=dimi.triantafillidis%40web.de&ctz=Europe%2FBerlin',
     target: '_blank',
   }],
 }, {
