@@ -65,7 +65,9 @@ const links = [{
       </UFooterColumns>
     </template>
     <template #left>
-      Copyright © {{ new Date().getFullYear() }} Sfr. HN-Biberach 1978 e.&nbsp;V.
+      <p class="text-gray-500 dark:text-gray-400 text-sm">
+        Copyright © {{ new Date().getFullYear() }} Schachfreunde Heilbronn-Biberach 1978 e.&nbsp;V.
+      </p>
     </template>
   </UFooter>
 </template>
