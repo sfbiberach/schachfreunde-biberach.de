@@ -62,6 +62,7 @@ const links = [{
               </template>
             </UInput>
           </UFormGroup>
+          <UColorModeSelect class="w-32 mt-4" />
         </template>
       </UFooterColumns>
     </template>
