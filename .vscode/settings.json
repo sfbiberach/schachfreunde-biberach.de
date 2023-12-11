@@ -38,7 +38,7 @@
     "jsonc",
     "yaml"
   ],
-  
+
   "conventionalCommits.scopes": [
     "deps"
   ]

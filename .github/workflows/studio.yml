@@ -1,4 +1,3 @@
-
 name: studio-nuxt-build
 run-name: studio nuxt build
 
@@ -6,7 +5,7 @@ on:
   # Runs on pushes targeting the default branch
   push:
     branches:
-      - 'main'
+      - main
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -17,7 +16,7 @@ permissions:
 
 # Allow one concurrent deployment
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: true
 
 jobs:
@@ -72,7 +71,6 @@ jobs:
           NUXT_PUBLIC_STUDIO_API_URL: https://api.nuxt.studio
           NUXT_PUBLIC_STUDIO_TOKENS: 11bbed968f6472a64121ce39b4b2a2a5adf3b22ed737470c7d2405fd9126bf39
           NUXT_UI_PRO_LICENSE: ${{ secrets.NUXT_UI_PRO_LICENSE }}
-
 
       - name: Add .nojekyll file
         run: touch .output/public/.nojekyll
