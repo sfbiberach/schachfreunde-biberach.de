@@ -1,5 +1,5 @@
 ---
-title: Impressum
+layout: container
 ---
 
-Impressum
+# Impressum

@@ -33,6 +33,15 @@ const links = [{
     to: 'https://ui.nuxt.com/',
     target: '_blank',
   }],
+}, {
+  label: 'Rechtliches',
+  children: [{
+    label: 'Impressum',
+    to: '/impressum',
+  }, {
+    label: 'Datenschutz',
+    to: '/datenschutz',
+  }],
 }]
 </script>
 

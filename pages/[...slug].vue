@@ -1,13 +1,11 @@
+<script setup lang="ts">
+
+</script>
+
 <template>
-  <ContentDoc>
-    <template #default>
+  <UPage>
+    <uPageBody prose>
       <ContentDoc />
-    </template>
-    <template #not-found>
-      <h1>Document not found</h1>
-    </template>
-    <template #empty>
-      <h1>Document is empty</h1>
-    </template>
-  </ContentDoc>
+    </uPageBody>
+  </UPage>
 </template>
