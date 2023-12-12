@@ -41,7 +41,7 @@ function onSubmit() {
       <UInput
         v-model="email"
         type="email"
-        placeholder="du@domain.com"
+        placeholder="deine-email@domain.com"
         :ui="{ icon: { trailing: { pointer: '' } } }"
         required
         autocomplete="off"

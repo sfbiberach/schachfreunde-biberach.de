@@ -13,6 +13,6 @@ export default defineNuxtConfig({
     '@nuxt/image',
   ],
   ui: {
-    icons: ['ph'],
+    icons: ['ph', 'simple-icons'],
   },
 })
