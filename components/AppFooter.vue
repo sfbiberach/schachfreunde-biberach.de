@@ -69,6 +69,7 @@ const links = [{
     <template #right>
       <UButton aria-label="Sfr. HN-Biberach auf Instagram" to="https://www.instagram.com/schachfreundeheilbronnbiberach/" target="_blank" icon="i-simple-icons-instagram" v-bind="($ui.button.secondary as any)" />
       <UButton aria-label="Sfr. HN-Biberach auf Facebook" to="https://www.facebook.com/Schachfreunde.HN.Biberach/" target="_blank" icon="i-simple-icons-facebook" v-bind="($ui.button.secondary as any)" />
+      <UButton aria-label="Sfr. HN-Biberach auf GitHub" to="https://github.com/sfbiberach" target="_blank" icon="i-simple-icons-github" v-bind="($ui.button.secondary as any)" />
     </template>
   </UFooter>
 </template>
