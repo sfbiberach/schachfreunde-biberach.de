@@ -1,13 +1,7 @@
 <template>
-  <div>
-    <AppHeader />
-
-    <UMain>
-      <UContainer>
-        <NuxtPage />
-      </UContainer>
-    </UMain>
-
-    <AppFooter />
-  </div>
+  <UMain>
+    <UContainer>
+      <NuxtPage />
+    </UContainer>
+  </UMain>
 </template>

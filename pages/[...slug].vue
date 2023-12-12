@@ -4,8 +4,8 @@
 
 <template>
   <UPage>
-    <uPageBody prose>
+    <UPageBody prose>
       <ContentDoc />
-    </uPageBody>
+    </UPageBody>
   </UPage>
 </template>
