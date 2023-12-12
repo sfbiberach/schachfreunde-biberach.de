@@ -25,10 +25,6 @@ const links = [{
     to: 'https://schach.in/zahlen/C0652/',
     target: '_blank',
   }, {
-    label: 'Facebook-Seite',
-    to: 'https://www.facebook.com/Schachfreunde.HN.Biberach/',
-    target: '_blank',
-  }, {
     label: 'Google Vereinskalender',
     to: 'https://calendar.google.com/calendar/embed?src=dimi.triantafillidis%40web.de&ctz=Europe%2FBerlin',
     target: '_blank',
