@@ -5,12 +5,13 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   extends: ['@nuxt/ui-pro'],
   modules: [
-    '@nuxtjs/plausible',
-    '@nuxt/devtools',
     '@nuxt/content',
-    '@nuxt/ui',
-    'nuxt-og-image',
+    '@nuxt/devtools',
     '@nuxt/image',
+    '@nuxt/ui',
+    '@nuxthq/studio',
+    '@nuxtjs/plausible',
+    'nuxt-og-image',
   ],
   ui: {
     icons: ['ph', 'simple-icons'],

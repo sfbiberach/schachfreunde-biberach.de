@@ -3,8 +3,8 @@ export default defineAppConfig({
     primary: 'blue',
     gray: 'zinc',
   },
-  app: {
-    headerLinks: [
+  links: {
+    header: [
       {
         label: 'Aktuelles',
         icon: 'i-ph-newspaper-duotone',
