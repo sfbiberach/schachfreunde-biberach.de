@@ -1,30 +1,9 @@
 <script setup lang="ts">
-const links = [
-  {
-    label: 'Aktuelles',
-    icon: 'i-ph-newspaper-duotone',
-    to: '/',
-  },
-  {
-    label: 'Verein',
-    icon: 'i-ph-horse-duotone',
-    to: '/verein',
-  },
-  {
-    label: 'Mannschaften',
-    icon: 'i-ph-castle-turret-duotone',
-    to: '/mannschaften',
-  },
-  {
-    label: 'Turniere',
-    icon: 'i-ph-trophy-duotone',
-    to: '/turniere',
-  },
-]
+const appConfig = useAppConfig()
 </script>
 
 <template>
-  <UHeader :links="links">
+  <UHeader :links="appConfig.app.headerLinks">
     <template #logo>
       <div class="flex gap-2 items-center">
         <UIcon name="i-ph-horse-duotone" class="text-3xl" />
@@ -33,7 +12,7 @@ const links = [
     </template>
 
     <template #panel>
-      <UAsideLinks :links="links" />
+      <UAsideLinks :links="appConfig.app.headerLinks" />
 
       <UDivider class="my-6" />
 
