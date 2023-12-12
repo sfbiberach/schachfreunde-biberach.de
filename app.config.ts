@@ -26,5 +26,45 @@ export default defineAppConfig({
         to: '/turniere',
       },
     ],
+    footer: [{
+      label: 'Homepage',
+      children: [{
+        label: 'Aktuelles',
+        to: '/',
+      }, {
+        label: 'Verein',
+        to: '/verein',
+      }, {
+        label: 'Mannschaften',
+        to: '/mannschaften',
+      }, {
+        label: 'Turniere',
+        to: '/turniere',
+      }],
+    }, {
+      label: 'Wichtige Links',
+      children: [{
+        label: 'Unterländer Schachtage',
+        to: 'https://www.unterlaender-schachtage.de/',
+        target: '_blank',
+      }, {
+        label: 'Aktuelle DWZ-Liste',
+        to: 'https://schach.in/zahlen/C0652/',
+        target: '_blank',
+      }, {
+        label: 'Google Vereinskalender',
+        to: 'https://calendar.google.com/calendar/embed?src=dimi.triantafillidis%40web.de&ctz=Europe%2FBerlin',
+        target: '_blank',
+      }],
+    }, {
+      label: 'Rechtliches',
+      children: [{
+        label: 'Impressum',
+        to: '/impressum',
+      }, {
+        label: 'Datenschutz',
+        to: '/datenschutz',
+      }],
+    }],
   },
 })

@@ -11,7 +11,18 @@ export default defineNuxtSchema({
           type: 'array',
           title: 'Header links',
           description: 'Links in the header',
-          icon: 'i-mdi-arrow-up',
+          icon: 'i-mdi-page-layout-header',
+          items: [
+            {
+              type: 'Link',
+            },
+          ],
+        }),
+        footer: field({
+          type: 'array',
+          title: 'Footer links',
+          description: 'Links in the footer',
+          icon: 'i-mdi-page-layout-footer',
           items: [
             {
               type: 'Link',
