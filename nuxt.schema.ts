@@ -31,5 +31,43 @@ export default defineNuxtSchema({
         }),
       },
     }),
+    newsletter: group({
+      title: 'Newsletter',
+      description: 'Newsletter configuration',
+      icon: 'i-mdi-email',
+      fields: {
+        visible: field({
+          type: 'boolean',
+          title: 'Visible',
+          description: 'Newsletter visible',
+          icon: 'i-mdi-eye',
+        }),
+        label: field({
+          type: 'string',
+          title: 'Label',
+          description: 'Newsletter label',
+          icon: 'i-mdi-text-short',
+        }),
+        description: field({
+          type: 'string',
+          title: 'Description',
+          description: 'Newsletter description',
+          icon: 'i-mdi-text',
+        }),
+        placeholder: field({
+          type: 'string',
+          title: 'Placeholder',
+          description: 'Newsletter placeholder',
+          icon: 'i-mdi-comment-text',
+        }),
+        buttonText: field({
+          type: 'string',
+          title: 'Button text',
+          description: 'Newsletter button text',
+          icon: 'i-mdi-cursor-default-click',
+        }),
+      },
+    }),
+
   },
 })

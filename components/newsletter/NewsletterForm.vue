@@ -1,15 +1,5 @@
 <script setup lang="ts">
-defineProps({
-  label: {
-    type: String,
-    default: 'Subscribe to our newsletter',
-  },
-  description: {
-    type: String,
-    default: 'Stay updated on new releases and features, guides, and community updates.',
-  },
-})
-
+const { buttonText, description, label, placeholder, visible } = useAppConfig().newsletter
 const toast = useToast()
 
 const email = ref('')
@@ -36,19 +26,19 @@ function onSubmit() {
 </script>
 
 <template>
-  <form @submit.prevent="onSubmit">
+  <form v-if="visible" @submit.prevent="onSubmit">
     <UFormGroup name="email" :label="label" :description="description" size="md" :ui="{ container: 'mt-2' }">
       <UInput
         v-model="email"
         type="email"
-        placeholder="deine-email@domain.com"
+        :placeholder="placeholder"
         :ui="{ icon: { trailing: { pointer: '' } } }"
         required
         autocomplete="off"
         class="max-w-sm"
       >
         <template #trailing>
-          <UButton type="submit" size="2xs" color="black" :label="loading ? 'Abboniert' : 'Abbonieren'" :loading="loading" />
+          <UButton type="submit" size="2xs" color="black" :label="loading ? 'Abboniert' : buttonText" :loading="loading" />
         </template>
       </UInput>
     </UFormGroup>
