@@ -1,11 +1,9 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
-  <UPage>
-    <UPageBody prose>
-      <ContentDoc />
-    </UPageBody>
-  </UPage>
+  <NuxtLayout>
+    <UPage>
+      <UPageBody prose>
+        <ContentDoc />
+      </UPageBody>
+    </UPage>
+  </NuxtLayout>
 </template>
