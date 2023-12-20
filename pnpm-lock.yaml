@@ -29,6 +29,9 @@ dependencies:
   nuxt:
     specifier: ^3.8.2
     version: 3.8.2(@types/node@20.10.4)(eslint@8.55.0)(typescript@5.3.3)(vite@5.0.7)
+  nuxt-umami:
+    specifier: ^2.5.6
+    version: 2.5.6(vue@3.3.11)
 
 devDependencies:
   '@antfu/eslint-config':
@@ -8039,6 +8042,15 @@ packages:
       - vue
       - webpack
     dev: true
+
+  /nuxt-umami@2.5.6(vue@3.3.11):
+    resolution: {integrity: sha512-pry0r3TKBFEzAtS5zIOxIImf5nZqUArB66ISZX0IGzBTz3YQW5pJ9FchQE2JsM7u8cq2afudCfShfVTEnei27g==}
+    dependencies:
+      '@vueuse/core': 10.7.0(vue@3.3.11)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
 
   /nuxt@3.8.2(@types/node@20.10.4)(eslint@8.55.0)(typescript@5.3.3)(vite@5.0.7):
     resolution: {integrity: sha512-HUAyifmqTs2zcQBGvcby3KNs2pBAk+l7ZbLjD1oCNqQQ+wBuZ1qgLC4Ebu++y4g3o3Y8WAWSvpafbKRLQZziPw==}

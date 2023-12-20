@@ -3,7 +3,10 @@ export default defineNuxtConfig({
     documentDriven: true,
   },
   devtools: { enabled: true },
-  extends: ['@nuxt/ui-pro'],
+  extends: [
+    '@nuxt/ui-pro',
+    'nuxt-umami',
+  ],
   modules: [
     '@nuxt/content',
     '@nuxt/image',
@@ -13,6 +16,9 @@ export default defineNuxtConfig({
     'nuxt-og-image',
   ],
   ui: {
-    icons: ['ph', 'simple-icons'],
+    icons: [
+      'ph',
+      'simple-icons',
+    ],
   },
 })
