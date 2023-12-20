@@ -1,7 +1,7 @@
 <script setup lang="ts">
 useHead({
-  title: 'Schachfreunde Heilbronn-Biberach 1978 e.V.',
-  titleTemplate: '%s | Schachfreunde Heilbronn-Biberach 1978 e.V.',
+  title: 'Schachfreunde Heilbronn-Biberach 1978 e. V.',
+  titleTemplate: '%s | Schachfreunde Heilbronn-Biberach 1978 e. V.',
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
     { name: 'msapplication-TileColor', content: '#fff' },
