@@ -6,7 +6,6 @@ export default defineNuxtConfig({
   extends: ['@nuxt/ui-pro'],
   modules: [
     '@nuxt/content',
-    '@nuxt/devtools',
     '@nuxt/image',
     '@nuxt/ui',
     '@nuxthq/studio',
