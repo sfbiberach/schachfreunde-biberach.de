@@ -1,5 +1,6 @@
 ---
 title: Aktuelles
+showHeader: false
 ---
 
 ::landing-hero

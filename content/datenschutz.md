@@ -1,8 +1,8 @@
 ---
-layout: container
+title: Datenschutzerklärung
+description: Informationen über die Datenerhebung, -verarbeitung und -schutzrichtlinien der Webseite.
+container: true
 ---
-
-# Datenschutz­erklärung
 
 ## 1\. Datenschutz auf einen Blick
 

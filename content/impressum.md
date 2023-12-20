@@ -1,8 +1,8 @@
 ---
-layout: container
+title: Impressum
+description: Kontaktdaten und rechtliche Informationen des Webseitenbetreibers.
+container: true
 ---
-
-# Impressum
 
 ### Anschrift des Vereins
 

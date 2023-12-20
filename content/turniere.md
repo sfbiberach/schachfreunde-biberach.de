@@ -1,6 +1,4 @@
 ---
 title: Turniere
-layout: container
+container: true
 ---
-
-Turniere

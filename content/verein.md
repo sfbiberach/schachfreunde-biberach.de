@@ -1,6 +1,4 @@
 ---
 title: Verein
-layout: container
+container: true
 ---
-
-Verein

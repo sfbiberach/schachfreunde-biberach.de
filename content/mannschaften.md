@@ -1,6 +1,4 @@
 ---
 title: Mannschaften
-layout: container
+container: true
 ---
-
-Mannschaften
