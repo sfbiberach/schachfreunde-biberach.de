@@ -70,7 +70,7 @@ jobs:
         run: npx nuxi generate
         env:
           NUXT_PUBLIC_STUDIO_API_URL: https://api.nuxt.studio
-          NUXT_PUBLIC_STUDIO_TOKENS: 363950951f56fa3a69b0577371fcc4c0f031d19c0cd243a4bbde9349ceb38971, 11bbed968f6472a64121ce39b4b2a2a5adf3b22ed737470c7d2405fd9126bf39
+          NUXT_PUBLIC_STUDIO_TOKENS: 11bbed968f6472a64121ce39b4b2a2a5adf3b22ed737470c7d2405fd9126bf39
           NUXT_PUBLIC_UMAMI_HOST: ${{ secrets.NUXT_PUBLIC_UMAMI_HOST }}
           NUXT_PUBLIC_UMAMI_ID: ${{ secrets.NUXT_PUBLIC_UMAMI_ID }}
           NUXT_UI_PRO_LICENSE: ${{ secrets.NUXT_UI_PRO_LICENSE }}
