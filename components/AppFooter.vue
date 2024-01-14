@@ -15,9 +15,9 @@ const appConfig = useAppConfig()
         <template #right>
           <div class="space-y-4">
             <NewsletterForm label="Abboniere unseren Newsletter" description="Bleibe auf dem Laufenden über neue Beiträge, Veranstaltungen und mehr." />
-            <UFormGroup name="theme" label="Farbschema">
+            <!-- <UFormGroup name="theme" label="Farbschema">
               <UColorModeSelect class="w-32" />
-            </UFormGroup>
+            </UFormGroup> -->
           </div>
         </template>
       </UFooterColumns>
@@ -31,9 +31,13 @@ const appConfig = useAppConfig()
       </p>
     </template>
     <template #right>
-      <UButton aria-label="Sfr. HN-Biberach auf Instagram" to="https://www.instagram.com/schachfreundeheilbronnbiberach/" target="_blank" icon="i-simple-icons-instagram" v-bind="($ui.button.secondary as any)" />
-      <UButton aria-label="Sfr. HN-Biberach auf Facebook" to="https://www.facebook.com/Schachfreunde.HN.Biberach/" target="_blank" icon="i-simple-icons-facebook" v-bind="($ui.button.secondary as any)" />
-      <UButton aria-label="Sfr. HN-Biberach auf GitHub" to="https://github.com/sfbiberach" target="_blank" icon="i-simple-icons-github" v-bind="($ui.button.secondary as any)" />
+      <UColorModeSelect class="w-32" />
+      <UDivider color="gray" orientation="vertical" class="w-8 h-8" />
+      <div class="-ml-[0.375rem]">
+        <UButton aria-label="Sfr. HN-Biberach auf Instagram" to="https://www.instagram.com/schachfreundeheilbronnbiberach/" target="_blank" icon="i-simple-icons-instagram" v-bind="($ui.button.secondary as any)" />
+        <UButton aria-label="Sfr. HN-Biberach auf Facebook" to="https://www.facebook.com/Schachfreunde.HN.Biberach/" target="_blank" icon="i-simple-icons-facebook" v-bind="($ui.button.secondary as any)" />
+        <UButton aria-label="Sfr. HN-Biberach auf GitHub" to="https://github.com/sfbiberach" target="_blank" icon="i-simple-icons-github" v-bind="($ui.button.secondary as any)" />
+      </div>
     </template>
   </UFooter>
 </template>
