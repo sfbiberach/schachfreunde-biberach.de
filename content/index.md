@@ -1,6 +1,8 @@
 ---
 title: Aktuelles
 showHeader: false
+prose: false
+container: true
 ---
 
 ::landing-hero
@@ -17,3 +19,5 @@ orientation: horizontal
 - Write pages in Markdown and Vue components with the [MDC syntax](https://content.nuxtjs.org/guide/writing/mdc).
 - Use [**30+ built-in**](https://elements.nuxt.space) components in your Markdown pages.
 ::
+
+:blog-list
