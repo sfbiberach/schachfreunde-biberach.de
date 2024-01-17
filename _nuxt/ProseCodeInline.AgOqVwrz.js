@@ -1,1 +1,0 @@
-import{l as o,b as n,c as r,a1 as c}from"./entry.Wtn98qDt.js";const s={};function t(e,a){return n(),r("code",null,[c(e.$slots,"default")])}const d=o(s,[["render",t]]);export{d as default};
