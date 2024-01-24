@@ -1,8 +1,9 @@
 <script setup lang="ts">
 const appConfig = useAppConfig()
+
+const { data: footerTexts } = await useAsyncData('footer', () => queryContent('_texts/footer').find())
 </script>
 
-<!-- eslint-disable vue/no-extra-parens -->
 <template>
   <UFooter
     :ui="{
@@ -11,13 +12,14 @@ const appConfig = useAppConfig()
     }"
   >
     <template #top>
-      <UFooterColumns :links="appConfig.links.footer">
+      <UFooterColumns :links="appConfig.links.footer" :ui="{ right: 'flex flex-col lg:grid grid-flow-col auto-cols-fr gap-8' }">
         <template #right>
-          <div class="space-y-4">
-            <NewsletterForm label="Abboniere unseren Newsletter" description="Bleibe auf dem Laufenden über neue Beiträge, Veranstaltungen und mehr." />
-            <!-- <UFormGroup name="theme" label="Farbschema">
-              <UColorModeSelect class="w-32" />
-            </UFormGroup> -->
+          <NewsletterForm class="space-y-6" />
+          <div v-for="(text, index) in footerTexts" :key="index" class="space-y-6 text-sm">
+            <h3 class="text-sm/6 font-semibold text-gray-900 dark:text-white">
+              {{ text.title }}
+            </h3>
+            <ContentRenderer :value="text" />
           </div>
         </template>
       </UFooterColumns>

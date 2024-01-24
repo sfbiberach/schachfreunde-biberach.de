@@ -68,7 +68,7 @@ export default defineAppConfig({
     }],
   },
   newsletter: {
-    visible: true,
+    visible: false,
     label: 'Abboniere unseren Newsletter',
     description: 'Bleibe auf dem Laufenden über neue Beiträge, Veranstaltungen und mehr.',
     placeholder: 'deine-email@domain.com',
