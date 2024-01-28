@@ -5,18 +5,21 @@ prose: false
 container: true
 ---
 
-::landing-hero
+::landing-section
 ---
 title: Herzlich Willkommen
-orientation: horizontal
-class: prose prose-primary dark:prose-invert max-w-none
+description: bei den Schachfreunden Heilbronn-Biberach. Wir sind ein dynamischer Verein aus Baden-Württemberg mit einer erfolgreichen Jugendarbeit.
+align: left
+features:
+  - name: 'Fully customizable'
+    description: 'Like Nuxt UI, change the style of any component from your App Config or customize them specifically through the ui prop.'
+    icon: 'i-ph-user-duotone'
+  - name: 'Slots for everything'
+    description: "Each component leverages the power of Vue's slots to give you the flexibility to build anything."
+    icon: 'i-ph-stack-duotone'
+ui: { container: '!px-0' }
 ---
-#default
-<!-- :Logo{class="h-72 m-auto"} -->
-<!-- :nuxt-img{src="/" class="w-full rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700"} -->
-
-#description
-bei den Schachfreunden Heilbronn-Biberach. Wir sind ein dynamischer Verein aus Baden-Württemberg mit einer erfolgreichen Jugendarbeit.
+<img src="/assets/blog/20170101.dvm-u14-2016/gruppenfoto.jpg" class="w-full rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700" />
 ::
 
 :blog-list
