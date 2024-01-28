@@ -22,4 +22,11 @@ ui: { container: '!px-0' }
 <img src="/assets/blog/20170101.dvm-u14-2016/gruppenfoto.jpg" class="w-full rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700" />
 ::
 
+::landing-section
+---
+title: Aktuelles
+description: Hier findest du die neuesten Beiträge aus unserem Blog.
+ui: { container: '!px-0' }
+---
 :blog-list
+::
