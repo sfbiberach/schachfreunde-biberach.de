@@ -20,7 +20,7 @@ const appConfig = useAppConfig()
     </template>
 
     <template #right>
-      <UButton label="Kontakt" color="black" class="hidden lg:flex" />
+      <UColorModeButton />
     </template>
   </UHeader>
 </template>
