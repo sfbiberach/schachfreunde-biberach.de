@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     icons: [
       'ph',
       'simple-icons',
+      'fa6-solid',
     ],
   },
 })
