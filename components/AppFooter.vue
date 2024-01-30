@@ -12,7 +12,7 @@ const { data: footerTexts } = await useAsyncData('footer', () => queryContent('_
     }"
   >
     <template #top>
-      <UFooterColumns :links="appConfig.links.footer" :ui="{ right: 'flex flex-col lg:grid grid-flow-col auto-cols-fr gap-8' }">
+      <UFooterColumns :links="appConfig.links.footer" :ui="{ right: `flex flex-col lg:grid grid-flow-col auto-cols-fr gap-8 lg:grid-cols-${appConfig.links.footer?.length} xl:grid-cols-none` }">
         <template #right>
           <NewsletterForm class="space-y-6" />
           <div v-for="(text, index) in footerTexts" :key="index" class="space-y-6 text-sm">
