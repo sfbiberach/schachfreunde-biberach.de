@@ -19,7 +19,7 @@ const { data: footerTexts } = await useAsyncData('footer', () => queryContent('_
             <h3 class="text-sm/6 font-semibold text-gray-900 dark:text-white">
               {{ text.title }}
             </h3>
-            <ContentRenderer :value="text" />
+            <ContentRenderer :value="text" class="prose prose-primary dark:prose-invert max-w-none text-sm" />
           </div>
         </template>
       </UFooterColumns>
@@ -33,8 +33,6 @@ const { data: footerTexts } = await useAsyncData('footer', () => queryContent('_
       </p>
     </template>
     <template #right>
-      <!-- <UColorModeSelect class="w-32" />
-      <UDivider color="gray" orientation="vertical" class="w-8 h-8" /> -->
       <div class="-ml-[0.375rem]">
         <UButton aria-label="Sfr. HN-Biberach auf Instagram" to="https://www.instagram.com/schachfreundeheilbronnbiberach/" target="_blank" icon="i-simple-icons-instagram" v-bind="($ui.button.secondary as any)" />
         <UButton aria-label="Sfr. HN-Biberach auf Facebook" to="https://www.facebook.com/Schachfreunde.HN.Biberach/" target="_blank" icon="i-simple-icons-facebook" v-bind="($ui.button.secondary as any)" />
