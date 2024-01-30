@@ -7,16 +7,12 @@ const appConfig = useAppConfig()
     <template #logo>
       <div class="flex gap-2 items-center">
         <UIcon name="i-ph-horse-duotone" class="text-3xl" />
-        Sfr. HN-Biberach 1978 e.&nbsp;V.
+        Sfr. HN-Biberach 1978
       </div>
     </template>
 
     <template #panel>
       <UAsideLinks :links="appConfig.links.header" />
-
-      <UDivider class="my-6" />
-
-      <UButton label="Kontakt" block />
     </template>
 
     <template #right>

@@ -24,7 +24,7 @@ ui: { container: '!px-0' }
 
 ::landing-section
 ---
-title: Aktuelles
+title: Aktuelle Beiträge
 description: Hier findest du die neuesten Beiträge aus unserem Blog.
 ui: { container: '!px-0' }
 ---
