@@ -6,11 +6,6 @@ export default defineAppConfig({
   links: {
     header: [
       {
-        label: 'Aktuelles',
-        icon: 'i-ph-newspaper-duotone',
-        to: '/',
-      },
-      {
         label: 'Verein',
         icon: 'i-ph-horse-duotone',
         to: '/verein',
