@@ -1,6 +1,7 @@
 <script setup>
 import { useElementSize } from '@vueuse/core'
 
+const size = 80
 const el = ref(null)
 const grid = ref([])
 const rows = ref(0)
@@ -44,7 +45,7 @@ function removeCell(row, col) {
 }
 
 function calcGrid() {
-  const base = Math.ceil(width.value / 96)
+  const base = Math.ceil(width.value / size)
   const cell = width.value / base
 
   rows.value = Math.ceil(height.value / cell)

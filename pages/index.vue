@@ -6,16 +6,16 @@ const { data: page } = await useAsyncData('index', () => queryContent('/').findO
   <div v-if="page">
     <ULandingSection v-bind="page.hero" class="relative">
       <template #title>
-        <span class="z-[1]" v-html="page.hero?.title" />
+        <span v-html="page.hero?.title" />
       </template>
 
       <template #description>
-        <span class="z-[1]" v-html="page.hero?.description" />
+        <span v-html="page.hero?.description" />
       </template>
 
-      <NuxtImg src="/assets/blog/20170101.dvm-u14-2016/gruppenfoto.jpg" class="w-full rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 z-[1]" />
+      <NuxtImg src="/assets/blog/20170101.dvm-u14-2016/gruppenfoto.jpg" class="w-full rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700" />
       <ClientOnly>
-        <Tetris />
+        <Tetris class="z-[-1]" />
       </ClientOnly>
     </ULandingSection>
 
