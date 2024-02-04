@@ -2,9 +2,7 @@ import type { Config } from 'tailwindcss'
 import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default <Partial<Config>> {
-  content: [
-    'docs/content/**/*.md',
-  ],
+  content: ['./content/**/*.{md,json,yaml,yml,csv}'],
   theme: {
     extend: {
       // https://uicolors.app/create
