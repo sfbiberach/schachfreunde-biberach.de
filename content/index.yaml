@@ -1,0 +1,19 @@
+title: Aktuelles
+showHeader: false
+container: true
+
+hero:
+  title: Herzlich Willkommen
+  description: bei den <b>Schachfreunden Heilbronn-Biberach</b>. Wir sind ein dynamischer Verein aus Baden-Württemberg mit einer erfolgreichen Jugendarbeit.
+  align: left
+  features:
+    - name: Fully customizable
+      description: 'Like Nuxt UI, change the style of any component from your App Config or customize them specifically through the ui prop.'
+      icon: i-ph-user-duotone
+    - name: Slots for everything
+      description: 'Each component leverages the power of Vue''s slots to give you the flexibility to build anything.'
+      icon: i-ph-stack-duotone
+
+blog:
+  title: Aktuelle Beiträge
+  description: Hier findest du die neuesten Beiträge aus unserem Blog.
