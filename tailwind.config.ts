@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default <Partial<Config>> {
   content: [
@@ -61,6 +62,10 @@ export default <Partial<Config>> {
           950: '#2b2d42',
         },
 
+      },
+      fontFamily: {
+        sans: ['Lato', ...defaultTheme.fontFamily.sans],
+        serif: ['Lora', ...defaultTheme.fontFamily.serif],
       },
     },
   },
