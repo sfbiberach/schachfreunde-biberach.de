@@ -44,7 +44,7 @@ function removeCell(row, col) {
 }
 
 function calcGrid() {
-  const base = Math.ceil(width.value / 60)
+  const base = Math.ceil(width.value / 96)
   const cell = width.value / base
 
   rows.value = Math.ceil(height.value / cell)

@@ -32,7 +32,7 @@ const { data: posts } = await useAsyncData('posts', () => queryContent<BlogPost>
       :authors="post.authors"
       :badge="post.badge"
       :orientation="index === 0 ? 'horizontal' : 'vertical'"
-      :class="[index === 0 && 'col-span-full']"
+      :class="[index === -1 && 'col-span-full']"
       :ui="{
         description: 'line-clamp-2',
       }"
