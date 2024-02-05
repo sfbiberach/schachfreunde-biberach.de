@@ -1,5 +1,13 @@
 <script lang="ts" setup>
 const { data: page } = await useAsyncData('index', () => queryContent('/').findOne())
+
+const images = [
+  { class: 'h-8' },
+  { src: '/assets/blog/20180704.bw-mannschaftsfinale-u16/1561.jpg' },
+  // { src: '/assets/blog/20170101.dvm-u14-2016/gruppenfoto.jpg' },
+  // { src: '/assets/blog/20170101.dvm-u14-2016/gruppenfoto.jpg' },
+  { src: '/assets/blog/20180704.bw-mannschaftsfinale-u16/1561.jpg' },
+]
 </script>
 
 <template>
@@ -13,7 +21,13 @@ const { data: page } = await useAsyncData('index', () => queryContent('/').findO
         <span v-html="page.hero?.description" />
       </template>
 
-      <NuxtImg src="/assets/blog/20170101.dvm-u14-2016/gruppenfoto.jpg" class="w-full rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700" />
+      <UPageColumns :ui="{ wrapper: images.length > 1 ? 'lg:columns-2' : 'md:columns-1 lg:columns-1' }">
+        <template v-for="(image, _index) in images" :key="_index">
+          <NuxtImg v-if="image.src" v-bind="image" class="w-full rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700" />
+          <div v-else v-bind="image" />
+        </template>
+      </UPageColumns>
+
       <ClientOnly>
         <Chessboard class="z-[-1]" />
       </ClientOnly>
