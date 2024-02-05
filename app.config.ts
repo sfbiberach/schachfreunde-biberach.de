@@ -2,6 +2,10 @@ export default defineAppConfig({
   ui: {
     primary: 'blue',
     gray: 'zinc',
+    icons: {
+      light: 'i-ph-sun-duotone',
+      dark: 'i-ph-moon-duotone',
+    },
   },
   links: {
     header: [
