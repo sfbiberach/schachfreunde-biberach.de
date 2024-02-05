@@ -16,7 +16,9 @@ const appConfig = useAppConfig()
     </template>
 
     <template #right>
-      <UColorModeButton />
+      <UTooltip :text="$colorMode.preference === 'dark' ? 'Zu Lichtmodus wechseln' : 'Zu Dunkelmodus wechseln'">
+        <UColorModeButton />
+      </UTooltip>
     </template>
   </UHeader>
 </template>
