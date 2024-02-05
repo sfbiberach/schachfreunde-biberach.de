@@ -15,7 +15,7 @@ const { data: page } = await useAsyncData('index', () => queryContent('/').findO
 
       <NuxtImg src="/assets/blog/20170101.dvm-u14-2016/gruppenfoto.jpg" class="w-full rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700" />
       <ClientOnly>
-        <Tetris class="z-[-1]" />
+        <Chessboard class="z-[-1]" />
       </ClientOnly>
     </ULandingSection>
 
