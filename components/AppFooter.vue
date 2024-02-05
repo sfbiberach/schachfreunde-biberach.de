@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const appConfig = useAppConfig()
 
-const { data: footerTexts } = await useAsyncData('footer', () => queryContent('_texts/footer').find())
+const { data: footerTexts } = await useAsyncData('footer', () => queryContent('_footer').find())
 </script>
 
 <template>
