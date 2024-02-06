@@ -21,7 +21,7 @@ const images = [
         <span v-html="page.hero?.description" />
       </template>
 
-      <UPageColumns :ui="{ wrapper: images.length > 1 ? 'lg:columns-2' : 'md:columns-1 lg:columns-1' }">
+      <UPageColumns :style="{ columns: images.length > 1 ? 2 : 1 }">
         <template v-for="(image, _index) in images" :key="_index">
           <NuxtImg v-if="image.src" v-bind="image" class="w-full rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700" />
           <div v-else v-bind="image" />
