@@ -7,6 +7,54 @@ export default defineAppConfig({
       dark: 'i-ph-moon-duotone',
     },
   },
+  app: {
+    chessboard: {
+      summon: {
+        chance: 0.15,
+        limit: 2,
+      },
+      pieces: [
+        {
+          icon: 'i-fa6-solid-chess-pawn',
+          moves: {
+            step: [[0, 1]],
+            start: [[0, 1], [0, 2]],
+            capture: [[1, 1]],
+          },
+        },
+        {
+          icon: 'i-fa6-solid-chess-knight',
+          moves: {
+            step: [[2, 1], [1, 2]],
+          },
+        },
+        {
+          icon: 'i-fa6-solid-chess-bishop',
+          moves: {
+            step: [[1, 1], [2, 2], [3, 3]],
+          },
+        },
+        {
+          icon: 'i-fa6-solid-chess-rook',
+          moves: {
+            step: [[0, 1], [0, 2], [0, 3], [1, 0], [2, 0], [3, 0]],
+          },
+        },
+        {
+          icon: 'i-fa6-solid-chess-queen',
+          moves: {
+            step: [[0, 1], [0, 2], [0, 3], [1, 0], [2, 0], [3, 0], [1, 1], [2, 2], [3, 3]],
+          },
+        },
+        {
+          icon: 'i-fa6-solid-chess-king',
+          moves: {
+            step: [[0, 1], [1, 0], [1, 1]],
+          },
+        },
+      ],
+    },
+  },
   links: {
     header: [
       {
