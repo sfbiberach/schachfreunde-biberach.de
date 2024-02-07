@@ -15,12 +15,12 @@
   "dependencies": {
     "@iconify-json/ph": "^1.1.11",
     "@iconify-json/simple-icons": "^1.1.90",
-    "@nuxt/content": "^2.11.0",
+    "@nuxt/content": "^2.12.0",
     "@nuxt/ui": "^2.13.0",
     "@nuxt/ui-pro": "^0.7.5",
     "@nuxthq/studio": "^1.0.10",
     "@nuxtjs/plausible": "^0.2.4",
-    "nuxt": "^3.10.0",
+    "nuxt": "^3.10.1",
     "nuxt-umami": "^2.5.7",
     "vue": "^3.4.15"
   },
