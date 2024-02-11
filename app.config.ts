@@ -6,6 +6,11 @@ export default defineAppConfig({
       light: 'i-ph-sun-duotone',
       dark: 'i-ph-moon-duotone',
     },
+    button: {
+      default: {
+        size: 'md',
+      },
+    },
   },
   app: {
     chessboard: {

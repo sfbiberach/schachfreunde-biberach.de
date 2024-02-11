@@ -33,7 +33,7 @@ const images = [
       </ClientOnly>
     </ULandingSection>
 
-    <ULandingSection v-bind="page.blog">
+    <ULandingSection v-bind="page.blog" id="aktuelles">
       <BlogList />
     </ULandingSection>
   </div>

@@ -13,6 +13,14 @@ hero:
     - name: Slots for everything
       description: 'Each component leverages the power of Vue''s slots to give you the flexibility to build anything.'
       icon: i-ph-stack-duotone
+  links:
+    - label: Erfahre mehr
+      to: /verein
+      trailing-icon: i-ph-arrow-right
+    - label: Aktuelles
+      to: /#aktuelles
+      icon: i-ph-newspaper-duotone
+      color: gray
 
 blog:
   title: Aktuelle Beiträge
