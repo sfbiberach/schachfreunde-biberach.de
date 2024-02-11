@@ -29,11 +29,11 @@ cards:
     icon: i-ph-trophy-duotone
   - title: Jugend
     description: Hier findest du Informationen zu unserer Jugendarbeit.
-    to: /jugend
+    to: /
     icon: i-ph-users-duotone
   - title: Training
     description: Wir bieten regelmäßiges Training für alle Altersklassen.
-    to: /training
+    to: /
     icon: i-ph-castle-turret-duotone
 
 blog:
