@@ -22,6 +22,20 @@ hero:
       icon: i-ph-newspaper-duotone
       color: gray
 
+cards:
+  - title: Verein
+    description: Erfahre mehr über unseren Verein und unsere Aktivitäten.
+    to: /verein
+    icon: i-ph-trophy-duotone
+  - title: Jugend
+    description: Hier findest du Informationen zu unserer Jugendarbeit.
+    to: /jugend
+    icon: i-ph-users-duotone
+  - title: Training
+    description: Wir bieten regelmäßiges Training für alle Altersklassen.
+    to: /training
+    icon: i-ph-castle-turret-duotone
+
 blog:
   title: Aktuelle Beiträge
   description: Hier findest du die neuesten Beiträge aus unserem Blog.
