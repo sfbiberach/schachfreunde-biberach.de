@@ -13,7 +13,7 @@ const images = [
 <template>
   <div v-if="page">
     <div class="relative">
-      <ULandingSection v-bind="page.hero">
+      <ULandingSection v-bind="page.hero" class="relative">
         <template #title>
           <span v-html="page.hero?.title" />
         </template>
@@ -28,19 +28,19 @@ const images = [
             <div v-else v-bind="image" />
           </template>
         </UPageColumns>
+        <ClientOnly>
+          <Chessboard class="z-[-1]" />
+        </ClientOnly>
       </ULandingSection>
 
-      <ULandingSection :ui="{ wrapper: 'py-12 sm:py-16 bg-gradient-to-b from-transparent via-gray-900 to-gray-900' }">
+      <ULandingSection :ui="{ wrapper: '!pt-0 py-12 sm:py-16 bg-gradient-to-b from-transparent to-gray-white dark:to-gray-900' }">
         <UPageGrid v-if="page.cards">
           <ULandingCard v-for="(card, index) in page.cards" :key="index" v-bind="card" />
         </UPageGrid>
       </ULandingSection>
-      <ClientOnly>
-        <Chessboard class="z-[-1]" />
-      </ClientOnly>
     </div>
 
-    <ULandingSection v-bind="page.blog" id="aktuelles" :ui="{ wrapper: 'bg-gray-900' }">
+    <ULandingSection v-bind="page.blog" id="aktuelles">
       <BlogList />
     </ULandingSection>
   </div>
