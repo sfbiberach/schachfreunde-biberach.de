@@ -33,7 +33,7 @@ const images = [
         </ClientOnly>
       </ULandingSection>
 
-      <ULandingSection :ui="{ wrapper: '!pt-0 py-12 sm:py-16 bg-gradient-to-b from-transparent to-gray-white dark:to-gray-900' }">
+      <ULandingSection :ui="{ wrapper: '!pt-0 py-12 sm:py-16' }">
         <UPageGrid v-if="page.cards">
           <ULandingCard v-for="(card, index) in page.cards" :key="index" v-bind="card" />
         </UPageGrid>
