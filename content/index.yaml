@@ -4,15 +4,16 @@ container: true
 
 hero:
   title: Herzlich Willkommen
-  description: bei den <b>Schachfreunden Heilbronn-Biberach</b>. Wir sind ein dynamischer Verein aus Baden-Württemberg mit einer erfolgreichen Jugendarbeit.
+  description: bei den <b>Schachfreunden Heilbronn-Biberach</b>. Wir sind ein dynamischer Verein aus Baden-Württemberg.
   align: left
+  ui: {features: {description: whitespace-pre-line}}
   features:
-    - name: Fully customizable
-      description: 'Like Nuxt UI, change the style of any component from your App Config or customize them specifically through the ui prop.'
+    - name: Erfolgreiche Jugendarbeit
+      description: 10 DVM-Teilnahmen in den letzten 9 Jahren
       icon: i-ph-user-duotone
-    - name: Slots for everything
-      description: 'Each component leverages the power of Vue''s slots to give you the flexibility to build anything.'
-      icon: i-ph-stack-duotone
+    - name: Turniere mit überregionaler Strahlkraft
+      description: 'Seit 2012: Biber-Jugend-Cup mit Ø ca. 200 Teilnehmern'
+      icon: i-ph-trophy-duotone
   links:
     - label: Erfahre mehr
       to: /verein
