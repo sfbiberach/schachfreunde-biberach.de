@@ -1,18 +1,16 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 const { data: page } = await useAsyncData('index', () => queryContent('/').findOne())
 
 const images = [
   { class: 'h-8' },
   { src: '/assets/blog/20180704.bw-mannschaftsfinale-u16/1561.jpg' },
-  // { src: '/assets/blog/20170101.dvm-u14-2016/gruppenfoto.jpg' },
-  // { src: '/assets/blog/20170101.dvm-u14-2016/gruppenfoto.jpg' },
   { src: '/assets/blog/20180704.bw-mannschaftsfinale-u16/1561.jpg' },
 ]
 </script>
 
 <template>
   <div v-if="page">
-    <div class="relative">
+    <div>
       <ULandingSection v-bind="page.hero" class="relative">
         <template #title>
           <span v-html="page.hero?.title" />
@@ -28,6 +26,7 @@ const images = [
             <div v-else v-bind="image" />
           </template>
         </UPageColumns>
+
         <ClientOnly>
           <Chessboard class="z-[-1]" />
         </ClientOnly>
@@ -45,7 +44,3 @@ const images = [
     </ULandingSection>
   </div>
 </template>
-
-<style>
-
-</style>
