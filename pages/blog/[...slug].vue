@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { withoutTrailingSlash } from 'ufo'
+import { defu } from 'defu'
 import type { BlogPost } from '~/types'
+import type { Badge } from '#ui/types'
 
 const route = useRoute()
+const appConfig = useAppConfig()
 
 const { data: post } = await useAsyncData(route.path, () => queryContent<BlogPost>(route.path).findOne())
 if (!post.value)
@@ -40,13 +43,17 @@ useSeoMeta({
 //     headline: 'Blog',
 //   })
 // }
+
+function getBadgeProps(badge: keyof typeof appConfig.app.blog.badges | Badge) {
+  return defu(badge, appConfig.app.blog.badges[badge as keyof typeof appConfig.app.blog.badges] as Badge)
+}
 </script>
 
 <template>
   <UContainer v-if="post">
     <UPageHeader :title="post.title" :description="post.description">
       <template #headline>
-        <UBadge v-bind="post.badge" variant="subtle" />
+        <UBadge v-bind="getBadgeProps(post.badge)" variant="subtle" />
         <span class="text-gray-500 dark:text-gray-400">&middot;</span>
         <time class="text-gray-500 dark:text-gray-400">{{ new Date(post.date).toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' }) }}</time>
       </template>

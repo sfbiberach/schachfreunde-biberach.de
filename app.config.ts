@@ -13,6 +13,22 @@ export default defineAppConfig({
     },
   },
   app: {
+    blog: {
+      badges: {
+        Jugend: {
+          label: 'Jugend',
+          color: 'orange',
+        },
+        Mannschaft: {
+          label: 'Mannschaft',
+          color: 'green',
+        },
+        Verein: {
+          label: 'Verein',
+          color: 'blue',
+        },
+      },
+    },
     chessboard: {
       summon: {
         chance: 0.15,

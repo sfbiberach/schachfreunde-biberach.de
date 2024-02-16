@@ -21,5 +21,6 @@ export default defineNuxtConfig({
       'simple-icons',
       'fa6-solid',
     ],
+    safelistColors: ['blue', 'green', 'orange'],
   },
 })
