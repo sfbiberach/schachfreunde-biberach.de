@@ -3,7 +3,7 @@ const appConfig = useAppConfig()
 </script>
 
 <template>
-  <UHeader :links="appConfig.links.header">
+  <UHeader class="page-header" :links="appConfig.links.header">
     <template #logo>
       <div class="flex gap-2 items-center">
         <UIcon name="i-ph-horse-duotone" class="text-3xl" />
@@ -22,3 +22,10 @@ const appConfig = useAppConfig()
     </template>
   </UHeader>
 </template>
+
+<style>
+.page-header {
+  view-transition-name: page-header;
+  contain: layout;
+}
+</style>
