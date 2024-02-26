@@ -80,11 +80,11 @@ function getBadgeProps(badge: keyof typeof appConfig.app.blog.badges | Badge) {
 
         <hr v-if="surround?.length">
 
-        <UDocsSurround :surround="surround" />
+        <UContentSurround :surround="surround" />
       </UPageBody>
 
       <template #right>
-        <UDocsToc v-if="post.body && post.body.toc" :links="post.body.toc.links" />
+        <UContentToc v-if="post.body && post.body.toc" :links="post.body.toc.links" />
       </template>
     </UPage>
   </UContainer>

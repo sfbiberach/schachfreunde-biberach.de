@@ -62,7 +62,7 @@ const active = useState()
 </template>
 
 <style>
-.active .font-semibold  {
+.active h2 {
   view-transition-name: post-heading;
   contain: layout;
 }
