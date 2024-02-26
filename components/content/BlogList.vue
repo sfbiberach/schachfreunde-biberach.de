@@ -53,7 +53,8 @@ const active = useState()
         :orientation="index === 0 ? 'horizontal' : 'vertical'"
         :class="[{ active: active === index }, index === -1 && 'col-span-full']"
         :ui="{
-          description: 'line-clamp-2',
+          title: 'post-title',
+          description: 'post-description line-clamp-2',
         }"
         @click="active = index"
       />
@@ -62,13 +63,13 @@ const active = useState()
 </template>
 
 <style>
-.active h2 {
-  view-transition-name: post-heading;
+/* .active .post-title {
+  view-transition-name: post-title;
   contain: layout;
-}
+} */
 
-.active .text-base {
+/* .active .post-description {
   view-transition-name: post-description;
   contain: layout;
-}
+} */
 </style>

@@ -51,7 +51,7 @@ function getBadgeProps(badge: keyof typeof appConfig.app.blog.badges | Badge) {
 
 <template>
   <UContainer v-if="post">
-    <UPageHeader :title="post.title" :description="post.description">
+    <UPageHeader :title="post.title" :description="post.description" :ui="{ title: 'post-title', description: 'post-description' }">
       <template #headline>
         <UBadge v-bind="getBadgeProps(post.badge)" variant="subtle" />
         <span class="text-gray-500 dark:text-gray-400">&middot;</span>
@@ -91,11 +91,11 @@ function getBadgeProps(badge: keyof typeof appConfig.app.blog.badges | Badge) {
 </template>
 
 <style>
-h1 {
-  view-transition-name: post-heading;
+/* .post-title {
+  view-transition-name: post-title;
 }
 
-.text-lg {
+.post-description {
   view-transition-name: post-description;
-}
+} */
 </style>
