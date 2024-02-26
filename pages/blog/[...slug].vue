@@ -89,3 +89,13 @@ function getBadgeProps(badge: keyof typeof appConfig.app.blog.badges | Badge) {
     </UPage>
   </UContainer>
 </template>
+
+<style>
+h1 {
+  view-transition-name: post-heading;
+}
+
+.text-lg {
+  view-transition-name: post-description;
+}
+</style>

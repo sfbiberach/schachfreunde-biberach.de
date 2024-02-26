@@ -34,6 +34,7 @@ function getBadgeProps(badge: keyof typeof appConfig.app.blog.badges | Badge) {
 //   title: page.value.title,
 //   description: page.value.description,
 // })
+const active = useState()
 </script>
 
 <template>
@@ -50,11 +51,24 @@ function getBadgeProps(badge: keyof typeof appConfig.app.blog.badges | Badge) {
         :authors="post.authors"
         :badge="getBadgeProps(post.badge)"
         :orientation="index === 0 ? 'horizontal' : 'vertical'"
-        :class="[index === -1 && 'col-span-full']"
+        :class="[{ active: active === index }, index === -1 && 'col-span-full']"
         :ui="{
           description: 'line-clamp-2',
         }"
+        @click="active = index"
       />
     </UBlogList>
   </div>
 </template>
+
+<style>
+.active .font-semibold  {
+  view-transition-name: post-heading;
+  contain: layout;
+}
+
+.active .text-base {
+  view-transition-name: post-description;
+  contain: layout;
+}
+</style>

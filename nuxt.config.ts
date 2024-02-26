@@ -3,6 +3,9 @@ export default defineNuxtConfig({
     documentDriven: true,
   },
   devtools: { enabled: true },
+  experimental: {
+    viewTransition: true,
+  },
   extends: [
     '@nuxt/ui-pro',
     'nuxt-umami',
