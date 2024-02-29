@@ -17,7 +17,7 @@ useHead({
   htmlAttrs: {
     lang: 'de',
     dir: 'ltr',
-    class: 'scroll-auto',
+    class: 'scroll-smooth',
   },
 })
 
