@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     '@nuxthq/studio',
     '@nuxtjs/plausible',
     'nuxt-og-image',
+    '@nuxt/fonts',
   ],
   ui: {
     icons: [
