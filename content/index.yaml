@@ -10,17 +10,17 @@ hero:
   features:
     - name: Erfolgreiche Jugendarbeit
       description: In den letzten 9 Jahren haben wir an 10 Deutschen Vereinsmeisterschaften (DVM) teilgenommen.
-      icon: i-ph-fire-duotone // i-ph-certificate-duotone i-ph-medal-duotone
+      icon: i-ph-fire-duotone
     - name: Turniere mit überregionaler Strahlkraft
       description: Seit 2012 veranstalten wir jährlich den Biber-Jugend-Cup mit durchschnittlich 200 Teilnehmern.
       icon: i-ph-trophy-duotone
   links:
     - label: Lerne uns kennen
       to: /verein
-      icon: i-ph-door-open-duotone // i-ph-user-circle-plus-duotone i-ph-rocket-launch-duotone i-ph-user-circle-plus-duotone i-ph-magnifying-glass-duotone i-ph-heartbeat-duotone i-ph-key-duotone
+      icon: i-ph-door-open-duotone
     - label: Aktuelles
       to: /#aktuelles
-      icon: i-ph-arrow-circle-down-duotone // i-ph-arrow-down
+      icon: i-ph-arrow-circle-down-duotone
       color: gray
 
 cards:
