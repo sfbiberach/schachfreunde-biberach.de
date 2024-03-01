@@ -9,18 +9,18 @@ hero:
   ui: {features: {description: whitespace-pre-line}}
   features:
     - name: Erfolgreiche Jugendarbeit
-      description: 10 DVM-Teilnahmen in den letzten 9 Jahren
-      icon: i-ph-user-duotone
+      description: In den letzten 9 Jahren haben wir an 10 Deutschen Vereinsmeisterschaften (DVM) teilgenommen.
+      icon: i-ph-fire-duotone // i-ph-certificate-duotone i-ph-medal-duotone
     - name: Turniere mit überregionaler Strahlkraft
-      description: 'Seit 2012: Biber-Jugend-Cup mit Ø ca. 200 Teilnehmern'
+      description: Seit 2012 veranstalten wir jährlich den Biber-Jugend-Cup mit durchschnittlich 200 Teilnehmern.
       icon: i-ph-trophy-duotone
   links:
     - label: Lerne uns kennen
       to: /verein
-      icon: i-ph-magnifying-glass-duotone
+      icon: i-ph-door-open-duotone // i-ph-user-circle-plus-duotone i-ph-rocket-launch-duotone i-ph-user-circle-plus-duotone i-ph-magnifying-glass-duotone i-ph-heartbeat-duotone i-ph-key-duotone
     - label: Aktuelles
       to: /#aktuelles
-      icon: i-ph-arrow-down
+      icon: i-ph-arrow-circle-down-duotone // i-ph-arrow-down
       color: gray
 
 cards:
@@ -28,15 +28,15 @@ cards:
     description: Offenes Turnier vom 25. – 28. Juli 2024 mit Preisgeldern von über 5.000 €.
     to: https://www.unterlaender-schachtage.de
     target: _blank
-    icon: i-fa6-solid-chess-king
+    icon: i-ph-crown-duotone
   - title: Jugend
     description: Hier findest du Informationen zu unserer Jugendarbeit.
     to: /
-    icon: i-fa6-solid-chess-bishop
+    icon: i-ph-hand-heart-duotone
   - title: Training
     description: Wir bieten regelmäßiges Training für alle Altersklassen.
     to: /
-    icon: i-ph-castle-turret-fill
+    icon: i-ph-castle-turret-duotone
 
 blog:
   title: Aktuelle Beiträge
