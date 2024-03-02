@@ -3,6 +3,7 @@ import { withoutTrailingSlash } from 'ufo'
 import { defu } from 'defu'
 import type { BlogPost } from '~/types'
 import type { Badge } from '#ui/types'
+import { useAuthors } from '~/composables/blog'
 
 const route = useRoute()
 const appConfig = useAppConfig()
@@ -19,6 +20,7 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 
 const title = post.value.head?.title || post.value.title
 const description = post.value.head?.description || post.value.description
+const authors = await useAuthors(post.value.authors)
 
 useSeoMeta({
   title,
@@ -47,6 +49,19 @@ useSeoMeta({
 function getBadgeProps(badge: keyof typeof appConfig.app.blog.badges | Badge) {
   return defu(badge, appConfig.app.blog.badges[badge as keyof typeof appConfig.app.blog.badges] as Badge)
 }
+
+// async function fetchAuthors(authors: string[] | string | object[] | object) {
+//   const normalizedAuthors = Array.isArray(authors) ? authors : [authors]
+
+//   const authorPromises = normalizedAuthors.map((author) => {
+//     if (typeof author === 'string')
+//       return useUser(author).then(user => user.value)
+
+//     return Promise.resolve(author)
+//   })
+//   const resolvedAuthors = await Promise.all(authorPromises)
+//   return resolvedAuthors
+// }
 </script>
 
 <template>
@@ -60,16 +75,16 @@ function getBadgeProps(badge: keyof typeof appConfig.app.blog.badges | Badge) {
 
       <div class="flex flex-wrap items-center gap-3 mt-4">
         <UButton
-          v-for="(author, index) in post.authors"
+          v-for="(author, index) in authors"
           :key="index"
           :to="author.to"
           color="white"
           target="_blank"
           size="sm"
         >
-          <UAvatar v-bind="author.avatar" :alt="author.name" size="2xs" />
+          <UAvatar v-bind="author.avatar" :alt="author?.name" size="2xs" />
 
-          {{ author.name }}
+          {{ author?.name }}
         </UButton>
       </div>
     </UPageHeader>

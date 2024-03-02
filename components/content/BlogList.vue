@@ -10,6 +10,13 @@ const { data: posts } = await useAsyncData('posts', () => queryContent<BlogPost>
   .sort({ date: -1 })
   .find())
 
+if (posts.value) {
+  for (const post of posts.value) {
+    if (post.authors)
+      post._authors = await useAuthors(post.authors || [])
+  }
+}
+
 const page = ref(1)
 
 const pagePosts = computed(() => {
@@ -48,7 +55,7 @@ const active = useState()
         :title="post.title"
         :description="post.description"
         :date="new Date(post.date).toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' })"
-        :authors="post.authors"
+        :authors="post._authors"
         :badge="getBadgeProps(post.badge)"
         :orientation="index === 0 ? 'horizontal' : 'vertical'"
         :class="[{ active: active === index }, index === -1 && 'col-span-full']"
