@@ -7,7 +7,7 @@ const appConfig = useAppConfig()
     <template #logo>
       <div class="flex gap-2 items-center">
         <UIcon name="i-ph-horse-duotone" class="text-3xl" />
-        Sfr. HN-Biberach 1978
+        SF HN-Biberach
       </div>
     </template>
 
