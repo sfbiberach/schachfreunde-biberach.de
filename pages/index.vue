@@ -38,9 +38,5 @@ const images = [
         </UPageGrid>
       </ULandingSection>
     </div>
-
-    <ULandingSection v-bind="page.blog" id="aktuelles">
-      <BlogList />
-    </ULandingSection>
   </div>
 </template>

@@ -79,6 +79,11 @@ export default defineAppConfig({
   links: {
     header: [
       {
+        label: 'Blog',
+        icon: 'i-fa6-solid-newspaper',
+        to: '/blog',
+      },
+      {
         label: 'Verein',
         icon: 'i-ph-horse-duotone',
         to: '/verein',
@@ -97,8 +102,11 @@ export default defineAppConfig({
     footer: [{
       label: 'Homepage',
       children: [{
-        label: 'Aktuelles',
+        label: 'Startseite',
         to: '/',
+      }, {
+        label: 'Blog',
+        to: '/blog',
       }, {
         label: 'Verein',
         to: '/verein',
