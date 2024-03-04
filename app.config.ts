@@ -84,11 +84,6 @@ export default defineAppConfig({
         to: '/blog',
       },
       {
-        label: 'Verein',
-        icon: 'i-ph-horse-duotone',
-        to: '/verein',
-      },
-      {
         label: 'Mannschaften',
         icon: 'i-ph-castle-turret-duotone',
         to: '/mannschaften',
@@ -107,9 +102,6 @@ export default defineAppConfig({
       }, {
         label: 'Blog',
         to: '/blog',
-      }, {
-        label: 'Verein',
-        to: '/verein',
       }, {
         label: 'Mannschaften',
         to: '/mannschaften',
