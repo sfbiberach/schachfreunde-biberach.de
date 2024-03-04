@@ -1,6 +1,11 @@
 <script setup lang="ts">
 const { data: page } = await useAsyncData('index', () => queryContent('/').findOne())
 
+useSeoMeta({
+  titleTemplate: page.value?.titleTemplate,
+  title: page.value?.title,
+})
+
 const images = [
   { class: 'h-8' },
   { src: '/assets/home/1690827815.jpg' },
