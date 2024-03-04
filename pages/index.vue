@@ -3,8 +3,8 @@ const { data: page } = await useAsyncData('index', () => queryContent('/').findO
 
 const images = [
   { class: 'h-8' },
-  { src: '/assets/blog/20180704.bw-mannschaftsfinale-u16/1561.jpg' },
   { src: '/assets/home/1690827815.jpg' },
+  { src: '/assets/blog/20180704.bw-mannschaftsfinale-u16/1561.jpg' },
 ]
 </script>
 

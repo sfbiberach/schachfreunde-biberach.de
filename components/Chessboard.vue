@@ -1,7 +1,7 @@
 <script setup>
 import { useElementSize } from '@vueuse/core'
 
-const size = 80
+const size = 84
 const el = ref(null)
 const grid = ref([])
 const rows = ref(0)

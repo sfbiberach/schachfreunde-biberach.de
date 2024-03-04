@@ -4,7 +4,7 @@ container: true
 
 hero:
   title: Herzlich Willkommen
-  description: bei den <b>Schachfreunden Heilbronn-Biberach 1978 e.&nbsp;V.</b> Wir sind ein junger und dynamischer Verein aus Baden-Württemberg.
+  description: bei den <b>Schachfreunden Heilbronn-Biberach 1978 e.&nbsp;V.</b>&nbsp; Wir sind ein junger und dynamischer Verein aus Baden-Württemberg.
   align: left
   ui: {features: {description: whitespace-pre-line}}
   features:
