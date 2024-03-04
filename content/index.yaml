@@ -20,8 +20,8 @@ hero:
       to: /blog
       icon: i-ph-newspaper-duotone
     - label: Lerne uns kennen
-      to: /verein
-      icon: i-ph-door-open-duotone
+      to: /
+      icon: i-ph-arrow-bend-right-down-duotone
       color: gray
 
 cards:
