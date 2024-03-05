@@ -8,7 +8,6 @@ export default defineNuxtConfig({
   },
   extends: [
     '@nuxt/ui-pro',
-    'nuxt-umami',
   ],
   modules: [
     '@nuxt/content',
@@ -16,7 +15,6 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/ui',
     '@nuxthq/studio',
-    '@nuxtjs/plausible',
     'nuxt-og-image',
   ],
   ui: {
