@@ -60,7 +60,7 @@ const active = useState()
         :orientation="index === 0 ? 'horizontal' : 'vertical'"
         :class="[{ active: active === index }, index === -1 && 'col-span-full']"
         :ui="{
-          title: 'post-title',
+          title: 'post-title line-clamp-2 whitespace-normal',
           description: 'post-description line-clamp-2',
         }"
         @click="active = index"
