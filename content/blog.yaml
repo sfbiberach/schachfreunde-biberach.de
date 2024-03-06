@@ -1,3 +1,7 @@
+showHeader: false
+container: false
+prose: false
+
 blog:
   title: Aktuelle Beiträge
   description: Hier findest du die neusten Mannschafts- und Turnierberichte.

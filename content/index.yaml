@@ -1,7 +1,8 @@
 title: Schachfreunde Heilbronn-Biberach 1978 e. V.
 titleTemplate: '%s'
 showHeader: false
-container: true
+container: false
+prose: false
 
 hero:
   title: Herzlich Willkommen
