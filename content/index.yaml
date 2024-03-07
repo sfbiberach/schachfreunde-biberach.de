@@ -31,11 +31,11 @@ cards:
     to: https://www.unterlaender-schachtage.de
     target: _blank
     icon: i-ph-crown-duotone
-  - title: Jugend
-    description: Hier findest du Informationen zu unserer Jugendarbeit.
-    to: /
-    icon: i-ph-hand-heart-duotone
+  - title: Biber-Jugend-Cup
+    description: Kinder- und Jugendturnier am 2. März 2024 mit über 200 Teilnehmern und 12 Jahren Tradition.
+    to: https://www.findchessgames.com/index-0134,224,1036-turniere_anzeigen.html
+    icon: i-ph-castle-turret-duotone
   - title: Training
     description: Wir bieten regelmäßiges Training für alle Altersklassen.
     to: /
-    icon: i-ph-castle-turret-duotone
+    icon: i-ph-books-duotone

@@ -80,7 +80,7 @@ export default defineAppConfig({
     header: [
       {
         label: 'Blog',
-        icon: 'i-fa6-solid-newspaper',
+        icon: 'i-ph-newspaper',
         to: '/blog',
       },
       {
