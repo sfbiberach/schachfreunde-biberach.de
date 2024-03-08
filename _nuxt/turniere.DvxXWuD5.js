@@ -1,0 +1,1 @@
+import{_ as t}from"./nuxt-layout.BOpKmmA3.js";import{l as o,I as n,w as r,b as c,j as _}from"./entry.D1UT1aSw.js";const a={};function s(u,f){const e=t;return c(),n(e,null,{default:r(()=>[_(" Turniere ")]),_:1})}const m=o(a,[["render",s]]);export{m as default};
