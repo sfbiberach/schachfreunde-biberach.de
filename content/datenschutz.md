@@ -2,6 +2,7 @@
 title: Datenschutzerklärung
 description: Informationen über die Datenerhebung, -verarbeitung und -schutzrichtlinien der Webseite.
 container: true
+navigation: false
 ---
 
 ## 1\. Datenschutz auf einen Blick

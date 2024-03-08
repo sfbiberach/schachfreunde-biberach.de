@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const appConfig = useAppConfig()
+const { metaSymbol } = useShortcuts()
 </script>
 
 <template>
@@ -17,7 +18,10 @@ const appConfig = useAppConfig()
     </template>
 
     <template #right>
-      <UTooltip :text="$colorMode.preference === 'dark' ? 'Zu Lichtmodus wechseln' : 'Zu Dunkelmodus wechseln'">
+      <UTooltip text="Suche" :shortcuts="[metaSymbol, 'K']" :popper="{ strategy: 'absolute' }">
+        <UContentSearchButton label="" />
+      </UTooltip>
+      <UTooltip :text="$colorMode.preference === 'dark' ? 'Zu hellem Modus wechseln' : 'Zu dunklem Modus wechseln'">
         <UColorModeButton />
       </UTooltip>
     </template>
