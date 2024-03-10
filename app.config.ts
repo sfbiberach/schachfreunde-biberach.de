@@ -96,6 +96,7 @@ export default defineAppConfig({
     ],
     footer: [{
       label: 'Homepage',
+      to: '/',
       children: [{
         label: 'Startseite',
         to: '/',
@@ -115,6 +116,7 @@ export default defineAppConfig({
       }],
     }, {
       label: 'Wichtige Links',
+      to: '/',
       children: [{
         label: 'Unterländer Schachtage',
         to: 'https://www.unterlaender-schachtage.de/',
@@ -133,6 +135,7 @@ export default defineAppConfig({
       }],
     }, {
       label: 'Rechtliches',
+      to: '/',
       children: [{
         label: 'Impressum',
         to: '/impressum',

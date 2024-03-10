@@ -30,34 +30,33 @@ useSeoMeta({
 })
 
 const config = useAppConfig()
-const links = config.links?.footer?.map(({ label, children }) => ({
-  label,
-  children: children.map(({ label, to, icon }) => ({
-    label,
-    to,
+const footerLinks = config.links?.footer?.map(({ label, to, children }) => ({
+  title: label,
+  _path: to,
+  children: children.map(({ label, to, icon }: { label: string; to: string; icon: string }) => ({
+    title: label,
+    _path: to,
     icon,
   })),
 }))
 
-console.log(JSON.stringify(links, null, 2))
-
-const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation())
+const { data: blogNavigation } = await useAsyncData('navigation', () => fetchContentNavigation('/blog'))
 const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', { default: () => [], server: false })
 
-console.log('navigation', navigation.value)
+// const navigation = computed(() => [...blogNavigation?.value, ...footerLinks]) 
 
-provide('navigation', navigation)
+provide('navigation', blogNavigation)
 provide('files', files)
 </script>
 
 <template>
   <AppHeader />
-  {{ navigation }}
+  {{ [...(footerLinks ?? []), ...(blogNavigation ?? [])] }}
   <NuxtPage />
   <AppFooter />
 
   <ClientOnly>
-    <LazyUContentSearch :files="files" :navigation="navigation" :links="links" />
+    <LazyUContentSearch :files="files" :navigation="[...(footerLinks ?? []), ...(blogNavigation ?? [])]" />
   </ClientOnly>
 </template>
 
