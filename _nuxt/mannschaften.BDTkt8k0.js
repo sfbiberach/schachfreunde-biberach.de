@@ -1,1 +1,0 @@
-import{_ as n}from"./nuxt-layout.BOpKmmA3.js";import{l as e,I as o,w as a,b as c,j as _}from"./entry.D1UT1aSw.js";const s={};function r(f,m){const t=n;return c(),o(t,null,{default:a(()=>[_(" Mannschaften ")]),_:1})}const p=e(s,[["render",r]]);export{p as default};
