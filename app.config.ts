@@ -115,6 +115,18 @@ export default defineAppConfig({
         icon: 'i-ph-trophy-duotone',
       }],
     }, {
+      label: 'Rechtliches',
+      to: '/',
+      children: [{
+        label: 'Impressum',
+        to: '/impressum',
+        icon: 'i-ph-file-text-duotone',
+      }, {
+        label: 'Datenschutz',
+        to: '/datenschutz',
+        icon: 'i-ph-shield-duotone',
+      }],
+    }, {
       label: 'Wichtige Links',
       to: '/',
       children: [{
@@ -132,18 +144,6 @@ export default defineAppConfig({
         to: 'https://calendar.google.com/calendar/embed?src=dimi.triantafillidis%40web.de&ctz=Europe%2FBerlin',
         target: '_blank',
         icon: 'i-ph-calendar-duotone',
-      }],
-    }, {
-      label: 'Rechtliches',
-      to: '/',
-      children: [{
-        label: 'Impressum',
-        to: '/impressum',
-        icon: 'i-ph-file-text-duotone',
-      }, {
-        label: 'Datenschutz',
-        to: '/datenschutz',
-        icon: 'i-ph-shield-duotone',
       }],
     }],
   },
