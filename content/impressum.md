@@ -2,6 +2,7 @@
 title: Impressum
 description: Kontaktdaten und rechtliche Informationen des Webseitenbetreibers.
 container: true
+navigation: false
 ---
 
 ### Anschrift des Vereins

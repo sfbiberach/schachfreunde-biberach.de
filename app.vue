@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { ParsedContent } from '@nuxt/content/types'
+
 useHead({
   title: 'Schachfreunde Heilbronn-Biberach 1978 e. V.',
   titleTemplate: '%s | Schachfreunde Heilbronn-Biberach 1978 e. V.',
@@ -26,12 +28,32 @@ useSeoMeta({
   description: 'Schachfreunde Heilbronn-Biberach 1978 e.V. - Der Schachverein im Heilbronner Stadtteil Biberach',
   robots: 'index, follow',
 })
+
+const config = useAppConfig()
+const footerLinks = config.links?.footer?.flatMap(({ label, to, children }) => ({
+  label,
+  children: children.map(({ label, to, icon }: { label: string, to: string, icon: string }) => ({
+    label,
+    to,
+    icon,
+  })),
+}))
+
+const { data: blogNavigation } = await useAsyncData('navigation', () => fetchContentNavigation({ path: '/blog' }))
+const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', { default: () => [], server: false })
+
+provide('navigation', blogNavigation)
+provide('files', files)
 </script>
 
 <template>
   <AppHeader />
   <NuxtPage />
   <AppFooter />
+
+  <ClientOnly>
+    <LazyUContentSearch :files="files" :links="footerLinks ?? []" :navigation="blogNavigation ?? []" />
+  </ClientOnly>
 </template>
 
 <style>

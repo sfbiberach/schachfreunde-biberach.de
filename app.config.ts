@@ -96,42 +96,54 @@ export default defineAppConfig({
     ],
     footer: [{
       label: 'Homepage',
+      to: '/',
       children: [{
         label: 'Startseite',
         to: '/',
+        icon: 'i-ph-house-duotone',
       }, {
         label: 'Blog',
         to: '/blog',
+        icon: 'i-ph-newspaper',
       }, {
         label: 'Mannschaften',
         to: '/mannschaften',
+        icon: 'i-ph-castle-turret-duotone',
       }, {
         label: 'Turniere',
         to: '/turniere',
+        icon: 'i-ph-trophy-duotone',
+      }],
+    }, {
+      label: 'Rechtliches',
+      to: '/',
+      children: [{
+        label: 'Impressum',
+        to: '/impressum',
+        icon: 'i-ph-file-text-duotone',
+      }, {
+        label: 'Datenschutz',
+        to: '/datenschutz',
+        icon: 'i-ph-shield-duotone',
       }],
     }, {
       label: 'Wichtige Links',
+      to: '/',
       children: [{
         label: 'Unterländer Schachtage',
         to: 'https://www.unterlaender-schachtage.de/',
         target: '_blank',
+        icon: 'i-ph-crown-duotone',
       }, {
         label: 'Aktuelle DWZ-Liste',
         to: 'https://schach.in/zahlen/C0652/',
         target: '_blank',
+        icon: 'i-ph-chart-bar-duotone',
       }, {
         label: 'Google Vereinskalender',
         to: 'https://calendar.google.com/calendar/embed?src=dimi.triantafillidis%40web.de&ctz=Europe%2FBerlin',
         target: '_blank',
-      }],
-    }, {
-      label: 'Rechtliches',
-      children: [{
-        label: 'Impressum',
-        to: '/impressum',
-      }, {
-        label: 'Datenschutz',
-        to: '/datenschutz',
+        icon: 'i-ph-calendar-duotone',
       }],
     }],
   },
