@@ -17,6 +17,13 @@ export default defineNuxtConfig({
     '@nuxthq/studio',
     'nuxt-og-image',
   ],
+  nitro: {
+    prerender: {
+      routes: [
+        '/api/search.json',
+      ],
+    },
+  },
   ui: {
     icons: [
       'ph',
