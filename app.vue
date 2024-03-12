@@ -30,7 +30,7 @@ useSeoMeta({
 })
 
 const config = useAppConfig()
-const footerLinks = config.links?.footer?.flatMap(({ label, to, children }) => ({
+const footerLinks = config.links?.footer?.flatMap(({ label, children }) => ({
   label,
   children: children.map(({ label, to, icon }: { label: string, to: string, icon: string }) => ({
     label,
