@@ -44,6 +44,8 @@ const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', { defa
 
 provide('navigation', blogNavigation)
 provide('files', files)
+
+console.log({ blogNavigation, files, footerLinks })
 </script>
 
 <template>
