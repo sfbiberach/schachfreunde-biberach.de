@@ -30,7 +30,7 @@ useSeoMeta({
 })
 
 const config = useAppConfig()
-const footerLinks = config.links?.footer?.flatMap(({ label, to, children }) => ({
+const footerLinks = config.links?.footer?.flatMap(({ label, children }) => ({
   label,
   children: children.map(({ label, to, icon }: { label: string, to: string, icon: string }) => ({
     label,
@@ -39,7 +39,7 @@ const footerLinks = config.links?.footer?.flatMap(({ label, to, children }) => (
   })),
 }))
 
-const { data: blogNavigation } = await useAsyncData('navigation', () => fetchContentNavigation({ path: '/blog' }))
+const { data: blogNavigation } = await useAsyncData('navigation', () => fetchContentNavigation({ path: '/blog' }), { default: () => [] })
 const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', { default: () => [], server: false })
 
 provide('navigation', blogNavigation)
@@ -52,7 +52,7 @@ provide('files', files)
   <AppFooter />
 
   <ClientOnly>
-    <LazyUContentSearch :files="files" :links="footerLinks ?? []" :navigation="blogNavigation ?? []" />
+    <LazyUContentSearch :files="files" :links="footerLinks" :navigation="blogNavigation" />
   </ClientOnly>
 </template>
 
