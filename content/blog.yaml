@@ -1,7 +1,6 @@
-showHeader: false
-container: false
+showHeader: true
+container: true
 prose: false
 
-blog:
-  title: Aktuelle Beiträge
-  description: Hier findest du die neuesten Mannschafts- und Turnierberichte.
+title: Aktuelle Beiträge
+description: Hier findest du die neuesten Mannschafts- und Turnierberichte.
