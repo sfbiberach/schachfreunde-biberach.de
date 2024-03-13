@@ -39,13 +39,11 @@ const footerLinks = config.links?.footer?.flatMap(({ label, children }) => ({
   })),
 }))
 
-const { data: blogNavigation } = await useAsyncData('navigation', () => fetchContentNavigation({ path: '/blog' }), { default: () => [] })
+const { data: blogNavigation } = await useAsyncData('navigation', () => fetchContentNavigation(queryContent('/blog')), { default: () => [] })
 const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', { default: () => [], server: false })
 
 provide('navigation', blogNavigation)
 provide('files', files)
-
-console.log('search', { blogNavigation, files, footerLinks })
 </script>
 
 <template>

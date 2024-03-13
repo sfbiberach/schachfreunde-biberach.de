@@ -127,7 +127,7 @@ export default defineAppConfig({
         icon: 'i-ph-shield-duotone',
       }],
     }, {
-      label: 'Wichtige Links',
+      label: 'Externe Links',
       to: '/',
       children: [{
         label: 'Unterländer Schachtage',
