@@ -18,11 +18,11 @@ const { metaSymbol } = useShortcuts()
     </template>
 
     <template #right>
-      <UTooltip text="Suche" :shortcuts="[metaSymbol, 'K']" :popper="{ strategy: 'absolute' }">
-        <UContentSearchButton label="" />
-      </UTooltip>
       <UTooltip :text="$colorMode.preference === 'dark' ? 'Zu hellem Modus wechseln' : 'Zu dunklem Modus wechseln'">
         <UColorModeButton />
+      </UTooltip>
+      <UTooltip text="Suche" :shortcuts="[metaSymbol, 'K']" :popper="{ strategy: 'absolute' }">
+        <UContentSearchButton label="" />
       </UTooltip>
     </template>
   </UHeader>
