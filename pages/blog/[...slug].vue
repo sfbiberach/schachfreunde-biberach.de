@@ -90,12 +90,13 @@ function copyLink() {
         <ContentRenderer v-if="article && article.body" :value="article" />
 
         <div class="flex items-center justify-between mt-12 not-prose">
-          <NuxtLink href="/blog" class="text-primary">
-            ← Zurück zum Blog
-          </NuxtLink>
+          <!-- Button für Zurück zum Blog mit Icon -->
+          <UButton icon="i-ph-arrow-left" color="primary" variant="ghost" to="/blog">
+            Zurück zum Blog
+          </UButton>
           <div class="flex justify-end items-center gap-1.5">
-            <UButton icon="i-ph-link-simple" v-bind="($ui.button.secondary as any)" @click="copyLink">
-              Copy URL
+            <UButton icon="i-ph-link-simple-duotone" v-bind="($ui.button.secondary as any)" @click="copyLink">
+              URL kopieren
             </UButton>
           </div>
         </div>
