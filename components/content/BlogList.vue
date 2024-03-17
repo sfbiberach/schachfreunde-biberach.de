@@ -4,8 +4,9 @@ import type { Badge } from '#ui/types'
 import type { BlogPost } from '~/types'
 
 const appConfig = useAppConfig()
+const route = useRoute()
 
-const { data: posts } = await useAsyncData('posts', () => queryContent<BlogPost>('/blog')
+const { data: posts, refresh } = await useAsyncData('posts', () => queryContent<BlogPost>('/blog')
   .where({ _extension: 'md' })
   .sort({ date: -1 })
   .find())
@@ -17,7 +18,19 @@ if (posts.value) {
   }
 }
 
-const page = ref(1)
+const query = computed(() => defu({ page: Math.max(1, Number.parseInt(route.query.page as string) || 1) }, route.query) as { page: number })
+const page = ref(query.value.page)
+
+// When route changes, update the page
+watch(query, () => {
+  page.value = query.value.page
+})
+
+// When page changes, update the route
+watch(page, () => {
+  navigateTo({ query: { page: page.value } })
+  refresh()
+})
 
 const pagePosts = computed(() => {
   const start = (page.value - 1) * 12

@@ -14,7 +14,7 @@ const { data: article } = await useAsyncData(route.path, () => queryContent<Blog
 if (!article.value)
   throw createError({ statusCode: 404, statusMessage: 'Post not found', fatal: true })
 
-const badge = computed(() => getBadgeProps(article.value.badge))
+const badge = computed(() => getBadgeProps(article.value?.badge))
 appConfig.ui.primary = badge.value.color
 
 const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryContent('/blog')
@@ -56,7 +56,7 @@ function getBadgeProps(badge: keyof typeof appConfig.app.blog.badges | Badge) {
 }
 
 function copyLink() {
-  copy(`${url.origin}${article.value._path}`, { title: 'In die Zwischenablage kopiert' })
+  copy(`${url.origin}${article.value?._path}`, { title: 'In die Zwischenablage kopiert' })
 }
 </script>
 
