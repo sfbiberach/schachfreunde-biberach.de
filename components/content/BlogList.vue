@@ -77,7 +77,13 @@ const active = useState()
           description: 'post-description line-clamp-2',
         }"
         @click="active = index"
-      />
+      >
+        <template #date>
+          <time v-if="post.date" :datetime="new Date(post.date).toISOString()" class="text-sm text-gray-500 dark:text-gray-400 font-medium pointer-events-none">
+            {{ new Date(post.date).toLocaleDateString('de', { year: 'numeric', month: 'short', day: 'numeric' }) }}
+          </time>
+        </template>
+      </UBlogPost>
     </UBlogList>
   </div>
 </template>
