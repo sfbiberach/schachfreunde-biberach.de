@@ -1,1 +1,0 @@
-import{_ as t}from"./BuwLZ1Gt.js";import{l as o,ah as n,w as r,b as c,j as _}from"./CFznjhvL.js";const a={};function s(u,f){const e=t;return c(),n(e,null,{default:r(()=>[_(" Turniere ")]),_:1})}const m=o(a,[["render",s]]);export{m as default};
