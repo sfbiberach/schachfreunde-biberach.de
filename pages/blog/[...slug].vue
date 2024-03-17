@@ -7,9 +7,11 @@ import { useAuthors } from '~/composables/blog'
 
 const route = useRoute()
 const appConfig = useAppConfig()
+const url = useRequestURL()
+const { copy } = useCopyToClipboard()
 
-const { data: post } = await useAsyncData(route.path, () => queryContent<BlogPost>(route.path).findOne())
-if (!post.value)
+const { data: article } = await useAsyncData(route.path, () => queryContent<BlogPost>(route.path).findOne())
+if (!article.value)
   throw createError({ statusCode: 404, statusMessage: 'Post not found', fatal: true })
 
 const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryContent('/blog')
@@ -18,9 +20,9 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
   .sort({ date: -1 })
   .findSurround(withoutTrailingSlash(route.path)), { default: () => [] })
 
-const title = post.value.head?.title || post.value.title
-const description = post.value.head?.description || post.value.description
-const authors = await useAuthors(post.value.authors)
+const title = article.value.head?.title || article.value.title
+const description = article.value.head?.description || article.value.description
+const authors = await useAuthors(article.value.authors)
 
 useSeoMeta({
   title,
@@ -50,27 +52,21 @@ function getBadgeProps(badge: keyof typeof appConfig.app.blog.badges | Badge) {
   return defu(badge, appConfig.app.blog.badges[badge as keyof typeof appConfig.app.blog.badges] as Badge)
 }
 
-// async function fetchAuthors(authors: string[] | string | object[] | object) {
-//   const normalizedAuthors = Array.isArray(authors) ? authors : [authors]
-
-//   const authorPromises = normalizedAuthors.map((author) => {
-//     if (typeof author === 'string')
-//       return useUser(author).then(user => user.value)
-
-//     return Promise.resolve(author)
-//   })
-//   const resolvedAuthors = await Promise.all(authorPromises)
-//   return resolvedAuthors
-// }
+function copyLink() {
+  copy(`${url.origin}${article.value._path}`, { title: 'In die Zwischenablage kopiert' })
+}
 </script>
 
 <template>
-  <UContainer v-if="post">
-    <UPageHeader :title="post.title" :description="post.description" :ui="{ title: 'post-title', description: 'post-description' }">
+  <UContainer v-if="article">
+    <UPageHeader :title="article.title" :description="article.description" :ui="{ headline: 'flex flex-col gap-y-8 items-start', title: 'post-title', description: 'post-description' }">
       <template #headline>
-        <UBadge v-bind="getBadgeProps(post.badge)" variant="subtle" />
-        <span class="text-gray-500 dark:text-gray-400">&middot;</span>
-        <time class="text-gray-500 dark:text-gray-400">{{ new Date(post.date).toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' }) }}</time>
+        <UBreadcrumb :links="[{ label: 'Blog', icon: 'i-ph-newspaper-duotone', to: '/blog' }, { label: article.title }]" />
+        <div class="flex items-center space-x-2">
+          <UBadge v-bind="getBadgeProps(article.badge)" variant="subtle" />
+          <span class="text-gray-500 dark:text-gray-400">&middot;</span>
+          <time class="text-gray-500 dark:text-gray-400">{{ new Date(article.date).toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' }) }}</time>
+        </div>
       </template>
 
       <div class="flex flex-wrap items-center gap-3 mt-4">
@@ -91,7 +87,18 @@ function getBadgeProps(badge: keyof typeof appConfig.app.blog.badges | Badge) {
 
     <UPage>
       <UPageBody prose>
-        <ContentRenderer v-if="post && post.body" :value="post" />
+        <ContentRenderer v-if="article && article.body" :value="article" />
+
+        <div class="flex items-center justify-between mt-12 not-prose">
+          <NuxtLink href="/blog" class="text-primary">
+            ← Zurück zum Blog
+          </NuxtLink>
+          <div class="flex justify-end items-center gap-1.5">
+            <UButton icon="i-ph-link-simple" v-bind="($ui.button.secondary as any)" @click="copyLink">
+              Copy URL
+            </UButton>
+          </div>
+        </div>
 
         <hr v-if="surround?.length">
 
@@ -99,7 +106,7 @@ function getBadgeProps(badge: keyof typeof appConfig.app.blog.badges | Badge) {
       </UPageBody>
 
       <template #right>
-        <UContentToc v-if="post.body && post.body.toc" :links="post.body.toc.links" />
+        <UContentToc v-if="article.body && article.body.toc" :links="article.body.toc.links" />
       </template>
     </UPage>
   </UContainer>
