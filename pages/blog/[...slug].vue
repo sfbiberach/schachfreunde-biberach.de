@@ -14,6 +14,9 @@ const { data: article } = await useAsyncData(route.path, () => queryContent<Blog
 if (!article.value)
   throw createError({ statusCode: 404, statusMessage: 'Post not found', fatal: true })
 
+const badge = computed(() => getBadgeProps(article.value.badge))
+appConfig.ui.primary = badge.value.color
+
 const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryContent('/blog')
   .where({ _extension: 'md' })
   .without(['body', 'excerpt'])
@@ -65,7 +68,7 @@ function copyLink() {
         <div class="flex items-center space-x-2">
           <UBadge v-bind="getBadgeProps(article.badge)" variant="subtle" />
           <span class="text-gray-500 dark:text-gray-400">&middot;</span>
-          <time class="text-gray-500 dark:text-gray-400">{{ new Date(article.date).toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' }) }}</time>
+          <time class="text-gray-500 dark:text-gray-400">{{ new Date(article.date).toLocaleDateString('de', { year: 'numeric', month: 'short', day: 'numeric' }) }}</time>
         </div>
       </template>
 
