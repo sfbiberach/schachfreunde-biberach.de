@@ -47,13 +47,15 @@ provide('files', files)
 </script>
 
 <template>
-  <AppHeader />
-  <NuxtPage />
-  <AppFooter />
+  <div class="overflow-hidden">
+    <AppHeader />
+    <NuxtPage />
+    <AppFooter />
 
-  <ClientOnly>
-    <LazyUContentSearch :files="files" :links="footerLinks" :navigation="blogNavigation" />
-  </ClientOnly>
+    <ClientOnly>
+      <LazyUContentSearch :files="files" :links="footerLinks" :navigation="blogNavigation" />
+    </ClientOnly>
+  </div>
 </template>
 
 <style>
