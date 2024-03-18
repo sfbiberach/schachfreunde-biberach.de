@@ -1,0 +1,1 @@
+import{bs as f,bt as n}from"./BsYBbAOH.js";function h(t){var r;return(r=t._dir)!=null&&r.title?t._dir.title:f(t._dir).map(i=>n(i)).join(" ")}function u(t,r){return!t||!r?[]:t.reduce((i,e)=>{var s;return(s=r._path)!=null&&s.startsWith(e._path)&&e.children&&(i.push(e),i.push(...u(e.children,r))),i},[])}export{h as a,u as f};

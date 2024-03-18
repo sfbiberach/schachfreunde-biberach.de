@@ -1,1 +1,0 @@
-import{_ as n}from"./5aEOdcHS.js";import{l as e,ah as a,w as o,b as c,j as _}from"./CaUwNyGh.js";const s={};function r(f,m){const t=n;return c(),a(t,null,{default:o(()=>[_(" Mannschaften ")]),_:1})}const p=e(s,[["render",r]]);export{p as default};
