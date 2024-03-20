@@ -6,7 +6,7 @@ useSeoMeta({
   title: page.value?.title,
 })
 
-const pageBodyWrapper = computed(() => page?.value.showHeader ? '' : 'mt-0')
+const pageBodyWrapper = computed(() => page?.value?.showHeader ? '' : 'mt-0')
 </script>
 
 <template>
