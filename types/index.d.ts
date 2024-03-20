@@ -1,6 +1,6 @@
 import type { ParsedContent } from '@nuxt/content/dist/runtime/types'
 
-export interface BlogPost extends ParsedContent {
+export interface BlogArticle extends ParsedContent {
   title: string
   description: string
   date: string

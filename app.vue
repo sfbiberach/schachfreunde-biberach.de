@@ -39,11 +39,49 @@ const footerLinks = config.links?.footer?.flatMap(({ label, children }) => ({
   })),
 }))
 
-const { data: blogNavigation } = await useAsyncData('navigation', () => fetchContentNavigation(queryContent('/blog')), { default: () => [] })
+// Case-insensitive RegExp, escaping special characters
+// https://stackoverflow.com/a/38151393/3926832
+const searchTextRegExp = function (query = '') {
+  return new RegExp(query.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'), 'i')
+}
+
+const searchGroups = [{
+  key: 'articles-search',
+  label: 'Blog Artikel',
+  search: async (q: any) => {
+    if (!q)
+      return []
+
+    const { articles, fetchList } = useBlog()
+    if (!articles.value.length)
+      await fetchList()
+
+    return articles.value
+      .filter(article => article.title.search(searchTextRegExp(q)) !== -1)
+      .map(article => ({
+        id: `article-${article._path}`,
+        label: article.title,
+        suffix: article.description,
+        icon: 'i-ph-newspaper',
+        to: article._path,
+      }))
+  },
+}]
+
+// const { data: blogWrapper } = await useAsyncData('blogWrapper', () => queryContent('blog').sort({ date: -1 }).limit(5))
+const { data: blogNavigation } = await useLazyAsyncData('navigation', () => fetchContentNavigation(queryContent('blog')), {
+  default: () => [],
+  transform(data) {
+    if (data?.[0]?.children)
+      data[0].children = data[0].children.sort((a, b) => (a.date < b.date ? 1 : -1))
+    return data
+  },
+})
 const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', { default: () => [], server: false })
 
 provide('navigation', blogNavigation)
 provide('files', files)
+console.warn('blogNavigation', blogNavigation.value)
 </script>
 
 <template>
@@ -53,7 +91,7 @@ provide('files', files)
     <AppFooter />
 
     <ClientOnly>
-      <LazyUContentSearch :files="files" :links="footerLinks" :navigation="blogNavigation" />
+      <LazyUContentSearch :files="files" :links="footerLinks" :groups="searchGroups" />
     </ClientOnly>
   </div>
 </template>

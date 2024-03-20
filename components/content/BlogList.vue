@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { defu } from 'defu'
 import type { Badge } from '#ui/types'
-import type { BlogPost } from '~/types'
+import type { BlogArticle } from '~/types'
 
 const appConfig = useAppConfig()
 const route = useRoute()
 
-const { data: posts, refresh } = await useAsyncData('posts', () => queryContent<BlogPost>('/blog')
+const { data: posts, refresh } = await useAsyncData('posts', () => queryContent<BlogArticle>('/blog')
   .where({ _extension: 'md' })
   .sort({ date: -1 })
   .find())

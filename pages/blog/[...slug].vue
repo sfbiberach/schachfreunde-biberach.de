@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { withoutTrailingSlash } from 'ufo'
 import { defu } from 'defu'
-import type { BlogPost } from '~/types'
+import type { BlogArticle } from '~/types'
 import type { Badge } from '#ui/types'
 import { useAuthors } from '~/composables/blog'
 
@@ -10,7 +10,7 @@ const appConfig = useAppConfig()
 const url = useRequestURL()
 const { copy } = useCopyToClipboard()
 
-const { data: article } = await useAsyncData(route.path, () => queryContent<BlogPost>(route.path).findOne())
+const { data: article } = await useAsyncData(route.path, () => queryContent<BlogArticle>(route.path).findOne())
 if (!article.value)
   throw createError({ statusCode: 404, statusMessage: 'Post not found', fatal: true })
 
