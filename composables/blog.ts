@@ -1,17 +1,17 @@
-import type { BlogArticle } from '~/types'
-
 export async function useAuthors(names: string[] | string | object[] | object | undefined) {
   if (!names)
     return []
 
-  const normalizedAuthors = Array.isArray(names) ? names : [names]
+  const authors = Array.isArray(names) ? names : [names]
+  const placeholders = authors.filter(input => typeof input === 'string')
 
-  const authorPromises = normalizedAuthors.map((name) => {
-    if (typeof name === 'string')
-      return useAsyncData(`users/${name}`, () => queryContent('_users').where({ name }).findOne()).then(user => user?.data?.value || {})
+  if (placeholders.length > 0) {
+    const fetchedAuthors = await queryContent('_users').where({ name: { $in: placeholders } }).find()
+    for (let i = 0, j = 0; j < authors.length; j++) {
+      if (typeof authors[j] === 'string')
+        authors[j] = fetchedAuthors[i++] || {}
+    }
+  }
 
-    return Promise.resolve(name)
-  })
-  const resolvedAuthors = await Promise.all(authorPromises)
-  return resolvedAuthors
+  return authors
 }
