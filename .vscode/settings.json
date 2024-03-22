@@ -42,6 +42,7 @@
   ],
 
   "conventionalCommits.scopes": [
-    "deps"
+    "deps",
+    "user"
   ]
 }

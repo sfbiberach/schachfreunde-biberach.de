@@ -21,6 +21,7 @@ export default defineNuxtConfig({
     prerender: {
       routes: [
         '/api/search.json',
+        '/api/blog.json',
       ],
     },
   },

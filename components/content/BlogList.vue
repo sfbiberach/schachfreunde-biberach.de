@@ -1,22 +1,13 @@
 <script setup lang="ts">
 import { defu } from 'defu'
+import superjson from 'superjson'
 import type { Badge } from '#ui/types'
 import type { BlogArticle } from '~/types'
 
 const appConfig = useAppConfig()
 const route = useRoute()
 
-const { data: posts, refresh } = await useAsyncData('posts', () => queryContent<BlogArticle>('/blog')
-  .where({ _extension: 'md' })
-  .sort({ date: -1 })
-  .find())
-
-if (posts.value) {
-  for (const post of posts.value) {
-    if (post.authors)
-      post._authors = await useAuthors(post.authors || [])
-  }
-}
+const { data: articles, refresh } = useLazyFetch<BlogArticle[]>('/api/blog.json')
 
 const query = computed(() => defu({ page: Math.max(1, Number.parseInt(route.query.page as string) || 1) }, route.query) as { page: number })
 const page = ref(query.value.page)
@@ -35,7 +26,7 @@ watch(page, () => {
 const pagePosts = computed(() => {
   const start = (page.value - 1) * 12
   const end = start + 12
-  return posts.value?.slice(start, end)
+  return articles.value?.slice(start, end)
 })
 
 function getBadgeProps(badge: keyof typeof appConfig.app.blog.badges | Badge) {
@@ -58,18 +49,18 @@ const active = useState()
 </script>
 
 <template>
-  <div v-if="posts" class="flex flex-col gap-8">
-    <UPagination v-model="page" :page-count="12" :total="posts.length" class="w-full" />
+  <div v-if="articles" class="flex flex-col gap-8">
+    <UPagination v-model="page" :page-count="12" :total="articles.length" class="w-full" />
     <UBlogList>
       <UBlogPost
-        v-for="(post, index) in pagePosts"
+        v-for="(article, index) in pagePosts"
         :key="index"
-        :to="post._path"
-        :title="post.title"
-        :description="post.description"
-        :date="new Date(post.date).toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' })"
-        :authors="post._authors"
-        :badge="getBadgeProps(post.badge)"
+        :to="article._path"
+        :title="article.title"
+        :description="article.description"
+        :date="new Date(article.date).toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' })"
+        :authors="article.authors"
+        :badge="getBadgeProps(article.badge)"
         :orientation="index === 0 ? 'horizontal' : 'vertical'"
         :class="[{ active: active === index }, index === -1 && 'col-span-full']"
         :ui="{
@@ -79,8 +70,8 @@ const active = useState()
         @click="active = index"
       >
         <template #date>
-          <time v-if="post.date" :datetime="new Date(post.date).toISOString()" class="text-sm text-gray-500 dark:text-gray-400 font-medium pointer-events-none">
-            {{ new Date(post.date).toLocaleDateString('de', { year: 'numeric', month: 'short', day: 'numeric' }) }}
+          <time v-if="article.date" :datetime="new Date(article.date).toISOString()" class="text-sm text-gray-500 dark:text-gray-400 font-medium pointer-events-none">
+            {{ new Date(article.date).toLocaleDateString('de', { year: 'numeric', month: 'short', day: 'numeric' }) }}
           </time>
         </template>
       </UBlogPost>
