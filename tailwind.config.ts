@@ -6,8 +6,8 @@ export default <Partial<Config>> {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Lato', ...defaultTheme.fontFamily.sans],
-        serif: ['Lora', ...defaultTheme.fontFamily.serif],
+        sans: ['Inter', 'Lato', ...defaultTheme.fontFamily.sans],
+        serif: ['Inter', 'Lora', ...defaultTheme.fontFamily.serif],
       },
     },
   },
