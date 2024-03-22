@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { defu } from 'defu'
-import superjson from 'superjson'
 import type { Badge } from '#ui/types'
 import type { BlogArticle } from '~/types'
 
 const appConfig = useAppConfig()
 const route = useRoute()
 
-const { data: articles, refresh } = useLazyFetch<BlogArticle[]>('/api/blog.json')
+const { data: articles, refresh } = useFetch<BlogArticle[]>('/api/blog.json')
 
 const query = computed(() => defu({ page: Math.max(1, Number.parseInt(route.query.page as string) || 1) }, route.query) as { page: number })
 const page = ref(query.value.page)
@@ -19,7 +18,7 @@ watch(query, () => {
 
 // When page changes, update the route
 watch(page, () => {
-  navigateTo({ query: { page: page.value } })
+  navigateTo({ query: { page: page.value > 1 ? page.value : undefined } })
   refresh()
 })
 
