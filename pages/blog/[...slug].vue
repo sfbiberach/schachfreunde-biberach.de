@@ -9,11 +9,12 @@ const appConfig = useAppConfig()
 const url = useRequestURL()
 const { copy } = useCopyToClipboard()
 
-const { data: article } = await useFetch('/api/blog.json', {
-  query: { _path: route.path },
-  transform: (data: BlogArticle[]) => data[0],
-})
-console.log(article.value)
+// const { data: article } = await useFetch('/api/blog.json', {
+//   query: { _path: route.path },
+//   transform: (data: BlogArticle[]) => data[0],
+// })
+const { data: article } = await useAsyncData(route.path, () => queryContent<BlogArticle>(route.path).findOne())
+console.log('article', article.value)
 
 if (!article.value)
   throw createError({ statusCode: 404, statusMessage: 'Post not found', fatal: false })
@@ -21,11 +22,13 @@ if (!article.value)
 const badge = computed(() => getBadgeProps(article.value?.badge))
 appConfig.ui.primary = badge.value.color
 
-// const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryContent('/blog')
-//   .where({ _extension: 'md' })
-//   .without(['body', 'excerpt'])
-//   .sort({ date: -1 })
-//   .findSurround(withoutTrailingSlash(route.path)), { default: () => [] })
+const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryContent('/blog')
+  .where({ _extension: 'md' })
+  .without(['body', 'excerpt'])
+  .sort({ date: -1 })
+  .findSurround(withoutTrailingSlash(route.path)), { default: () => [] })
+
+console.log('surround', surround.value)
 
 const title = article.value.head?.title || article.value.title
 const description = article.value.head?.description || article.value.description
@@ -107,9 +110,9 @@ function copyLink() {
           </div>
         </div>
 
-        <hr v-if="article.surround?.length">
+        <hr v-if="surround?.length">
 
-        <UContentSurround :surround="article.surround" />
+        <UContentSurround :surround="surround" />
       </UPageBody>
 
       <template #right>
