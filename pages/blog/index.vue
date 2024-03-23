@@ -14,13 +14,10 @@ const { data: articles } = useFetch<BlogArticle[]>('/api/blog.json', {
 })
 
 const pageArticles = computed(() => {
-  console.log('pageArticles', page.value, articles.value?.length)
   const start = (page.value - 1) * 12
   const end = start + 12
   return articles.value?.slice(start, end)
 })
-
-console.log(route, route.query.page)
 
 watchEffect(() => {
   updatePageFromQuery()
@@ -35,7 +32,6 @@ onMounted(() => {
 })
 
 function updatePageFromQuery() {
-  console.log('updatePageFromQuery', route.query.page, route.params.slug)
   page.value = Math.max(Number.parseInt(route.query.page as string) || 1, 1)
 }
 

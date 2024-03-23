@@ -10,7 +10,10 @@ const appConfig = useAppConfig()
 const url = useRequestURL()
 const { copy } = useCopyToClipboard()
 
-const { data: article } = await useAsyncData(route.path, () => queryContent<BlogArticle>(route.path).findOne())
+const { data: article } = await useFetch('/api/blog.json', {
+  query: { _path: route.path },
+  transform: (data: BlogArticle[]) => data[0],
+})
 if (!article.value)
   throw createError({ statusCode: 404, statusMessage: 'Post not found', fatal: true })
 
@@ -25,7 +28,7 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 
 const title = article.value.head?.title || article.value.title
 const description = article.value.head?.description || article.value.description
-const authors = await useAuthors(article.value.authors)
+// const authors = await useAuthors(article.value.authors)
 
 useSeoMeta({
   title,
@@ -74,7 +77,7 @@ function copyLink() {
 
       <div class="flex flex-wrap items-center gap-3 mt-4">
         <UButton
-          v-for="(author, index) in authors"
+          v-for="(author, index) in article.authors"
           :key="index"
           :to="author.to"
           color="white"

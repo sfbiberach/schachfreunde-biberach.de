@@ -2,7 +2,13 @@ import { serverQueryContent } from '#content/server'
 import type { BlogArticle } from '~/types'
 
 export default eventHandler(async (event) => {
-  const articles = await serverQueryContent<BlogArticle>(event, 'blog').where({ _type: 'markdown' }).sort({ date: -1 }).find()
+  const _path = getQuery(event)._path as string | undefined
+
+  const where: { _type: string, _path?: string } = { _type: 'markdown' }
+  if (_path !== undefined)
+    where._path = _path
+
+  const articles = await serverQueryContent<BlogArticle>(event, 'blog').where(where).sort({ date: -1 }).find()
   const authors = await serverQueryContent(event, '_users').only(['title', 'name', 'to', 'avatar']).find()
 
   articles.forEach((article) => {
