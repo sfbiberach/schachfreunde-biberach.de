@@ -43,19 +43,7 @@ const { data: navigation } = await useAsyncData('navigation', () => fetchContent
   default: () => [],
 })
 
-// const { data: blog } = await useAsyncData('blog', () => queryContent('blog').sort({ date: -1 }).limit(5).find(), {
-//   default: () => [],
-//   transform(data) {
-//     if (data.length === 0)
-//       return []
-
-//     const [first, ...rest] = data
-//     const { title, _path } = first
-//     return [{ title, _path, children: rest }]
-//   },
-// })
-
-const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', { default: () => [], server: false })
+const { data: files } = useLazyFetch<ParsedContent[]>('/api/blog.json', { default: () => [], server: false })
 
 provide('navigation', navigation)
 provide('files', files)
