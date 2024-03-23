@@ -93,7 +93,6 @@ function copyLink() {
         <ContentRenderer v-if="article && article.body" :value="article" />
 
         <div class="flex items-center justify-between mt-12 not-prose">
-          <!-- Button für Zurück zum Blog mit Icon -->
           <UButton icon="i-ph-arrow-left" color="primary" variant="ghost" to="/blog">
             Zurück zum Blog
           </UButton>
