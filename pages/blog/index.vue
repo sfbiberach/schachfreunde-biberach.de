@@ -14,15 +14,13 @@ const { data: articles } = useFetch<BlogArticle[]>('/api/blog.json', {
 })
 
 const pageArticles = computed(() => {
+  console.log('pageArticles', page.value, articles.value?.length)
   const start = (page.value - 1) * 12
   const end = start + 12
   return articles.value?.slice(start, end)
 })
 
-if (import.meta.server)
-  console.log('ssr', route, route.query.page)
-
-console.log(route, route.query)
+console.log(route, route.query.page)
 
 watchEffect(() => {
   updatePageFromQuery()
@@ -61,33 +59,35 @@ function getBadgeProps(badge: keyof typeof appConfig.app.blog.badges | Badge) {
 
 <template>
   <NuxtLayout>
-    <div v-if="articles" class="flex flex-col gap-8">
-      <UPagination v-model="page" :page-count="12" :total="articles.length" class="w-full" />
-      <UBlogList>
-        <UBlogPost
-          v-for="(article, index) in pageArticles"
-          :key="index"
-          :to="article._path"
-          :title="article.title"
-          :description="article.description"
-          :date="new Date(article.date).toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' })"
-          :authors="article.authors"
-          :badge="getBadgeProps(article.badge)"
-          :orientation="index === 0 ? 'horizontal' : 'vertical'"
-          :class="[{ active: active === index }, index === -1 && 'col-span-full']"
-          :ui="{
-            title: 'post-title line-clamp-2 whitespace-normal',
-            description: 'post-description line-clamp-2',
-          }"
-          @click="active = index"
-        >
-          <template #date>
-            <time v-if="article.date" :datetime="new Date(article.date).toISOString()" class="text-sm text-gray-500 dark:text-gray-400 font-medium pointer-events-none">
-              {{ new Date(article.date).toLocaleDateString('de', { year: 'numeric', month: 'short', day: 'numeric' }) }}
-            </time>
-          </template>
-        </UBlogPost>
-      </UBlogList>
-    </div>
+    <ClientOnly>
+      <div v-if="articles" class="flex flex-col gap-8">
+        <UPagination v-model="page" :page-count="12" :total="articles.length" class="w-full" />
+        <UBlogList>
+          <UBlogPost
+            v-for="(article, index) in pageArticles"
+            :key="index"
+            :to="article._path"
+            :title="article.title"
+            :description="article.description"
+            :date="new Date(article.date).toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' })"
+            :authors="article.authors"
+            :badge="getBadgeProps(article.badge)"
+            :orientation="index === 0 ? 'horizontal' : 'vertical'"
+            :class="[{ active: active === index }, index === -1 && 'col-span-full']"
+            :ui="{
+              title: 'post-title line-clamp-2 whitespace-normal',
+              description: 'post-description line-clamp-2',
+            }"
+            @click="active = index"
+          >
+            <template #date>
+              <time v-if="article.date" :datetime="new Date(article.date).toISOString()" class="text-sm text-gray-500 dark:text-gray-400 font-medium pointer-events-none">
+                {{ new Date(article.date).toLocaleDateString('de', { year: 'numeric', month: 'short', day: 'numeric' }) }}
+              </time>
+            </template>
+          </UBlogPost>
+        </UBlogList>
+      </div>
+    </ClientOnly>
   </NuxtLayout>
 </template>
