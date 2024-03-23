@@ -20,7 +20,6 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       routes: [
-        '/api/search.json',
         '/api/blog.json',
       ],
     },
