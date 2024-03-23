@@ -6,23 +6,22 @@ import type { BlogArticle } from '~/types'
 const appConfig = useAppConfig()
 const route = useRoute()
 
-const { data: articles, refresh } = useFetch<BlogArticle[]>('/api/blog.json')
+const page = ref(Math.max(Number.parseInt(route.query.page as string) || 1, 1))
+const active = useState()
 
-const query = computed(() => defu({ page: Math.max(1, Number.parseInt(route.query.page as string) || 1) }, route.query) as { page: number })
-const page = ref(query.value.page)
-
-// When route changes, update the page
-watch(query, () => {
-  page.value = query.value.page
+const { data: articles } = useFetch<BlogArticle[]>('/api/blog.json', {
+  default: () => [],
 })
 
-// When page changes, update the route
+watchEffect(() => {
+  page.value = Math.max(Number.parseInt(route.query.page as string) || 1, 1)
+})
+
 watch(page, () => {
   navigateTo({ query: { page: page.value > 1 ? page.value : undefined } })
-  refresh()
 })
 
-const pagePosts = computed(() => {
+const pageArticles = computed(() => {
   const start = (page.value - 1) * 12
   const end = start + 12
   return articles.value?.slice(start, end)
@@ -44,7 +43,6 @@ function getBadgeProps(badge: keyof typeof appConfig.app.blog.badges | Badge) {
 //   title: page.value.title,
 //   description: page.value.description,
 // })
-const active = useState()
 </script>
 
 <template>
@@ -52,7 +50,7 @@ const active = useState()
     <UPagination v-model="page" :page-count="12" :total="articles.length" class="w-full" />
     <UBlogList>
       <UBlogPost
-        v-for="(article, index) in pagePosts"
+        v-for="(article, index) in pageArticles"
         :key="index"
         :to="article._path"
         :title="article.title"
