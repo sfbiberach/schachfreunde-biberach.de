@@ -3,7 +3,6 @@ import { withoutTrailingSlash } from 'ufo'
 import { defu } from 'defu'
 import type { BlogArticle } from '~/types'
 import type { Badge } from '#ui/types'
-import { useAuthors } from '~/composables/blog'
 
 const route = useRoute()
 const appConfig = useAppConfig()
@@ -14,17 +13,19 @@ const { data: article } = await useFetch('/api/blog.json', {
   query: { _path: route.path },
   transform: (data: BlogArticle[]) => data[0],
 })
+console.log(article.value)
+
 if (!article.value)
-  throw createError({ statusCode: 404, statusMessage: 'Post not found', fatal: true })
+  throw createError({ statusCode: 404, statusMessage: 'Post not found', fatal: false })
 
 const badge = computed(() => getBadgeProps(article.value?.badge))
 appConfig.ui.primary = badge.value.color
 
-const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryContent('/blog')
-  .where({ _extension: 'md' })
-  .without(['body', 'excerpt'])
-  .sort({ date: -1 })
-  .findSurround(withoutTrailingSlash(route.path)), { default: () => [] })
+// const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryContent('/blog')
+//   .where({ _extension: 'md' })
+//   .without(['body', 'excerpt'])
+//   .sort({ date: -1 })
+//   .findSurround(withoutTrailingSlash(route.path)), { default: () => [] })
 
 const title = article.value.head?.title || article.value.title
 const description = article.value.head?.description || article.value.description
@@ -106,9 +107,9 @@ function copyLink() {
           </div>
         </div>
 
-        <hr v-if="surround?.length">
+        <hr v-if="article.surround?.length">
 
-        <UContentSurround :surround="surround" />
+        <UContentSurround :surround="article.surround" />
       </UPageBody>
 
       <template #right>
