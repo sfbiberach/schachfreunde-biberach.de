@@ -1,1 +1,0 @@
-import{bw as f,bx as n}from"./BWV8iBC1.js";function h(r){var t;return(t=r._dir)!=null&&t.title?r._dir.title:f(r._dir).map(i=>n(i)).join(" ")}function u(r,t){return!r||!t?[]:r.reduce((i,e)=>{var s;return(s=t._path)!=null&&s.startsWith(e._path)&&e.children&&(i.push(e),i.push(...u(e.children,t))),i},[])}export{h as a,u as f};
