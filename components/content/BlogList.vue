@@ -6,19 +6,11 @@ import type { BlogArticle } from '~/types'
 const appConfig = useAppConfig()
 const route = useRoute()
 
-const page = ref(Math.max(Number.parseInt(route.query.page as string) || 1, 1))
+const page = ref(1)
 const active = useState()
 
 const { data: articles } = useFetch<BlogArticle[]>('/api/blog.json', {
   default: () => [],
-})
-
-watchEffect(() => {
-  page.value = Math.max(Number.parseInt(route.query.page as string) || 1, 1)
-})
-
-watch(page, () => {
-  navigateTo({ query: { page: page.value > 1 ? page.value : undefined } })
 })
 
 const pageArticles = computed(() => {
@@ -26,6 +18,20 @@ const pageArticles = computed(() => {
   const end = start + 12
   return articles.value?.slice(start, end)
 })
+
+watchEffect(() => {
+  page.value = Math.max(Number.parseInt(route.query.page as string) || 1, 1)
+})
+
+watch(page, () => {
+  navigateTo({ query: { ...route.query, page: page.value > 1 ? page.value : undefined } })
+})
+
+updatePageFromQuery()
+
+function updatePageFromQuery() {
+  page.value = Math.max(Number.parseInt(route.query.page as string) || 1, 1)
+}
 
 function getBadgeProps(badge: keyof typeof appConfig.app.blog.badges | Badge) {
   return defu(badge, appConfig.app.blog.badges[badge as keyof typeof appConfig.app.blog.badges] as Badge)
