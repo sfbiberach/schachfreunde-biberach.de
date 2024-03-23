@@ -20,16 +20,19 @@ const pageArticles = computed(() => {
 })
 
 watchEffect(() => {
-  page.value = Math.max(Number.parseInt(route.query.page as string) || 1, 1)
+  updatePageFromQuery()
 })
 
 watch(page, () => {
   navigateTo({ query: { ...route.query, page: page.value > 1 ? page.value : undefined } })
 })
 
-updatePageFromQuery()
+onMounted(() => {
+  updatePageFromQuery()
+})
 
 function updatePageFromQuery() {
+  console.log('updatePageFromQuery', route.query.page)
   page.value = Math.max(Number.parseInt(route.query.page as string) || 1, 1)
 }
 
