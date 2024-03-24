@@ -15,6 +15,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/ui',
     '@nuxthq/studio',
+    '@vite-pwa/nuxt',
     'nuxt-og-image',
   ],
   nitro: {

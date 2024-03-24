@@ -58,6 +58,7 @@ provide('files', files)
     <ClientOnly>
       <LazyUContentSearch :files="files" :links="links" :navigation="navigation" />
     </ClientOnly>
+    <NuxtPwaManifest />
   </div>
 </template>
 
