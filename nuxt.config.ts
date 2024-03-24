@@ -26,7 +26,6 @@ export default defineNuxtConfig({
     },
   },
   pwa: {
-    strategies: 'injectManifest',
     manifest: {
       name: 'Schachfreunde Heilbronn-Biberach 1978 e. V.',
       short_name: 'SF HN-Biberach',
