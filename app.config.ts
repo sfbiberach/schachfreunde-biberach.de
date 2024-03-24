@@ -14,7 +14,7 @@ export default defineAppConfig({
   },
   app: {
     blog: {
-      badges: {
+      categories: {
         Jugend: {
           label: 'Jugend',
           color: 'orange',

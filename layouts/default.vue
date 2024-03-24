@@ -1,19 +1,40 @@
 <script setup lang="ts">
-const { page } = useContent()
-const headline = computed(() => page?.value?._dir ? findPageHeadline(page?.value) : '')
+import { defu } from 'defu'
+import type { Button } from '#ui/types'
 
-useSeoMeta({
-  title: page.value?.title,
+export interface Props {
+  container?: boolean
+  description?: string
+  links?: (Button & { click?: Function | undefined })[]
+  prose?: boolean
+  ui?: { wrapper?: string, body?: string }
+  showHeader?: boolean
+  title?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  container: undefined,
+  prose: undefined,
+  showHeader: undefined,
 })
 
-const pageBodyWrapper = computed(() => page?.value?.showHeader ? '' : 'mt-0')
+const { page: pageContent } = useContent()
+const page = defu(props, pageContent.value)
+
+const headline = computed(() => pageContent?.value?._dir ? findPageHeadline(pageContent?.value) : '')
+
+useSeoMeta({
+  title: page.title,
+})
+
+const pageBodyWrapper = computed(() => page.showHeader ? '' : 'mt-0')
 </script>
 
 <template>
-  <UMain :class="page?.ui?.wrapper" class="break-words">
-    <UContainer :ui="{ padding: page?.container ? undefined : '', constrained: page?.container ? undefined : '' }">
-      <UPageHeader v-if="page?.showHeader !== false" :title="page?.title" :description="page?.description" :links="page?.links" :headline="headline" />
-      <UPageBody :prose="page?.prose !== false" class="pb-32" :ui="{ wrapper: pageBodyWrapper }" :class="[page?.ui?.body]">
+  <UMain :class="page.ui?.wrapper" class="break-words">
+    <UContainer :ui="{ padding: page?.container ? undefined : '', constrained: page.container ? undefined : '' }">
+      <UPageHeader v-if="page?.showHeader !== false" :title="page?.title" :description="page.description" :links="page?.links" :headline="headline" />
+      <UPageBody :prose="page?.prose !== false" class="pb-32" :ui="{ wrapper: pageBodyWrapper }" :class="[page.ui?.body]">
         <slot />
       </UPageBody>
     </UContainer>

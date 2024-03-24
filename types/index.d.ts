@@ -5,7 +5,7 @@ export interface BlogArticle extends ParsedContent {
   description: string
   date: string
   image?: HTMLImageElement
-  badge?: Badge
+  category?: Badge
   authors?: ({
     name: string
     description?: string
