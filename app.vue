@@ -50,7 +50,7 @@ provide('files', files)
 </script>
 
 <template>
-  <div class="overflow-hidden">
+  <div style="contain: paint;">
     <AppHeader />
     <NuxtPage />
     <AppFooter />
