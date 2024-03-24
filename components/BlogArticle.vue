@@ -1,18 +1,13 @@
 <script setup lang="ts">
-import { withoutTrailingSlash } from 'ufo'
-import { defu } from 'defu'
 import type { BlogArticle } from '~/types'
-import type { Badge } from '#ui/types'
 
 const props = defineProps<{
   path: string
 }>()
 
-const appConfig = useAppConfig()
 const url = useRequestURL()
 const { copy } = useCopyToClipboard()
 
-// const { data: article } = await useAsyncData(route.path, () => queryContent<BlogArticle>(route.path).findOne())
 const { data: article } = await useFetch<BlogArticle>(`/api/blog/${props.path}`)
 
 if (!article.value)
@@ -20,12 +15,6 @@ if (!article.value)
 
 const title = article.value.head?.title || article.value.title
 const description = article.value.head?.description || article.value.description
-
-const badge = computed(() => getBadgeProps(article.value?.badge))
-
-onMounted(() => {
-  usePrimaryColor(badge.value.color)
-})
 
 useSeoMeta({
   title,
@@ -50,10 +39,6 @@ useSeoMeta({
 //     headline: 'Blog',
 //   })
 // }
-
-function getBadgeProps(badge: keyof typeof appConfig.app.blog.categories | Badge) {
-  return defu(badge, appConfig.app.blog.categories[badge as keyof typeof appConfig.app.blog.categories] as Badge)
-}
 
 function copyLink() {
   copy(`${url.origin}${article.value?._path}`, { title: 'In die Zwischenablage kopiert' })

@@ -26,7 +26,8 @@ const headline = computed(() => pageContent?.value?._dir ? findPageHeadline(page
 const badge = computed(() => getBadgeProps(page.category))
 
 onMounted(() => {
-  usePrimaryColor(badge.value.color)
+  appConfig.ui.primary = badge.value.color
+  window.localStorage.setItem('nuxt-ui-primary', appConfig.ui.primary)
 })
 
 useSeoMeta({

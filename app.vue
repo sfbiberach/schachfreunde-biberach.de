@@ -47,10 +47,6 @@ const { data: files } = useLazyFetch<ParsedContent[]>('/api/blog.json', { defaul
 
 provide('navigation', navigation)
 provide('files', files)
-
-onMounted(() => {
-  usePrimaryColor()
-})
 </script>
 
 <template>
