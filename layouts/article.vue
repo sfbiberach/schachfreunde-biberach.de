@@ -24,7 +24,10 @@ const page = { ...pageContent.value, ...props as typeof props & BlogArticle }
 const headline = computed(() => pageContent?.value?._dir ? findPageHeadline(pageContent?.value) : '')
 
 const badge = computed(() => getBadgeProps(page.category))
-usePrimaryColor(badge.value.color)
+
+onMounted(() => {
+  usePrimaryColor(badge.value.color)
+})
 
 useSeoMeta({
   title: page.title,
