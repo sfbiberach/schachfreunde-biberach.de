@@ -25,6 +25,9 @@ export default defineNuxtConfig({
       ],
     },
   },
+  pwa: {
+
+  },
   ui: {
     icons: [
       'ph',
