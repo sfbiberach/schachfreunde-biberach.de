@@ -58,12 +58,20 @@ function getBadgeProps(badge: keyof typeof appConfig.app.blog.categories | Badge
             v-for="(author, index) in page.authors"
             :key="index"
             :to="author.to"
-            color="white"
             target="_blank"
-            size="sm"
+            color="gray"
+            variant="ghost"
+            class="-my-1.5 -mx-2.5"
           >
-            <UAvatar v-bind="author.avatar" :alt="author?.name" size="2xs" />
-            {{ author?.name }}
+            <UAvatar v-bind="author.avatar" :alt="author?.name" />
+            <div class="text-left">
+              <p class="font-medium">
+                {{ author?.name }}
+              </p>
+              <p class="text-gray-500 dark:text-gray-400 leading-4">
+                {{ `@${author?.to.split('/').filter(Boolean).pop()}` }}
+              </p>
+            </div>
           </UButton>
         </div>
       </UPageHeader>
