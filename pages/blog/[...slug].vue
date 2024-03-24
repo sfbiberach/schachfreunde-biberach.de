@@ -4,7 +4,7 @@ const routePaths = route.path.split('/').filter(Boolean)
 const id = routePaths.at(-1) || ''
 
 const idNumber = routePaths.length < 2 ? 1 : Number.parseInt(id || '1')
-const page = Number.isNaN(idNumber) ? id : idNumber
+const page = Number.isNaN(idNumber) || (idNumber.toString() !== id && routePaths.length > 1) ? id : idNumber
 </script>
 
 <template>
