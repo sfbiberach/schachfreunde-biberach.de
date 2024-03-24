@@ -1,1 +1,0 @@
-import{bt as u,bu as f}from"./DnDQqMvR.js";function h(t){var r;return(r=t._dir)!=null&&r.title?t._dir.title:u(t._dir).map(i=>f(i)).join(" ")}function n(t,r){return!t||!r?[]:t.reduce((i,e)=>{var s;return(s=r._path)!=null&&s.startsWith(e._path)&&e.children&&(i.push(e),i.push(...n(e.children,r))),i},[])}export{h as a,n as f};
