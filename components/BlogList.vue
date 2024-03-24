@@ -64,7 +64,7 @@ function getBadgeProps(badge: keyof typeof appConfig.app.blog.categories | Badge
           :to="article._path"
           :title="article.title"
           :description="article.description"
-          :date="new Date(article.date).toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' })"
+          :date="new Date(article.date).toLocaleDateString('de', { year: 'numeric', month: 'short', day: 'numeric' })"
           :authors="article.authors"
           :badge="getBadgeProps(article.category)"
           :orientation="index === 0 ? 'horizontal' : 'vertical'"

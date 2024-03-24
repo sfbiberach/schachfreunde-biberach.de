@@ -47,6 +47,9 @@ const { data: files } = useLazyFetch<ParsedContent[]>('/api/blog.json', { defaul
 
 provide('navigation', navigation)
 provide('files', files)
+
+if (import.meta.client)
+  usePrimaryColor()
 </script>
 
 <template>

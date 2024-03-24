@@ -19,7 +19,7 @@ if (!article.value)
   throw createError({ statusCode: 404, statusMessage: 'Post not found', fatal: false })
 
 const badge = computed(() => getBadgeProps(article.value?.badge))
-appConfig.ui.primary = badge.value.color
+usePrimaryColor(badge.value.color)
 
 const title = article.value.head?.title || article.value.title
 const description = article.value.head?.description || article.value.description
