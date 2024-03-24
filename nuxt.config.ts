@@ -1,6 +1,9 @@
 export default defineNuxtConfig({
   content: {
     documentDriven: true,
+    ignores: [
+      'site.webmanifest',
+    ],
   },
   devtools: { enabled: true },
   experimental: {
@@ -56,8 +59,13 @@ export default defineNuxtConfig({
         },
       ],
     },
-    injectManifest: {
-      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+    registerType: 'autoUpdate',
+    workbox: {
+      clientsClaim: true,
+      skipWaiting: true,
+    },
+    devOptions: {
+      enabled: true,
     },
   },
   ui: {
