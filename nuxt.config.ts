@@ -34,6 +34,7 @@ export default defineNuxtConfig({
       short_name: 'SF HN-Biberach',
       description: 'Der Schachverein im Heilbronner Stadtteil Biberach',
       theme_color: '#171717',
+      background_color: '#171717',
       icons: [
         {
           src: 'pwa-64x64.png',
