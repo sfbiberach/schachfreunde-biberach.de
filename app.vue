@@ -6,15 +6,6 @@ useHead({
   titleTemplate: '%s | Schachfreunde Heilbronn-Biberach 1978 e. V.',
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-    { name: 'msapplication-TileColor', content: '#fff' },
-    { name: 'theme-color', content: '#fff' },
-  ],
-  link: [
-    { rel: 'icon', type: 'image/png', sizes: '48x48', href: '/favicon.ico' },
-    { rel: 'icon', type: 'image/svg+xml', sizes: 'any', href: '/favicon.svg' },
-    { rel: 'apple-touch-icon', href: '/apple-touch-icon-180x180.png' },
-    { rel: 'manifest', href: '/site.webmanifest' },
-    { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#d8201f' },
   ],
   htmlAttrs: {
     lang: 'de',
