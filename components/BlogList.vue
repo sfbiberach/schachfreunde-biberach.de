@@ -39,6 +39,17 @@ function getBadgeProps(badge: keyof typeof appConfig.app.blog.categories | Badge
   return defu(badge, appConfig.app.blog.categories[badge as keyof typeof appConfig.app.blog.categories] as Badge)
 }
 
+useHead({
+  link: [
+    {
+      rel: 'alternate',
+      type: 'application/atom+xml',
+      title: 'Blog RSS',
+      href: '/blog/rss.xml',
+    },
+  ],
+})
+
 // useSeoMeta({
 //   title: page.value.title,
 //   ogTitle: page.value.title,
@@ -55,6 +66,11 @@ function getBadgeProps(badge: keyof typeof appConfig.app.blog.categories | Badge
 
 <template>
   <NuxtLayout v-bind="content">
+    <template #description>
+      <UButton to="/blog/rss.xml" color="gray" external icon="i-ph-rss" size="2xs" target="_blank" class="mt-4">
+        RSS
+      </UButton>
+    </template>
     <div v-if="articles" class="flex flex-col gap-8">
       <UPagination v-model="page" :page-count="12" :total="articles.length" class="w-full" />
       <UBlogList>
