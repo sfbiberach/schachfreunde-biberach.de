@@ -33,7 +33,13 @@ const pageBodyWrapper = computed(() => page.showHeader ? '' : 'mt-0')
 <template>
   <UMain :class="page.ui?.wrapper" class="break-words">
     <UContainer :ui="{ padding: page?.container ? undefined : '', constrained: page.container ? undefined : '' }">
-      <UPageHeader v-if="page?.showHeader !== false" :title="page?.title" :description="page.description" :links="page?.links" :headline="headline" />
+      <UPageHero v-if="page?.showHeader !== false" :title="page?.title" :links="page?.links" :headline="headline">
+        <template #description>
+          <p>{{ page.description }}</p>
+          <slot name="description" />
+        </template>
+      </UPageHero>
+
       <UPageBody :prose="page?.prose !== false" class="pb-32" :ui="{ wrapper: pageBodyWrapper }" :class="[page.ui?.body]">
         <slot />
       </UPageBody>
