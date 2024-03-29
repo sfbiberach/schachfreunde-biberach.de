@@ -2,18 +2,17 @@ import { Feed } from 'feed'
 import { joinURL } from 'ufo'
 import { serverQueryContent } from '#content/server'
 
-export default defineEventHandler(async (event) => {
-  console.log('/rss.xml')
+export default eventHandler(async (event) => {
   const baseUrl = 'http://sf-biberach.nuxt.space'
   const siteUrl = joinURL(baseUrl, 'blog')
   const feed = new Feed({
-    title: 'Schachfreunde Heilbronn-Biberach 1978 e. V.',
-    description: 'Der Schachverein im Heilbronner Stadtteil Biberach.',
+    title: 'Schachfreunde Heilbronn-Biberach Blog',
+    description: 'Die neuesten Mannschafts- und Turnierberichte von den Schachfreunden Heilbronn-Biberach.',
     id: siteUrl,
     link: siteUrl,
     language: 'en',
-    image: joinURL(baseUrl, 'icon.png'),
-    favicon: joinURL(baseUrl, 'favicon.png'),
+    image: joinURL(baseUrl, 'icon.svg'),
+    favicon: joinURL(baseUrl, 'favicon.ico'),
     copyright: `Copyright © 2024-${new Date().getFullYear()} All Rights Reserved`,
     feedLinks: {
       rss: `${siteUrl}/rss.xml`,
@@ -24,8 +23,6 @@ export default defineEventHandler(async (event) => {
     .sort({ date: -1 })
     .where({ _partial: false, _draft: false, _type: 'markdown' })
     .find()
-
-  console.log(articles)
 
   for (const article of articles) {
     feed.addItem({
