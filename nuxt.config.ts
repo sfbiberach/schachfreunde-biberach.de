@@ -1,9 +1,6 @@
 export default defineNuxtConfig({
   content: {
     documentDriven: true,
-    ignores: [
-      'site.webmanifest',
-    ],
   },
   devtools: { enabled: true },
   experimental: {
