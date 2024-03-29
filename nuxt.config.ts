@@ -21,13 +21,6 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     'nuxt-og-image',
   ],
-  nitro: {
-    prerender: {
-      routes: [
-        '/api/blog.json',
-      ],
-    },
-  },
   pwa: {
     manifest: {
       name: 'Schachfreunde Heilbronn-Biberach 1978 e. V.',
@@ -68,6 +61,10 @@ export default defineNuxtConfig({
     devOptions: {
       enabled: true,
     },
+  },
+  routeRules: {
+    '/api/blog.json': { prerender: true },
+    '/blog/rss.xml': { prerender: true },
   },
   ui: {
     icons: [

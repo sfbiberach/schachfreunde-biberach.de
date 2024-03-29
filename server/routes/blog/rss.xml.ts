@@ -3,6 +3,7 @@ import { joinURL } from 'ufo'
 import { serverQueryContent } from '#content/server'
 
 export default defineEventHandler(async (event) => {
+  console.log('/rss.xml')
   const baseUrl = 'http://sf-biberach.nuxt.space'
   const siteUrl = joinURL(baseUrl, 'blog')
   const feed = new Feed({
@@ -23,6 +24,8 @@ export default defineEventHandler(async (event) => {
     .sort({ date: -1 })
     .where({ _partial: false, _draft: false, _type: 'markdown' })
     .find()
+
+  console.log(articles)
 
   for (const article of articles) {
     feed.addItem({
