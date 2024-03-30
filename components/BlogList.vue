@@ -28,7 +28,7 @@ watchEffect(() => {
 })
 
 watch(page, () => {
-  navigateTo({ path: page.value > 1 ? `/blog/${page.value}` : '/blog' })
+  navigateTo({ path: page.value > 1 ? `/blog/${page.value}` : '/blog', query: { page: page.value } })
 })
 
 function updatePageFromQuery() {
