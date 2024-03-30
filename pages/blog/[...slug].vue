@@ -1,9 +1,8 @@
 <script setup lang="ts">
 const route = useRoute()
-const routePaths = route.path.split('/').filter(Boolean)
-const id = routePaths.at(-1) || ''
+const routePaths = route.path
 </script>
 
 <template>
-  <BlogArticle :path="id" />
+  <BlogArticle :path="routePaths" />
 </template>

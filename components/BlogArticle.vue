@@ -1,14 +1,10 @@
 <script setup lang="ts">
 import type { BlogArticle } from '~/types'
 
-const props = defineProps<{
-  path: string
-}>()
-
+const route = useRoute()
 const url = useRequestURL()
 const { copy } = useCopyToClipboard()
-
-const { data: article } = await useFetch<BlogArticle>(`/api/blog/${props.path}`)
+const { data: article } = await useFetch<BlogArticle>(`/api${route.path}`)
 
 if (!article.value)
   throw createError({ statusCode: 404, statusMessage: 'Post not found', fatal: false })
