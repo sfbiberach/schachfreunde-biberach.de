@@ -5,7 +5,7 @@ import type { BlogArticle } from '~/types'
 
 const appConfig = useAppConfig()
 const route = useRoute()
-const queryPage = Number.parseInt(route.query?.page as string || '1')
+const queryPage = computed(() => Number.parseInt(route.query?.page as string || '1'))
 const { data: content } = await useAsyncData('/blog', () => queryContent('/blog').findOne())
 
 const page = ref(1)
@@ -30,7 +30,7 @@ watch(page, () => {
 })
 
 function updatePageFromQuery() {
-  page.value = Math.max(queryPage, 1)
+  page.value = Math.max(queryPage.value, 1)
 }
 
 function getBadgeProps(badge: keyof typeof appConfig.app.blog.categories | Badge) {
