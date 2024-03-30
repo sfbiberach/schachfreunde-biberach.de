@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const route = useRoute()
-const queryPage = route.query.page
+const queryPage = Number.parseInt(String(route.query.page) ?? '1')
 const routePaths = route.path.split('/').filter(Boolean)
 const id = routePaths.at(-1) || ''
 
