@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const route = useRoute()
+const queryPage = route.query.page
 const routePaths = route.path.split('/').filter(Boolean)
 const id = routePaths.at(-1) || ''
 
@@ -9,7 +10,7 @@ const page = Number.isNaN(idNumber) || (idNumber.toString() !== id && routePaths
 
 <template>
   <template v-if="routePaths.length < 2 || typeof page === 'number'">
-    <BlogList :page="(page as number)" />
+    <BlogList :page="((queryPage || 1) as number)" />
   </template>
   <template v-else>
     <BlogArticle :path="page" />
