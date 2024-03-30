@@ -56,7 +56,7 @@ export default defineNuxtConfig({
       skipWaiting: true,
     },
     devOptions: {
-      enabled: true,
+      enabled: false,
     },
   },
   routeRules: {
