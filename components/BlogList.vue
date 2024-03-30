@@ -3,11 +3,9 @@ import { defu } from 'defu'
 import type { Badge } from '#ui/types'
 import type { BlogArticle } from '~/types'
 
-const props = defineProps<{
-  page: number
-}>()
-
 const appConfig = useAppConfig()
+const route = useRoute()
+const queryPage = Number.parseInt(route.query?.page as string || '1')
 const { data: content } = await useAsyncData('/blog', () => queryContent('/blog').findOne())
 
 const page = ref(1)
@@ -28,11 +26,11 @@ watchEffect(() => {
 })
 
 watch(page, () => {
-  navigateTo({ path: page.value > 1 ? `/blog/${page.value}` : '/blog', query: { page: page.value > 1 ? page.value : undefined } })
+  navigateTo({ query: { page: page.value > 1 ? page.value : undefined } })
 })
 
 function updatePageFromQuery() {
-  page.value = Math.max(props.page, 1)
+  page.value = Math.max(queryPage, 1)
 }
 
 function getBadgeProps(badge: keyof typeof appConfig.app.blog.categories | Badge) {
