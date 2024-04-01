@@ -18,6 +18,11 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     'nuxt-og-image',
   ],
+  nitro: {
+    prerender: {
+      failOnError: false,
+    },
+  },
   pwa: {
     manifest: {
       name: 'Schachfreunde Heilbronn-Biberach 1978 e. V.',
