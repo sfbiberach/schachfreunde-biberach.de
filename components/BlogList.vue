@@ -101,7 +101,6 @@ useHead({
     <div v-if="articles" class="flex flex-col gap-8">
       <div class="flex justify-between flex-wrap gap-4">
         <UHorizontalNavigation :links="categoriesWithActive" class="w-auto" />
-        <UPagination v-model="page" :page-count="pageCount" :total="categoryArticles.length" />
       </div>
       <UBlogList>
         <UBlogPost
