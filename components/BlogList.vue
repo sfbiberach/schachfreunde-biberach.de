@@ -32,6 +32,8 @@ const categoriesWithActive = computed(() =>
   })),
 )
 
+const color = computed(() => props.category?.color)
+
 const { data: articles } = useFetch<BlogArticle[]>('/api/blog.json', {
   default: () => [],
 })
@@ -48,12 +50,13 @@ watchEffect(() => {
   updatePageFromQuery()
 })
 
-watch(props, () => {
-  if (props.category) {
-    appConfig.ui.primary = props.category.color
-    window.localStorage.setItem('nuxt-ui-primary', appConfig.ui.primary)
-  }
-}, { immediate: true })
+watch(color, () => {
+  setPrimaryColor()
+})
+
+onMounted(() => {
+  setPrimaryColor()
+})
 
 watch(page, () => {
   const path = ['/blog']
@@ -71,6 +74,13 @@ function updatePageFromQuery() {
 
 function getBadgeProps(badge: keyof typeof appConfig.app.blog.categories | Badge) {
   return defu(badge, appConfig.app.blog.categories[badge as keyof typeof appConfig.app.blog.categories] as Badge)
+}
+
+function setPrimaryColor() {
+  if (props.category) {
+    appConfig.ui.primary = props.category.color
+    window.localStorage.setItem('nuxt-ui-primary', appConfig.ui.primary)
+  }
 }
 
 useHead({
