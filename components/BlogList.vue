@@ -8,20 +8,40 @@ const props = defineProps<{
   page: number
 }>()
 
+const labelAll = 'Alle'
+const pageCount = 12
+
 const appConfig = useAppConfig()
 const { data: content } = await useAsyncData('/blog', () => queryContent('/blog').findOne())
 
 const page = ref(1)
 const active = useState()
 
+const categories = [
+  { label: labelAll, color: 'gray' },
+  ...Object.values(appConfig.app.blog.categories),
+].map((category, index) => ({
+  ...category,
+  to: index === 0 ? '/blog' : `/blog/${category.label.toLocaleLowerCase()}`,
+}))
+
+const categoriesWithActive = computed(() =>
+  categories.map(category => ({
+    ...category,
+    active: category.label.toLocaleLowerCase() === (props.category ? props.category : labelAll).toLocaleLowerCase(),
+  })),
+)
+
 const { data: articles } = useFetch<BlogArticle[]>('/api/blog.json', {
   default: () => [],
 })
 
+const categoryArticles = computed(() => articles.value?.filter(article => props.category ? props.category === article.category?.toLowerCase() : true))
+
 const pageArticles = computed(() => {
-  const start = (page.value - 1) * 12
-  const end = start + 12
-  return articles.value?.slice(start, end)
+  const start = (page.value - 1) * pageCount
+  const end = start + pageCount
+  return categoryArticles.value?.slice(start, end)
 })
 
 watchEffect(() => {
@@ -29,7 +49,13 @@ watchEffect(() => {
 })
 
 watch(page, () => {
-  navigateTo({ path: page.value > 1 ? `/blog/${page.value}` : '/blog' })
+  const path = ['/blog']
+  if (props.category)
+    path.push(props.category)
+  if (page.value > 1)
+    path.push(page.value.toString())
+
+  navigateTo({ path: path.join('/') })
 })
 
 function updatePageFromQuery() {
@@ -68,12 +94,15 @@ useHead({
 <template>
   <NuxtLayout v-bind="content">
     <template #description>
-      <UButton to="/blog/rss.xml" color="gray" external icon="i-ph-rss" size="2xs" target="_blank" class="mt-4">
+      <UButton to="/blog/rss.xml" color="gray" external icon="i-ph-rss" size="2xs" target="_blank" class="mt-4 group-hover:text-blue-400 group-hover:text-green-500">
         RSS
       </UButton>
     </template>
     <div v-if="articles" class="flex flex-col gap-8">
-      <UPagination v-model="page" :page-count="12" :total="articles.length" class="w-full" />
+      <div class="flex justify-between flex-wrap gap-4">
+        <UHorizontalNavigation :links="categoriesWithActive" class="w-auto" />
+        <UPagination v-model="page" :page-count="pageCount" :total="categoryArticles.length" />
+      </div>
       <UBlogList>
         <UBlogPost
           v-for="(article, index) in pageArticles"
@@ -99,6 +128,9 @@ useHead({
           </template>
         </UBlogPost>
       </UBlogList>
+      <div class="w-full flex justify-center mt-4">
+        <UPagination v-model="page" :page-count="pageCount" :total="categoryArticles.length" />
+      </div>
     </div>
   </NuxtLayout>
 </template>

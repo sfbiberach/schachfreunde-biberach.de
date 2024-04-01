@@ -7,7 +7,7 @@ const { copy } = useCopyToClipboard()
 const { data: article } = await useFetch<BlogArticle>(`/api${route.path}`)
 
 if (!article.value)
-  throw createError({ statusCode: 404, statusMessage: 'Post not found', fatal: false })
+  throw createError({ statusCode: 404, statusMessage: 'Artikel nicht gefunden' })
 
 const title = article.value.head?.title || article.value.title
 const description = article.value.head?.description || article.value.description
