@@ -4,7 +4,7 @@ import type { Badge } from '#ui/types'
 import type { BlogArticle } from '~/types'
 
 const props = defineProps<{
-  category?: string
+  category?: { label: string, color: string }
   page: number
 }>()
 
@@ -28,7 +28,7 @@ const categories = [
 const categoriesWithActive = computed(() =>
   categories.map(category => ({
     ...category,
-    active: category.label.toLocaleLowerCase() === (props.category ? props.category : labelAll).toLocaleLowerCase(),
+    active: category.label.toLocaleLowerCase() === (props.category?.label ? props.category.label : labelAll).toLocaleLowerCase(),
   })),
 )
 
@@ -36,7 +36,7 @@ const { data: articles } = useFetch<BlogArticle[]>('/api/blog.json', {
   default: () => [],
 })
 
-const categoryArticles = computed(() => articles.value?.filter(article => props.category ? props.category === article.category?.toLowerCase() : true))
+const categoryArticles = computed(() => articles.value?.filter(article => props.category ? props.category.label === article.category : true))
 
 const pageArticles = computed(() => {
   const start = (page.value - 1) * pageCount
@@ -48,10 +48,17 @@ watchEffect(() => {
   updatePageFromQuery()
 })
 
+watch(props, () => {
+  if (props.category) {
+    appConfig.ui.primary = props.category.color
+    window.localStorage.setItem('nuxt-ui-primary', appConfig.ui.primary)
+  }
+}, { immediate: true })
+
 watch(page, () => {
   const path = ['/blog']
   if (props.category)
-    path.push(props.category)
+    path.push(props.category.label)
   if (page.value > 1)
     path.push(page.value.toString())
 

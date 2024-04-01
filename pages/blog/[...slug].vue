@@ -5,18 +5,18 @@ const route = useRoute()
 const appConfig = useAppConfig()
 
 const params = ref<string[]>([])
-const category = ref<string | undefined>()
+const category = ref<{ label: string, color: string } | undefined>()
 const page = ref<number>(1)
 const isArticle = ref<boolean>(false)
 
 watchEffect(() => {
-  const newParams = route.path.split(basePath)[1].split('/').filter(Boolean)
+  const newParams = route.path.split(basePath)[1].split('/').filter(Boolean).map(param => param.toLocaleLowerCase())
   params.value = newParams
 
-  const categories = Object.values(appConfig.app.blog.categories).flatMap(category => category.label?.toLowerCase())
-  category.value = newParams.find(param => categories.includes(param))
+  const categories = Object.values(appConfig.app.blog.categories)
+  category.value = categories.find(category => newParams.includes(category.label.toLocaleLowerCase()))
   const pageParam = newParams.find(param => !Number.isNaN(Number(param)))
-  page.value = Number.parseInt(pageParam || '1', 10)
+  page.value = Number.parseInt(pageParam || '1')
 
   isArticle.value = newParams.length === 1 && category.value === undefined && pageParam === undefined
 })
