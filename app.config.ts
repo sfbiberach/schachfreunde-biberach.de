@@ -87,6 +87,33 @@ export default defineAppConfig({
         label: 'Mannschaften',
         icon: 'i-ph-castle-turret-duotone',
         to: '/mannschaften',
+        children: [
+          {
+            label: '1. Mannschaft',
+            to: 'https://ergebnisse.svw.info/show/2023/3277/',
+            target: '_blank',
+          },
+          {
+            label: '2. Mannschaft',
+            to: 'https://ergebnisse.svw.info/show/2023/3315/',
+            target: '_blank',
+          },
+          {
+            label: '3. Mannschaft',
+            to: 'https://ergebnisse.svw.info/show/2023/3319/',
+            target: '_blank',
+          },
+          {
+            label: '1. Jugendmannschaft',
+            to: 'https://ergebnisse.svw.info/show/2023/3369/',
+            target: '_blank',
+          },
+          {
+            label: '2. Jugendmannschaft',
+            to: 'https://ergebnisse.svw.info/show/2023/3385/',
+            target: '_blank',
+          },
+        ],
       },
       {
         label: 'Turniere',
