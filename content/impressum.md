@@ -26,15 +26,18 @@ Registernummer: VR 101642
 ### Inhaltlich Verantwortlicher gemäß § 10 Absatz 3 MDStV
 
 Jens Hoffmann\
-Große Binsachstr. 38\
-D-74219 Möckmühl\
+I 1, 5\
+68159 Mannheim\
 2.vorsitzender@schachfreunde-biberach.de
 
 ### Textnachweis für die Berichte
 
+Stephanie Gerold (sg)\
+Jens Hoffmann (jh)\
+Jürgen-Oliver Klinger (ok)\
+Philipp Müller (pm)\
 Dimitrios Triantafillidis (dt)\
-Dr. Hubert Warsitz (hw)\
-Philipp Müller (pm)
+Dr. Hubert Warsitz (hw)
 
 ### Eintragungen
 

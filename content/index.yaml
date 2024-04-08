@@ -6,7 +6,7 @@ prose: false
 
 hero:
   title: Herzlich Willkommen
-  description: bei den <b>Schachfreunden Heilbronn-Biberach 1978 e.&nbsp;V.</b>&nbsp; Wir sind ein junger und dynamischer Verein aus Baden-Württemberg.
+  description: bei den <b>Schachfreunden Heilbronn-Biberach 1978 e.&nbsp;V.</b>&nbsp;<br>Wir sind ein junger, dynamischer Verein aus Baden-Württemberg.
   align: left
   ui: {features: {description: whitespace-pre-line}}
   features:
@@ -34,6 +34,7 @@ cards:
   - title: Biber-Jugend-Cup
     description: Kinder- und Jugendturnier am 2. März 2024 mit über 200 Teilnehmern und 12 Jahren Tradition.
     to: https://www.findchessgames.com/index-0134,224,1036-turniere_anzeigen.html
+    target: _blank
     icon: i-ph-castle-turret-duotone
   - title: Training
     description: Wir bieten regelmäßiges Training für alle Altersklassen.
