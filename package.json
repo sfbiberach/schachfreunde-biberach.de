@@ -23,13 +23,13 @@
     "feed": "^4.2.2"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.14.0",
+    "@antfu/eslint-config": "^2.15.0",
     "@nuxt/fonts": "^0.6.1",
     "@nuxt/image": "^1.5.0",
     "@types/node": "^20.12.7",
     "@vite-pwa/assets-generator": "^0.2.4",
     "@vite-pwa/nuxt": "^0.6.0",
-    "eslint": "^9.0.0",
+    "eslint": "^9.1.0",
     "nuxt": "^3.11.2",
     "nuxt-og-image": "^3.0.0-rc.52",
     "typescript": "^5.4.5"
