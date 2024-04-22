@@ -1,3 +1,4 @@
+# eslint-disable @stylistic/spaced-comment
 name: studio-nuxt-build
 run-name: studio nuxt build
 

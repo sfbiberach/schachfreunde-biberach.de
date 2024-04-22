@@ -3,6 +3,12 @@ export default defineNuxtConfig({
     documentDriven: true,
   },
   devtools: { enabled: true },
+  eslint: {
+    config: {
+      stylistic: true,
+      standalone: false,
+    },
+  },
   experimental: {
     viewTransition: true,
   },
@@ -11,6 +17,7 @@ export default defineNuxtConfig({
   ],
   modules: [
     '@nuxt/content',
+    '@nuxt/eslint',
     '@nuxt/fonts',
     '@nuxt/image',
     '@nuxt/ui',

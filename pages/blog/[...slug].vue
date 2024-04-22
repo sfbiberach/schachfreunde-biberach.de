@@ -23,10 +23,10 @@ watchEffect(() => {
 </script>
 
 <template>
-  <template v-if="isArticle">
+  <div v-if="isArticle">
     <BlogArticle :path="route.path" />
-  </template>
-  <template v-else>
+  </div>
+  <div v-else>
     <BlogList :category="category" :page="page" />
-  </template>
+  </div>
 </template>
