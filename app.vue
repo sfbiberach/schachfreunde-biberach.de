@@ -58,6 +58,10 @@ h1, h2, h3, h4, h5, h6 {
   @apply font-serif;
 }
 
+.prose img {
+  @apply rounded-xl;
+}
+
 /* ::view-transition-old(root) {
   animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out;
 }
