@@ -80,6 +80,7 @@ export default defineNuxtConfig({
       'ph',
       'simple-icons',
       'fa6-solid',
+      'heroicons',
     ],
     safelistColors: ['blue', 'green', 'orange'],
   },
