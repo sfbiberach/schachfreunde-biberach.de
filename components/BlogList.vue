@@ -34,7 +34,7 @@ const categoriesWithActive = computed(() =>
 
 const color = computed(() => props.category?.color)
 
-const { data: articles } = useFetch<BlogArticle[]>('/api/blog.json', {
+const { data: articles } = await useFetch<BlogArticle[]>('/api/blog.json', {
   default: () => [],
 })
 
