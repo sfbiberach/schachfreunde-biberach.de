@@ -22,7 +22,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/ui',
     '@nuxthq/studio',
-    // '@nuxthub/core',
+    '@nuxthub/core',
     '@vite-pwa/nuxt',
     'nuxt-og-image',
   ],
