@@ -9,6 +9,7 @@
     "build": "nuxi build",
     "generate": "nuxi generate",
     "preview": "nuxi preview",
+    "serve": "wrangler pages dev dist/",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "generate-pwa-assets": "pwa-assets-generator"
