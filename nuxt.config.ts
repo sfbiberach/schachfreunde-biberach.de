@@ -75,6 +75,9 @@ export default defineNuxtConfig({
   routeRules: {
     '/api/blog.json': { prerender: true },
     '/blog/rss.xml': { prerender: true },
+    '/': { prerender: true },
+    '/blog': { prerender: true },
+    '/blog/**': { prerender: true },
   },
   ui: {
     icons: [
