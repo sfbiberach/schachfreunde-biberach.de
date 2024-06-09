@@ -3,8 +3,17 @@ import antfu from '@antfu/eslint-config'
 import withNuxt from './.nuxt/eslint.config.mjs'
 
 export default withNuxt(
-  antfu({
-    // ...@antfu/eslint-config options
-  }),
+  antfu(
+    {
+
+    },
+    {
+      name: 'tailwind/yaml/rules',
+      files: ['**/*.yaml', '**/*.yml'],
+      rules: {
+        'yaml/plain-scalar': ['off'],
+      },
+    },
+  ),
   // ...your other rules
 )
