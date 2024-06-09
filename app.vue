@@ -2,7 +2,7 @@
 import type { ParsedContent } from '@nuxt/content/types'
 
 const route = useRoute()
-const heroBackgroundClass = computed(() => route.meta?.heroBackground || 'opacity-30 dark:opacity-20')
+const heroBackgroundClass = computed(() => route.meta?.heroBackground || 'opacity-80')
 
 useHead({
   title: 'Schachfreunde Heilbronn-Biberach 1978 e. V.',
