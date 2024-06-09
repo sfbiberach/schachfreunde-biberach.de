@@ -11,4 +11,8 @@ export default <Partial<Config>> {
       },
     },
   },
+  safelist: [
+    'xl:col-span-3',
+    'sm:block',
+  ],
 }
