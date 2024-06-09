@@ -1,20 +1,14 @@
 <template>
-  <svg viewBox="0 0 1440 260" fill="none" xmlns="http://www.w3.org/2000/svg" class="pointer-events-none mt-16">
-    <mask id="path-1-inside-1_414_5526" fill="white">
-      <path d="M0 0H1440V260H0V0Z" />
-    </mask>
-    <path d="M0 0H1440V260H0V0Z" fill="url(#paint0_linear_414_5526)" fill-opacity="0.22" />
-    <path d="M0 2H1440V-2H0V2Z" fill="url(#paint1_linear_414_5526)" mask="url(#path-1-inside-1_414_5526)" />
-    <defs>
-      <linearGradient id="paint0_linear_414_5526" x1="720" y1="0" x2="720" y2="260" gradientUnits="userSpaceOnUse">
-        <stop stop-color="currentColor" />
-        <stop offset="1" stop-color="currentColor" stop-opacity="0" />
-      </linearGradient>
-      <linearGradient id="paint1_linear_414_5526" x1="0" y1="90.5" x2="1440" y2="90.5" gradientUnits="userSpaceOnUse">
-        <stop stop-color="currentColor" stop-opacity="0" />
-        <stop offset="0.395" stop-color="currentColor" />
-        <stop offset="1" stop-color="currentColor" stop-opacity="0" />
-      </linearGradient>
-    </defs>
-  </svg>
+  <div class="relative w-full">
+    <div class="absolute top-0 left-0 w-full custom-gradient-height bg-gradient-to-b from-primary to-transparent opacity-20 dark:opacity-15" />
+    <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-85" />
+    <div class="relative z-10 pt-[2px]" />
+  </div>
 </template>
+
+<style scoped>
+.custom-gradient-height {
+  height: 360px;
+  height: clamp(280px, 12vw, 420px);
+}
+</style>
