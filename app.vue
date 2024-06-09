@@ -9,6 +9,7 @@ useHead({
   titleTemplate: '%s | Schachfreunde Heilbronn-Biberach 1978 e. V.',
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+    { name: 'theme-color', content: '#171717' },
   ],
   htmlAttrs: {
     lang: 'de',
