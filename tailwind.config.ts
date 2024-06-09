@@ -14,5 +14,7 @@ export default <Partial<Config>> {
   safelist: [
     'xl:col-span-3',
     'sm:block',
+    'i-heroicons-arrow-right-20-solid',
+    'i-heroicons-arrow-left-20-solid',
   ],
 }
