@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { ParsedContent } from '@nuxt/content/types'
 
+const route = useRoute()
+const heroBackgroundClass = computed(() => route.meta?.heroBackground || 'opacity-30 dark:opacity-20')
+
 useHead({
   title: 'Schachfreunde Heilbronn-Biberach 1978 e. V.',
   titleTemplate: '%s | Schachfreunde Heilbronn-Biberach 1978 e. V.',
@@ -43,6 +46,10 @@ provide('files', files)
 <template>
   <div style="contain: paint;">
     <AppHeader />
+    <HeroBackground
+      class="absolute w-full top-[1px] transition-all text-primary flex-shrink-0 duration-[400ms]"
+      :class="[heroBackgroundClass]"
+    />
     <NuxtPage />
     <AppFooter />
 

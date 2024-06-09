@@ -64,7 +64,7 @@ function copyLink() {
       </UPageBody>
 
       <template #right>
-        <UContentToc v-if="article.body && article.body.toc" :links="article.body.toc.links" />
+        <UContentToc v-if="article.body && article.body.toc" :links="article.body.toc.links" class="bg-transparent" />
       </template>
     </UPage>
   </NuxtLayout>
