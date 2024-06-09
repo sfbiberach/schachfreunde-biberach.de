@@ -11,6 +11,9 @@ export default defineAppConfig({
         size: 'md',
       },
     },
+    header: {
+      wrapper: 'lg:mb-0 border-0',
+    },
   },
   app: {
     blog: {

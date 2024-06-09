@@ -8,7 +8,7 @@
 
 <style scoped>
 .custom-gradient-height {
-  height: 360px;
-  height: clamp(280px, 12vw, 420px);
+  height: 420px;
+  height: clamp(360px, 12vw, 480px);
 }
 </style>
