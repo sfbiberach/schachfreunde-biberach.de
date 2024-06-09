@@ -25,6 +25,13 @@ const { metaSymbol } = useShortcuts()
         <UContentSearchButton label="" />
       </UTooltip>
     </template>
+
+    <template #bottom>
+      <div class="w-full sticky top-0">
+        <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100" />
+        <div class="relative z-10 pt-[2px]" />
+      </div>
+    </template>
   </UHeader>
 </template>
 
