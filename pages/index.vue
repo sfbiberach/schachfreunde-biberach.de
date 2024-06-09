@@ -1,6 +1,10 @@
 <script setup lang="ts">
 const { data: page } = await useAsyncData('/', () => queryContent('/').findOne())
 
+definePageMeta({
+  heroBackground: 'opacity-0',
+})
+
 useSeoMeta({
   titleTemplate: page.value?.titleTemplate,
   title: page.value?.title,
