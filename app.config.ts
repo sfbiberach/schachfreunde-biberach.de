@@ -5,6 +5,10 @@ export default defineAppConfig({
     icons: {
       light: 'i-ph-sun-duotone',
       dark: 'i-ph-moon-duotone',
+      search: 'i-ph-magnifying-glass-duotone',
+      external: 'i-ph-arrow-up-right',
+      chevron: 'i-ph-caret-down',
+      hash: 'i-ph-hash-duotone',
     },
     button: {
       default: {
