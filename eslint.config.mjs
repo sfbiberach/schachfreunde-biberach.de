@@ -15,5 +15,4 @@ export default withNuxt(
       },
     },
   ),
-  // ...your other rules
 )
