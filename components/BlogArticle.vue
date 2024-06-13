@@ -1,16 +1,24 @@
 <script setup lang="ts">
+import { withoutTrailingSlash } from 'ufo'
 import type { BlogArticle } from '~/types'
 
 const route = useRoute()
 const url = useRequestURL()
 const { copy } = useCopyToClipboard()
-const { data: article } = await useFetch<BlogArticle>(`/api${route.path}`)
+const { data: article } = await useAsyncData(route.path, () => queryContent<BlogArticle>(route.path).findOne())
 
 if (!article.value)
   throw createError({ statusCode: 404, statusMessage: 'Artikel nicht gefunden' })
 
+const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryContent('/blog')
+  .where({ _extension: 'md' })
+  .without(['body', 'excerpt'])
+  .sort({ date: -1 })
+  .findSurround(withoutTrailingSlash(route.path)), { default: () => [] })
+
 const title = article.value.head?.title || article.value.title
 const description = article.value.head?.description || article.value.description
+const authors = await useAuthors(article.value.authors)
 
 useSeoMeta({
   title,
@@ -42,10 +50,10 @@ function copyLink() {
 </script>
 
 <template>
-  <NuxtLayout name="article" :container="true" :authors="article?.authors">
+  <NuxtLayout name="article" :container="true" :authors>
     <UPage v-if="article">
       <UPageBody prose>
-        <ContentRenderer v-if="article && article.body" :value="article" />
+        <ContentRenderer v-if="article?.body" :value="article" />
 
         <div class="flex items-center justify-between mt-12 not-prose">
           <UButton icon="i-ph-arrow-left" color="primary" variant="ghost" to="/blog">
@@ -58,9 +66,9 @@ function copyLink() {
           </div>
         </div>
 
-        <hr v-if="article.surround?.length">
+        <hr v-if="surround?.length">
 
-        <UContentSurround :surround="article.surround" />
+        <UContentSurround :surround />
       </UPageBody>
 
       <template #right>
