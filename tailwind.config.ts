@@ -16,6 +16,7 @@ export default <Partial<Config>> {
     'sm:block',
     // Nuxt UI Card
     'top-2',
+    'right-2',
     'text-[--color-light]',
     'dark:text-[--color-dark]',
     'hover:ring-[--color-light]',
