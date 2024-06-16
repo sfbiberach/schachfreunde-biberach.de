@@ -14,5 +14,11 @@ export default <Partial<Config>> {
   safelist: [
     'xl:col-span-3',
     'sm:block',
+    // Nuxt UI Card
+    'top-2',
+    'text-[--color-light]',
+    'dark:text-[--color-dark]',
+    'hover:ring-[--color-light]',
+    'dark:hover:ring-[--color-dark]',
   ],
 }
