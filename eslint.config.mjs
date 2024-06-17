@@ -14,5 +14,12 @@ export default withNuxt(
         'yaml/plain-scalar': ['off'],
       },
     },
+    {
+      name: 'nuxt-studio/md/rules',
+      files: ['**/*.md'],
+      rules: {
+        'no-irregular-whitespace': ['off'],
+      },
+    },
   ),
 )
