@@ -18,7 +18,7 @@ function openImage(index: number) {
   // setTimeout(() => carouselRef.value?.select(index), 0)
   setTimeout(() => {
     if (carouselRef.value)
-      carouselRef.value.page = index
+      carouselRef.value.select(index)
   }, 1)
 }
 </script>
@@ -35,14 +35,25 @@ function openImage(index: number) {
         @click="openImage(index + 1)"
       />
     </div>
-    <UModal v-model="open" :ui="{ width: 'w-[unset] sm:max-w-content' }">
+    <UModal v-model="open" :ui="{ width: 'sm:max-w-[unset] sm:max-w-content' }">
       <UCarousel
-        ref="carouselRef" v-slot="{ item }"
+        ref="carouselRef"
         :items="props.items" :ui="{ item: 'basis-full box-border' }"
         :prev-button="{ color: 'gray', icon: 'i-ph-arrow-left' }" :next-button="{ color: 'gray', icon: 'i-ph-arrow-right' }"
         fullscreen arrows indicators
       >
-        <img :src="item.src" class="aspect-auto" draggable="false">
+        <template #default="{ item }">
+          <img :src="item.src" class="aspect-auto" draggable="false">
+        </template>
+        <template #indicator="{ onClick, page, active }">
+          <UButton
+            :label="String(page)"
+            :variant="active ? 'solid' : 'outline'"
+            size="2xs"
+            class="rounded-full min-w-6 justify-center"
+            @click="onClick(page)"
+          />
+        </template>
       </UCarousel>
     </UModal>
   </div>
