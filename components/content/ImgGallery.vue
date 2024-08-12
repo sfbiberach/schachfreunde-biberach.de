@@ -40,6 +40,7 @@ onKeyStroke('ArrowRight', () => {
 
 function openImage(index: number) {
   isOpen.value = true
+  currentIndex.value = index
 }
 
 function closeImage() {
@@ -56,7 +57,7 @@ function closeImage() {
         :src="image.src"
         :alt="image.alt"
         class="object-cover w-full h-full max-h-[40rem] !rounded-none cursor-pointer"
-        @click="openImage(index + 1)"
+        @click="openImage(index)"
       />
     </div>
     <UModal v-model="isOpen" :ui="{ base: '!bg-transparent', width: 'sm:max-w-[unset] sm:max-w-content' }" fullscreen>
