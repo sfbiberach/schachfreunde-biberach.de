@@ -61,6 +61,7 @@ function closeImage() {
       />
     </div>
     <UModal v-model="isOpen" :ui="{ base: '!bg-transparent', width: 'sm:max-w-[unset] sm:max-w-content' }" fullscreen>
+      <!-- background -->
       <div class="absolute inset-0 w-full h-full z-[-1] opacity-50">
         <img
           :src="image.src"
@@ -70,24 +71,48 @@ function closeImage() {
       </div>
       <UCard
         :ui="{
-          base: 'h-full flex flex-col !bg-transparent dark:!bg-transparent',
+          base: 'h-full flex flex-col !bg-transparent',
           divide: 'divide-y divide-transparent dark:divide-transparent',
+          header: {
+            padding: 'px-0',
+          },
           body: {
-            base: 'grow flex flex-col justify-center',
+            base: 'relative grow flex flex-col justify-center',
           },
         }"
       >
+        <!-- card header -->
         <template #header>
-          <div class="flex items-center justify-between">
+          <div class="flex items-center justify-between overflow-auto px-4 mr-4">
             <div class="flex gap-4 h-24">
               <img
                 v-for="(previewImage, index) in items" :key="index"
                 :src="previewImage.src" :alt="previewImage.alt"
-                class="rounded-xl"
+                class="rounded-xl cursor-pointer"
+                @click="openImage(index)"
               >
             </div>
           </div>
         </template>
+
+        <!-- default close slide -->
+        <div class="w-full h-full absolute top-0 left-0 border-box" @click="closeImage()" />
+
+        <!-- close button -->
+        <!-- <div class="flex absolute top-2 right-2">
+          <UButton
+            variant="ghost"
+            color="gray"
+            size="xl"
+            class="flex mr-4 transition-colors duration-200"
+            aria-label="Close"
+            @click="closeImage()"
+          >
+            <UIcon name="i-ph-x" class="w-6 h-6 " />
+          </UButton>
+        </div> -->
+
+        <!-- image container -->
         <div class="flex items-center justify-center md:justify-between gap-x-4 w-full">
           <!-- previous image if not the first image -->
           <UTooltip
@@ -106,25 +131,22 @@ function closeImage() {
             />
           </UTooltip>
 
-          <div
-            v-else
-            class="flex group"
-          >
-            <!-- back to gallery if first movie -->
+          <div v-else class="flex">
+            <!-- back to article if image -->
             <UTooltip
-              text="Back to gallery"
+              text="Zurück zum Beitrag"
               :shortcuts="['Esc']"
             >
               <UButton
                 size="xl"
                 color="gray"
                 variant="ghost"
-                class="back hidden md:flex ml-4 transition-colors duration-200"
+                class="hidden md:flex ml-4 transition-colors duration-200"
                 aria-label="Back to gallery"
                 @click="closeImage()"
               >
                 <UIcon
-                  name="i-heroicons-rectangle-group-20-solid"
+                  name="i-ph-newspaper-duotone"
                   class="w-6 h-6"
                 />
               </UButton>
@@ -133,7 +155,7 @@ function closeImage() {
           <!-- image -->
           <div class="relative flex items-center justify-center xl:m-16">
             <div ref="imageContainerEl">
-              <div class="group">
+              <div class="relative">
                 <img
                   v-if="image"
                   ref="imageEl"
@@ -166,7 +188,7 @@ function closeImage() {
           <!-- back to gallery if last image -->
           <UTooltip
             v-else
-            text="Back to gallery"
+            text="Zurück zum Beitrag"
             :shortcuts="['Esc']"
           >
             <div class="flex">
@@ -179,34 +201,19 @@ function closeImage() {
                 @click="closeImage()"
               >
                 <UIcon
-                  name="i-heroicons-rectangle-group-20-solid"
+                  name="i-ph-newspaper-duotone"
                   class="w-6 h-6"
                 />
               </UButton>
             </div>
           </UTooltip>
         </div>
-      </UCard>
 
-      <!-- <UCarousel
-        ref="carouselRef"
-        :items="props.items" :ui="{ item: 'basis-full box-border' }"
-        :prev-button="{ color: 'gray', icon: 'i-ph-arrow-left' }" :next-button="{ color: 'gray', icon: 'i-ph-arrow-right' }"
-        fullscreen arrows indicators
-      >
-        <template #default="{ item }">
-          <img :src="item.src" class="aspect-auto" draggable="false">
+        <!-- card footer -->
+        <template #footer>
+          <div class="h-24 hidden md:block" />
         </template>
-        <template #indicator="{ onClick, page, active }">
-          <UButton
-            :label="String(page)"
-            :variant="active ? 'solid' : 'outline'"
-            size="2xs"
-            class="rounded-full min-w-6 justify-center"
-            @click="onClick(page)"
-          />
-        </template>
-      </UCarousel> -->
+      </UCard>
     </UModal>
   </div>
 </template>
