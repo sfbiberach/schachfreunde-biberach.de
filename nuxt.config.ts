@@ -2,19 +2,24 @@ export default defineNuxtConfig({
   content: {
     documentDriven: true,
   },
+
   devtools: { enabled: true },
+
   eslint: {
     config: {
       stylistic: true,
       standalone: false,
     },
   },
+
   experimental: {
     viewTransition: true,
   },
+
   extends: [
     '@nuxt/ui-pro',
   ],
+
   modules: [
     '@nuxt/content',
     '@nuxt/eslint',
@@ -26,11 +31,13 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     'nuxt-og-image',
   ],
+
   nitro: {
     prerender: {
       failOnError: false,
     },
   },
+
   pwa: {
     manifest: {
       name: 'Schachfreunde Heilbronn-Biberach 1978 e. V.',
@@ -72,6 +79,7 @@ export default defineNuxtConfig({
       enabled: false,
     },
   },
+
   routeRules: {
     '/api/blog.json': { prerender: true },
     '/api/blog/**': { prerender: true },
@@ -80,13 +88,10 @@ export default defineNuxtConfig({
     '/blog': { prerender: true },
     '/blog/**': { prerender: true },
   },
+
   ui: {
-    icons: [
-      'ph',
-      'simple-icons',
-      'fa6-solid',
-      'heroicons',
-    ],
     safelistColors: ['blue', 'green', 'orange'],
   },
+
+  compatibilityDate: '2024-07-08',
 })
