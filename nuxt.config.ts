@@ -18,6 +18,7 @@ export default defineNuxtConfig({
 
   extends: [
     '@nuxt/ui-pro',
+    'github:happydesigns/ui-base',
   ],
 
   modules: [
