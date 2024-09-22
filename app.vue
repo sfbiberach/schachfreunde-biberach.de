@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ParsedContent } from '@nuxt/content/types'
+import type { ParsedContent } from '@nuxt/content'
 
 const route = useRoute()
 const heroBackgroundClass = computed(() => route.meta?.heroBackground || 'opacity-80 dark:opacity-70')

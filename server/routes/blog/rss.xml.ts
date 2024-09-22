@@ -1,6 +1,6 @@
+import { serverQueryContent } from '#content/server'
 import { Feed } from 'feed'
 import { joinURL } from 'ufo'
-import { serverQueryContent } from '#content/server'
 
 export default eventHandler(async (event) => {
   const baseUrl = 'http://sf-biberach.nuxt.space'

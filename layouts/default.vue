@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { defu } from 'defu'
 import type { Button } from '#ui/types'
+import { defu } from 'defu'
 
 export interface Props {
   container?: boolean
   description?: string
-  links?: (Button & { click?: Function | undefined })[]
+  links?: (Button & { click?: (() => void) | undefined })[]
   prose?: boolean
   ui?: { wrapper?: string, body?: string }
   showHeader?: boolean
@@ -21,10 +21,11 @@ const props = withDefaults(defineProps<Props>(), {
 const { page: pageContent } = useContent()
 const page = defu(props, pageContent.value)
 
+const title = computed(() => page.title ?? '')
 const headline = computed(() => pageContent?.value?._dir ? findPageHeadline(pageContent?.value) : '')
 
 useSeoMeta({
-  title: page.title,
+  title: title.value,
 })
 
 const pageBodyWrapper = computed(() => page.showHeader ? '' : 'mt-0')
@@ -33,7 +34,7 @@ const pageBodyWrapper = computed(() => page.showHeader ? '' : 'mt-0')
 <template>
   <UMain :class="page.ui?.wrapper" class="break-words">
     <UContainer :ui="{ padding: page?.container ? undefined : '', constrained: page.container ? undefined : '' }">
-      <UPageHero v-if="page?.showHeader !== false" :title="page?.title" :links="page?.links" :headline="headline">
+      <UPageHero v-if="page?.showHeader !== false" :title :links="page?.links" :headline="headline">
         <template #description>
           <p>{{ page.description }}</p>
           <slot name="description" />

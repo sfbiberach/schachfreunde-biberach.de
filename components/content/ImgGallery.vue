@@ -18,7 +18,7 @@ const isOpen = ref(false)
 const currentIndex = ref(0)
 const isFirstImg = computed(() => currentIndex.value === 0)
 const isLastImg = computed(() => currentIndex.value === props.items.length - 1)
-const image = computed(() => props.items[currentIndex.value])
+const currentImage = computed(() => props.items[currentIndex.value])
 
 onKeyStroke('Escape', () => {
   closeImage()
@@ -64,7 +64,7 @@ function closeImage() {
       <!-- background -->
       <div class="absolute inset-0 w-full h-full z-[-1] opacity-50">
         <img
-          :src="image.src"
+          :src="currentImage?.src"
           class="object-cover w-full h-full blur-[70px] brightness-[.2] will-change-[filter]"
           alt=""
         >
@@ -157,10 +157,10 @@ function closeImage() {
             <div ref="imageContainerEl">
               <div class="relative">
                 <img
-                  v-if="image"
+                  v-if="currentImage"
                   ref="imageEl"
-                  :src="image.src"
-                  :alt="image.alt"
+                  :src="currentImage.src"
+                  :alt="currentImage.alt"
                   class="rounded object-contain transition-all duration-200 block"
                   crossorigin="anonymous"
                 >

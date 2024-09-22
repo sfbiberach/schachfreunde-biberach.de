@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { defu } from 'defu'
 import type { Badge, Button } from '#ui/types'
+import { defu } from 'defu'
 import type { BlogArticle } from '~/types'
 
 export interface Props {
   authors?: { name: string, to: string, avatar: { src: string, alt: string } }[]
   container?: boolean
-  links?: (Button & { click?: Function | undefined })[]
+  links?: (Button & { click?: (() => void) | undefined })[]
   prose?: boolean
   ui?: { wrapper?: string, body?: string }
   showHeader?: boolean

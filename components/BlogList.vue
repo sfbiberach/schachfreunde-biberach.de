@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { defu } from 'defu'
 import type { Badge } from '#ui/types'
+import { defu } from 'defu'
 import type { BlogArticle } from '~/types'
 
 const props = defineProps<{
