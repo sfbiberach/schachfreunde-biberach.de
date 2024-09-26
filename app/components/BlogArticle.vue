@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import type { BlogArticle } from '~~/types'
 import { withoutTrailingSlash } from 'ufo'
-import type { BlogArticle } from '~/types'
 
 const route = useRoute()
 const url = useRequestURL()

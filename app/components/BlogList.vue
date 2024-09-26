@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Badge } from '#ui/types'
+import type { BlogArticle } from '~~/types'
 import { defu } from 'defu'
-import type { BlogArticle } from '~/types'
 
 const props = defineProps<{
   category?: { label: string, color: string }

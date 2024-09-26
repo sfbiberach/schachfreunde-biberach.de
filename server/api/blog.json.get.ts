@@ -1,5 +1,5 @@
+import type { BlogArticle } from '~~/types'
 import { serverQueryContent } from '#content/server'
-import type { BlogArticle } from '~/types'
 
 export default eventHandler(async (event) => {
   const _path = getQuery(event)._path as string | undefined

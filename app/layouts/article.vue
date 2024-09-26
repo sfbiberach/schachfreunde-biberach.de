@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Badge, Button } from '#ui/types'
+import type { BlogArticle } from '~~/types'
 import { defu } from 'defu'
-import type { BlogArticle } from '~/types'
 
 export interface Props {
   authors?: { name: string, to: string, avatar: { src: string, alt: string } }[]
