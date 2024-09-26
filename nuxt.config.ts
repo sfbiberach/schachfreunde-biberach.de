@@ -72,10 +72,6 @@ export default defineNuxtConfig({
       ],
     },
     registerType: 'autoUpdate',
-    workbox: {
-      clientsClaim: true,
-      skipWaiting: true,
-    },
     devOptions: {
       enabled: false,
     },
