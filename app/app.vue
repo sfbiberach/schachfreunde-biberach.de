@@ -45,7 +45,7 @@ provide('files', files)
 </script>
 
 <template>
-  <div style="contain: paint;">
+  <div>
     <AppHeader />
     <HeroBackground
       class="absolute w-full top-[1px] transition-all text-primary flex-shrink-0 duration-[400ms]"
