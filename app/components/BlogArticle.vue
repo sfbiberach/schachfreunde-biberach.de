@@ -20,6 +20,15 @@ const title = article.value.head?.title || article.value.title
 const description = article.value.head?.description || article.value.description
 const authors = await useAuthors(article.value.authors)
 
+const links = [
+  {
+    icon: 'i-ph-pen-duotone',
+    label: 'Edit this article',
+    to: `https://github.com/sfbiberach/schachfreunde-biberach.de/edit/main/content/${article.value._file}`,
+    target: '_blank',
+  },
+]
+
 useSeoMeta({
   title,
   ogTitle: title,
@@ -72,7 +81,17 @@ function copyLink() {
       </UPageBody>
 
       <template #right>
-        <UContentToc v-if="article.body?.toc" :links="article.body.toc.links" class="bg-transparent" />
+        <UContentToc
+          v-if="article.body?.toc" :links="article.body.toc.links"
+          class="bg-transparent"
+        >
+          <template #bottom>
+            <div class="hidden lg:block space-y-6">
+              <UDivider type="dashed" />
+              <UPageLinks title="Links" :links="links" />
+            </div>
+          </template>
+        </UContentToc>
       </template>
     </UPage>
   </NuxtLayout>
