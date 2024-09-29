@@ -13,10 +13,6 @@ const { metaSymbol } = useShortcuts()
       </div>
     </template>
 
-    <template #panel>
-      <UAsideLinks :links="appConfig.links.header" />
-    </template>
-
     <template #right>
       <UTooltip :text="$colorMode.preference === 'dark' ? 'Zu hellem Modus wechseln' : 'Zu dunklem Modus wechseln'" :popper="{ strategy: 'absolute' }">
         <UColorModeButton />
