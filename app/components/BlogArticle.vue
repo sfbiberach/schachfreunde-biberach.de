@@ -86,10 +86,8 @@ function copyLink() {
           class="bg-transparent"
         >
           <template #bottom>
-            <div class="hidden lg:block space-y-6">
-              <UDivider type="dashed" />
-              <UPageLinks title="Links" :links="links" />
-            </div>
+            <UDivider type="dashed" class="py-2 hidden lg:block" />
+            <UPageLinks title="Links" :links="links" class="hidden lg:block" />
           </template>
         </UContentToc>
       </template>
