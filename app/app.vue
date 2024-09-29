@@ -55,7 +55,7 @@ provide('files', files)
     <AppFooter />
 
     <ClientOnly>
-      <LazyUContentSearch :files="files" :links="links" :navigation="navigation" />
+      <LazyUContentSearch :files :links :navigation />
     </ClientOnly>
     <NuxtPwaAssets />
   </div>

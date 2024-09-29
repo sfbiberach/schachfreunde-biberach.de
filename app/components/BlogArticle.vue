@@ -10,7 +10,7 @@ const { data: article } = await useAsyncData(route.path, () => queryContent<Blog
 if (!article.value)
   throw createError({ statusCode: 404, statusMessage: 'Artikel nicht gefunden' })
 
-const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryContent('/blog')
+const { data: surround } = await useAsyncData(`${route.path}.surround`, () => queryContent('/blog')
   .where({ _extension: 'md' })
   .without(['body', 'excerpt'])
   .sort({ date: -1 })
@@ -72,8 +72,14 @@ function copyLink() {
       </UPageBody>
 
       <template #right>
-        <UContentToc v-if="article.body && article.body.toc" :links="article.body.toc.links" class="bg-transparent" />
+        <UContentToc v-if="article.body?.toc" :links="article.body.toc.links" class="bg-transparent" />
       </template>
     </UPage>
   </NuxtLayout>
 </template>
+
+<style scoped>
+.top-\[--header-height\] {
+  top: var(--header-height);
+}
+</style>
