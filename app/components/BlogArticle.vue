@@ -23,7 +23,7 @@ const authors = await useAuthors(article.value.authors)
 const links = [
   {
     icon: 'i-ph-pen-duotone',
-    label: 'Edit this article',
+    label: 'Artikel bearbeiten',
     to: `https://github.com/sfbiberach/schachfreunde-biberach.de/edit/main/content/${article.value._file}`,
     target: '_blank',
   },
@@ -81,12 +81,9 @@ function copyLink() {
       </UPageBody>
 
       <template #right>
-        <UContentToc
-          v-if="article.body?.toc" :links="article.body.toc.links"
-          class="bg-transparent"
-        >
+        <UContentToc :links="article?.body?.toc?.links ?? []" class="bg-transparent">
           <template #bottom>
-            <UDivider type="dashed" class="py-2 hidden lg:block" />
+            <UDivider v-if="article?.body?.toc?.links?.length" type="dashed" class="py-2 hidden lg:block" />
             <UPageLinks title="Links" :links="links" class="hidden lg:block" />
           </template>
         </UContentToc>
