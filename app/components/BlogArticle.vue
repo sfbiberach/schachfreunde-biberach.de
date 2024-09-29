@@ -96,4 +96,8 @@ function copyLink() {
 .top-\[--header-height\] {
   top: var(--header-height);
 }
+
+.max-h-\[calc\(100vh-var\(--header-height\)\)\] {
+  max-height: calc(100vh - var(--header-height));
+}
 </style>
