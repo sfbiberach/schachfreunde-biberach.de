@@ -67,7 +67,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .prose img {
-  @apply rounded-xl;
+  @apply rounded-md;
 }
 
 /* ::view-transition-old(root) {
