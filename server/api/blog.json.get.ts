@@ -8,11 +8,11 @@ export default eventHandler(async (event) => {
   if (_path !== undefined)
     where._path = _path
 
-  const articles = await serverQueryContent<BlogArticle>(event, 'blog').where(where).sort({ date: -1 }).find()
+  const articles = await serverQueryContent<BlogArticle>(event, 'blog/article').where(where).sort({ date: -1 }).find()
   if (_path) {
     await Promise.all(articles.map(async (article) => {
       if (article._path)
-        article.surround = await serverQueryContent<BlogArticle>(event, 'blog').where({ _type: 'markdown' }).without(['body', 'excerpt']).sort({ date: -1 }).findSurround(article._path)
+        article.surround = await serverQueryContent<BlogArticle>(event, 'blog/article').where({ _type: 'markdown' }).without(['body', 'excerpt']).sort({ date: -1 }).findSurround(article._path)
     }))
   }
 

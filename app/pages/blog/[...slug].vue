@@ -4,7 +4,6 @@ const appConfig = useAppConfig()
 
 const category = ref<{ label: string, color: string } | undefined>()
 const page = ref<number>(1)
-const isArticle = ref<boolean>(false)
 
 watchEffect(() => {
   const slugArray = Array.isArray(route.params.slug) ? route.params.slug : [route.params.slug]
@@ -15,17 +14,12 @@ watchEffect(() => {
   category.value = categories.find(category => params.includes(category.label.toLocaleLowerCase()))
 
   const pageParam = params.find(param => !Number.isNaN(Number(param)))
-  page.value = Number.parseInt(pageParam || '1')
-
-  isArticle.value = params.length === 1 && category.value === undefined && pageParam === undefined
+  page.value = Number.parseInt(pageParam ?? page.value.toString())
 })
 </script>
 
 <template>
-  <div v-if="isArticle">
-    <BlogArticle :path="route.path" />
-  </div>
-  <div v-else>
+  <div>
     <BlogList :category="category" :page="page" />
   </div>
 </template>
