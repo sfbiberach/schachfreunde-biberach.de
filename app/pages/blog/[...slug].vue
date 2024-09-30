@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  heroBackground: 'opacity-70',
+})
+
 const route = useRoute()
 const appConfig = useAppConfig()
 

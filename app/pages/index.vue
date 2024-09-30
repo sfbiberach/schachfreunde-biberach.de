@@ -2,7 +2,7 @@
 const { data: page } = await useAsyncData('/', () => queryContent('/').findOne())
 
 definePageMeta({
-  heroBackground: 'opacity-0',
+  heroBackground: 'opacity-100',
 })
 
 useSeoMeta({
