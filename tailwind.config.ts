@@ -21,5 +21,8 @@ export default <Partial<Config>> {
     'dark:text-[--color-dark]',
     'hover:ring-[--color-light]',
     'dark:hover:ring-[--color-dark]',
+    // BlogArticle
+    'lg:py-8',
+    'space-y-3',
   ],
 }
