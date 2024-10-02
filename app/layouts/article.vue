@@ -46,7 +46,7 @@ function getBadgeProps(badge: keyof typeof appConfig.app.blog.categories | Badge
     <UContainer :ui="{ padding: page?.container ? undefined : '', constrained: page.container ? undefined : '' }">
       <UPageHeader v-if="page?.showHeader !== false" :ui="{ headline: 'flex flex-col gap-y-8 items-start' }" :title="page?.title" :description="page.description" :links="page?.links" :headline="headline">
         <template #headline>
-          <UBreadcrumb :links="[{ label: 'Blog', icon: 'i-ph-newspaper-duotone', to: '/blog' }, { label: page.title }]" />
+          <UBreadcrumb :ui="{ wrapper: 'max-w-full' }" :links="[{ label: 'Blog', icon: 'i-ph-newspaper-duotone', to: '/blog' }, { label: page.title }]" />
           <div class="flex items-center space-x-2">
             <span>{{ badge.label }}</span>
             <span class="text-gray-500 dark:text-gray-400">&middot;</span>
