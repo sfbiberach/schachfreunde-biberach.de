@@ -2,7 +2,7 @@ import { serverQueryContent } from '#content/server'
 import { Feed } from 'feed'
 import { joinURL } from 'ufo'
 
-export default eventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
   const baseUrl = 'http://sf-biberach.nuxt.space'
   const siteUrl = joinURL(baseUrl, 'blog')
   const feed = new Feed({
