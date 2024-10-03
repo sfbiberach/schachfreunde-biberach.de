@@ -1,12 +1,13 @@
 import type { BlogArticle } from '~~/types'
 import { serverQueryContent } from '#content/server'
+import { BLOG_PATHS } from '~~/constants/blog'
 
 /**
  * Handles fetching blog articles, optionally by a specific path, and enriches them
  * with author details and surrounding articles (if applicable).
  *
- * @param {H3Event} event - The incoming HTTP request event.
- * @returns {Promise<BlogArticle[]>} - A promise that resolves to an array of enriched blog articles.
+ * @param event - The incoming HTTP request event.
+ * @returns {BlogArticle[]} - An array of enriched blog articles.
  *
  * - If a specific article path (_path) is provided in the query, surrounding articles are fetched.
  * - Author strings are replaced with full author details (name, avatar, etc.).
@@ -22,7 +23,7 @@ export default defineEventHandler(async (event) => {
   }
 
   // Fetch articles, sorted by date in descending order
-  const articles = await serverQueryContent<BlogArticle>(event, 'blog/article')
+  const articles = await serverQueryContent<BlogArticle>(event, BLOG_PATHS.ARTICLES)
     .where(where)
     .sort({ date: -1 })
     .find()
@@ -33,7 +34,7 @@ export default defineEventHandler(async (event) => {
       articles.map(async (article) => {
         if (article._path) {
           // Find surrounding articles (previous and next)
-          article.surround = await serverQueryContent<BlogArticle>(event, 'blog/article')
+          article.surround = await serverQueryContent<BlogArticle>(event, BLOG_PATHS.ARTICLES)
             .where({ _type: 'markdown' })
             .without(['body', 'excerpt']) // Exclude unnecessary fields for efficiency
             .sort({ date: -1 })

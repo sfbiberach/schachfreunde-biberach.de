@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { BlogArticle } from '~~/types'
+import { BLOG_PATHS } from '~~/constants/blog'
 import { withoutTrailingSlash } from 'ufo'
 
 const route = useRoute()
@@ -10,7 +11,7 @@ const { data: article } = await useAsyncData(route.path, () => queryContent<Blog
 if (!article.value)
   throw createError({ statusCode: 404, statusMessage: 'Artikel nicht gefunden' })
 
-const { data: surround } = await useAsyncData(`${route.path}.surround`, () => queryContent('/blog')
+const { data: surround } = await useAsyncData(`${route.path}.surround`, () => queryContent(BLOG_PATHS.BASE)
   .where({ _extension: 'md' })
   .without(['body', 'excerpt'])
   .sort({ date: -1 })
@@ -65,7 +66,7 @@ function copyLink() {
         <ContentRenderer v-if="article?.body" :value="article" />
 
         <div class="flex items-center justify-between mt-12 not-prose">
-          <UButton icon="i-ph-arrow-left" color="primary" variant="ghost" to="/blog">
+          <UButton icon="i-ph-arrow-left" color="primary" variant="ghost" :to="BLOG_PATHS.BASE">
             Zurück zum Blog
           </UButton>
           <div class="flex justify-end items-center gap-1.5">

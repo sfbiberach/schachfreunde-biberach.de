@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Badge } from '#ui/types'
 import type { BlogArticle } from '~~/types'
+import { BLOG_PATHS } from '~~/constants/blog'
 import { defu } from 'defu'
 
 const props = defineProps<{
@@ -12,7 +13,7 @@ const labelAll = 'Alle'
 const pageCount = 12
 
 const appConfig = useAppConfig()
-const { data: content } = await useAsyncData('/blog', () => queryContent('/blog').findOne())
+const { data: content } = await useAsyncData(BLOG_PATHS.BASE, () => queryContent(BLOG_PATHS.BASE).findOne())
 
 const page = ref(1)
 const active = useState()
@@ -22,7 +23,7 @@ const categories = [
   ...Object.values(appConfig.app.blog.categories),
 ].map((category, index) => ({
   ...category,
-  to: index === 0 ? '/blog' : `/blog/${category.label.toLocaleLowerCase()}`,
+  to: index === 0 ? BLOG_PATHS.BASE : `${BLOG_PATHS.BASE}/${category.label.toLocaleLowerCase()}`,
 }))
 
 const categoriesWithActive = computed(() =>
@@ -59,7 +60,7 @@ onMounted(() => {
 })
 
 watch(page, () => {
-  const path = ['/blog']
+  const path = [BLOG_PATHS.BASE]
   if (props.category)
     path.push(props.category.label)
   if (page.value > 1)
@@ -89,7 +90,7 @@ useHead({
       rel: 'alternate',
       type: 'application/atom+xml',
       title: 'Blog RSS',
-      href: '/blog/rss.xml',
+      href: `${BLOG_PATHS.BASE}/rss.xml`,
     },
   ],
 })
@@ -111,7 +112,7 @@ useHead({
 <template>
   <NuxtLayout v-bind="content">
     <template #description>
-      <UButton to="/blog/rss.xml" color="gray" external icon="i-ph-rss" size="2xs" target="_blank" class="mt-4 group-hover:text-blue-400 group-hover:text-green-500">
+      <UButton :to="`${BLOG_PATHS.BASE}/rss.xml`" color="gray" external icon="i-ph-rss" size="2xs" target="_blank" class="mt-4 group-hover:text-blue-400 group-hover:text-green-500">
         RSS
       </UButton>
     </template>

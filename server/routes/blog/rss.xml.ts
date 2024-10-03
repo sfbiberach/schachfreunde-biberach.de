@@ -1,4 +1,5 @@
 import { serverQueryContent } from '#content/server'
+import { BLOG_PATHS } from '~~/constants/blog'
 import { Feed } from 'feed'
 import { joinURL } from 'ufo'
 
@@ -19,7 +20,7 @@ export default defineEventHandler(async (event) => {
     },
   })
 
-  const articles = await serverQueryContent(event, '/blog')
+  const articles = await serverQueryContent(event, BLOG_PATHS.BASE)
     .sort({ date: -1 })
     .where({ _partial: false, _draft: false, _type: 'markdown' })
     .find()
