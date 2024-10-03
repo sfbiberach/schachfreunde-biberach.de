@@ -21,5 +21,12 @@ export default withNuxt(
         'no-irregular-whitespace': ['off'],
       },
     },
+    {
+      name: 'happydesigns/stylistic/rules',
+      rules: {
+        'curly': ['error', 'all'],
+        'style/brace-style': ['error', 'stroustrup'],
+      },
+    },
   ),
 )

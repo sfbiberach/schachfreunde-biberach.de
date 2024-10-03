@@ -25,17 +25,21 @@ onKeyStroke('Escape', () => {
 })
 
 onKeyStroke('ArrowLeft', () => {
-  if (isFirstImg.value)
+  if (isFirstImg.value) {
     closeImage()
-  else
+  }
+  else {
     openImage(currentIndex.value - 1)
+  }
 })
 
 onKeyStroke('ArrowRight', () => {
-  if (isLastImg.value)
+  if (isLastImg.value) {
     openImage(currentIndex.value + 1)
-  else
+  }
+  else {
     closeImage()
+  }
 })
 
 function openImage(index: number) {

@@ -6,8 +6,9 @@ const email = ref('')
 const loading = ref(false)
 
 function onSubmit() {
-  if (loading.value)
+  if (loading.value) {
     return
+  }
   loading.value = true
 
   $fetch('', {

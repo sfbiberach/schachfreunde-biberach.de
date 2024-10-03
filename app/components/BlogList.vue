@@ -62,10 +62,12 @@ onMounted(() => {
 
 watch(page, () => {
   const path = [BLOG_PATHS.BASE]
-  if (props.category)
+  if (props.category) {
     path.push(props.category.label)
-  if (page.value > 1)
+  }
+  if (page.value > 1) {
     path.push(page.value.toString())
+  }
 
   navigateTo({ path: path.join('/') })
 })

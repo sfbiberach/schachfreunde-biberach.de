@@ -8,8 +8,9 @@ const url = useRequestURL()
 const { copy } = useCopyToClipboard()
 const { data: article } = await useAsyncData(route.path, () => queryContent<BlogArticle>(route.path).findOne())
 
-if (!article.value)
+if (!article.value) {
   throw createError({ statusCode: 404, statusMessage: 'Artikel nicht gefunden' })
+}
 
 const { data: surround } = await useAsyncData(`${route.path}.surround`, () => queryContent(BLOG_PATHS.BASE)
   .where({ _extension: 'md' })
