@@ -3,6 +3,7 @@ import type { Badge } from '#ui/types'
 import type { BlogArticle } from '~~/types'
 import { BLOG_PATHS } from '~~/constants/blog'
 import { defu } from 'defu'
+import { usePrimaryColor } from '~/composables/ui'
 
 const props = defineProps<{
   category?: { label: string, color: string }
@@ -52,11 +53,11 @@ watchEffect(() => {
 })
 
 watch(color, () => {
-  setPrimaryColor()
+  usePrimaryColor(props.category?.color)
 })
 
 onMounted(() => {
-  setPrimaryColor()
+  usePrimaryColor(props.category?.color)
 })
 
 watch(page, () => {
@@ -75,13 +76,6 @@ function updatePageFromQuery() {
 
 function getBadgeProps(badge: keyof typeof appConfig.app.blog.categories | Badge) {
   return defu(badge, appConfig.app.blog.categories[badge as keyof typeof appConfig.app.blog.categories] as Badge)
-}
-
-function setPrimaryColor() {
-  if (props.category) {
-    appConfig.ui.primary = props.category.color
-    window.localStorage.setItem('nuxt-ui-primary', appConfig.ui.primary)
-  }
 }
 
 useHead({
