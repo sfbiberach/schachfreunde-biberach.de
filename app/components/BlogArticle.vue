@@ -13,7 +13,7 @@ if (!article.value) {
   throw createError({ statusCode: 404, statusMessage: 'Artikel nicht gefunden' })
 }
 
-const { data: surround } = await useAsyncData(`${route.path}.surround`, () => queryContent(BLOG_PATHS.BASE)
+const { data: surround } = await useAsyncData(`${route.path}.surround`, () => queryContent(BLOG_PATHS.ARTICLES)
   .where({ _extension: 'md' })
   .without(['body', 'excerpt'])
   .sort({ date: -1 })
