@@ -27,7 +27,7 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxt/image',
     '@nuxt/ui',
-    // '@nuxthq/studio',
+    '@nuxthq/studio',
     // '@nuxthub/core',
     '@vite-pwa/nuxt',
     'nuxt-og-image',
