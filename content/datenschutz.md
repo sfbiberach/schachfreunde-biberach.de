@@ -1,6 +1,7 @@
 ---
 title: Datenschutzerklärung
 description: Informationen über die Datenerhebung, -verarbeitung und -schutzrichtlinien der Webseite.
+layout: content
 container: true
 navigation: false
 ---

@@ -1,6 +1,7 @@
 ---
 title: Impressum
 description: Kontaktdaten und rechtliche Informationen des Webseitenbetreibers.
+layout: content
 container: true
 navigation: false
 ---
