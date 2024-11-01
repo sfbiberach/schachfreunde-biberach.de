@@ -236,50 +236,51 @@ export default defineAppConfig({
     },
   },
   links: {
-    header: [
-      {
-        label: 'Blog',
-        icon: 'i-ph-newspaper',
-        to: '/blog',
-      },
-      {
-        label: 'Mannschaften',
-        icon: 'i-ph-castle-turret-duotone',
-        to: '/mannschaften',
-        children: [
-          {
-            label: '1. Mannschaft',
-            to: 'https://ergebnisse.svw.info/show/2023/3277/',
-            target: '_blank',
-          },
-          {
-            label: '2. Mannschaft',
-            to: 'https://ergebnisse.svw.info/show/2023/3315/',
-            target: '_blank',
-          },
-          {
-            label: '3. Mannschaft',
-            to: 'https://ergebnisse.svw.info/show/2023/3319/',
-            target: '_blank',
-          },
-          {
-            label: '1. Jugendmannschaft',
-            to: 'https://ergebnisse.svw.info/show/2023/3369/',
-            target: '_blank',
-          },
-          {
-            label: '2. Jugendmannschaft',
-            to: 'https://ergebnisse.svw.info/show/2023/3385/',
-            target: '_blank',
-          },
-        ],
-      },
-      {
-        label: 'Turniere',
-        icon: 'i-ph-trophy-duotone',
-        to: '/turniere',
-      },
-    ],
+    header: [{
+      label: 'Blog',
+      icon: 'i-ph-newspaper',
+      to: '/blog',
+    }, {
+      label: 'Mannschaften',
+      icon: 'i-ph-castle-turret-duotone',
+      to: '/mannschaften',
+
+      children: [{
+        label: '1. Mannschaft',
+        to: 'https://ergebnisse.svw.info/show/2023/3277/',
+        target: '_blank',
+      }, {
+        label: '2. Mannschaft',
+        to: 'https://ergebnisse.svw.info/show/2023/3315/',
+        target: '_blank',
+      }, {
+        label: '3. Mannschaft',
+        to: 'https://ergebnisse.svw.info/show/2023/3319/',
+        target: '_blank',
+      }, {
+        label: '1. Jugendmannschaft',
+        to: 'https://ergebnisse.svw.info/show/2023/3369/',
+        target: '_blank',
+      }, {
+        label: '2. Jugendmannschaft',
+        to: 'https://ergebnisse.svw.info/show/2023/3385/',
+        target: '_blank',
+      }],
+    }, {
+      label: 'Turniere',
+      icon: 'i-ph-trophy-duotone',
+      to: '/turniere',
+
+      children: [{
+        label: 'Internationale Unterländer Schachtage',
+        to: 'https://www.unterlaender-schachtage.de/',
+        target: '_blank',
+      }, {
+        label: 'Biber-Jugend-Cup',
+        to: 'https://www.findchessgames.com/index-0134,224,1036-turniere_anzeigen.html',
+        target: '_blank',
+      }],
+    }],
     footer: [
       {
         label: 'Homepage',
