@@ -84,7 +84,7 @@ function copyLink() {
       </UPageBody>
 
       <template #right>
-        <UContentToc :links="article?.body?.toc?.links ?? []" class="bg-transparent">
+        <UContentToc :links="article?.body?.toc?.links ?? []" class="bg-transparent" title="Inhaltsverzeichnis">
           <template #bottom>
             <UDivider v-if="article?.body?.toc?.links?.length" type="dashed" class="py-2 hidden lg:block" />
             <UPageLinks title="Links" :links="links" class="hidden lg:block" />
