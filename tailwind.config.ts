@@ -24,5 +24,7 @@ export default <Partial<Config>> {
     // BlogArticle
     'lg:py-8',
     'space-y-3',
+    // ToC
+    'py-3',
   ],
 }
