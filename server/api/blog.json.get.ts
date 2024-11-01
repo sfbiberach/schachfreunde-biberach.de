@@ -1,6 +1,7 @@
 import type { BlogArticle } from '~~/types'
 import { serverQueryContent } from '#content/server'
 import { BLOG_PATHS } from '~~/constants/blog'
+import { fetchAuthorsByName, replaceAuthorStringsInArticles } from '../utils/authors'
 
 /**
  * Handles fetching blog articles, optionally by a specific path, and enriches them
@@ -50,20 +51,10 @@ export default defineEventHandler(async (event) => {
   ))]
 
   // Fetch author details for the extracted author names
-  const authors = await serverQueryContent(event, '_users')
-    .where({ title: { $in: authorStrings } }) // Filter by author titles
-    .only(['title', 'name', 'to', 'avatar']) // Fetch only necessary fields to optimize query
-    .find()
+  const authors = await fetchAuthorsByName(authorStrings, event)
 
   // Replace author strings in articles with the corresponding author object
-  articles.forEach((article) => {
-    if (article.authors) {
-      // Map author names to corresponding author details
-      article.authors = article.authors.map(authorName =>
-        authors.find(author => author.title === authorName) || authorName, // Fallback to original name if not found
-      )
-    }
-  })
+  replaceAuthorStringsInArticles(articles, authors)
 
   // Return the enriched list of articles with author details and surrounding articles
   return articles

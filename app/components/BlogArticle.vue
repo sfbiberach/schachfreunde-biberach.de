@@ -2,6 +2,7 @@
 import type { BlogArticle } from '~~/types'
 import { BLOG_PATHS } from '~~/constants/blog'
 import { withoutTrailingSlash } from 'ufo'
+import { useAuthors } from '~/composables/blog/useAuthors'
 
 const route = useRoute()
 const url = useRequestURL()
@@ -20,7 +21,7 @@ const { data: surround } = await useAsyncData(`${route.path}.surround`, () => qu
 
 const title = article.value.head?.title || article.value.title
 const description = article.value.head?.description || article.value.description
-const authors = await useAuthors(article.value.authors)
+const { authors } = await useAuthors(article.value.authors)
 
 const links = [
   {
