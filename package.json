@@ -28,18 +28,18 @@
     "feed": "^4.2.2"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^3.8.0",
+    "@antfu/eslint-config": "^3.9.1",
     "@nuxt/eslint": "^0.6.1",
     "@nuxt/fonts": "^0.10.2",
     "@nuxt/image": "^1.8.1",
-    "@nuxthub/core": "^0.8.5",
+    "@nuxthub/core": "^0.8.7",
     "@types/node": "^22.9.0",
     "@vite-pwa/assets-generator": "^0.2.6",
     "@vite-pwa/nuxt": "^0.10.6",
     "eslint": "^9.14.0",
-    "nuxt": "^3.14.0",
+    "nuxt": "^3.14.159",
     "nuxt-og-image": "^3.0.8",
     "typescript": "^5.6.3",
-    "wrangler": "^3.84.1"
+    "wrangler": "^3.87.0"
   }
 }
