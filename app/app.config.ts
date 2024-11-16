@@ -272,13 +272,22 @@ export default defineAppConfig({
       to: '/turniere',
 
       children: [{
-        label: 'Internationale Unterländer Schachtage',
+        label: 'Unterländer Schachtage',
         to: 'https://www.unterlaender-schachtage.de/',
         target: '_blank',
       }, {
         label: 'Biber-Jugend-Cup',
         to: 'https://www.findchessgames.com/index-0134,224,1036-turniere_anzeigen.html',
         target: '_blank',
+      }, {
+        label: 'Biberacher Schach-Sommer',
+        to: '/turniere/biberacher-schach-sommer',
+      }, {
+        label: 'Stegstreckerturnier',
+        to: '/turniere/stegstreckerturnier',
+      }, {
+        label: 'Vereinsmeisterschaft',
+        to: '/turniere/vereinsmeisterschaft',
       }],
     }],
     footer: [

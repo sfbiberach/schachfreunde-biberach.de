@@ -3,6 +3,6 @@
 
 <template>
   <NuxtLayout>
-    Mannschaften
+    Stegstreckerturnier
   </NuxtLayout>
 </template>

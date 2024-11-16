@@ -3,6 +3,6 @@
 
 <template>
   <NuxtLayout>
-    Mannschaften
+    Biberacher Schach-Sommer
   </NuxtLayout>
 </template>

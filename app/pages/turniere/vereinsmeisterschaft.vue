@@ -3,10 +3,6 @@
 
 <template>
   <NuxtLayout>
-    Turniere
+    Vereinsmeisterschaft
   </NuxtLayout>
 </template>
-
-<style>
-
-</style>

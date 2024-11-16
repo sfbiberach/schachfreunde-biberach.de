@@ -3,6 +3,6 @@
 
 <template>
   <NuxtLayout>
-    Mannschaften
+    Turniere
   </NuxtLayout>
 </template>
