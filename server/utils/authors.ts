@@ -33,7 +33,7 @@ export function replaceAuthorStringsInArticles(articles: BlogArticle[], authors:
   articles.forEach((article) => {
     if (article.authors) {
       article.authors = article.authors.map(authorName =>
-        authors.find(author => author.title === authorName) || authorName, // Replace or fallback to the original string
+        authors.find(author => author.title === authorName) || authorName, // Replace author with object or fallback to the original string
       )
     }
   })
