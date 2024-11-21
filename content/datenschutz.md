@@ -54,12 +54,12 @@ Unser(e) Hoster wird bzw. werden Ihre Daten nur insoweit verarbeiten, wie dies z
 
 Wir setzen folgende(n) Hoster ein:
 
-**Cloudflare, Inc.**:br
-101 Townsend Street:br
-San Francisco, CA 94107:br
-USA:br
-Telefon: +1 (650) 319 8930:br
-E-Mail: <support@cloudflare.com>:br
+**Cloudflare, Inc.** :br
+101 Townsend Street :br
+San Francisco, CA 94107 :br
+USA :br
+Telefon: +1 (650) 319 8930 :br
+E-Mail: <support@cloudflare.com> :br
 Website: <https://www.cloudflare.com>
 
 Cloudflare bietet mit „Cloudflare Pages“ eine Hosting-Plattform für statische und dynamische Websites an. Dabei werden personenbezogene Daten, wie IP-Adressen, verarbeitet. Weitere Informationen finden Sie in der Datenschutzerklärung von Cloudflare: <https://www.cloudflare.com/privacypolicy>.
@@ -78,9 +78,9 @@ Wir weisen darauf hin, dass die Datenübertragung im Internet (z. B. bei der Ko
 
 Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:
 
-**Schachfreunde Heilbronn-Biberach 1978 e. V.**:br
-c/o Philipp Müller:br
-Nordstraße 7:br
+**Schachfreunde Heilbronn-Biberach 1978 e. V.** :br
+c/o Philipp Müller :br
+Nordstraße 7 :br
 D-74257 Untereisesheim
 
 E-Mail: <1.vorsitzender@schachfreunde-biberach.de>
