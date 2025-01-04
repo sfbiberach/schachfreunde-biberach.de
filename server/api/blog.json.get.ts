@@ -1,4 +1,4 @@
-import type { BlogArticle } from '~~/types'
+import type { BlogArticle } from '~/types'
 import { serverQueryContent } from '#content/server'
 import { BLOG_PATHS } from '~~/constants/blog'
 import { fetchAuthorsByName, replaceAuthorStringsInArticles } from '../utils/authors'

@@ -1,20 +1,4 @@
 export default defineNuxtConfig({
-  content: {
-    documentDriven: true,
-  },
-
-  devtools: { enabled: true },
-
-  eslint: {
-    config: {
-      stylistic: true,
-      standalone: false,
-    },
-  },
-
-  experimental: {
-    viewTransition: true,
-  },
 
   extends: [
     '@nuxt/ui-pro',
@@ -33,9 +17,44 @@ export default defineNuxtConfig({
     'nuxt-og-image',
   ],
 
+  devtools: { enabled: true },
+  content: {
+    documentDriven: true,
+  },
+
+  ui: {
+    safelistColors: ['blue', 'green', 'orange'],
+  },
+
+  routeRules: {
+    '/api/blog.json': { prerender: true },
+    '/api/blog/**': { prerender: true },
+    '/blog/rss.xml': { prerender: true },
+    '/': { prerender: true },
+    '/blog': { prerender: true },
+    '/blog/**': { prerender: true },
+  },
+
+  future: {
+    compatibilityVersion: 4,
+  },
+
+  experimental: {
+    viewTransition: true,
+  },
+
+  compatibilityDate: '2024-07-08',
+
   nitro: {
     prerender: {
       failOnError: false,
+    },
+  },
+
+  eslint: {
+    config: {
+      stylistic: true,
+      standalone: false,
     },
   },
 
@@ -76,23 +95,4 @@ export default defineNuxtConfig({
       enabled: false,
     },
   },
-
-  routeRules: {
-    '/api/blog.json': { prerender: true },
-    '/api/blog/**': { prerender: true },
-    '/blog/rss.xml': { prerender: true },
-    '/': { prerender: true },
-    '/blog': { prerender: true },
-    '/blog/**': { prerender: true },
-  },
-
-  ui: {
-    safelistColors: ['blue', 'green', 'orange'],
-  },
-
-  future: {
-    compatibilityVersion: 4,
-  },
-
-  compatibilityDate: '2024-07-08',
 })

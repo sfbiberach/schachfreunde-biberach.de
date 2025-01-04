@@ -1,5 +1,5 @@
-import type { Author, BlogArticle } from '~~/types'
 import type { EventHandlerRequest, H3Event } from 'h3'
+import type { Author, BlogArticle } from '~/types'
 import { serverQueryContent } from '#content/server'
 
 /**

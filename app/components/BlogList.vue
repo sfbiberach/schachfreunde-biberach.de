@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { Badge } from '#ui/types'
-import type { BlogArticle } from '~~/types'
-import { BLOG_PATHS } from '~~/constants/blog'
+import type { BlogArticle } from '~/types'
 import { defu } from 'defu'
+import { BLOG_PATHS } from '~~/constants/blog'
 import { usePrimaryColor } from '~/composables/ui'
 
 const props = defineProps<{

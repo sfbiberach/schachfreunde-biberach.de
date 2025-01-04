@@ -1,7 +1,7 @@
 import { serverQueryContent } from '#content/server'
-import { BLOG_PATHS } from '~~/constants/blog'
 import { Feed } from 'feed'
 import { joinURL } from 'ufo'
+import { BLOG_PATHS } from '~~/constants/blog'
 
 export default defineEventHandler(async (event) => {
   const baseUrl = 'http://sf-biberach.nuxt.space'

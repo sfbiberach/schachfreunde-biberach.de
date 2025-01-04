@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { BlogArticle } from '~~/types'
-import { BLOG_PATHS } from '~~/constants/blog'
+import type { BlogArticle } from '~/types'
 import { withoutTrailingSlash } from 'ufo'
+import { BLOG_PATHS } from '~~/constants/blog'
 import { useAuthors } from '~/composables/blog/useAuthors'
 
 const route = useRoute()
