@@ -8,10 +8,10 @@ navigation: false
 
 ### Anschrift des Vereins
 
-Schachfreunde Heilbronn-Biberach 1978 e. V.\:br
-c/o Philipp Müller\:br
-Nordstraße 7\:br
-D-74257 Untereisesheim\:br
+Schachfreunde Heilbronn-Biberach 1978 e. V. :br
+c/o Philipp Müller :br
+Nordstraße 7 :br
+D-74257 Untereisesheim :br
 <1.vorsitzender@schachfreunde-biberach.de>
 
 ### Vertretungsberechtigt gemäß § 26 BGB
@@ -20,24 +20,24 @@ Philipp Müller (1. Vorsitzender), Jens Hoffmann (2. Vorsitzender)
 
 ### Sitz des Vereins
 
-Heilbronn\:br
-Registergericht: Amtsgericht Stuttgart\:br
+Heilbronn :br
+Registergericht: Amtsgericht Stuttgart :br
 Registernummer: VR 101642
 
 ### Inhaltlich Verantwortlicher gemäß § 10 Absatz 3 MDStV
 
-Jens Hoffmann\:br
-I 1, 5\:br
-68159 Mannheim\:br
+Jens Hoffmann :br
+I 1, 5 :br
+68159 Mannheim :br
 <2.vorsitzender@schachfreunde-biberach.de>
 
 ### Textnachweis für die Berichte
 
-Stephanie Gerold (sg)\:br
-Jens Hoffmann (jh)\:br
-Jürgen-Oliver Klinger (ok)\:br
-Philipp Müller (pm)\:br
-Dimitrios Triantafillidis (dt)\:br
+Stephanie Gerold (sg) :br
+Jens Hoffmann (jh) :br
+Jürgen-Oliver Klinger (ok) :br
+Philipp Müller (pm) :br
+Dimitrios Triantafillidis (dt) :br
 Dr. Hubert Warsitz (hw)
 
 ### Eintragungen
