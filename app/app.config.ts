@@ -243,8 +243,6 @@ export default defineAppConfig({
     }, {
       label: 'Mannschaften',
       icon: 'i-ph-castle-turret-duotone',
-      to: '/mannschaften',
-
       children: [{
         label: '1. Mannschaft',
         to: 'https://ergebnisse.svw.info/show/2023/3277/',
@@ -270,7 +268,6 @@ export default defineAppConfig({
       label: 'Turniere',
       icon: 'i-ph-trophy-duotone',
       to: '/turniere',
-
       children: [{
         label: 'Unterländer Schachtage',
         to: 'https://www.unterlaender-schachtage.de/',
@@ -284,7 +281,7 @@ export default defineAppConfig({
         to: '/turniere/biberacher-schach-sommer',
       }, {
         label: 'Stegstreckerturnier',
-        to: '/turniere/stegstreckerturnier',
+        to: '/turniere/stegstrecker-turnier',
       }, {
         label: 'Vereinsmeisterschaft',
         to: '/turniere/vereinsmeisterschaft',

@@ -10,6 +10,7 @@ export interface Props {
   ui?: { wrapper?: string, body?: string }
   showHeader?: boolean
   title?: string
+  align?: 'center' | 'left' | 'right'
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -34,7 +35,7 @@ const pageBodyWrapper = computed(() => page.showHeader ? '' : 'mt-0')
 <template>
   <UMain :class="page.ui?.wrapper" class="break-words">
     <UContainer :ui="{ padding: page?.container ? undefined : '', constrained: page.container ? undefined : '' }">
-      <UPageHero v-if="page?.showHeader !== false" :title :links="page?.links" :headline="headline">
+      <UPageHero v-if="page?.showHeader !== false" :title :links="page?.links" :headline="headline" :align="page.align">
         <template #description>
           <p>{{ page.description }}</p>
           <slot name="description" />

@@ -1,3 +1,4 @@
+import type { Avatar, Badge, Link } from '#ui/types'
 import type { ParsedContent } from '@nuxt/content'
 
 export type Author = Pick<ParsedContent, 'name' | 'title' | 'to' | 'avatar'>
