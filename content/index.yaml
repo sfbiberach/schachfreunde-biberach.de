@@ -21,22 +21,22 @@ hero:
       to: /blog
       icon: i-ph-newspaper-duotone
     - label: Lerne uns kennen
-      to: /
+      to: /#training
       icon: i-ph-arrow-bend-right-down-duotone
       color: gray
 
 cards:
   - title: Internationale Unterländer Schachtage
-    description: Offenes Turnier vom 25. – 28. Juli 2024 mit Preisgeldern von über 5.000 €.
+    description: Offenes Turnier vom 31. Juli – 3. August 2025 mit Preisgeldern von über 5.000 €.
     to: https://www.unterlaender-schachtage.de
     target: _blank
     icon: i-ph-crown-duotone
   - title: Biber-Jugend-Cup
-    description: Kinder- und Jugendturnier am 2. März 2024 mit über 200 Teilnehmern und 12 Jahren Tradition.
+    description: Kinder- und Jugendturnier am 22. März 2025 mit über 200 Teilnehmern und 13 Jahren Tradition.
     to: https://www.findchessgames.com/index-0134,224,1036-turniere_anzeigen.html
     target: _blank
     icon: i-ph-castle-turret-duotone
   - title: Training
     description: Wir bieten regelmäßiges Training für alle Altersklassen.
-    to: /
+    to: /#training
     icon: i-ph-books-duotone
