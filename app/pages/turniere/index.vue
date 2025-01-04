@@ -3,8 +3,6 @@ definePageMeta({
   heroBackground: 'opacity-70',
 })
 
-const appConfig = useAppConfig()
-
 const { tournaments, fetchList } = useTournaments()
 
 await fetchList()
