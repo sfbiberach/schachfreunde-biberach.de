@@ -1,7 +1,24 @@
 ---
 category: Turnier
 title: Biberacher Schach-Sommer
-description: Turnierserie in den Sommerferien mit Blitz- und Schnellschach im Wechsel.
+description: Eine regionale Turnierserie in den Sommerferien mit Blitz- und Schnellschach im Wechsel.
 date: 2025-08-08
+dateEnd: 2025-09-12
 location: Grundschule, Heilbronn-Biberach
 ---
+
+Im Rahmen unserer beliebten Turnierserie wurden wie immer in sechs aufeinanderfolgenden Wochen abwechselnd Schnell- und Blitzschachturniere ausgetragen. In diesem Artikel findest Du heraus, wer sich am Ende durchgesetzt hat.
+
+## Abschlussbericht 2024
+
+Insgesamt spielten 38 Schachbegeisterte aus acht Vereinen an den verschiedenen Turnieren mit. Bis zum letzten Turnier wurde um den Gesamtsieg gekämpft.
+
+Gesamtsieger mit einer hervorragenden Quote von 96,7 % Gewinnpunkte wurde Noah Geltz von den Schachfreunden Biberach. Dahinter folgte ihm mit 93,3 % folgte ihm Tobias Hermann von den Schachfreunden Schwaigern. Den dritten Platz belegte mit 78,9 % Jürgen Ditter vom Schachclub Blauer Turm Bad Wimpfen.
+
+Bei den Ratingpreisen gab es folgende Sieger:
+
+- Rating < 1900: Hier gewann Justus Link mit 69 % vom Schachclub Blauer Turm Bad Wimpfen.
+- Rating < 1700: Hier hatte Paul Schmidgall mit 58,1 % vom Schachclub Öhringen die Nase vorn
+- Rating < 1500: Hier gewann der vereinslose Bernd Link mit 46,8 % den Ratingpreis.
+- Rating < 1300: In dieser Kategorie gewann Oliver Klinger von den Schachfreunden HN-Biberach mit 18,7 % den Ratingpreis.
+- Die Schachfreunde Biberach bedanken sich für die fairen Turnierteilnahmen und freuen sich auf das nächste Jahr.
