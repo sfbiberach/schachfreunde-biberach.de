@@ -281,7 +281,7 @@ export default defineAppConfig({
         to: '/turniere/biberacher-schach-sommer',
       }, {
         label: 'Stegstreckerturnier',
-        to: '/turniere/stegstrecker-turnier',
+        to: '/turniere/stegstreckerturnier',
       }, {
         label: 'Vereinsmeisterschaft',
         to: '/turniere/vereinsmeisterschaft',

@@ -1,0 +1,6 @@
+---
+category: Turnier
+title: Stegstreckerturnier
+description: Ein fünfrundiges Turnier im Herbst. Die Langschachpartien finden mit mehreren Wochen Abstand statt.
+location: Grundschule, Heilbronn-Biberach
+---
