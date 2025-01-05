@@ -245,23 +245,23 @@ export default defineAppConfig({
       icon: 'i-ph-castle-turret-duotone',
       children: [{
         label: '1. Mannschaft',
-        to: 'https://ergebnisse.svw.info/show/2023/3277/',
+        to: 'https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/groupPage?championship=WÜ+24%2F25&group=721',
         target: '_blank',
       }, {
         label: '2. Mannschaft',
-        to: 'https://ergebnisse.svw.info/show/2023/3315/',
+        to: 'https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/groupPage?championship=Unterland+24%2F25&group=984',
         target: '_blank',
       }, {
         label: '3. Mannschaft',
-        to: 'https://ergebnisse.svw.info/show/2023/3319/',
+        to: 'https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/groupPage?championship=Unterland+24%2F25&group=985',
         target: '_blank',
       }, {
         label: '1. Jugendmannschaft',
-        to: 'https://ergebnisse.svw.info/show/2023/3369/',
+        to: 'https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/groupPage?championship=VJL+24%2F25&group=1283',
         target: '_blank',
       }, {
         label: '2. Jugendmannschaft',
-        to: 'https://ergebnisse.svw.info/show/2023/3385/',
+        to: 'https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/groupPage?championship=Unterland+Jugend+24%2F25&group=1306',
         target: '_blank',
       }],
     }, {
