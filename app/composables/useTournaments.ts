@@ -10,7 +10,7 @@ export function useTournaments() {
     }
 
     try {
-      const data = await queryContent('/turniere').where({ _extension: 'md' }).sort({ date: 1 }).find() as Tournament[]
+      const data = await queryContent('/turniere').where({ _extension: 'md' }).find() as Tournament[]
 
       tournaments.value = data
     }
