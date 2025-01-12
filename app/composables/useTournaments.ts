@@ -1,7 +1,7 @@
 import type { Tournament } from '~/types'
 
 export function useTournaments() {
-  const tournaments = useState<Tournament[]>('enterprise-agencies', () => [])
+  const tournaments = useState<Tournament[]>('tournaments', () => [])
 
   // Data fetching
   async function fetchList() {

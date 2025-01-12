@@ -1,11 +1,9 @@
 import type { ParsedContent } from '@nuxt/content'
 
-export interface Tournament extends ParsedContent {
+export interface Team extends ParsedContent {
   title: string
   description: string
   _path: string
-  date: string
-  dateEnd: string
   location: string
   x: string
   instagram: string

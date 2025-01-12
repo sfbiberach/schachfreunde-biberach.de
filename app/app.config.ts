@@ -243,49 +243,50 @@ export default defineAppConfig({
     }, {
       label: 'Mannschaften',
       icon: 'i-ph-castle-turret-duotone',
-      children: [{
-        label: '1. Mannschaft',
-        to: 'https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/groupPage?championship=WÜ+24%2F25&group=721',
-        target: '_blank',
-      }, {
-        label: '2. Mannschaft',
-        to: 'https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/groupPage?championship=Unterland+24%2F25&group=984',
-        target: '_blank',
-      }, {
-        label: '3. Mannschaft',
-        to: 'https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/groupPage?championship=Unterland+24%2F25&group=985',
-        target: '_blank',
-      }, {
-        label: '1. Jugendmannschaft',
-        to: 'https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/groupPage?championship=VJL+24%2F25&group=1283',
-        target: '_blank',
-      }, {
-        label: '2. Jugendmannschaft',
-        to: 'https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/groupPage?championship=Unterland+Jugend+24%2F25&group=1306',
-        target: '_blank',
-      }],
+      to: '/mannschaften',
+      // children: [{
+      //   label: '1. Mannschaft',
+      //   to: 'https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/groupPage?championship=WÜ+24%2F25&group=721',
+      //   target: '_blank',
+      // }, {
+      //   label: '2. Mannschaft',
+      //   to: 'https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/groupPage?championship=Unterland+24%2F25&group=984',
+      //   target: '_blank',
+      // }, {
+      //   label: '3. Mannschaft',
+      //   to: 'https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/groupPage?championship=Unterland+24%2F25&group=985',
+      //   target: '_blank',
+      // }, {
+      //   label: '1. Jugendmannschaft',
+      //   to: 'https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/groupPage?championship=VJL+24%2F25&group=1283',
+      //   target: '_blank',
+      // }, {
+      //   label: '2. Jugendmannschaft',
+      //   to: 'https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/groupPage?championship=Unterland+Jugend+24%2F25&group=1306',
+      //   target: '_blank',
+      // }],
     }, {
       label: 'Turniere',
       icon: 'i-ph-trophy-duotone',
       to: '/turniere',
-      children: [{
-        label: 'Unterländer Schachtage',
-        to: 'https://www.unterlaender-schachtage.de/',
-        target: '_blank',
-      }, {
-        label: 'Biber-Jugend-Cup',
-        to: 'https://www.findchessgames.com/index-0134,224,1036-turniere_anzeigen.html',
-        target: '_blank',
-      }, {
-        label: 'Biberacher Schach-Sommer',
-        to: '/turniere/biberacher-schach-sommer',
-      }, {
-        label: 'Stegstreckerturnier',
-        to: '/turniere/stegstreckerturnier',
-      }, {
-        label: 'Vereinsmeisterschaft',
-        to: '/turniere/vereinsmeisterschaft',
-      }],
+      // children: [{
+      //   label: 'Unterländer Schachtage',
+      //   to: 'https://www.unterlaender-schachtage.de/',
+      //   target: '_blank',
+      // }, {
+      //   label: 'Biber-Jugend-Cup',
+      //   to: 'https://www.findchessgames.com/index-0134,224,1036-turniere_anzeigen.html',
+      //   target: '_blank',
+      // }, {
+      //   label: 'Biberacher Schach-Sommer',
+      //   to: '/turniere/biberacher-schach-sommer',
+      // }, {
+      //   label: 'Stegstreckerturnier',
+      //   to: '/turniere/stegstreckerturnier',
+      // }, {
+      //   label: 'Vereinsmeisterschaft',
+      //   to: '/turniere/vereinsmeisterschaft',
+      // }],
     }],
     footer: [
       {
