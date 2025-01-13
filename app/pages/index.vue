@@ -68,7 +68,7 @@ const images = [
       <iframe class="rounded-xl w-full h-full min-h-[384px]" scrolling="yes" src="https://calendar.google.com/calendar/embed?src=sf.hnbiberach%40gmail.com&amp;mode=AGENDA&amp;showTitle=0&amp;showDate=0&amp;showNav=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0" />
     </ULandingSection>
 
-    <ULandingSection>
+    <UContainer>
       <ULandingCTA
         title="Kontaktiere uns"
         align="left"
@@ -76,9 +76,11 @@ const images = [
       >
         <template #description>
           <p class="prose prose-primary dark:prose-invert text-lg">
-            Falls Du uns näher kennenlernen möchtest, kannst Du entweder in unserem Spiellokal vorbeischauen (wie oben beschrieben) oder uns per Mail/WhatsApp kontaktieren. Suche Dir dazu die <NuxtLink to="/impressum">
+            Falls Du uns näher kennenlernen möchtest, kannst Du entweder in unserem Spiellokal vorbeischauen (wie oben beschrieben) oder uns per Mail/WhatsApp kontaktieren. Suche Dir dazu die
+            <NuxtLink to="/impressum">
               Kontaktdaten
-            </NuxtLink> eines geeigneten Ansprechpartners und schreibe uns eine Nachricht. Wir freuen uns!
+            </NuxtLink>
+            eines geeigneten Ansprechpartners und schreibe uns eine Nachricht. Wir freuen uns!
           </p>
         </template>
         <img
@@ -86,6 +88,6 @@ const images = [
           class="w-full rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700"
         >
       </ULandingCTA>
-    </ULandingSection>
+    </UContainer>
   </NuxtLayout>
 </template>
