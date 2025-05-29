@@ -56,6 +56,11 @@ export default defineNuxtConfig({
     },
   },
 
+  image: {
+    quality: 80,
+    format: ['avif', 'webp', 'jpg'],
+  },
+
   pwa: {
     manifest: {
       name: 'Schachfreunde Heilbronn-Biberach 1978 e. V.',
