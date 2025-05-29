@@ -14,7 +14,7 @@ export default defineNuxtConfig({
     'nuxt-og-image',
   ],
 
-  devtools: { enabled: true },
+  devtools: { enabled: false },
 
   css: ['~/assets/css/main.css'],
 
