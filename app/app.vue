@@ -45,7 +45,7 @@ provide('files', files)
 </script>
 
 <template>
-  <div>
+  <UApp>
     <AppHeader />
     <HeroBackground
       class="absolute w-full top-[1px] transition-all text-primary flex-shrink-0 duration-[400ms]"
@@ -58,16 +58,12 @@ provide('files', files)
       <LazyUContentSearch :files :links :navigation />
     </ClientOnly>
     <NuxtPwaAssets />
-  </div>
+  </UApp>
 </template>
 
 <style>
 h1, h2, h3, h4, h5, h6 {
-  @apply font-serif;
-}
-
-.prose img {
-  @apply rounded-md;
+  font-family: var(--font-serif);
 }
 
 /* ::view-transition-old(root) {
