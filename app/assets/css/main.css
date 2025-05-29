@@ -1,0 +1,11 @@
+@import "tailwindcss" theme(static);
+@import "@nuxt/ui-pro";
+
+@theme static {
+  /* Fonts */
+  --font-serif: 'Inter';
+  --font-sans: 'Inter';
+
+  /* Sizing */
+  --ui-radius: 0.75rem;
+}

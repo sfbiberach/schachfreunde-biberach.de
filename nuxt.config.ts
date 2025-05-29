@@ -1,30 +1,22 @@
 export default defineNuxtConfig({
 
   extends: [
-    '@nuxt/ui-pro',
     'github:happydesigns/ui-base',
   ],
 
   modules: [
-    '@nuxt/content',
     '@nuxt/eslint',
-    '@nuxt/fonts',
     '@nuxt/image',
-    '@nuxt/ui',
-    '@nuxthq/studio',
+    '@nuxt/ui-pro',
+    '@nuxt/content',
     // '@nuxthub/core',
     '@vite-pwa/nuxt',
     'nuxt-og-image',
   ],
 
   devtools: { enabled: true },
-  content: {
-    documentDriven: true,
-  },
 
-  ui: {
-    safelistColors: ['blue', 'green', 'orange'],
-  },
+  css: ['~/assets/css/main.css'],
 
   routeRules: {
     '/api/blog.json': { prerender: true },
@@ -55,6 +47,12 @@ export default defineNuxtConfig({
     config: {
       stylistic: true,
       standalone: false,
+    },
+  },
+
+  fonts: {
+    experimental: {
+      processCSSVariables: true,
     },
   },
 
