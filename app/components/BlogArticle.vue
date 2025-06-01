@@ -1,43 +1,48 @@
 <script setup lang="ts">
-import type { BlogArticle } from '~/types'
-import { withoutTrailingSlash } from 'ufo'
+import { useClipboard } from '@vueuse/core'
 import { BLOG_PATHS } from '~~/constants/blog'
 import { useAuthors } from '~/composables/blog/useAuthors'
 
-const route = useRoute()
 const url = useRequestURL()
-const { copy } = useCopyToClipboard()
-const { data: article } = await useAsyncData(route.path, () => queryContent<BlogArticle>(route.path).findOne())
+const { copy } = useClipboard()
+// const { data: article } = await useAsyncData(route.path, () => queryContent<BlogArticle>(route.path).findOne())
 
-if (!article.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Artikel nicht gefunden' })
-}
+// const { data: article } = await useAsyncData(route.path, () => queryCollection('blog').path(route.path).first())
 
-const { data: surround } = await useAsyncData(`${route.path}.surround`, () => queryContent(BLOG_PATHS.ARTICLES)
-  .where({ _extension: 'md' })
-  .without(['body', 'excerpt'])
-  .sort({ date: -1 })
-  .findSurround(withoutTrailingSlash(route.path)), { default: () => [] })
+// if (!article.value) {
+//   throw createError({ statusCode: 404, statusMessage: 'Artikel nicht gefunden' })
+// }
 
-const title = article.value.head?.title || article.value.title
-const description = article.value.head?.description || article.value.description
-const { authors } = await useAuthors(article.value.authors)
+// const { data: surround } = await useAsyncData(`${route.path}.surround`, () => queryContent(BLOG_PATHS.ARTICLES)
+//   .where({ _extension: 'md' })
+//   .without(['body', 'excerpt'])
+//   .sort({ date: -1 })
+//   .findSurround(withoutTrailingSlash(route.path)), { default: () => [] })
+
+// const title = article.value.head?.title || article.value.title
+// const description = article.value.head?.description || article.value.description
+// const { authors } = await useAuthors(article.value.authors)
+
+const { data } = await useBlogArticle()
+const article = computed(() => data.value?.article)
+const authors = computed(() => data.value?.authors)
+const surround = computed(() => data.value?.surround)
 
 const links = [
   {
     icon: 'i-ph-pen-duotone',
     label: 'Artikel bearbeiten',
-    to: `https://github.com/sfbiberach/schachfreunde-biberach.de/edit/main/content/${article.value._file}`,
+    to: `https://github.com/sfbiberach/schachfreunde-biberach.de/edit/main/content/${article.value.path}`,
     target: '_blank',
   },
 ]
 
-useSeoMeta({
-  title,
-  ogTitle: title,
-  description,
-  ogDescription: description,
-})
+// useSeoMeta({
+//   title,
+//   ogTitle: title,
+//   description,
+//   ogDescription: description,
+// })
 
 // if (post.value.image?.src) {
 //   const site = useSiteConfig()
@@ -57,7 +62,7 @@ useSeoMeta({
 // }
 
 function copyLink() {
-  copy(`${url.origin}${article.value?._path}`, { title: 'In die Zwischenablage kopiert' })
+  copy(`${url.origin}${article.value?.path}`)
 }
 </script>
 

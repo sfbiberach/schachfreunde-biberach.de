@@ -14,7 +14,7 @@ const labelAll = 'Alle'
 const pageCount = 12
 
 const appConfig = useAppConfig()
-const { data: content } = await useAsyncData(BLOG_PATHS.BASE, () => queryContent(BLOG_PATHS.BASE).findOne())
+const { data: content } = await useBlog() // await useAsyncData(BLOG_PATHS.BASE, () => queryContent(BLOG_PATHS.BASE).findOne())
 
 const page = ref(1)
 const active = useState()
