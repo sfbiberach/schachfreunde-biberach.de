@@ -46,13 +46,11 @@ provide('files', files)
 
 <template>
   <UApp>
-    <AppHeader />
     <HeroBackground
       class="absolute w-full top-[1px] transition-all text-primary flex-shrink-0 duration-[400ms]"
       :class="[heroBackgroundClass]"
     />
     <NuxtPage />
-    <AppFooter />
 
     <ClientOnly>
       <LazyUContentSearch :files :links :navigation />
