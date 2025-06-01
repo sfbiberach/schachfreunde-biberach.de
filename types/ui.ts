@@ -28,6 +28,10 @@ const alt = z.string().optional()
 const text = z.string().optional()
 const position = positionEnum.optional()
 const inset = z.boolean().optional()
+const highlight = z.boolean().optional()
+const highlightColor = colorEnum.optional()
+const spotlight = z.boolean().optional()
+const spotlightColor = colorEnum.optional()
 
 function createBaseSchema() {
   return z.object({
@@ -132,6 +136,33 @@ export const pageHeaderSchema = createBaseSchema().extend({
 
 })
 
+export const cardSchema = createBaseSchema().extend({
+  as,
+  icon,
+  orientation,
+  reverse,
+  highlight,
+  highlightColor,
+  spotlight,
+  spotlightColor,
+  variant,
+  to,
+  target,
+  ui: z.object({
+    root: z.string().optional(),
+    spotlight: z.string().optional(),
+    container: z.string().optional(),
+    wrapper: z.string().optional(),
+    header: z.string().optional(),
+    body: z.string().optional(),
+    footer: z.string().optional(),
+    leading: z.string().optional(),
+    leadingIcon: z.string().optional(),
+    title: z.string().optional(),
+    description: z.string().optional(),
+  }).optional(),
+})
+
 export const avatarSchema = z.object({
   as,
   src,
@@ -155,8 +186,7 @@ export const socialSchema = z.object({
   url: z.string(),
 })
 
-// Author data schema
-export const authorSchema = z.object({
+export const userSchema = z.object({
   name: z.string(),
   description: z.string().optional(),
   username: z.string().optional(),
@@ -174,7 +204,6 @@ export const layoutSchema = z.object({
   prose: z.boolean().optional(),
 })
 
-// Content UI override schema
 export const contentUISchema = z.object({
   main: z.any().optional(),
   container: z.any().optional(),
@@ -182,4 +211,11 @@ export const contentUISchema = z.object({
   body: z.any().optional(),
   toc: z.any().optional(),
   footer: z.any().optional(),
+})
+
+export const contentSchema = z.object({
+  layout: layoutSchema,
+  hero: pageHeroSchema.optional(),
+  header: pageHeaderSchema.optional(),
+  ui: contentUISchema,
 })
