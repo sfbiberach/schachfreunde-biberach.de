@@ -1,13 +1,8 @@
 <script setup lang="ts">
-const { data: page } = await useAsyncData('/', () => queryContent('/').findOne())
+const { data: page } = await useAsyncData('landing', () => queryCollection('landing').path('/').first())
 
 definePageMeta({
   heroBackground: 'opacity-80',
-})
-
-useSeoMeta({
-  titleTemplate: page.value?.titleTemplate,
-  title: page.value?.title,
 })
 
 const images = [
@@ -35,12 +30,10 @@ const images = [
         </template>
       </UPageColumns>
 
-      <ClientOnly>
-        <Chessboard class="z-[-1]" />
-      </ClientOnly>
+      <Chessboard class="z-[-1] chessboard" />
     </UPageSection>
 
-    <UPageSection :ui="{ wrapper: '!pt-0 py-12 sm:py-16' }">
+    <UPageSection :ui="{ container: '!pt-0 py-12 sm:py-16' }">
       <UPageGrid v-if="page.cards">
         <UPageCard v-for="(card, index) in page.cards" :key="index" v-bind="card" />
       </UPageGrid>
