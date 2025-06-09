@@ -17,7 +17,7 @@ const page = ref(1)
 const active = useState()
 
 const categories = [
-  { label: labelAll, color: 'gray' },
+  { label: labelAll },
   ...Object.values(appConfig.app.blog.categories),
 ].map((category, index) => ({
   ...category,
@@ -99,7 +99,7 @@ useHead({
     </template>
     <div class="flex flex-col gap-8">
       <div class="flex justify-between flex-wrap gap-4">
-        <UNavigationMenu :items="categoriesWithActive" />
+        <UNavigationMenu :items="categoriesWithActive" :highlight="true" />
       </div>
       <UBlogPosts v-if="articles">
         <UBlogPost
