@@ -110,7 +110,7 @@ useHead({
           :description="article.description"
           :date="new Date(article.date).toLocaleDateString('de', { year: 'numeric', month: 'short', day: 'numeric' })"
           :badge="article.resolvedBadge"
-          :authors="article.resolvedAuthors"
+          :authors="(article.resolvedAuthors || []).map(author => ({ ...author, target: '_blank' }))"
           variant="subtle"
           :class="[{ active: active === index }, index === -1 && 'col-span-full']"
           :ui="{
