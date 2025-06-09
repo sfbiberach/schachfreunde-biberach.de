@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ParsedContent } from '@nuxt/content'
+// import type { ParsedContent } from '@nuxt/content'
 
 useHead({
   title: 'Schachfreunde Heilbronn-Biberach 1978 e. V.',
@@ -21,24 +21,48 @@ useSeoMeta({
   robots: 'index, follow',
 })
 
-const config = useAppConfig()
-const links = config.links?.footer?.flatMap(({ label, children }) => ({
-  label,
-  children: children.map(({ label, to, icon }: { label: string, to: string, icon: string }) => ({
-    label,
-    to,
-    icon,
-  })),
-}))
+const { searchLinks, searchTerm } = useNavigation()
 
-const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation(queryContent('blog')), {
-  default: () => [],
+const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('content'))
+const { data: files } = useLazyAsyncData('search', () => queryCollectionSearchSections('content'), {
+  server: false,
 })
 
-const { data: files } = useLazyFetch<ParsedContent[]>('/api/blog.json', { default: () => [], server: false })
+// const [{ data: navigation }, { data: files }] = await Promise.all([
+//   useAsyncData('navigation', () => {
+//     return Promise.all([
+//       queryCollectionNavigation('blog'),
+//     ])
+//   }, {
+//     transform: data => data.flat(),
+//   }),
+//   useLazyAsyncData('search', () => {
+//     return Promise.all([
+//       queryCollectionSearchSections('blog'),
+//     ])
+//   }, {
+//     server: false,
+//     transform: data => data.flat(),
+//   }),
+// ])
 
-provide('navigation', navigation)
-provide('files', files)
+// const links = config.links?.footer?.flatMap(({ label, children }) => ({
+//   label,
+//   children: children.map(({ label, to, icon }: { label: string, to: string, icon: string }) => ({
+//     label,
+//     to,
+//     icon,
+//   })),
+// }))
+
+// const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation(queryContent('blog')), {
+//   default: () => [],
+// })
+
+// const { data: files } = useLazyFetch<ParsedContent[]>('/api/blog.json', { default: () => [], server: false })
+
+// provide('navigation', navigation)
+// provide('files', files)
 </script>
 
 <template>
@@ -46,7 +70,13 @@ provide('files', files)
     <NuxtPage />
 
     <ClientOnly>
-      <LazyUContentSearch :files :links :navigation />
+      <LazyUContentSearch
+        v-model:search-term="searchTerm"
+        :files="files"
+        :navigation="navigation"
+        :links="searchLinks"
+        :fuse="{ resultLimit: 42 }"
+      />
     </ClientOnly>
     <NuxtPwaAssets />
   </UApp>
