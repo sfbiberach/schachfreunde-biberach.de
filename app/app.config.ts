@@ -123,15 +123,15 @@ export default defineAppConfig({
       categories: {
         Jugend: {
           label: 'Jugend',
-          color: 'orange',
+          color: 'jugend',
         },
         Mannschaft: {
           label: 'Mannschaft',
-          color: 'green',
+          color: 'mannschaft',
         },
         Verein: {
           label: 'Verein',
-          color: 'blue',
+          color: 'verein',
         },
       },
     },
@@ -186,8 +186,6 @@ export default defineAppConfig({
 
   ui: {
     colors: {
-      primary: 'blue',
-      neutral: 'neutral',
     },
     icons: {
       light: 'i-ph-sun-duotone',
@@ -356,6 +354,11 @@ export default defineAppConfig({
           },
         },
       },
+      primary: 'verein',
+      neutral: 'zinc',
+      jugend: 'orange',
+      mannschaft: 'green',
+      verein: 'blue',
     },
   },
 

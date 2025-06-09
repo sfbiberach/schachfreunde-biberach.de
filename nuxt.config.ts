@@ -18,6 +18,22 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
+  ui: {
+    theme: {
+      colors: [
+        'primary',
+        'secondary',
+        'info',
+        'success',
+        'warning',
+        'error',
+        'jugend',
+        'mannschaft',
+        'verein',
+      ],
+    },
+  },
+
   routeRules: {
     '/api/blog.json': { prerender: true },
     '/api/blog/**': { prerender: true },

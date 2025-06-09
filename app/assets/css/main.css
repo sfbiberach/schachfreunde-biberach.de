@@ -8,4 +8,41 @@
 
   /* Sizing */
   --ui-radius: 0.2rem;
+
+  /* Colors */
+  --color-jugend-50: var(--color-orange-50);
+  --color-jugend-100: var(--color-orange-100);
+  --color-jugend-200: var(--color-orange-200);
+  --color-jugend-300: var(--color-orange-300);
+  --color-jugend-400: var(--color-orange-400);
+  --color-jugend-500: var(--color-orange-500);
+  --color-jugend-600: var(--color-orange-600);
+  --color-jugend-700: var(--color-orange-700);
+  --color-jugend-800: var(--color-orange-800);
+  --color-jugend-900: var(--color-orange-900);
+  --color-jugend-950: var(--color-orange-950);
+
+  --color-verein-50: var(--color-blue-50);
+  --color-verein-100: var(--color-blue-100);
+  --color-verein-200: var(--color-blue-200);
+  --color-verein-300: var(--color-blue-300);
+  --color-verein-400: var(--color-blue-400);
+  --color-verein-500: var(--color-blue-500);
+  --color-verein-600: var(--color-blue-600);
+  --color-verein-700: var(--color-blue-700);
+  --color-verein-800: var(--color-blue-800);
+  --color-verein-900: var(--color-blue-900);
+  --color-verein-950: var(--color-blue-950);
+
+  --color-mannschaft-50: var(--color-green-50);
+  --color-mannschaft-100: var(--color-green-100);
+  --color-mannschaft-200: var(--color-green-200);
+  --color-mannschaft-300: var(--color-green-300);
+  --color-mannschaft-400: var(--color-green-400);
+  --color-mannschaft-500: var(--color-green-500);
+  --color-mannschaft-600: var(--color-green-600);
+  --color-mannschaft-700: var(--color-green-700);
+  --color-mannschaft-800: var(--color-green-800);
+  --color-mannschaft-900: var(--color-green-900);
+  --color-mannschaft-950: var(--color-green-950);
 }
