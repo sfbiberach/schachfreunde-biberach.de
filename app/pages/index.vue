@@ -64,13 +64,11 @@ const images = [
         variant="subtle"
       >
         <template #description>
-          <p class="prose prose-primary dark:prose-invert text-lg">
-            Falls Du uns näher kennenlernen möchtest, kannst Du entweder in unserem Spiellokal vorbeischauen (wie oben beschrieben) oder uns per Mail/WhatsApp kontaktieren. Suche Dir dazu die
-            <NuxtLink to="/impressum">
-              Kontaktdaten
-            </NuxtLink>
-            eines geeigneten Ansprechpartners und schreibe uns eine Nachricht. Wir freuen uns!
-          </p>
+          Falls Du uns näher kennenlernen möchtest, kannst Du entweder in unserem Spiellokal vorbeischauen (wie oben beschrieben) oder uns per Mail/WhatsApp kontaktieren. Suche Dir dazu die
+          <ProseA to="/impressum">
+            Kontaktdaten
+          </ProseA>
+          eines geeigneten Ansprechpartners und schreibe uns eine Nachricht. Wir freuen uns!
         </template>
         <img
           src="/assets/home/contact-us.jpg"
