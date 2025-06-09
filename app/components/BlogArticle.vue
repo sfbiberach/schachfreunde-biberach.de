@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useClipboard } from '@vueuse/core'
 import { BLOG_PATHS } from '~~/constants/blog'
 
 const url = useRequestURL()
@@ -25,7 +24,7 @@ const links = [
 ]
 
 function copyLink() {
-  copy(`${url.origin}${article.value?.path}`)
+  copy(`${url.origin}${article.value?.path}`, { title: 'Link in Zwischenablage kopiert', icon: 'i-lucide-copy-check' })
 }
 
 onMounted(() => {
