@@ -37,7 +37,6 @@ export default defineAppConfig({
       footer: [
         {
           label: 'Homepage',
-          to: '/',
           children: [
             {
               label: 'Startseite',
@@ -63,7 +62,6 @@ export default defineAppConfig({
         },
         {
           label: 'Rechtliches',
-          to: '/',
           children: [
             {
               label: 'Impressum',
@@ -79,7 +77,6 @@ export default defineAppConfig({
         },
         {
           label: 'Externe Links',
-          to: '/',
           children: [
             {
               label: 'Unterländer Schachtage',
