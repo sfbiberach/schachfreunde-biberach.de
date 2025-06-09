@@ -6,9 +6,6 @@
   --font-serif: 'Inter';
   --font-sans: 'Inter';
 
-  /* Sizing */
-  --ui-radius: 0.2rem;
-
   /* Grid */
   --grid-cols-landing: 0 1fr 8fr 1fr 1fr 0;
   --grid-rows-landing: 0 1fr 8fr 8fr 1fr 0;

@@ -1,5 +1,8 @@
 <script setup lang="ts">
-// import type { ParsedContent } from '@nuxt/content'
+const appConfig = useAppConfig()
+
+const radius = computed(() => `:root { --ui-radius: ${appConfig.theme.radius}rem; }`)
+const blackAsPrimary = computed(() => appConfig.theme.blackAsPrimary ? `:root { --ui-primary: black; } .dark { --ui-primary: white; }` : ':root {}')
 
 useHead({
   title: 'Schachfreunde Heilbronn-Biberach 1978 e. V.',
@@ -7,6 +10,10 @@ useHead({
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
     { name: 'theme-color', content: '#171717' },
+  ],
+  style: [
+    { innerHTML: radius, id: 'nuxt-ui-radius', tagPriority: -2 },
+    { innerHTML: blackAsPrimary, id: 'nuxt-ui-black-as-primary', tagPriority: -2 }
   ],
   htmlAttrs: {
     lang: 'de',
@@ -27,6 +34,8 @@ const { data: navigation } = await useAsyncData('navigation', () => queryCollect
 const { data: files } = useLazyAsyncData('search', () => queryCollectionSearchSections('content'), {
   server: false,
 })
+
+
 
 // const [{ data: navigation }, { data: files }] = await Promise.all([
 //   useAsyncData('navigation', () => {

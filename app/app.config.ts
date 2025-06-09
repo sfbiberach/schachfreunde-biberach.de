@@ -184,6 +184,11 @@ export default defineAppConfig({
     },
   },
 
+  theme: {
+    radius: 0.2,
+    blackAsPrimary: false
+  },
+
   ui: {
     colors: {
       primary: 'verein',
