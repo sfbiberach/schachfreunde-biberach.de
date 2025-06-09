@@ -11,11 +11,12 @@ const seeds = useState('chessboard-seeds', () =>
           <template v-for="colIndex in 8" :key="`cell-${rowIndex}-${colIndex}`">
             <div
               class="flex items-center justify-center hover:bg-opacity-80 flicker"
-              :class=" [
-                ((rowIndex - 1 + colIndex - 1) % 2 !== 0) ? 'bg-primary-700/20 dark:bg-primary-900/20' : 'bg-primary-200/20 dark:bg-primary-400/20',
-                (colIndex > 4 ? 'hidden md:flex' : ''),
-                (colIndex > 6 ? 'hidden lg:flex' : ''),
-              ]"
+              :class="{
+                'bg-primary-700/20 dark:bg-primary-900/20': (rowIndex - 1 + colIndex - 1) % 2 !== 0,
+                'bg-primary-200/20 dark:bg-primary-400/20': (rowIndex - 1 + colIndex - 1) % 2 === 0,
+                'hidden md:flex': colIndex > 4,
+                'hidden lg:flex': colIndex > 6,
+              }"
               :style="{
                 '--duration': `${8 + seeds[(rowIndex - 1) * 8 + (colIndex - 1)] * 12}s`,
                 '--delay': `${seeds[(rowIndex - 1) * 8 + (colIndex - 1)] * 3}s`,
