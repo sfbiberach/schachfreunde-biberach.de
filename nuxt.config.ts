@@ -55,6 +55,7 @@ export default defineNuxtConfig({
 
   nitro: {
     prerender: {
+      autoSubfolderIndex: false,
       failOnError: false,
     },
   },
