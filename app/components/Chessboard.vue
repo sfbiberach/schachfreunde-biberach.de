@@ -6,14 +6,15 @@ const seeds = useState('chessboard-seeds', () =>
 <template>
   <Transition appear name="fade">
     <div class="absolute inset-x-0 top-0 w-full max-h-192 overflow-visible fade-out-bottom">
-      <div class="grid grid-cols-6 sm:grid-cols-8 grid-rows-8 w-full max-h-full aspect-[6/8] sm:aspect-square">
+      <div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 grid-rows-8 w-full max-h-full aspect-[4/8] md:aspect-[6/8] lg:aspect-square">
         <template v-for="rowIndex in 8" :key="`row-${rowIndex}`">
           <template v-for="colIndex in 8" :key="`cell-${rowIndex}-${colIndex}`">
             <div
               class="flex items-center justify-center hover:bg-opacity-80 flicker"
               :class=" [
                 ((rowIndex - 1 + colIndex - 1) % 2 !== 0) ? 'bg-primary-700/20 dark:bg-primary-900/20' : 'bg-primary-200/20 dark:bg-primary-400/20',
-                (colIndex > 6 ? 'hidden sm:flex' : '')
+                (colIndex > 4 ? 'hidden md:flex' : ''),
+                (colIndex > 6 ? 'hidden lg:flex' : ''),
               ]"
               :style="{
                 '--duration': `${8 + seeds[(rowIndex - 1) * 8 + (colIndex - 1)] * 12}s`,
