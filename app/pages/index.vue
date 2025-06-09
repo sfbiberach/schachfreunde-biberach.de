@@ -52,12 +52,11 @@ const images = [
       <iframe class="rounded-sm w-full h-full min-h-[384px]" scrolling="yes" src="https://calendar.google.com/calendar/embed?src=sf.hnbiberach%40gmail.com&amp;mode=AGENDA&amp;showTitle=0&amp;showDate=0&amp;showNav=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0" />
     </UPageSection>
 
-    <UContainer>
+    <UPageSection>
       <UPageCTA
         title="Kontaktiere uns"
         orientation="horizontal"
         variant="subtle"
-        :card="false"
       >
         <template #description>
           <p class="prose prose-primary dark:prose-invert text-lg">
@@ -73,6 +72,6 @@ const images = [
           class="w-full rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700"
         >
       </UPageCTA>
-    </UContainer>
+    </UPageSection>
   </NuxtLayout>
 </template>
