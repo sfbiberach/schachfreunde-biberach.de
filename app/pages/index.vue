@@ -21,7 +21,7 @@ const images = [
         <span v-html="page.hero?.description" />
       </template>
 
-      <UPageGrid class="hidden lg:grid grid-cols-(--grid-cols-landing) sm:grid-cols-(--grid-cols-landing) lg:grid-cols-(--grid-cols-landing) gap-8 auto-rows-fr lg:max-h-[460px] overflow-hidden">
+      <UPageGrid class="hidden lg:grid grid-cols-(--grid-cols-landing) sm:grid-cols-(--grid-cols-landing) lg:grid-cols-(--grid-cols-landing) gap-8 auto-rows-fr lg:max-h-120 overflow-hidden">
         <template v-for="(image, index) in images" :key="index">
           <NuxtImg
             v-if="image.src"
