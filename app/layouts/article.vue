@@ -14,7 +14,7 @@ const { data: page } = await usePageContent({ path: path.value, collection: 'blo
 const authors = await resolveAuthors(page.value?.authors || [])
 
 if (!page.value) {
-  throw createError({ statusCode: 404, statusMessage: `Content page ${props.path || route.path} not found`, fatal: true })
+  throw createError({ statusCode: 404, statusMessage: `Article ${props.path || route.path} not found`, fatal: true })
 }
 
 usePageSeo(page)
