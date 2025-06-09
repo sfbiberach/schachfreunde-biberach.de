@@ -26,12 +26,12 @@ const images = [
           <NuxtImg
             v-if="image.src"
             v-bind="image"
-            class="w-full h-full max-w-md mx-auto rounded-md shadow-xl ring-1 ring-neutral-300 dark:ring-neutral-700 object-cover"
+            class="w-full h-full max-w-md mx-auto rounded-md shadow-xl ring ring-default object-cover"
           />
           <div
             v-else
             v-bind="image"
-            class="w-full h-full max-w-md mx-auto rounded-md shadow-xl ring-1 ring-neutral-300 dark:ring-neutral-700"
+            class="w-full h-full max-w-md mx-auto rounded-md shadow-xl ring ring-default"
           />
         </template>
       </UPageGrid>
