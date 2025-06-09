@@ -1,66 +1,61 @@
 <script setup lang="ts">
-import type { Badge, Button } from '#ui/types'
-import type { BlogArticle } from '~/types'
-import { defu } from 'defu'
+import type { BadgeProps } from '#ui/types'
 import { BLOG_PATHS } from '~~/constants/blog'
 
-export interface Props {
-  authors?: { name: string, to: string, avatar: { src: string, alt: string } }[]
-  container?: boolean
-  links?: (Button & { click?: (() => void) | undefined })[]
-  prose?: boolean
-  ui?: { wrapper?: string, body?: string }
-  showHeader?: boolean
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  container: undefined,
-  showHeader: undefined,
-})
+const props = defineProps<{
+  path?: string
+}>()
 
 const appConfig = useAppConfig()
-const { page: pageContent } = useContent()
-const page = { ...pageContent.value, ...props as typeof props & BlogArticle }
+const route = useRoute()
+const path = computed(() => props.path || route.path)
 
-const headline = computed(() => pageContent?.value?._dir ? findPageHeadline(pageContent?.value) : '')
+const { data: page } = await usePageContent({ path: path.value, collection: 'blog' })
+const authors = await resolveAuthors(page.value?.authors || [])
 
-const badge = computed(() => getBadgeProps(page.category))
-
-onMounted(() => {
-  appConfig.ui.primary = badge.value.color
-  window.localStorage.setItem('nuxt-ui-primary', appConfig.ui.primary)
-})
-
-useSeoMeta({
-  title: page.title,
-})
-
-const pageBodyWrapper = computed(() => page.showHeader ? '' : 'mt-0')
-
-function getBadgeProps(badge: keyof typeof appConfig.app.blog.categories | Badge) {
-  return defu(
-    badge,
-    appConfig.app.blog.categories[badge as keyof typeof appConfig.app.blog.categories] as Badge,
-  )
+if (!page.value) {
+  throw createError({ statusCode: 404, statusMessage: `Content page ${props.path || route.path} not found`, fatal: true })
 }
+
+usePageSeo(page)
+const { containerClass } = usePageLayout(page)
+
+const badge = computed(() => {
+  if (typeof page.value?.category === 'string') {
+    const category = page.value?.category as keyof typeof appConfig.app.blog.categories
+    return appConfig.app.blog.categories[category]
+  }
+  return { label: page.value?.category ?? '', color: 'neutral' } as BadgeProps
+})
 </script>
 
 <template>
-  <UMain :class="page.ui?.wrapper" class="break-words">
-    <UContainer
-      :ui="{
-        padding: page?.container ? undefined : '',
-        constrained: page.container ? undefined : '' }"
+  <!-- eslint-disable vue/no-multiple-template-root -->
+  <AppHeader />
+
+  <UMain v-if="page" :ui="page.ui?.main" class="break-words">
+    <UPageHero
+      v-if="page.hero"
+      :as="page.hero.as"
+      v-bind="page.hero"
     >
+      <template #description>
+        <slot name="description">
+          <p>{{ page.hero.description }}</p>
+        </slot>
+      </template>
+    </UPageHero>
+
+    <UContainer :ui="{ ...page.ui?.container }" :class="[containerClass]">
       <UPageHeader
-        v-if="page?.showHeader !== false"
+        v-if="page.header"
+        v-bind="page.header"
         :ui="{ headline: 'flex flex-col gap-y-8 items-start' }"
-        :title="page?.title" :description="page.description" :links="page?.links" :headline="headline"
       >
         <template #headline>
           <UBreadcrumb
-            :ui="{ wrapper: 'max-w-full' }"
-            :links="[{ label: 'Blog', icon: 'i-ph-newspaper-duotone', to: BLOG_PATHS.BASE }, { label: page.title }]"
+            :ui="{ root: 'max-w-full' }"
+            :items="[{ label: 'Blog', icon: 'i-ph-newspaper-duotone', to: BLOG_PATHS.BASE }, { label: page.title }]"
           />
           <div class="flex items-center space-x-2">
             <span>{{ badge.label }}</span>
@@ -72,11 +67,11 @@ function getBadgeProps(badge: keyof typeof appConfig.app.blog.categories | Badge
         </template>
         <div class="flex flex-wrap items-center gap-3 mt-4">
           <UButton
-            v-for="(author, index) in page.authors"
+            v-for="(author, index) in authors"
             :key="index"
             :to="author.to"
             target="_blank"
-            color="gray"
+            color="neutral"
             variant="ghost"
             class="-my-1.5 -mx-2.5"
           >
@@ -92,12 +87,20 @@ function getBadgeProps(badge: keyof typeof appConfig.app.blog.categories | Badge
           </UButton>
         </div>
       </UPageHeader>
-      <UPageBody
-        :prose="page?.prose !== false" class="pb-32"
-        :class="[page.ui?.body]" :ui="{ wrapper: pageBodyWrapper }"
-      >
-        <slot />
-      </UPageBody>
+      <!-- <UPageBody
+        :prose="page.layout?.prose !== false"
+        :class="page.ui?.body"
+      > -->
+      <slot />
+      <!-- </UPageBody> -->
+
+      <!-- Table of Contents -->
+      <template v-if="page.layout?.toc || $slots.right" #right>
+        <UContentToc :links="page.body?.toc?.links" :ui="page.ui?.toc" class="bg-transparent" title="Inhaltsverzeichnis" />
+        <slot name="right" />
+      </template>
     </UContainer>
   </UMain>
+
+  <AppFooter />
 </template>
