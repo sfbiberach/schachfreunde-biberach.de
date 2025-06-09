@@ -6,9 +6,8 @@ definePageMeta({
 })
 
 const images = [
-  { class: 'h-8' },
-  { src: '/assets/home/1690827815.jpg' },
-  { src: '/assets/blog/20180704.bw-mannschaftsfinale-u16/1561.jpg' },
+  { class: 'col-span-3 col-start-1 row-start-2', src: '/assets/home/landing-section-1.jpg' },
+  { class: 'col-span-3 col-start-2 row-start-1', src: '/assets/home/landing-section-2.jpg' },
 ]
 </script>
 
@@ -18,18 +17,24 @@ const images = [
       <template #title>
         <span v-html="page.hero?.title" />
       </template>
-
       <template #description>
         <span v-html="page.hero?.description" />
       </template>
 
-      <UPageColumns class="hidden lg:block" :style="{ columns: images.length > 1 ? 2 : 1 }">
-        <template v-for="(image, _index) in images" :key="_index">
-          <NuxtImg v-if="image.src" v-bind="image" class="w-full rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700" />
-          <div v-else v-bind="image" />
+      <UPageGrid class="hidden lg:grid grid-cols-(--grid-cols-landing) sm:grid-cols-(--grid-cols-landing) lg:grid-cols-(--grid-cols-landing) gap-8 auto-rows-fr lg:max-h-[460px] overflow-hidden">
+        <template v-for="(image, index) in images" :key="index">
+          <NuxtImg
+            v-if="image.src"
+            v-bind="image"
+            class="w-full h-full max-w-md mx-auto rounded-md shadow-xl ring-1 ring-neutral-300 dark:ring-neutral-700 object-cover"
+          />
+          <div
+            v-else
+            v-bind="image"
+            class="w-full h-full max-w-md mx-auto rounded-md shadow-xl ring-1 ring-neutral-300 dark:ring-neutral-700"
+          />
         </template>
-      </UPageColumns>
-
+      </UPageGrid>
       <Chessboard class="z-[-1] chessboard" />
     </UPageSection>
 
@@ -68,7 +73,7 @@ const images = [
           </p>
         </template>
         <img
-          src="https://picsum.photos/640/360"
+          src="/assets/home/contact-us.jpg"
           class="w-full rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700"
         >
       </UPageCTA>
