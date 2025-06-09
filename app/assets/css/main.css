@@ -10,8 +10,10 @@
   --ui-radius: 0.2rem;
 
   /* Grid */
-  --grid-cols-landing: 1fr 8fr 8fr 1fr;
-  --grid-rows-landing: 1fr 8fr 8fr 1fr;
+  --grid-cols-landing: 0 1fr 8fr 1fr 1fr 0;
+  --grid-rows-landing: 0 1fr 8fr 8fr 1fr 0;
+  --grid-cols-landing-padded: 1fr 1fr 8fr 8fr 1fr 1fr;
+  --grid-rows-landing-padded: 1fr 1fr 8fr 8fr 1fr 1fr;
 
   /* Colors */
   --color-jugend-50: var(--color-orange-50);

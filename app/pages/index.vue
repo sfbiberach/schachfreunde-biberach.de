@@ -6,8 +6,8 @@ definePageMeta({
 })
 
 const images = [
-  { class: 'col-span-3 col-start-1 row-start-2', src: '/assets/home/landing-section-1.jpg' },
-  { class: 'col-span-3 col-start-2 row-start-1', src: '/assets/home/landing-section-2.jpg' },
+  { class: 'col-span-3 col-start-2 row-start-2', src: '/assets/home/landing-section-1.jpg' },
+  { class: 'col-span-3 col-start-3 row-start-1', src: '/assets/home/landing-section-2.jpg' },
 ]
 </script>
 
@@ -21,7 +21,7 @@ const images = [
         <span v-html="page.hero?.description" />
       </template>
 
-      <UPageGrid class="hidden lg:grid grid-cols-(--grid-cols-landing) sm:grid-cols-(--grid-cols-landing) lg:grid-cols-(--grid-cols-landing) gap-8 auto-rows-fr lg:max-h-120 overflow-hidden">
+      <UPageGrid class="hidden lg:grid gap-8 auto-rows-fr lg:max-h-120 overflow-hidden lg:grid-cols-(--grid-cols-landing) xl:grid-cols-(--grid-cols-landing-padded)">
         <template v-for="(image, index) in images" :key="index">
           <NuxtImg
             v-if="image.src"
