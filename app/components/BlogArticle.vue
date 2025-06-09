@@ -5,23 +5,6 @@ import { BLOG_PATHS } from '~~/constants/blog'
 const url = useRequestURL()
 const { copy } = useClipboard()
 const route = useRoute()
-// const { data: article } = await useAsyncData(route.path, () => queryContent<BlogArticle>(route.path).findOne())
-
-// const { data: article } = await useAsyncData(route.path, () => queryCollection('blog').path(route.path).first())
-
-// if (!article.value) {
-//   throw createError({ statusCode: 404, statusMessage: 'Artikel nicht gefunden' })
-// }
-
-// const { data: surround } = await useAsyncData(`${route.path}.surround`, () => queryContent(BLOG_PATHS.ARTICLES)
-//   .where({ _extension: 'md' })
-//   .without(['body', 'excerpt'])
-//   .sort({ date: -1 })
-//   .findSurround(withoutTrailingSlash(route.path)), { default: () => [] })
-
-// const title = article.value.head?.title || article.value.title
-// const description = article.value.head?.description || article.value.description
-// const { authors } = await useAuthors(article.value.authors)
 
 const { data: article } = await useBlogArticle({ slug: route.params.slug as string })
 
@@ -30,9 +13,6 @@ const { data: surround } = await useAsyncData(
   () => queryCollectionItemSurroundings('blog', route.path, { fields: ['description'] }).where('status', '=', 'published').order('date', 'DESC'),
 )
 
-// const article = computed(() => data.value?.article)
-// const authors = computed(() => data.value?.authors)
-// const surround = computed(() => data.value?.surround)
 const badge = resolveBadge(article.value?.category ?? '')
 
 const links = [
@@ -43,30 +23,6 @@ const links = [
     target: '_blank',
   },
 ]
-
-// useSeoMeta({
-//   title,
-//   ogTitle: title,
-//   description,
-//   ogDescription: description,
-// })
-
-// if (post.value.image?.src) {
-//   const site = useSiteConfig()
-
-//   useSeoMeta({
-//     ogImage: joinURL(site.url, post.value.image.src),
-//     twitterImage: joinURL(site.url, post.value.image.src),
-//   })
-// }
-// else {
-//   defineOgImage({
-//     component: 'Saas',
-//     title,
-//     description,
-//     headline: 'Blog',
-//   })
-// }
 
 function copyLink() {
   copy(`${url.origin}${article.value?.path}`)
