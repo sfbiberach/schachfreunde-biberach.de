@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { BadgeProps } from '#ui/types'
 import { BLOG_PATHS } from '~~/constants/blog'
-import { usePrimaryColor } from '~/composables/usePrimaryColor'
 
 const props = defineProps<{
   category?: { label: string, color: string }

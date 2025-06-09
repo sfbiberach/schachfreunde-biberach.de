@@ -1,5 +1,4 @@
 import type { BlogCollectionItem } from '@nuxt/content'
-import resolveBadge from './resolveBadge'
 
 /**
  * Resolves and assigns the resolvedBadge property for each blog article in the array.
