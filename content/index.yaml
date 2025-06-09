@@ -1,8 +1,5 @@
 title: Schachfreunde Heilbronn-Biberach 1978 e. V.
 titleTemplate: '%s'
-showHeader: false
-container: false
-prose: false
 
 hero:
   title: Herzlich Willkommen
@@ -10,10 +7,10 @@ hero:
   orientation: horizontal
   ui: {container: 'py-16', features: {description: 'whitespace-pre-line'}}
   features:
-    - name: Erfolgreiche Jugendarbeit
+    - title: Erfolgreiche Jugendarbeit
       description: In den letzten 9 Jahren haben wir an 10 Deutschen Vereinsmeisterschaften (DVM) teilgenommen.
       icon: i-ph-fire-duotone
-    - name: Turniere mit überregionaler Strahlkraft
+    - title: Turniere mit überregionaler Strahlkraft
       description: Seit 2012 veranstalten wir jährlich den Biber-Jugend-Cup mit durchschnittlich 200 Teilnehmern.
       icon: i-ph-trophy-duotone
   links:
@@ -31,12 +28,15 @@ cards:
     to: https://www.unterlaender-schachtage.de
     target: _blank
     icon: i-ph-crown-duotone
+    spotlight: true
   - title: Biber-Jugend-Cup
     description: Kinder- und Jugendturnier am 22. März 2025 mit über 200 Teilnehmern und 13 Jahren Tradition.
     to: https://www.findchessgames.com/index-0134,224,1036-turniere_anzeigen.html
     target: _blank
     icon: i-ph-castle-turret-duotone
+    spotlight: true
   - title: Training
     description: Wir bieten regelmäßiges Training für alle Altersklassen.
     to: /#training
     icon: i-ph-books-duotone
+    spotlight: true

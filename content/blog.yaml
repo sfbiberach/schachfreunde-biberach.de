@@ -1,6 +1,5 @@
-showHeader: true
-container: true
-prose: false
-
 title: Aktuelle Beiträge
 description: Hier findest du die neuesten Mannschafts- und Turnierberichte.
+layout:
+  metadataComponent: hero
+  prose: false
