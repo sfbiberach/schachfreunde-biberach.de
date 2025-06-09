@@ -1,6 +1,9 @@
 <script setup lang="ts">
 const appConfig = useAppConfig()
 const items = appConfig.app.links.header
+
+const route = useRoute()
+const heroBackgroundClass = computed(() => route.meta?.heroBackground || 'opacity-30')
 </script>
 
 <template>
@@ -27,6 +30,11 @@ const items = appConfig.app.links.header
       <UNavigationMenu :items orientation="vertical" />
     </template>
   </UHeader>
+
+  <HeroBackground
+    class="absolute w-full top-[0px] transition-all text-primary flex-shrink-0 duration-[400ms]"
+    :class="[heroBackgroundClass]"
+  />
 </template>
 
 <style>
