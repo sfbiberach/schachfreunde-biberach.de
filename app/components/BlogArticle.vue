@@ -33,6 +33,7 @@ const { data: surround } = await useAsyncData(
 // const article = computed(() => data.value?.article)
 // const authors = computed(() => data.value?.authors)
 // const surround = computed(() => data.value?.surround)
+const badge = resolveBadge(article.value?.category ?? '')
 
 const links = [
   {
@@ -70,6 +71,10 @@ const links = [
 function copyLink() {
   copy(`${url.origin}${article.value?.path}`)
 }
+
+onMounted(() => {
+  usePrimaryColor(badge.color)
+})
 </script>
 
 <template>
