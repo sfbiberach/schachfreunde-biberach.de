@@ -1,6 +1,7 @@
 import { z } from '@nuxt/content'
 
 const variantEnum = z.enum(['solid', 'outline', 'subtle', 'soft', 'ghost', 'link'])
+const badgeVariantEnum = z.enum(['solid', 'outline', 'soft', 'subtle'])
 const colorEnum = z.enum(['primary', 'secondary', 'neutral', 'error', 'warning', 'success', 'info'])
 const sizeEnum = z.enum(['xs', 'sm', 'md', 'lg', 'xl'])
 const orientationEnum = z.enum(['vertical', 'horizontal'])
@@ -32,6 +33,10 @@ const highlight = z.boolean().optional()
 const highlightColor = colorEnum.optional()
 const spotlight = z.boolean().optional()
 const spotlightColor = colorEnum.optional()
+const square = z.boolean().optional()
+const leading = z.boolean().optional()
+const leadingIcon = z.string().optional()
+const trailingIcon = z.string().optional()
 
 function createBaseSchema() {
   return z.object({
@@ -180,6 +185,29 @@ export const avatarSchema = z.object({
   }).optional(),
 }).optional()
 
+export const badgeSchema = z.object({
+  as,
+  label,
+  color,
+  variant: badgeVariantEnum.optional(),
+  size,
+  square,
+  icon,
+  avatar: avatarSchema,
+  leading,
+  leadingIcon,
+  trailing,
+  trailingIcon,
+  ui: z.object({
+    base: z.string().optional(),
+    label: z.string().optional(),
+    leadingIcon: z.string().optional(),
+    leadingAvatar: z.string().optional(),
+    leadingAvatarSize: z.string().optional(),
+    trailingIcon: z.string().optional(),
+  }).optional(),
+})
+
 // Social link schema for content data
 export const socialSchema = z.object({
   name: z.string(),
@@ -194,6 +222,13 @@ export const userSchema = z.object({
   avatar: avatarSchema,
   socials: z.array(socialSchema).optional(),
   email: z.string().email().optional(),
+})
+
+export const authorSchema = z.object({
+  name: z.string(),
+  description: z.string().optional(),
+  to: z.string().optional(),
+  avatar: avatarSchema,
 })
 
 // Content layout properties schema
@@ -218,4 +253,16 @@ export const contentSchema = z.object({
   hero: pageHeroSchema.optional(),
   header: pageHeaderSchema.optional(),
   ui: contentUISchema,
+})
+
+export const blogSchema = contentSchema.extend({
+  status: z.enum(['draft', 'published', 'archived']).default('published'),
+  image: z.string().editor({ input: 'media' }),
+  authors: z.array(z.string()).optional(),
+  date: z.string().date(),
+  draft: z.boolean().optional(),
+  category: z.enum(['Jugend', 'Mannschaft', 'Verein']),
+  tags: z.array(z.string()),
+  resolvedBadge: badgeSchema,
+  resolvedAuthors: z.array(authorSchema).optional(),
 })
