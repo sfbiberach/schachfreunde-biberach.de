@@ -34,7 +34,7 @@ const categoriesWithActive = computed(() =>
 
 const color = computed(() => props.category?.color)
 
-const { data: articles } = await useBlog({ categoriesMap: appConfig.app.blog.categories as Record<string, BadgeProps> })
+const { data: articles } = await useBlogList({ categoriesMap: appConfig.app.blog.categories as Record<string, BadgeProps> })
 
 const categoryArticles = computed(() =>
   Array.isArray(articles.value)

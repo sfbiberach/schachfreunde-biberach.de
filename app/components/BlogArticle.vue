@@ -23,7 +23,7 @@ const route = useRoute()
 // const description = article.value.head?.description || article.value.description
 // const { authors } = await useAuthors(article.value.authors)
 
-const { data: article } = await useBlog({ slug: route.params.slug as string })
+const { data: article } = await useBlogArticle({ slug: route.params.slug as string })
 
 const { data: surround } = await useAsyncData(
   `${route.path}-surround`,
@@ -38,7 +38,7 @@ const links = [
   {
     icon: 'i-ph-pen-duotone',
     label: 'Artikel bearbeiten',
-    to: `https://github.com/sfbiberach/schachfreunde-biberach.de/edit/main/content/${article.value.path}`,
+    to: `https://github.com/sfbiberach/schachfreunde-biberach.de/edit/main/content/${article.value?.path}`,
     target: '_blank',
   },
 ]

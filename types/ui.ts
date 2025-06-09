@@ -1,9 +1,11 @@
+import { avatar } from '#build/ui'
 import { z } from '@nuxt/content'
 
 const variantEnum = z.enum(['solid', 'outline', 'subtle', 'soft', 'ghost', 'link'])
 const badgeVariantEnum = z.enum(['solid', 'outline', 'soft', 'subtle'])
-const colorEnum = z.enum(['primary', 'secondary', 'neutral', 'error', 'warning', 'success', 'info'])
+const colorEnum = z.enum(['primary', 'secondary', 'neutral', 'error', 'warning', 'success', 'info', 'jugend', 'mannschaft', 'verein'])
 const sizeEnum = z.enum(['xs', 'sm', 'md', 'lg', 'xl'])
+const avatarSizeEnum = z.enum(['3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl']).default('md')
 const orientationEnum = z.enum(['vertical', 'horizontal'])
 const targetEnum = z.enum(['_blank', '_parent', '_self', '_top'])
 const positionEnum = z.enum(['top-left', 'top-right', 'bottom-left', 'bottom-right'])
@@ -11,7 +13,7 @@ const positionEnum = z.enum(['top-left', 'top-right', 'bottom-left', 'bottom-rig
 const as = z.any().optional()
 const title = z.string().nonempty()
 const description = z.string().nonempty()
-const icon = z.string().nonempty().editor({ input: 'icon' })
+const icon = z.string().optional().editor({ input: 'icon' })
 const orientation = orientationEnum.optional()
 const label = z.string().nonempty()
 export const to = z.string().nonempty()
@@ -174,20 +176,19 @@ export const avatarSchema = z.object({
   alt,
   icon,
   text,
-  size,
+  size: avatarSizeEnum,
   chip: chipSchema.optional(),
   ui: z.object({
-    root: z.string().optional(),
-    image: z.string().optional(),
-    text: z.string().optional(),
-    icon: z.string().optional(),
-    chip: z.string().optional(),
+    root: z.any().optional(),
+    image: z.any().optional(),
+    fallback: z.any().optional(),
+    icon: z.any().optional(),
   }).optional(),
 }).optional()
 
 export const badgeSchema = z.object({
   as,
-  label,
+  label: z.union([z.string(), z.number()]).optional(),
   color,
   variant: badgeVariantEnum.optional(),
   size,
@@ -199,12 +200,12 @@ export const badgeSchema = z.object({
   trailing,
   trailingIcon,
   ui: z.object({
-    base: z.string().optional(),
-    label: z.string().optional(),
-    leadingIcon: z.string().optional(),
-    leadingAvatar: z.string().optional(),
-    leadingAvatarSize: z.string().optional(),
-    trailingIcon: z.string().optional(),
+    base: z.any().optional(),
+    label: z.any().optional(),
+    leadingIcon: z.any().optional(),
+    leadingAvatar: z.any().optional(),
+    leadingAvatarSize: z.any().optional(),
+    trailingIcon: z.any().optional(),
   }).optional(),
 })
 
