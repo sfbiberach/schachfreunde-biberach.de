@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useClipboard } from '@vueuse/core'
 import { BLOG_PATHS } from '~~/constants/blog'
-import { useAuthors } from '~/composables/blog/useAuthors'
 
 const url = useRequestURL()
 const { copy } = useClipboard()
+const route = useRoute()
 // const { data: article } = await useAsyncData(route.path, () => queryContent<BlogArticle>(route.path).findOne())
 
 // const { data: article } = await useAsyncData(route.path, () => queryCollection('blog').path(route.path).first())
@@ -23,10 +23,16 @@ const { copy } = useClipboard()
 // const description = article.value.head?.description || article.value.description
 // const { authors } = await useAuthors(article.value.authors)
 
-const { data } = await useBlogArticle()
-const article = computed(() => data.value?.article)
-const authors = computed(() => data.value?.authors)
-const surround = computed(() => data.value?.surround)
+const { data: article } = await useBlog({ slug: route.params.slug as string })
+
+const { data: surround } = await useAsyncData(
+  `${route.path}-surround`,
+  () => queryCollectionItemSurroundings('blog', route.path, { fields: ['description'] }).where('status', '=', 'published').order('date', 'DESC'),
+)
+
+// const article = computed(() => data.value?.article)
+// const authors = computed(() => data.value?.authors)
+// const surround = computed(() => data.value?.surround)
 
 const links = [
   {
@@ -67,9 +73,9 @@ function copyLink() {
 </script>
 
 <template>
-  <NuxtLayout name="article" :container="true" :authors>
+  <NuxtLayout name="article" :container="true">
     <UPage v-if="article">
-      <UPageBody prose>
+      <UPageBody>
         <ContentRenderer v-if="article?.body" :value="article" />
 
         <div class="flex items-center justify-between mt-12 not-prose">
@@ -77,13 +83,13 @@ function copyLink() {
             Zurück zum Blog
           </UButton>
           <div class="flex justify-end items-center gap-1.5">
-            <UButton icon="i-ph-link-simple-duotone" v-bind="($ui.button.secondary as any)" @click="copyLink">
+            <UButton icon="i-ph-link-simple-duotone" variant="ghost" color="neutral" @click="copyLink">
               URL kopieren
             </UButton>
           </div>
         </div>
 
-        <hr v-if="surround?.length">
+        <USeparator v-if="surround?.length" />
 
         <UContentSurround :surround />
       </UPageBody>
@@ -91,8 +97,8 @@ function copyLink() {
       <template #right>
         <UContentToc :links="article?.body?.toc?.links ?? []" class="bg-transparent" title="Inhaltsverzeichnis">
           <template #bottom>
-            <UDivider v-if="article?.body?.toc?.links?.length" type="dashed" class="py-2 hidden lg:block" />
-            <UPageLinks title="Links" :links="links" class="hidden lg:block" />
+            <USeparator v-if="article?.body?.toc?.links?.length" type="dashed" class="py-2 hidden lg:block" />
+            <UPageLinks title="Links" :links="links" />
           </template>
         </UContentToc>
       </template>
