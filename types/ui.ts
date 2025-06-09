@@ -1,4 +1,3 @@
-import { avatar } from '#build/ui'
 import { z } from '@nuxt/content'
 
 const variantEnum = z.enum(['solid', 'outline', 'subtle', 'soft', 'ghost', 'link'])

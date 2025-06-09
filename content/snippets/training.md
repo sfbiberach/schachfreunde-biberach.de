@@ -4,8 +4,8 @@ Wir treffen uns jeden Freitag um 18:00 Uhr zum Jugendtraining in unserem Spiello
 
 ### Adresse
 
-Grundschule Biberach  
-Bibersteige 9  
-74078 Heilbronn-Biberach  
-2. Stock, Vereinseingang  
+Grundschule Biberach :br
+Bibersteige 9 :br
+74078 Heilbronn-Biberach :br
+2. Stock, Vereinseingang :br
 (neben Hallenbad)

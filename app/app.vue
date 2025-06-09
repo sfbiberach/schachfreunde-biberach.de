@@ -13,7 +13,7 @@ useHead({
   ],
   style: [
     { innerHTML: radius, id: 'nuxt-ui-radius', tagPriority: -2 },
-    { innerHTML: blackAsPrimary, id: 'nuxt-ui-black-as-primary', tagPriority: -2 }
+    { innerHTML: blackAsPrimary, id: 'nuxt-ui-black-as-primary', tagPriority: -2 },
   ],
   htmlAttrs: {
     lang: 'de',
@@ -34,8 +34,6 @@ const { data: navigation } = await useAsyncData('navigation', () => queryCollect
 const { data: files } = useLazyAsyncData('search', () => queryCollectionSearchSections('content'), {
   server: false,
 })
-
-
 
 // const [{ data: navigation }, { data: files }] = await Promise.all([
 //   useAsyncData('navigation', () => {

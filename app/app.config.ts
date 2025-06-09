@@ -186,7 +186,7 @@ export default defineAppConfig({
 
   theme: {
     radius: 0.2,
-    blackAsPrimary: false
+    blackAsPrimary: false,
   },
 
   ui: {
