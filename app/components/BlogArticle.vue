@@ -55,7 +55,7 @@ onMounted(() => {
       </UPageBody>
 
       <template #right>
-        <UContentToc :links="article?.body?.toc?.links ?? []" class="bg-transparent" title="Inhaltsverzeichnis">
+        <UContentToc :links="article?.body?.toc?.links" title="Inhaltsverzeichnis" :ui="{ container: article?.body?.toc?.links?.length ? '' : 'border-none p-0' }">
           <template #bottom>
             <USeparator v-if="article?.body?.toc?.links?.length" type="dashed" class="py-2 hidden lg:block" />
             <UPageLinks title="Links" :links="links" />
