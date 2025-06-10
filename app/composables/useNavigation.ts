@@ -1,4 +1,8 @@
+import { useAsyncData } from '#imports'
 import { createSharedComposable } from '@vueuse/core'
+import { useBlogList } from '~/composables/useBlogList'
+import { useTeams } from '~/composables/useTeams'
+import { useTournaments } from '~/composables/useTournaments'
 
 function _useHeaderLinks() {
   const appConfig = useAppConfig()
@@ -34,150 +38,100 @@ function _useFooterLinks() {
 export const useFooterLinks = import.meta.client ? createSharedComposable(_useFooterLinks) : _useFooterLinks
 
 function _useNavigation() {
-  // const nuxtApp = useNuxtApp()
   const searchTerm = ref<string>('')
 
   const { headerLinks } = useHeaderLinks()
   const { footerLinks } = useFooterLinks()
 
-  const searchLinks = computed(() => [
-    ...headerLinks.value.filter((link): link is NonNullable<typeof link> => Boolean(link)),
-    // {
-    //   label: 'Team',
-    //   icon: 'i-lucide-users',
-    //   to: '/team',
-    // },
-    // {
-    //   label: 'Design Kit',
-    //   icon: 'i-lucide-palette',
-    //   to: '/design-kit',
-    // },
-    // {
-    //   label: 'Newsletter',
-    //   icon: 'i-lucide-mail',
-    //   to: '/newsletter',
-    // },
+  // Teams
+  const { teams, fetchList: fetchTeams } = useTeams()
+  fetchTeams()
+
+  // Tournaments
+  const { tournaments, fetchList: fetchTournaments } = useTournaments()
+  fetchTournaments()
+
+  // Blog articles (published)
+  const { data: publishedArticles } = useBlogList({ itemsPerPage: 1000 })
+  // Blog articles (archived)
+  const { data: archivedArticles } = useAsyncData('archived-blogs', async () => {
+    // @ts-expect-error Nuxt Content auto-import
+    const articles = await queryContent('/blog').where({ status: 'archived', _extension: 'md' }).find()
+    return articles
+  })
+
+  // Footer links grouped
+  const groupedFooterLinks = computed(() =>
+    footerLinks.value.map(group => ({
+      label: group.label,
+      items: group.children?.map(child => ({
+        ...child,
+        id: `footer-${group.label}-${child.label}`,
+      })) || [],
+    })),
+  )
+
+  // Teams group
+  const teamsGroup = computed(() => ({
+    label: 'Mannschaften',
+    items: teams.value.map(team => ({
+      id: `team-${team.title}`,
+      label: team.title,
+      to: team.external ? team.link : team._path,
+      icon: 'i-ph-castle-turret-duotone',
+      target: team.external ? '_blank' : undefined,
+    })),
+  }))
+
+  // Tournaments group
+  const tournamentsGroup = computed(() => ({
+    label: 'Turniere',
+    items: tournaments.value.map(tournament => ({
+      id: `tournament-${tournament.title}`,
+      label: tournament.title,
+      to: tournament.external ? tournament.link : tournament._path,
+      icon: 'i-ph-trophy-duotone',
+      target: tournament.external ? '_blank' : undefined,
+    })),
+  }))
+
+  // Blog groups
+  const publishedBlogGroup = computed(() => ({
+    label: 'Aktuelle Beiträge',
+    items: (publishedArticles.value || []).map(article => ({
+      id: `blog-${article.title}`,
+      label: article.title,
+      to: article.path,
+      icon: 'i-ph-newspaper-duotone',
+      date: article.date,
+    })),
+  }))
+  const archivedBlogGroup = computed(() => ({
+    label: 'Archivierte Beiträge',
+    items: (archivedArticles.value || []).map((article: any) => ({
+      id: `archived-blog-${article.title}`,
+      label: article.title,
+      to: article.path,
+      icon: 'i-ph-archive-duotone',
+      date: article.date,
+    })),
+  }))
+
+  // Compose all groups for search
+  const searchGroups = computed(() => [
+    ...groupedFooterLinks.value,
+    teamsGroup.value,
+    tournamentsGroup.value,
+    publishedBlogGroup.value,
+    archivedBlogGroup.value,
+    // Theme group can be added here if needed
   ])
-
-  // interface SearchGroup {
-  //   id: string
-  //   label: string
-  //   icon?: string
-  //   items: Array<{
-  //     id: string
-  //     label: string
-  //     suffix?: string
-  //     icon?: string
-  //     avatar?: {
-  //       src?: string
-  //       ui?: {
-  //         root: string
-  //       }
-  //     }
-  //     to: string
-  //     onSelect?: () => Promise<void>
-  //   }>
-  // }
-
-  // const searchGroups = computed<SearchGroup[]>(() => {
-  //   const aiGroup: SearchGroup = {
-  //     id: 'ask-ai-search',
-  //     label: 'AI',
-  //     icon: 'i-lucide-wand',
-  //     items: [],
-  //   }
-
-  //   const modulesGroup: SearchGroup = {
-  //     id: 'modules-search',
-  //     label: 'Modules',
-  //     items: [],
-  //   }
-
-  //   const hostingGroup: SearchGroup = {
-  //     id: 'hosting-search',
-  //     label: 'Hosting',
-  //     items: [],
-  //   }
-
-  //   const groups = [aiGroup, modulesGroup, hostingGroup]
-
-  //   if (!searchTerm.value) {
-  //     return groups
-  //   }
-
-  //   aiGroup.items = [{
-  //     id: `ask-ai-${searchTerm.value}`,
-  //     label: `Ask AI about "${searchTerm.value}"`,
-  //     icon: 'i-lucide-wand',
-  //     to: 'javascript:void(0);',
-  //     onSelect() {
-  //       return nuxtApp.$kapa.openModal(searchTerm.value)
-  //     },
-  //   }]
-
-  //   const loadModules = async () => {
-  //     const { modules, fetchList } = useModules()
-  //     if (!modules.value.length) {
-  //       await fetchList()
-  //     }
-
-  //     modulesGroup.items = modules.value
-  //       .filter(module => ['name', 'npm', 'repo'].map(field => module[field as keyof typeof module]).filter(Boolean).some(value => typeof value === 'string' && value.search(searchTextRegExp(searchTerm.value)) !== -1))
-  //       .map(module => ({
-  //         id: `module-${module.name}`,
-  //         label: module.npm,
-  //         suffix: module.description,
-  //         avatar: {
-  //           src: moduleImage(module.icon),
-  //           ui: {
-  //             root: 'rounded-none bg-transparent',
-  //           },
-  //         },
-  //         to: `/modules/${module.name}`,
-  //       }))
-  //   }
-
-  //   const loadHosting = async () => {
-  //     const { providers, fetchList } = useHostingProviders()
-  //     if (!providers.value.length) {
-  //       await fetchList()
-  //     }
-
-  //     hostingGroup.items = providers.value
-  //       .filter(hosting => ['title'].map(field => hosting[field as keyof typeof hosting]).filter(Boolean).some(value => typeof value === 'string' && value.search(searchTextRegExp(searchTerm.value)) !== -1))
-  //       .map(hosting => ({
-  //         id: `hosting-${hosting.path}`,
-  //         label: hosting.title,
-  //         suffix: hosting.description,
-  //         icon: hosting.logoIcon,
-  //         avatar: hosting.logoSrc
-  //           ? {
-  //               src: hosting.logoSrc,
-  //               ui: {
-  //                 root: 'rounded-none bg-transparent',
-  //               },
-  //             }
-  //           : undefined,
-  //         to: hosting.path,
-  //       }))
-  //   }
-
-  //   onMounted(() => {
-  //     Promise.all([
-  //       loadModules(),
-  //       loadHosting(),
-  //     ]).catch(error => console.error('Error loading search results:', error))
-  //   })
-
-  //   return groups
-  // })
 
   return {
     searchTerm,
     headerLinks,
     footerLinks,
-    searchLinks,
-    // searchGroups,
+    searchLinks: searchGroups,
   }
 }
 
