@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import type { BadgeProps } from '#ui/types'
+import type { PageLink } from '@nuxt/ui-pro'
 import { BLOG_PATHS } from '~~/constants/blog'
 
 const props = defineProps<{
   path?: string
+  links?: PageLink[]
 }>()
 
 const appConfig = useAppConfig()
@@ -36,7 +38,6 @@ const badge = computed(() => {
   <UMain v-if="page" :ui="page.ui?.main" class="break-words">
     <UPageHero
       v-if="page.hero"
-      :as="page.hero.as"
       v-bind="page.hero"
     >
       <template #description>
@@ -87,18 +88,30 @@ const badge = computed(() => {
           </UButton>
         </div>
       </UPageHeader>
-      <!-- <UPageBody
-        :prose="page.layout?.prose !== false"
-        :class="page.ui?.body"
-      > -->
-      <slot />
-      <!-- </UPageBody> -->
 
-      <!-- Table of Contents -->
-      <template v-if="page.layout?.toc || $slots.right" #right>
-        <UContentToc :links="page.body?.toc?.links" :ui="page.ui?.toc" class="bg-transparent" title="Inhaltsverzeichnis" />
-        <slot name="right" />
-      </template>
+      <UPage>
+        <UPageBody
+          :prose="page.layout?.prose !== false"
+          :class="page.ui?.body"
+        >
+          <slot />
+        </UPageBody>
+
+        <!-- Table of Contents -->
+        <template v-if="page.layout?.toc !== false || $slots.right" #right>
+          <UContentToc
+            title="Inhaltsverzeichnis"
+            :links="page?.body?.toc?.links"
+            :ui="{ container: page?.body?.toc?.links?.length ? '' : 'border-none p-0!' }"
+          >
+            <template #bottom>
+              <USeparator v-if="page?.body?.toc?.links?.length" type="dashed" class="py-2 hidden lg:block" />
+              <UPageLinks title="Links" :links="props.links" />
+            </template>
+          </UContentToc>
+          <slot name="right" />
+        </template>
+      </UPage>
     </UContainer>
   </UMain>
 
