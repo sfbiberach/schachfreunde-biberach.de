@@ -266,3 +266,8 @@ export const blogSchema = contentSchema.extend({
   resolvedBadge: badgeSchema,
   resolvedAuthors: z.array(authorSchema).optional(),
 })
+
+export const teamSchema = createBaseSchema().extend({
+  location: z.string().optional(),
+  links,
+})

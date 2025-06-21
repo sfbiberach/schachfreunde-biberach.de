@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import type { Team } from '~/types'
-
 definePageMeta({
   heroBackground: 'opacity-50',
 })
+
 const route = useRoute()
 
-const { data: team } = await useAsyncData(route.path, () => queryContent<Team>(route.path).findOne())
+const { data: team } = await useTeam(route.path)
 if (!team.value) {
   throw createError({ statusCode: 404, statusMessage: 'Mannschaft nicht gefunden', fatal: true })
 }

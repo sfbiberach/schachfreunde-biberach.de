@@ -44,8 +44,7 @@ function _useNavigation() {
   const { footerLinks } = useFooterLinks()
 
   // Teams
-  const { teams, fetchList: fetchTeams } = useTeams()
-  fetchTeams()
+  const { data: teams } = useTeams()
 
   // Tournaments
   const { tournaments, fetchList: fetchTournaments } = useTournaments()
