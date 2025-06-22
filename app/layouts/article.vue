@@ -66,26 +66,8 @@ const badge = computed(() => {
             </time>
           </div>
         </template>
-        <div class="flex flex-wrap items-center gap-3 mt-4">
-          <UButton
-            v-for="(author, index) in authors"
-            :key="index"
-            :to="author.to"
-            target="_blank"
-            color="neutral"
-            variant="ghost"
-            class="-my-1.5 -mx-2.5"
-          >
-            <UAvatar v-bind="author?.avatar" :alt="author?.name" />
-            <div class="text-left">
-              <p class="font-medium">
-                {{ author?.name }}
-              </p>
-              <p v-if="author?.to" class="text-gray-500 dark:text-gray-400 leading-4">
-                {{ `@${author.to.split('/').filter(Boolean).pop()}` }}
-              </p>
-            </div>
-          </UButton>
+        <div class="mt-4 flex flex-wrap items-center gap-6">
+          <UUser v-for="(author, index) in authors" :key="index" v-bind="author" :description="author.to ? `@${author.to.split('/').pop()}` : undefined" />
         </div>
       </UPageHeader>
 
