@@ -59,9 +59,11 @@ const badge = computed(() => {
             :items="[{ label: 'Blog', icon: 'i-ph-newspaper-duotone', to: BLOG_PATHS.BASE }, { label: page.title }]"
           />
           <div class="flex items-center space-x-2">
-            <span>{{ badge.label }}</span>
-            <span class="text-gray-500 dark:text-gray-400">&middot;</span>
-            <time class="text-gray-500 dark:text-gray-400">
+            <template v-if="badge.label">
+              <span>{{ badge.label }}</span>
+              <span class="text-gray-500 dark:text-gray-400">&middot;</span>
+            </template>
+            <time v-if="page.date" class="text-gray-500 dark:text-gray-400">
               {{ new Date(page.date || 0).toLocaleDateString('de', { year: 'numeric', month: 'short', day: 'numeric' }) }}
             </time>
           </div>
