@@ -14,7 +14,7 @@ const { data: teams } = await useTeams()
         :key="index"
         v-bind="team"
         :to="team.path"
-        :spotlight="true"
+        variant="subtle"
         :ui="{
           title: 'text-lg',
           description: 'line-clamp-3',
