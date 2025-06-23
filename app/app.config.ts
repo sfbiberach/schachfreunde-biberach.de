@@ -33,6 +33,12 @@ export default defineAppConfig({
       ] as ButtonProps[],
     },
 
+    icons: {
+      article: 'i-ph-newspaper',
+      team: 'i-ph-castle-turret',
+      tournament: 'i-ph-trophy',
+    },
+
     links: {
       header: [
         {

@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import type { BadgeProps } from '#ui/types'
+import type { BreadcrumbItem } from '@nuxt/ui'
 import type { PageLink } from '@nuxt/ui-pro'
 import { BLOG_PATHS } from '~~/constants/blog'
 
 const props = defineProps<{
   path?: string
   links?: PageLink[]
+  breadcrumbs?: BreadcrumbItem[]
 }>()
 
 const appConfig = useAppConfig()
@@ -56,7 +58,10 @@ const badge = computed(() => {
         <template #headline>
           <UBreadcrumb
             :ui="{ root: 'max-w-full' }"
-            :items="[{ label: 'Blog', icon: 'i-ph-newspaper-duotone', to: BLOG_PATHS.BASE }, { label: page.title }]"
+            :items="props.breadcrumbs ?? [
+              { label: 'Blog', to: BLOG_PATHS.BASE, icon: appConfig.app.icons.article ?? 'i-lucide:newspaper' },
+              { label: page.title, to: page.path },
+            ]"
           />
           <div class="flex items-center space-x-2">
             <template v-if="badge.label">
