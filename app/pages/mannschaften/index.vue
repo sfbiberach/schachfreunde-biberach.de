@@ -12,9 +12,9 @@ const { data: teams } = await useTeams()
       <UPageCard
         v-for="(team, index) in teams"
         :key="index"
+        v-bind="team"
         :to="team.path"
-        :title="team.title"
-        :description="team.description"
+        :spotlight="true"
         :ui="{
           title: 'text-lg',
           description: 'line-clamp-3',
