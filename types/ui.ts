@@ -255,13 +255,13 @@ export const contentSchema = z.object({
   ui: contentUISchema,
 })
 
-export const blogSchema = contentSchema.extend({
+export const articleSchema = contentSchema.extend({
   status: z.enum(['draft', 'published', 'archived']).default('published'),
   image: z.string().editor({ input: 'media' }),
   authors: z.array(z.string()).optional(),
   date: z.string().date(),
   draft: z.boolean().optional(),
-  category: z.enum(['Jugend', 'Mannschaft', 'Verein']),
+  category: z.string().optional(),
   tags: z.array(z.string()),
   resolvedBadge: badgeSchema,
   resolvedAuthors: z.array(authorSchema).optional(),

@@ -14,7 +14,7 @@ const appConfig = useAppConfig()
 const route = useRoute()
 const path = computed(() => props.path || route.path)
 
-const { data: page } = await usePageContent({ path: path.value, collection: 'blog' })
+const { data: page } = await usePageContent({ path: path.value, collection: 'article' })
 const authors = await resolveAuthors(page.value?.authors || [])
 
 if (!page.value) {
