@@ -206,6 +206,12 @@ export default defineAppConfig({
   },
 
   uiPro: {
+    pageHero: {
+      slots: {
+        container: 'py-10 sm:py-20 lg:py-20',
+        title: 'sm:text-5xl',
+      },
+    },
     footer: {
       slots: {
         top: 'border-b border-default',
