@@ -268,6 +268,7 @@ export const articleSchema = contentSchema.extend({
 })
 
 export const teamSchema = createBaseSchema().extend({
+  icon,
   location: z.string().optional(),
   links,
 })
