@@ -1,3 +1,5 @@
+import type { CommandPaletteGroup } from '@nuxt/ui'
+import type { ContentSearchItem } from '@nuxt/ui-pro/runtime/components/content/ContentSearch.vue'
 import { createSharedComposable } from '@vueuse/core'
 
 function _useHeaderLinks() {
@@ -39,91 +41,19 @@ function _useNavigation() {
   const { headerLinks } = useHeaderLinks()
   const { footerLinks } = useFooterLinks()
 
-  // Teams
-  const { data: teams } = useTeams()
-
-  // Tournaments
-  const { data: tournaments } = useTournaments()
-
-  // Blog articles (published)
-  const { data: publishedArticles } = useBlogList({ itemsPerPage: 1000 })
-  // Blog articles (archived)
-  const { data: archivedArticles } = useAsyncData('archived-blogs', async () => {
-    // @ts-expect-error Nuxt Content auto-import
-    const articles = await queryContent('/blog').where({ status: 'archived', _extension: 'md' }).find()
-    return articles
-  })
-
-  // Footer links grouped
-  const groupedFooterLinks = computed(() =>
+  const groups = computed<CommandPaletteGroup<ContentSearchItem>[]>(() =>
     footerLinks.value.map(group => ({
+      id: group.label,
       label: group.label,
-      items: group.children?.map(child => ({
-        ...child,
-        id: `footer-${group.label}-${child.label}`,
-      })) || [],
+      items: group.children || [],
     })),
   )
-
-  // Teams group
-  const teamsGroup = computed(() => ({
-    label: 'Mannschaften',
-    items: teams.value?.map(team => ({
-      id: `team-${team.title}`,
-      label: team.title,
-      to: team.path,
-      icon: 'i-ph-castle-turret-duotone',
-    })),
-  }))
-
-  // Tournaments group
-  const tournamentsGroup = computed(() => ({
-    label: 'Turniere',
-    items: tournaments.value?.map(tournament => ({
-      id: `tournament-${tournament.title}`,
-      label: tournament.title,
-      to: tournament.path,
-      icon: 'i-ph-trophy-duotone',
-    })),
-  }))
-
-  // Blog groups
-  const publishedBlogGroup = computed(() => ({
-    label: 'Aktuelle Beiträge',
-    items: (publishedArticles.value || []).map(article => ({
-      id: `blog-${article.title}`,
-      label: article.title,
-      to: article.path,
-      icon: 'i-ph-newspaper-duotone',
-      date: article.date,
-    })),
-  }))
-  const archivedBlogGroup = computed(() => ({
-    label: 'Archivierte Beiträge',
-    items: (archivedArticles.value || []).map((article: any) => ({
-      id: `archived-blog-${article.title}`,
-      label: article.title,
-      to: article.path,
-      icon: 'i-ph-archive-duotone',
-      date: article.date,
-    })),
-  }))
-
-  // Compose all groups for search
-  const searchGroups = computed(() => [
-    ...groupedFooterLinks.value,
-    teamsGroup.value,
-    tournamentsGroup.value,
-    publishedBlogGroup.value,
-    archivedBlogGroup.value,
-    // Theme group can be added here if needed
-  ])
 
   return {
     searchTerm,
     headerLinks,
     footerLinks,
-    searchLinks: searchGroups,
+    groups,
   }
 }
 

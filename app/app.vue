@@ -28,48 +28,18 @@ useSeoMeta({
   robots: 'index, follow',
 })
 
-const { searchLinks, searchTerm } = useNavigation()
+const { searchTerm, groups } = useNavigation()
 
-const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('content'))
-const { data: files } = useLazyAsyncData('search', () => queryCollectionSearchSections('content'), {
-  server: false,
-})
+const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('article'))
+const { data: teamFiles } = useLazyAsyncData('search:team', () => queryCollectionSearchSections('team'), { server: false })
+const { data: tournamentFiles } = useLazyAsyncData('search:tournament', () => queryCollectionSearchSections('tournament'), { server: false })
+const { data: blogFiles } = useLazyAsyncData('search:blog', () => queryCollectionSearchSections('blog').where('status', '=', 'published'), { server: false, transform: data => data.toReversed() })
 
-// const [{ data: navigation }, { data: files }] = await Promise.all([
-//   useAsyncData('navigation', () => {
-//     return Promise.all([
-//       queryCollectionNavigation('blog'),
-//     ])
-//   }, {
-//     transform: data => data.flat(),
-//   }),
-//   useLazyAsyncData('search', () => {
-//     return Promise.all([
-//       queryCollectionSearchSections('blog'),
-//     ])
-//   }, {
-//     server: false,
-//     transform: data => data.flat(),
-//   }),
-// ])
-
-// const links = config.links?.footer?.flatMap(({ label, children }) => ({
-//   label,
-//   children: children.map(({ label, to, icon }: { label: string, to: string, icon: string }) => ({
-//     label,
-//     to,
-//     icon,
-//   })),
-// }))
-
-// const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation(queryContent('blog')), {
-//   default: () => [],
-// })
-
-// const { data: files } = useLazyFetch<ParsedContent[]>('/api/blog.json', { default: () => [], server: false })
-
-// provide('navigation', navigation)
-// provide('files', files)
+const files = computed(() => [
+  ...(teamFiles.value || []),
+  ...(tournamentFiles.value || []),
+  ...(blogFiles.value || []),
+])
 </script>
 
 <template>
@@ -81,7 +51,7 @@ const { data: files } = useLazyAsyncData('search', () => queryCollectionSearchSe
         v-model:search-term="searchTerm"
         :files="files"
         :navigation="navigation"
-        :links="searchLinks"
+        :groups="groups"
         :fuse="{ resultLimit: 42 }"
       />
     </ClientOnly>
