@@ -1,5 +1,5 @@
 import { defineCollection, defineContentConfig, z } from '@nuxt/content'
-import { articleSchema, cardSchema, contentSchema, pageSectionSchema, teamSchema, userSchema } from './types'
+import { articleSchema, cardSchema, contentSchema, pageSectionSchema, teamSchema, tournamentSchema, userSchema } from './types'
 
 export default defineContentConfig({
   collections: {
@@ -39,6 +39,11 @@ export default defineContentConfig({
       type: 'page',
       source: 'mannschaften/**/*.{md,yaml}',
       schema: teamSchema,
+    }),
+    tournament: defineCollection({
+      type: 'page',
+      source: 'turniere/**/*.{md,yaml}',
+      schema: tournamentSchema,
     }),
   },
 })

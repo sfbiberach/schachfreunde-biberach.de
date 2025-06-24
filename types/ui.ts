@@ -273,3 +273,11 @@ export const teamSchema = createBaseSchema().extend({
   location: z.string().optional(),
   links,
 })
+
+export const tournamentSchema = createBaseSchema().extend({
+  icon,
+  location: z.string().optional(),
+  links,
+  date,
+  resolvedBadge: badgeSchema.optional(),
+})
