@@ -64,7 +64,7 @@ const badge = computed(() => {
             ]"
           />
           <div class="flex items-center space-x-2">
-            <template v-if="badge.label">
+            <template v-if="badge?.label">
               <span>{{ badge.label }}</span>
               <span class="text-gray-500 dark:text-gray-400">&middot;</span>
             </template>
