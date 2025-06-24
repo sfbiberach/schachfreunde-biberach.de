@@ -5,13 +5,13 @@ export default defineNuxtConfig({
   ],
 
   modules: [
+    '@nuxtjs/seo',
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/ui-pro',
     '@nuxt/content',
     // '@nuxthub/core',
     '@vite-pwa/nuxt',
-    'nuxt-og-image',
   ],
 
   devtools: { enabled: true },
