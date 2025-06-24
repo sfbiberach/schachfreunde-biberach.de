@@ -15,7 +15,7 @@ if (!team.value) {
 <template>
   <NuxtLayout
     name="article" :breadcrumbs="[
-      { label: 'Teams', to: '/mannschaften', icon: appConfig.app.icons.team },
+      { label: 'Mannschaften', to: '/mannschaften', icon: appConfig.app.icons.team },
       { label: team?.title, to: team?.path },
     ]"
   >
