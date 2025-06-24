@@ -108,7 +108,7 @@ useHead({
           :to="article.path"
           :title="article.title"
           :description="article.description"
-          :date="new Date(article.date).toLocaleDateString('de', { year: 'numeric', month: 'short', day: 'numeric' })"
+          :date="formatDate(article.date)"
           :badge="article.resolvedBadge"
           :authors="(article.resolvedAuthors || []).map(author => ({ ...author, target: '_blank' }))"
           variant="subtle"
