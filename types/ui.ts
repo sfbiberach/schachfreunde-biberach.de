@@ -261,7 +261,6 @@ export const articleSchema = contentSchema.extend({
   image: z.string().editor({ input: 'media' }),
   authors: z.array(z.string()).optional(),
   date,
-  draft: z.boolean().optional(),
   category: z.string().optional(),
   tags: z.array(z.string()),
   resolvedBadge: badgeSchema,
