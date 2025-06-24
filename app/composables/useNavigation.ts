@@ -1,8 +1,4 @@
-import { useAsyncData } from '#imports'
 import { createSharedComposable } from '@vueuse/core'
-import { useBlogList } from '~/composables/useBlogList'
-import { useTeams } from '~/composables/useTeams'
-import { useTournaments } from '~/composables/useTournaments'
 
 function _useHeaderLinks() {
   const appConfig = useAppConfig()
@@ -47,8 +43,7 @@ function _useNavigation() {
   const { data: teams } = useTeams()
 
   // Tournaments
-  const { tournaments, fetchList: fetchTournaments } = useTournaments()
-  fetchTournaments()
+  const { data: tournaments } = useTournaments()
 
   // Blog articles (published)
   const { data: publishedArticles } = useBlogList({ itemsPerPage: 1000 })
@@ -73,24 +68,22 @@ function _useNavigation() {
   // Teams group
   const teamsGroup = computed(() => ({
     label: 'Mannschaften',
-    items: teams.value.map(team => ({
+    items: teams.value?.map(team => ({
       id: `team-${team.title}`,
       label: team.title,
-      to: team.external ? team.link : team._path,
+      to: team.path,
       icon: 'i-ph-castle-turret-duotone',
-      target: team.external ? '_blank' : undefined,
     })),
   }))
 
   // Tournaments group
   const tournamentsGroup = computed(() => ({
     label: 'Turniere',
-    items: tournaments.value.map(tournament => ({
+    items: tournaments.value?.map(tournament => ({
       id: `tournament-${tournament.title}`,
       label: tournament.title,
-      to: tournament.external ? tournament.link : tournament._path,
+      to: tournament.path,
       icon: 'i-ph-trophy-duotone',
-      target: tournament.external ? '_blank' : undefined,
     })),
   }))
 
