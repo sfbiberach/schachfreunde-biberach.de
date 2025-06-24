@@ -94,7 +94,7 @@ const badge = computed(() => {
             :links="page?.body?.toc?.links"
             :ui="{ container: page?.body?.toc?.links?.length ? '' : 'border-none p-0!' }"
           >
-            <template #bottom>
+            <template v-if="props.links" #bottom>
               <USeparator v-if="page?.body?.toc?.links?.length" type="dashed" class="py-2 hidden lg:block" />
               <UPageLinks v-if="props.links" title="Links" :links="props.links" />
             </template>
