@@ -1,6 +1,6 @@
 export function useTeams() {
   return useAsyncData(
-    'teams',
+    'team',
     () => queryCollection('team').all(),
   )
 }

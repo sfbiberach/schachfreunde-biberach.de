@@ -1,6 +1,6 @@
 export function useTeam(path: string) {
   return useAsyncData(
-    `teams:${path}`,
+    `team:${path}`,
     () => queryCollection('team').path(path).first(),
   )
 }
