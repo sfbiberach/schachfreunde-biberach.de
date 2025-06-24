@@ -38,6 +38,7 @@ const square = z.boolean().optional()
 const leading = z.boolean().optional()
 const leadingIcon = z.string().optional()
 const trailingIcon = z.string().optional()
+const date = z.union([z.string().date(), z.array(z.string().date())]).optional()
 
 function createBaseSchema() {
   return z.object({
@@ -259,7 +260,7 @@ export const articleSchema = contentSchema.extend({
   status: z.enum(['draft', 'published', 'archived']).default('published'),
   image: z.string().editor({ input: 'media' }),
   authors: z.array(z.string()).optional(),
-  date: z.string().date(),
+  date,
   draft: z.boolean().optional(),
   category: z.string().optional(),
   tags: z.array(z.string()),
