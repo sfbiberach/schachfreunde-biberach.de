@@ -21,7 +21,7 @@ const { data: tournaments } = await useTournaments()
         }"
       >
         <template v-if="tournament?.date" #footer>
-          <UBadge :label="toArray(tournament?.date).map(d => formatDate(d)).join(' - ')" color="neutral" variant="subtle" />
+          <UBadge :label="[tournament?.date, tournament?.dateEnd].filter(Boolean).map(d => formatDate(d)).join(' - ')" color="neutral" variant="subtle" />
         </template>
       </UPageCard>
     </UPageGrid>

@@ -69,7 +69,7 @@ const badge = computed(() => {
               <span class="text-gray-500 dark:text-gray-400">&middot;</span>
             </template>
             <time v-if="page.date" class="text-gray-500 dark:text-gray-400">
-              {{ toArray(page?.date).map(d => formatDate(d)).join(' - ') }}
+              {{ [page?.date, page?.dateEnd].filter(Boolean).map(d => formatDate(d)).join(' - ') }}
             </time>
           </div>
         </template>
