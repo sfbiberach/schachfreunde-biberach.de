@@ -106,7 +106,7 @@ function closeImage() {
         <!-- <div class="flex absolute top-2 right-2">
           <UButton
             variant="ghost"
-            color="gray"
+            color="neutral"
             size="xl"
             class="flex mr-4 transition-colors duration-200"
             aria-label="Close"
@@ -126,7 +126,7 @@ function closeImage() {
           >
             <UButton
               variant="ghost"
-              color="gray"
+              color="neutral"
               size="lg"
               icon="i-heroicons-chevron-left"
               class="hidden md:flex ml-4"
@@ -143,7 +143,7 @@ function closeImage() {
             >
               <UButton
                 size="xl"
-                color="gray"
+                color="neutral"
                 variant="ghost"
                 class="hidden md:flex ml-4 transition-colors duration-200"
                 aria-label="Back to gallery"
@@ -179,11 +179,10 @@ function closeImage() {
           >
             <UButton
               variant="ghost"
-              color="gray"
+              color="neutral"
               size="lg"
               icon="i-heroicons-chevron-right"
-              :ui="{ rounded: 'rounded-full' }"
-              class="hidden md:flex mr-4"
+              class="hidden md:flex mr-4 rounded-full"
               aria-label="Go to next image"
               @click="openImage(currentIndex + 1)"
             />
@@ -198,7 +197,7 @@ function closeImage() {
             <div class="flex">
               <UButton
                 variant="ghost"
-                color="gray"
+                color="neutral"
                 size="xl"
                 class="back hidden md:flex mr-4 transition-colors duration-200"
                 aria-label="Back to gallery"
