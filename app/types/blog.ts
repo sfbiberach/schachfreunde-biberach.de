@@ -1,17 +1,5 @@
-import type { Avatar, Badge, Link } from '#ui/types'
-import type { ParsedContent } from '@nuxt/content'
+import type { BadgeProps } from '#ui/types'
 
-export type Author = Pick<ParsedContent, 'name' | 'title' | 'to' | 'avatar'>
-
-export interface BlogArticle extends ParsedContent {
-  title: string
-  description: string
-  date: string
-  image?: HTMLImageElement
-  category?: Badge
-  authors?: ({
-    name: string
-    description?: string
-    avatar?: Avatar
-  } & Link)[]
+export interface CategoriesMap {
+  [category: string]: BadgeProps
 }
