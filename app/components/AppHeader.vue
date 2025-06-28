@@ -18,12 +18,8 @@ const heroBackgroundClass = computed(() => route.meta?.heroBackground || 'opacit
     <UNavigationMenu :items variant="link" :ui="{ linkLeadingIcon: 'hidden' }" />
 
     <template #right>
-      <UTooltip :text="$colorMode.preference === 'dark' ? 'Zu hellem Modus wechseln' : 'Zu dunklem Modus wechseln'" :popper="{ strategy: 'absolute' }">
-        <UColorModeButton />
-      </UTooltip>
-      <UTooltip text="Suche" :kbds="['meta', 'K']" :popper="{ strategy: 'absolute' }">
-        <UContentSearchButton label="" />
-      </UTooltip>
+      <UColorModeButton />
+      <UContentSearchButton :tooltip="{ text: 'Suche', kbds: ['meta', 'K'], content: { align: 'center', side: 'bottom' } }" />
     </template>
 
     <template #body>
