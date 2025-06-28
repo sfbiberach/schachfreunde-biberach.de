@@ -16,14 +16,9 @@ const { data: surround } = await useAsyncData(
 
 const badge = resolveBadge(article.value?.category ?? '')
 
-const links = [
-  {
-    icon: 'i-ph-pen-duotone',
-    label: 'Artikel bearbeiten',
-    to: `https://github.com/sfbiberach/schachfreunde-biberach.de/edit/main/content/${article.value?.path}`,
-    target: '_blank',
-  },
-]
+const editLink = computed(() => {
+  return `https://github.com/sfbiberach/schachfreunde-biberach.de/edit/main/content/${article.value?.stem}.md`
+})
 
 function copyLink() {
   copy(`${url.origin}${article.value?.path}`, { title: 'Link in Zwischenablage kopiert', icon: 'i-lucide-copy-check' })
@@ -35,7 +30,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <NuxtLayout name="article" :links>
+  <NuxtLayout name="article">
     <ContentRenderer v-if="article?.body" :value="article" />
 
     <div class="flex items-center justify-between mt-12 not-prose">
@@ -49,7 +44,34 @@ onMounted(() => {
       </div>
     </div>
 
-    <USeparator v-if="surround?.length" />
+    <USeparator>
+      <div
+        v-if="editLink"
+        class="flex items-center gap-2 text-sm text-muted"
+      >
+        <UButton
+          variant="link"
+          color="neutral"
+          :to="editLink"
+          target="_blank"
+          icon="i-lucide-pen"
+          :ui="{ leadingIcon: 'size-4' }"
+        >
+          Artikel bearbeiten
+        </UButton>
+        oder
+        <UButton
+          variant="link"
+          color="neutral"
+          to="https://github.com/sfbiberach/schachfreunde-biberach.de/issues/new/choose"
+          target="_blank"
+          icon="i-ph-warning-circle"
+          :ui="{ leadingIcon: 'size-4' }"
+        >
+          Fehler melden
+        </UButton>
+      </div>
+    </USeparator>
 
     <UContentSurround :surround />
   </NuxtLayout>
