@@ -64,7 +64,7 @@ function closeImage() {
         @click="openImage(index)"
       />
     </div>
-    <UModal v-model="isOpen" :ui="{ base: '!bg-transparent', width: 'sm:max-w-[unset] sm:max-w-content' }" fullscreen>
+    <UModal :open="isOpen" :ui="{ content: '!bg-transparent', wrapper: 'sm:max-w-[unset] sm:max-w-content' }" fullscreen>
       <!-- background -->
       <div class="absolute inset-0 w-full h-full z-[-1] opacity-50">
         <img
@@ -75,14 +75,9 @@ function closeImage() {
       </div>
       <UCard
         :ui="{
-          base: 'h-full flex flex-col !bg-transparent',
-          divide: 'divide-y divide-transparent dark:divide-transparent',
-          header: {
-            padding: 'px-0',
-          },
-          body: {
-            base: 'relative grow flex flex-col justify-center',
-          },
+          root: 'h-full flex flex-col !bg-transparent',
+          header: 'px-0',
+          body: 'relative grow flex flex-col justify-center',
         }"
       >
         <!-- card header -->
@@ -106,7 +101,7 @@ function closeImage() {
         <!-- <div class="flex absolute top-2 right-2">
           <UButton
             variant="ghost"
-            color="gray"
+            color="neutral"
             size="xl"
             class="flex mr-4 transition-colors duration-200"
             aria-label="Close"
@@ -126,7 +121,7 @@ function closeImage() {
           >
             <UButton
               variant="ghost"
-              color="gray"
+              color="neutral"
               size="lg"
               icon="i-heroicons-chevron-left"
               class="hidden md:flex ml-4"
@@ -143,7 +138,7 @@ function closeImage() {
             >
               <UButton
                 size="xl"
-                color="gray"
+                color="neutral"
                 variant="ghost"
                 class="hidden md:flex ml-4 transition-colors duration-200"
                 aria-label="Back to gallery"
@@ -179,11 +174,10 @@ function closeImage() {
           >
             <UButton
               variant="ghost"
-              color="gray"
+              color="neutral"
               size="lg"
               icon="i-heroicons-chevron-right"
-              :ui="{ rounded: 'rounded-full' }"
-              class="hidden md:flex mr-4"
+              class="hidden md:flex mr-4 rounded-full"
               aria-label="Go to next image"
               @click="openImage(currentIndex + 1)"
             />
@@ -198,7 +192,7 @@ function closeImage() {
             <div class="flex">
               <UButton
                 variant="ghost"
-                color="gray"
+                color="neutral"
                 size="xl"
                 class="back hidden md:flex mr-4 transition-colors duration-200"
                 aria-label="Back to gallery"

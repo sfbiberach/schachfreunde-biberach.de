@@ -1,29 +1,37 @@
 export default defineNuxtConfig({
 
   extends: [
-    '@nuxt/ui-pro',
     'github:happydesigns/ui-base',
   ],
 
   modules: [
-    '@nuxt/content',
+    '@nuxtjs/seo',
     '@nuxt/eslint',
-    '@nuxt/fonts',
     '@nuxt/image',
-    '@nuxt/ui',
-    '@nuxthq/studio',
+    '@nuxt/ui-pro',
+    '@nuxt/content',
     // '@nuxthub/core',
     '@vite-pwa/nuxt',
-    'nuxt-og-image',
   ],
 
   devtools: { enabled: true },
-  content: {
-    documentDriven: true,
-  },
+
+  css: ['~/assets/css/main.css'],
 
   ui: {
-    safelistColors: ['blue', 'green', 'orange'],
+    theme: {
+      colors: [
+        'primary',
+        'secondary',
+        'info',
+        'success',
+        'warning',
+        'error',
+        'jugend',
+        'mannschaft',
+        'verein',
+      ],
+    },
   },
 
   routeRules: {
@@ -47,6 +55,7 @@ export default defineNuxtConfig({
 
   nitro: {
     prerender: {
+      autoSubfolderIndex: false,
       failOnError: false,
     },
   },
@@ -56,6 +65,17 @@ export default defineNuxtConfig({
       stylistic: true,
       standalone: false,
     },
+  },
+
+  fonts: {
+    experimental: {
+      processCSSVariables: true,
+    },
+  },
+
+  image: {
+    quality: 80,
+    format: ['avif', 'webp', 'jpg'],
   },
 
   pwa: {

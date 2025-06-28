@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import type { Badge } from '#ui/types'
-import type { BlogArticle } from '~/types'
-import { defu } from 'defu'
+import type { BadgeProps } from '#ui/types'
 import { BLOG_PATHS } from '~~/constants/blog'
-import { usePrimaryColor } from '~/composables/ui'
 
 const props = defineProps<{
   category?: { label: string, color: string }
@@ -11,16 +8,16 @@ const props = defineProps<{
 }>()
 
 const labelAll = 'Alle'
-const pageCount = 12
+const itemsPerPage = 12
 
 const appConfig = useAppConfig()
-const { data: content } = await useAsyncData(BLOG_PATHS.BASE, () => queryContent(BLOG_PATHS.BASE).findOne())
+const { data: content } = await usePageContent({ path: '/blog' })
 
 const page = ref(1)
 const active = useState()
 
 const categories = [
-  { label: labelAll, color: 'gray' },
+  { label: labelAll },
   ...Object.values(appConfig.app.blog.categories),
 ].map((category, index) => ({
   ...category,
@@ -36,15 +33,17 @@ const categoriesWithActive = computed(() =>
 
 const color = computed(() => props.category?.color)
 
-const { data: articles } = await useFetch<BlogArticle[]>('/api/blog.json', {
-  default: () => [],
-})
+const { data: articles } = await useBlogList({ categoriesMap: appConfig.app.blog.categories as Record<string, BadgeProps> })
 
-const categoryArticles = computed(() => articles.value?.filter(article => props.category ? props.category.label === article.category : true))
+const categoryArticles = computed(() =>
+  Array.isArray(articles.value)
+    ? articles.value.filter(article => props.category ? props.category.label === article.category : true)
+    : [],
+)
 
 const pageArticles = computed(() => {
-  const start = (page.value - 1) * pageCount
-  const end = start + pageCount
+  const start = (page.value - 1) * itemsPerPage
+  const end = start + itemsPerPage
   return categoryArticles.value?.slice(start, end)
 })
 
@@ -76,10 +75,6 @@ function updatePageFromQuery() {
   page.value = Math.max(props.page, 1)
 }
 
-function getBadgeProps(badge: keyof typeof appConfig.app.blog.categories | Badge) {
-  return defu(badge, appConfig.app.blog.categories[badge as keyof typeof appConfig.app.blog.categories] as Badge)
-}
-
 useHead({
   link: [
     {
@@ -90,47 +85,37 @@ useHead({
     },
   ],
 })
-
-// useSeoMeta({
-//   title: page.value.title,
-//   ogTitle: page.value.title,
-//   description: page.value.description,
-//   ogDescription: page.value.description,
-// })
-
-// defineOgImage({
-//   component: 'Saas',
-//   title: page.value.title,
-//   description: page.value.description,
-// })
 </script>
 
 <template>
-  <NuxtLayout v-bind="content">
+  <NuxtLayout name="content" path="/blog">
     <template #description>
-      <UButton :to="`${BLOG_PATHS.BASE}/rss.xml`" color="gray" external icon="i-ph-rss" size="2xs" target="_blank" class="mt-4 group-hover:text-blue-400 group-hover:text-green-500">
+      <p class="mb-8">
+        {{ content?.description }}
+      </p>
+      <UButton :to="`${BLOG_PATHS.BASE}/rss.xml`" color="neutral" variant="subtle" external icon="i-lucide-rss" size="xs" target="_blank">
         RSS
       </UButton>
     </template>
-    <div v-if="articles" class="flex flex-col gap-8">
+    <div class="flex flex-col gap-8">
       <div class="flex justify-between flex-wrap gap-4">
-        <UHorizontalNavigation :links="categoriesWithActive" class="w-auto" />
+        <UNavigationMenu :items="categoriesWithActive" :highlight="true" />
       </div>
-      <UBlogList>
+      <UBlogPosts v-if="articles">
         <UBlogPost
           v-for="(article, index) in pageArticles"
           :key="index"
-          :to="article._path"
+          :to="article.path"
           :title="article.title"
           :description="article.description"
-          :date="new Date(article.date).toLocaleDateString('de', { year: 'numeric', month: 'short', day: 'numeric' })"
-          :authors="article.authors"
-          :badge="getBadgeProps(article.category)"
-          :orientation="index === 0 ? 'horizontal' : 'vertical'"
+          :date="formatDate(article.date)"
+          :badge="article.resolvedBadge"
+          :authors="(article.resolvedAuthors || []).map(author => ({ ...author, target: '_blank' }))"
+          variant="subtle"
           :class="[{ active: active === index }, index === -1 && 'col-span-full']"
           :ui="{
             title: 'post-title line-clamp-2 whitespace-normal',
-            description: 'post-description line-clamp-2',
+            description: 'post-description line-clamp-3',
           }"
           @click="active = index"
         >
@@ -140,9 +125,9 @@ useHead({
             </time>
           </template>
         </UBlogPost>
-      </UBlogList>
+      </UBlogPosts>
       <div class="w-full flex justify-center mt-4">
-        <UPagination v-model="page" :page-count="pageCount" :total="categoryArticles.length" />
+        <UPagination v-model:page="page" :items-per-page="itemsPerPage" :total="categoryArticles?.length" />
       </div>
     </div>
   </NuxtLayout>

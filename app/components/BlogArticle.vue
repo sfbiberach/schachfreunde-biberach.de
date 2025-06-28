@@ -1,97 +1,57 @@
 <script setup lang="ts">
-import type { BlogArticle } from '~/types'
-import { withoutTrailingSlash } from 'ufo'
 import { BLOG_PATHS } from '~~/constants/blog'
-import { useAuthors } from '~/composables/blog/useAuthors'
 
-const route = useRoute()
 const url = useRequestURL()
-const { copy } = useCopyToClipboard()
-const { data: article } = await useAsyncData(route.path, () => queryContent<BlogArticle>(route.path).findOne())
+const { copy } = useClipboard()
+const route = useRoute()
 
-if (!article.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Artikel nicht gefunden' })
-}
+const { data: article } = await useBlogArticle({ slug: route.params.slug as string })
 
-const { data: surround } = await useAsyncData(`${route.path}.surround`, () => queryContent(BLOG_PATHS.ARTICLES)
-  .where({ _extension: 'md' })
-  .without(['body', 'excerpt'])
-  .sort({ date: -1 })
-  .findSurround(withoutTrailingSlash(route.path)), { default: () => [] })
+const { data: surround } = await useAsyncData(
+  `${route.path}-surround`,
+  () => queryCollectionItemSurroundings('blog', route.path, { fields: ['description'] })
+    .where('status', '=', 'published')
+    .order('date', 'DESC'),
+)
 
-const title = article.value.head?.title || article.value.title
-const description = article.value.head?.description || article.value.description
-const { authors } = await useAuthors(article.value.authors)
+const badge = resolveBadge(article.value?.category ?? '')
 
 const links = [
   {
     icon: 'i-ph-pen-duotone',
     label: 'Artikel bearbeiten',
-    to: `https://github.com/sfbiberach/schachfreunde-biberach.de/edit/main/content/${article.value._file}`,
+    to: `https://github.com/sfbiberach/schachfreunde-biberach.de/edit/main/content/${article.value?.path}`,
     target: '_blank',
   },
 ]
 
-useSeoMeta({
-  title,
-  ogTitle: title,
-  description,
-  ogDescription: description,
-})
-
-// if (post.value.image?.src) {
-//   const site = useSiteConfig()
-
-//   useSeoMeta({
-//     ogImage: joinURL(site.url, post.value.image.src),
-//     twitterImage: joinURL(site.url, post.value.image.src),
-//   })
-// }
-// else {
-//   defineOgImage({
-//     component: 'Saas',
-//     title,
-//     description,
-//     headline: 'Blog',
-//   })
-// }
-
 function copyLink() {
-  copy(`${url.origin}${article.value?._path}`, { title: 'In die Zwischenablage kopiert' })
+  copy(`${url.origin}${article.value?.path}`, { title: 'Link in Zwischenablage kopiert', icon: 'i-lucide-copy-check' })
 }
+
+onMounted(() => {
+  usePrimaryColor(badge.color)
+})
 </script>
 
 <template>
-  <NuxtLayout name="article" :container="true" :authors>
-    <UPage v-if="article">
-      <UPageBody prose>
-        <ContentRenderer v-if="article?.body" :value="article" />
+  <NuxtLayout name="article" :links>
+    <ContentRenderer v-if="article?.body" :value="article" />
 
-        <div class="flex items-center justify-between mt-12 not-prose">
-          <UButton icon="i-ph-arrow-left" color="primary" variant="ghost" :to="BLOG_PATHS.BASE">
-            Zurück zum Blog
-          </UButton>
-          <div class="flex justify-end items-center gap-1.5">
-            <UButton icon="i-ph-link-simple-duotone" v-bind="($ui.button.secondary as any)" @click="copyLink">
-              URL kopieren
-            </UButton>
-          </div>
-        </div>
+    <div class="flex items-center justify-between mt-12 not-prose">
+      <UButton icon="i-ph-arrow-left" color="primary" variant="ghost" :to="BLOG_PATHS.BASE">
+        Zurück zum Blog
+      </UButton>
+      <div class="flex justify-end items-center gap-1.5">
+        <UButton icon="i-ph-link-simple-duotone" variant="ghost" color="neutral" @click="copyLink">
+          URL kopieren
+        </UButton>
+      </div>
+    </div>
 
-        <hr v-if="surround?.length">
+    <USeparator v-if="surround?.length" />
 
-        <UContentSurround :surround />
-      </UPageBody>
-
-      <template #right>
-        <UContentToc :links="article?.body?.toc?.links ?? []" class="bg-transparent" title="Inhaltsverzeichnis">
-          <template #bottom>
-            <UDivider v-if="article?.body?.toc?.links?.length" type="dashed" class="py-2 hidden lg:block" />
-            <UPageLinks title="Links" :links="links" class="hidden lg:block" />
-          </template>
-        </UContentToc>
-      </template>
-    </UPage>
+    <UContentSurround :surround />
   </NuxtLayout>
 </template>
 

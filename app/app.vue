@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { ParsedContent } from '@nuxt/content'
+const appConfig = useAppConfig()
 
-const route = useRoute()
-const heroBackgroundClass = computed(() => route.meta?.heroBackground || 'opacity-30')
+const radius = computed(() => `:root { --ui-radius: ${appConfig.theme.radius}rem; }`)
+const blackAsPrimary = computed(() => appConfig.theme.blackAsPrimary ? `:root { --ui-primary: black; } .dark { --ui-primary: white; }` : ':root {}')
 
 useHead({
   title: 'Schachfreunde Heilbronn-Biberach 1978 e. V.',
@@ -10,6 +10,10 @@ useHead({
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
     { name: 'theme-color', content: '#171717' },
+  ],
+  style: [
+    { innerHTML: radius, id: 'nuxt-ui-radius', tagPriority: -2 },
+    { innerHTML: blackAsPrimary, id: 'nuxt-ui-black-as-primary', tagPriority: -2 },
   ],
   htmlAttrs: {
     lang: 'de',
@@ -24,50 +28,40 @@ useSeoMeta({
   robots: 'index, follow',
 })
 
-const config = useAppConfig()
-const links = config.links?.footer?.flatMap(({ label, children }) => ({
-  label,
-  children: children.map(({ label, to, icon }: { label: string, to: string, icon: string }) => ({
-    label,
-    to,
-    icon,
-  })),
-}))
+const { searchTerm, groups } = useNavigation()
 
-const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation(queryContent('blog')), {
-  default: () => [],
-})
+const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('article'))
+const { data: teamFiles } = useLazyAsyncData('search:team', () => queryCollectionSearchSections('team'), { server: false })
+const { data: tournamentFiles } = useLazyAsyncData('search:tournament', () => queryCollectionSearchSections('tournament'), { server: false })
+const { data: blogFiles } = useLazyAsyncData('search:blog', () => queryCollectionSearchSections('blog').where('status', '=', 'published'), { server: false, transform: data => data.toReversed() })
 
-const { data: files } = useLazyFetch<ParsedContent[]>('/api/blog.json', { default: () => [], server: false })
-
-provide('navigation', navigation)
-provide('files', files)
+const files = computed(() => [
+  ...(teamFiles.value || []),
+  ...(tournamentFiles.value || []),
+  ...(blogFiles.value || []),
+])
 </script>
 
 <template>
-  <div>
-    <AppHeader />
-    <HeroBackground
-      class="absolute w-full top-[1px] transition-all text-primary flex-shrink-0 duration-[400ms]"
-      :class="[heroBackgroundClass]"
-    />
+  <UApp>
     <NuxtPage />
-    <AppFooter />
 
     <ClientOnly>
-      <LazyUContentSearch :files :links :navigation />
+      <LazyUContentSearch
+        v-model:search-term="searchTerm"
+        :files="files"
+        :navigation="navigation"
+        :groups="groups"
+        :fuse="{ resultLimit: 42 }"
+      />
     </ClientOnly>
     <NuxtPwaAssets />
-  </div>
+  </UApp>
 </template>
 
 <style>
 h1, h2, h3, h4, h5, h6 {
-  @apply font-serif;
-}
-
-.prose img {
-  @apply rounded-md;
+  font-family: var(--font-serif);
 }
 
 /* ::view-transition-old(root) {

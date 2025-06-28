@@ -1,0 +1,5 @@
+title: Mannschaften
+description: Hier findest du unsere Mannschaften und ihre aktuellen Ranglisten und Ergebnisse.
+layout:
+  metadataComponent: hero
+  prose: false
