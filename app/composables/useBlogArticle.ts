@@ -1,3 +1,5 @@
+import type { CategoriesMap } from '~/types'
+
 export interface UseBlogArticleParams {
   slug: string
   categoriesMap?: CategoriesMap

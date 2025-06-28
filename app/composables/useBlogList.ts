@@ -1,3 +1,5 @@
+import type { CategoriesMap } from '~/types'
+
 export interface UseBlogParams {
   page?: number
   itemsPerPage?: number
