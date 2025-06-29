@@ -1,5 +1,6 @@
 import type { CollectionQueryBuilder, Collections } from '@nuxt/content'
 import type { H3Event } from 'h3'
+import process from 'node:process'
 import { queryCollection } from '#imports'
 import { Feed } from 'feed'
 import { joinURL } from 'ufo'
@@ -7,9 +8,7 @@ import { joinURL } from 'ufo'
 type queryCollectionWithEvent = <T extends keyof Collections>(event: H3Event, collection: T) => CollectionQueryBuilder<Collections[T]>
 
 export default defineEventHandler(async (event) => {
-  const protocol = getRequestProtocol(event)
-  const host = getRequestHost(event)
-  const baseUrl = `${protocol}://${host}`
+  const baseUrl = process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000'
   const siteUrl = joinURL(baseUrl, 'blog')
   const feed = new Feed({
     title: 'Schachfreunde Heilbronn-Biberach Blog',
