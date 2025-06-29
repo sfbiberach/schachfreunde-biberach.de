@@ -55,6 +55,7 @@ export default defineNuxtConfig({
       autoSubfolderIndex: false,
       failOnError: false,
     },
+    preset: 'cloudflare_module',
     cloudflare: {
       deployConfig: true,
       nodeCompat: true,
