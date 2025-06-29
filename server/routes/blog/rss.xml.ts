@@ -8,7 +8,7 @@ import { joinURL } from 'ufo'
 type queryCollectionWithEvent = <T extends keyof Collections>(event: H3Event, collection: T) => CollectionQueryBuilder<Collections[T]>
 
 export default defineEventHandler(async (event) => {
-  const baseUrl = process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  const baseUrl = process.env.NUXT_SITE_URL || 'http://localhost:3000'
   const siteUrl = joinURL(baseUrl, 'blog')
   const feed = new Feed({
     title: 'Schachfreunde Heilbronn-Biberach Blog',
