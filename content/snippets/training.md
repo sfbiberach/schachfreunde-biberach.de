@@ -1,4 +1,4 @@
-### Wöchentliches Trainingszeiten
+### Wöchentliche Trainingszeiten
 
 Wir treffen uns jeden Freitag um 18:00 Uhr zum Jugendtraining in unserem Spiellokal. Anschließend findet um 20:15 Uhr das Erwachsenentraining statt. Schau doch gerne mal vorbei, eine Voranmeldung ist nicht nötig!
 
