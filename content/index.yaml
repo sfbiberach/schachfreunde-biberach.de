@@ -31,7 +31,7 @@ cards:
     spotlight: true
   - title: Biber-Jugend-Cup
     description: Kinder- und Jugendturnier am 22. März 2025 mit über 200 Teilnehmern und 13 Jahren Tradition.
-    to: https://www.findchessgames.com/index-0134,224,1036-turniere_anzeigen.html
+    to: /turniere/biber-jugend-cup
     target: _blank
     icon: i-ph-castle-turret-duotone
     spotlight: true
