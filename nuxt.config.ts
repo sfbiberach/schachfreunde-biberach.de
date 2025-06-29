@@ -35,10 +35,8 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/blog/rss.xml': { prerender: true },
     '/': { prerender: true },
-    '/blog': { prerender: true },
-    '/blog/**': { prerender: true },
+    '/blog/rss.xml': { prerender: true },
   },
 
   future: {
@@ -53,6 +51,7 @@ export default defineNuxtConfig({
 
   nitro: {
     prerender: {
+      crawlLinks: true,
       autoSubfolderIndex: false,
       failOnError: false,
     },
