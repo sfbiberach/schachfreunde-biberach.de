@@ -55,10 +55,6 @@ export default defineNuxtConfig({
       autoSubfolderIndex: false,
       failOnError: false,
     },
-    cloudflare: {
-      deployConfig: true,
-      nodeCompat: true,
-    },
   },
 
   eslint: {
