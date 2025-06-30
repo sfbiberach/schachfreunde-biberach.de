@@ -1,4 +1,5 @@
 import { defineCollection, defineContentConfig, z } from '@nuxt/content'
+import { asSitemapCollection } from '@nuxtjs/sitemap/content'
 import { articleSchema, cardSchema, contentSchema, pageSectionSchema, teamSchema, tournamentSchema, userSchema } from './types'
 
 export default defineContentConfig({
@@ -15,11 +16,16 @@ export default defineContentConfig({
       type: 'page',
       source: 'snippets/**/*.{md,yaml}',
     }),
-    content: defineCollection({
-      type: 'page',
-      source: '**/*.{md,yaml}',
-      schema: contentSchema,
-    }),
+    content: defineCollection(
+      asSitemapCollection({
+        type: 'page',
+        source: {
+          include: '**/*.{md,yaml}',
+          exclude: ['snippets/**', 'users/**'],
+        },
+        schema: contentSchema,
+      }),
+    ),
     user: defineCollection({
       type: 'data',
       source: 'users/**/*.{md,yaml}',
