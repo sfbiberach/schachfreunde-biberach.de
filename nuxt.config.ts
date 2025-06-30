@@ -54,6 +54,7 @@ export default defineNuxtConfig({
       crawlLinks: true,
       autoSubfolderIndex: false,
       failOnError: false,
+      routes: ['/sitemap.xml'],
     },
     preset: 'cloudflare_module',
     cloudflare: {
