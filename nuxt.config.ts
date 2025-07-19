@@ -45,15 +45,11 @@ export default defineNuxtConfig({
     '/blog/rss.xml': { prerender: true },
   },
 
-  future: {
-    compatibilityVersion: 4,
-  },
-
   experimental: {
     viewTransition: true,
   },
 
-  compatibilityDate: '2025-06-29',
+  compatibilityDate: 'latest',
 
   nitro: {
     prerender: {
