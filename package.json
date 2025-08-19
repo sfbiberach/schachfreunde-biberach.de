@@ -36,7 +36,7 @@
     "@vite-pwa/assets-generator": "^1.0.0",
     "@vite-pwa/nuxt": "^1.0.4",
     "eslint": "^9.33.0",
-    "nuxt": "^4.0.3",
+    "nuxt": "4.0.0",
     "nuxt-og-image": "^5.1.9",
     "typescript": "^5.9.2",
     "wrangler": "^4.28.1"
