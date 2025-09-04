@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import type { BadgeProps } from '#ui/types'
-import type { BreadcrumbItem } from '@nuxt/ui'
+import type { BadgeProps, BreadcrumbItem } from '#ui/types'
 import type { PageLink } from '@nuxt/ui-pro'
 import { BLOG_PATHS } from '~~/constants/blog'
 
@@ -49,7 +48,7 @@ const badge = computed(() => {
       </template>
     </UPageHero>
 
-    <UContainer :ui="{ ...page.ui?.container }" :class="[containerClass]">
+    <UContainer :ui="page?.ui?.container ?? {}" :class="[containerClass]">
       <UPageHeader
         v-if="page.header"
         v-bind="page.header"
