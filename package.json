@@ -24,6 +24,7 @@
     "@nuxtjs/seo": "^3.2.2",
     "@vueuse/core": "^13.9.0",
     "@vueuse/nuxt": "^13.9.0",
+    "better-sqlite3": "^12.4.1",
     "feed": "^5.1.0"
   },
   "devDependencies": {
@@ -41,10 +42,5 @@
     "nuxt-og-image": "^5.1.11",
     "typescript": "^5.9.2",
     "wrangler": "^4.39.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "vite": "npm:rolldown-vite@latest"
-    }
   }
 }
