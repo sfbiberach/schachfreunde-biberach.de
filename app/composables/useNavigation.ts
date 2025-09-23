@@ -1,5 +1,5 @@
 import type { CommandPaletteGroup } from '@nuxt/ui'
-import type { ContentSearchItem } from '@nuxt/ui-pro/runtime/components/content/ContentSearch.vue'
+import type { ContentSearchItem } from '@nuxt/ui/runtime/types/content.js'
 import { createSharedComposable } from '@vueuse/core'
 
 function _useHeaderLinks() {

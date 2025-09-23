@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { BadgeProps, BreadcrumbItem } from '#ui/types'
-import type { PageLink } from '@nuxt/ui-pro'
+import type { PageLink } from '@nuxt/ui'
 import { BLOG_PATHS } from '~~/constants/blog'
 
 const props = defineProps<{

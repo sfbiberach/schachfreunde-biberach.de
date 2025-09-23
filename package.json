@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@10.15.1",
+  "packageManager": "pnpm@10.17.1",
   "scripts": {
     "dev": "nuxt dev",
     "build": "cross-env NODE_OPTIONS='--max-old-space-size=4096' nuxt build",
@@ -16,31 +16,31 @@
   },
   "dependencies": {
     "@iconify-json/fa6-solid": "^1.2.4",
-    "@iconify-json/heroicons": "^1.2.2",
+    "@iconify-json/heroicons": "^1.2.3",
     "@iconify-json/ph": "^1.2.2",
-    "@iconify-json/simple-icons": "^1.2.50",
-    "@nuxt/content": "^3.6.3",
-    "@nuxt/ui-pro": "^3.3.3",
-    "@nuxtjs/seo": "^3.1.0",
+    "@iconify-json/simple-icons": "^1.2.53",
+    "@nuxt/content": "^3.7.1",
+    "@nuxt/ui": "^4.0.0",
+    "@nuxtjs/seo": "^3.2.2",
     "@vueuse/core": "^13.9.0",
     "@vueuse/nuxt": "^13.9.0",
     "feed": "^5.1.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^5.2.2",
-    "@iconify-json/lucide": "^1.2.66",
+    "@antfu/eslint-config": "^5.4.1",
+    "@iconify-json/lucide": "^1.2.68",
     "@nuxt/eslint": "^1.9.0",
     "@nuxt/image": "^1.11.0",
     "@nuxthub/core": "^0.9.0",
-    "@types/node": "^24.3.1",
-    "@vite-pwa/assets-generator": "^1.0.0",
+    "@types/node": "^24.5.2",
+    "@vite-pwa/assets-generator": "^1.0.1",
     "@vite-pwa/nuxt": "^1.0.4",
     "cross-env": "^10.0.0",
-    "eslint": "^9.34.0",
-    "nuxt": "^4.1.0",
-    "nuxt-og-image": "^5.1.9",
+    "eslint": "^9.36.0",
+    "nuxt": "^4.1.2",
+    "nuxt-og-image": "^5.1.11",
     "typescript": "^5.9.2",
-    "wrangler": "^4.34.0"
+    "wrangler": "^4.39.0"
   },
   "pnpm": {
     "overrides": {
