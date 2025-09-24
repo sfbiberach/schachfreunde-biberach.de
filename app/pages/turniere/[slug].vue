@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { BadgeProps } from '#ui/types'
+
 definePageMeta({
   heroBackground: 'opacity-50',
 })
@@ -6,10 +8,40 @@ definePageMeta({
 const route = useRoute()
 const appConfig = useAppConfig()
 
+const tournamentSlug = computed(() => {
+  const param = route.params.slug
+  if (Array.isArray(param)) {
+    return param[0]
+  }
+  return param
+})
+
+const categoriesMap = appConfig.app.blog?.categories as Record<string, BadgeProps> | undefined
+
 const { data: tournament } = await useTournament(route.path)
 if (!tournament.value) {
   throw createError({ statusCode: 404, statusMessage: 'Turnier nicht gefunden', fatal: true })
 }
+
+const { data: articles } = await useAsyncData(
+  () => `tournament-articles:${tournamentSlug.value ?? ''}`,
+  async () => {
+    if (!tournamentSlug.value) {
+      return []
+    }
+    const items = await queryCollection('blog')
+      .where('status', '=', 'published')
+      .where('tournament', '=', tournamentSlug.value)
+      .order('date', 'DESC')
+      .all()
+    await resolveBlogAuthors(items)
+    resolveBlogBadge(items, categoriesMap)
+    return items
+  },
+  { watch: [tournamentSlug] },
+)
+
+const tournamentArticles = computed(() => Array.isArray(articles.value) ? articles.value : [])
 </script>
 
 <template>
@@ -20,6 +52,32 @@ if (!tournament.value) {
     ]"
   >
     <ContentRenderer v-if="tournament?.body" :value="tournament" />
+
+    <section v-if="tournamentArticles.length" class="mt-12 space-y-6">
+      <ProseH2>
+        Turnierberichte
+      </ProseH2>
+      <UBlogPosts>
+        <UBlogPost
+          v-for="article in tournamentArticles"
+          :key="article._id ?? article.path"
+          :to="article.path"
+          :title="article.title"
+          :description="article.description"
+          :date="formatDate(article.date)"
+          :badge="article.resolvedBadge"
+          :authors="(article.resolvedAuthors || []).map(author => ({ ...author, target: '_blank' }))"
+          variant="subtle"
+          :ui="{ title: 'post-title line-clamp-2 whitespace-normal', description: 'post-description line-clamp-3' }"
+        >
+          <template #date>
+            <time v-if="article.date" :datetime="new Date(article.date).toISOString()" class="text-sm text-gray-500 dark:text-gray-400 font-medium pointer-events-none">
+              {{ new Date(article.date).toLocaleDateString('de', { year: 'numeric', month: 'short', day: 'numeric' }) }}
+            </time>
+          </template>
+        </UBlogPost>
+      </UBlogPosts>
+    </section>
 
     <template #header>
       <div class="mt-4 flex flex-wrap items-center gap-2">
@@ -41,24 +99,6 @@ if (!tournament.value) {
 
           <span v-if="index < (tournament?.links?.length ?? 0)" class="hidden lg:block text-muted">&bull;</span>
         </template>
-
-        <!-- <span v-if="team?.x" class="hidden lg:block text-gray-500 dark:text-gray-400">&bull;</span>
-        <NuxtLink v-if="team?.x" :to="`https://x.com/${team.x}`" target="_blank" class="flex items-center gap-1.5 hover:text-primary">
-          <UIcon name="i-simple-icons-x" class="w-5 h-5" />
-          <span class="text-sm font-medium">{{ team.x }}</span>
-        </NuxtLink>
-
-        <span v-if="team?.instagram" class="hidden lg:block text-gray-500 dark:text-gray-400">&bull;</span>
-        <NuxtLink v-if="team?.instagram" :to="`https://instagram.com/${team?.instagram}`" target="_blank" class="flex items-center gap-1.5 hover:text-primary">
-          <UIcon name="i-simple-icons-instagram" class="w-5 h-5" />
-          <span class="text-sm font-medium">{{ team.instagram }}</span>
-        </NuxtLink>
-
-        <span v-if="team?.link" class="hidden lg:block text-gray-500 dark:text-gray-400">&bull;</span>
-        <NuxtLink v-if="team?.link" :to="team.link" target="_blank" class="flex items-center gap-1.5 hover:text-primary">
-          <UIcon name="i-ph-link" class="w-5 h-5" />
-          <span class="text-sm font-medium">Website</span>
-        </NuxtLink> -->
       </div>
     </template>
   </NuxtLayout>

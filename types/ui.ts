@@ -263,6 +263,7 @@ export const articleSchema = contentSchema.extend({
   date,
   dateEnd: date,
   category: z.string().optional(),
+  tournament: z.string().optional(),
   tags: z.array(z.string()),
   resolvedBadge: badgeSchema,
   resolvedAuthors: z.array(authorSchema).optional(),

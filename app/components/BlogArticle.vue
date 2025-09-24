@@ -15,6 +15,29 @@ const { data: surround } = await useAsyncData(
 )
 
 const badge = resolveBadge(article.value?.category ?? '')
+const tournamentSlug = computed(() => article.value?.tournament ?? '')
+
+const { data: tournamentData } = await useAsyncData(
+  () => `article-tournament:${tournamentSlug.value ?? ''}`,
+  async () => {
+    if (!tournamentSlug.value) {
+      return null
+    }
+    return queryCollection('tournament')
+      .path(`/turniere/${tournamentSlug.value}`)
+      .first()
+  },
+  { watch: [tournamentSlug] },
+)
+
+const tournamentTitle = computed(() => tournamentData.value?.title ?? 'Turnierseite')
+
+const tournamentLink = computed(() => {
+  if (!tournamentSlug.value) {
+    return undefined
+  }
+  return `/turniere/${tournamentSlug.value}`
+})
 
 const editLink = computed(() => {
   return `https://github.com/sfbiberach/schachfreunde-biberach.de/edit/main/content/${article.value?.stem}.md`
@@ -32,6 +55,19 @@ onMounted(() => {
 <template>
   <NuxtLayout name="article">
     <ContentRenderer v-if="article?.body" :value="article" />
+
+    <template #header>
+      <div v-if="tournamentLink" class="ml-auto flex">
+        <UButton
+          :to="tournamentLink"
+          icon="i-ph-trophy"
+          variant="solid"
+          color="neutral"
+        >
+          {{ tournamentTitle }}
+        </UButton>
+      </div>
+    </template>
 
     <div class="flex items-center justify-between mt-12 not-prose">
       <UButton icon="i-ph-arrow-left" color="primary" variant="ghost" :to="BLOG_PATHS.BASE">
