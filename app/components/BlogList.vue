@@ -14,7 +14,6 @@ const appConfig = useAppConfig()
 const { data: content } = await usePageContent({ path: '/blog' })
 
 const page = ref(1)
-const active = useState()
 
 const categories = [
   { label: labelAll },
@@ -23,13 +22,6 @@ const categories = [
   ...category,
   to: index === 0 ? BLOG_PATHS.BASE : `${BLOG_PATHS.BASE}/${category.label.toLocaleLowerCase()}`,
 }))
-
-const categoriesWithActive = computed(() =>
-  categories.map(category => ({
-    ...category,
-    active: category.label.toLocaleLowerCase() === (props.category?.label ? props.category.label : labelAll).toLocaleLowerCase(),
-  })),
-)
 
 const color = computed(() => props.category?.color)
 
@@ -99,7 +91,7 @@ useHead({
     </template>
     <div class="flex flex-col gap-8">
       <div class="flex justify-between flex-wrap gap-4">
-        <UNavigationMenu :items="categoriesWithActive" :highlight="true" />
+        <UNavigationMenu :items="categories" :highlight="true" />
       </div>
       <UBlogPosts v-if="articles">
         <UBlogPost
@@ -112,12 +104,10 @@ useHead({
           :badge="article.resolvedBadge"
           :authors="(article.resolvedAuthors || []).map(author => ({ ...author, target: '_blank' }))"
           variant="subtle"
-          :class="[{ active: active === index }, index === -1 && 'col-span-full']"
           :ui="{
             title: 'post-title line-clamp-2 whitespace-normal',
             description: 'post-description line-clamp-3',
           }"
-          @click="active = index"
         >
           <template #date>
             <time v-if="article.date" :datetime="new Date(article.date).toISOString()" class="text-sm text-gray-500 dark:text-gray-400 font-medium pointer-events-none">
