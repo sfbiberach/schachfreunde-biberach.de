@@ -203,9 +203,6 @@ export default defineAppConfig({
       mannschaft: 'green',
       verein: 'blue',
     },
-  },
-
-  uiPro: {
     pageHero: {
       slots: {
         container: 'py-10 sm:py-20 lg:py-20',

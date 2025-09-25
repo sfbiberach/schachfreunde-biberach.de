@@ -71,6 +71,13 @@ function updatePageFromQuery() {
   page.value = Math.max(props.page, 1)
 }
 
+function normalizeBadge(badge: unknown): string | BadgeProps | undefined {
+  if (!badge) {
+    return undefined
+  }
+  return badge as BadgeProps
+}
+
 useHead({
   link: [
     {
@@ -105,7 +112,7 @@ useHead({
           :title="article.title"
           :description="article.description"
           :date="formatDate(article.date)"
-          :badge="article.resolvedBadge"
+          :badge="(article.resolvedBadge)"
           :authors="(article.resolvedAuthors || []).map(author => ({ ...author, target: '_blank' }))"
           variant="subtle"
           :ui="{
