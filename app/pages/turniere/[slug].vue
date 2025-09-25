@@ -41,7 +41,9 @@ const { data: articles } = await useAsyncData(
   { watch: [tournamentSlug] },
 )
 
-const tournamentArticles = computed(() => Array.isArray(articles.value) ? articles.value : [])
+const tournamentArticles = computed(() =>
+  Array.isArray(articles.value) ? articles.value : [],
+)
 </script>
 
 <template>
@@ -60,7 +62,7 @@ const tournamentArticles = computed(() => Array.isArray(articles.value) ? articl
       <UBlogPosts>
         <UBlogPost
           v-for="article in tournamentArticles"
-          :key="article._id ?? article.path"
+          :key="article.id ?? article.path"
           :to="article.path"
           :title="article.title"
           :description="article.description"

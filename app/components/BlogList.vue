@@ -27,16 +27,20 @@ const color = computed(() => props.category?.color)
 
 const { data: articles } = await useBlogList({ categoriesMap: appConfig.app.blog.categories as Record<string, BadgeProps> })
 
-const categoryArticles = computed(() =>
-  Array.isArray(articles.value)
-    ? articles.value.filter(article => props.category ? props.category.label === article.category : true)
-    : [],
-)
+const categoryArticles = computed(() => {
+  const allArticles = articles.value ?? []
+
+  if (!props.category) {
+    return allArticles
+  }
+
+  return allArticles.filter(article => article.category === props.category?.label)
+})
 
 const pageArticles = computed(() => {
   const start = (page.value - 1) * itemsPerPage
   const end = start + itemsPerPage
-  return categoryArticles.value?.slice(start, end)
+  return categoryArticles.value.slice(start, end)
 })
 
 watchEffect(() => {
@@ -117,7 +121,7 @@ useHead({
         </UBlogPost>
       </UBlogPosts>
       <div class="w-full flex justify-center mt-4">
-        <UPagination v-model:page="page" :items-per-page="itemsPerPage" :total="categoryArticles?.length" />
+        <UPagination v-model:page="page" :items-per-page="itemsPerPage" :total="categoryArticles.length" />
       </div>
     </div>
   </NuxtLayout>
