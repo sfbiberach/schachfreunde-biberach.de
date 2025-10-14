@@ -1,7 +1,7 @@
 ---
 title: SF HN-Biberach 3 - SK Schwäbisch Hall 3
 description: 2. Spieltag zu Hause in der Kreisklasse Unterland Nord
-date: 2025-09-25T00:00:00.000Z
+date: 2025-10-12T00:00:00.000Z
 category: Mannschaft
 authors:
   - Dimitrios Triantafillidis
