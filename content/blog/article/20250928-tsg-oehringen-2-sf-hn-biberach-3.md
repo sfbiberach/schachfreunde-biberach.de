@@ -1,7 +1,7 @@
 ---
 title: TSG Öhringen 2 - SF HN-Biberach 3
 description: 1. Spieltag auswärts in der Kreisklasse Unterland Nord
-date: 2025-09-25T00:00:00.000Z
+date: 2025-09-28T00:00:00.000Z
 category: Mannschaft
 authors:
   - Dimitrios Triantafillidis
