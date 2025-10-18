@@ -9,6 +9,15 @@ const images = [
   { class: 'col-span-3 col-start-2 row-start-2', src: '/assets/home/landing-section-1.jpg' },
   { class: 'col-span-3 col-start-3 row-start-1', src: '/assets/home/landing-section-2.jpg' },
 ]
+
+const calendarBase = 'https://calendar.google.com/calendar/embed?src=sf.hnbiberach%40gmail.com&mode=AGENDA&showTitle=0&showDate=0&showNav=0&showPrint=0&showTabs=0&showCalendars=0'
+
+const calendarBuster = ref('')
+onMounted(() => {
+  calendarBuster.value = new Date().toISOString()
+})
+
+const calendarSrc = computed(() => `${calendarBase}&cachebust=${encodeURIComponent(calendarBuster.value)}`)
 </script>
 
 <template>
@@ -54,7 +63,12 @@ const images = [
           <Snippet path="/snippets/training" />
         </div>
       </template>
-      <iframe class="rounded-sm w-full h-full min-h-[384px]" scrolling="yes" src="https://calendar.google.com/calendar/embed?src=sf.hnbiberach%40gmail.com&amp;mode=AGENDA&amp;showTitle=0&amp;showDate=0&amp;showNav=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0" />
+      <iframe
+        class="rounded-sm w-full h-full min-h-[384px]"
+        scrolling="yes"
+        loading="lazy"
+        :src="calendarSrc"
+      />
     </UPageSection>
 
     <UPageSection>
