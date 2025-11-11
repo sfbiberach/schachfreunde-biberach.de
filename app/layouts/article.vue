@@ -36,7 +36,7 @@ const badge = computed(() => {
   <!-- eslint-disable vue/no-multiple-template-root -->
   <AppHeader />
 
-  <UMain v-if="page" :ui="page.ui?.main" class="break-words">
+  <UMain v-if="page" :ui="page.ui?.main" class="wrap-break-word">
     <UPageHero
       v-if="page.hero"
       v-bind="page.hero"

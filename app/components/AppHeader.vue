@@ -28,7 +28,7 @@ const heroBackgroundClass = computed(() => route.meta?.heroBackground || 'opacit
   </UHeader>
 
   <HeroBackground
-    class="absolute w-full top-[0px] transition-all text-primary flex-shrink-0 duration-[400ms]"
+    class="absolute w-full top-0 transition-all text-primary shrink-0 duration-400"
     :class="[heroBackgroundClass]"
   />
 </template>

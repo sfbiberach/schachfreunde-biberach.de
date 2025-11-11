@@ -6,7 +6,7 @@ const seeds = useState('chessboard-seeds', () =>
 <template>
   <Transition appear name="fade">
     <div class="absolute inset-x-0 top-0 w-full max-h-192 overflow-visible fade-out-bottom">
-      <div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 grid-rows-8 w-full max-h-full aspect-[4/8] md:aspect-[6/8] lg:aspect-square">
+      <div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 grid-rows-8 w-full max-h-full aspect-4/8 md:aspect-6/8 lg:aspect-square">
         <template v-for="rowIndex in 8" :key="`row-${rowIndex}`">
           <template v-for="colIndex in 8" :key="`cell-${rowIndex}-${colIndex}`">
             <div
