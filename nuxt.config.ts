@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/ui',
     '@nuxt/content',
+    'nuxt-studio',
     // '@nuxthub/core',
     '@vite-pwa/nuxt',
   ],
@@ -118,6 +119,15 @@ export default defineNuxtConfig({
     registerType: 'autoUpdate',
     devOptions: {
       enabled: false,
+    },
+  },
+
+  studio: {
+    repository: {
+      provider: 'github',
+      owner: 'sfbiberach',
+      repo: 'schachfreunde-biberach.de',
+      branch: 'main',
     },
   },
 })
