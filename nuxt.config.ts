@@ -19,12 +19,6 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
-  content: {
-    preview: {
-      api: 'https://api.schachfreunde-biberach.de',
-    },
-  },
-
   ui: {
     theme: {
       colors: [
