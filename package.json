@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@10.21.0",
+  "packageManager": "pnpm@10.22.0",
   "scripts": {
     "dev": "nuxt dev",
     "build": "cross-env NODE_OPTIONS='--max-old-space-size=4096' nuxt build",
@@ -20,7 +20,7 @@
     "@iconify-json/lucide": "^1.2.73",
     "@iconify-json/ph": "^1.2.2",
     "@iconify-json/simple-icons": "^1.2.58",
-    "@nuxt/content": "^3.8.0",
+    "@nuxt/content": "^3.8.2",
     "@nuxt/image": "^2.0.0",
     "@nuxt/ui": "^4.1.0",
     "@nuxtjs/seo": "^3.2.2",
@@ -35,7 +35,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^6.2.0",
     "@nuxt/eslint": "^1.10.0",
-    "@types/node": "^24.10.0",
+    "@types/node": "^24.10.1",
     "@vite-pwa/assets-generator": "^1.0.2",
     "cross-env": "^10.1.0",
     "eslint": "^9.39.1",
