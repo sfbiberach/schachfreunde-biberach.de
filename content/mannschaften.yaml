@@ -3,3 +3,5 @@ description: Hier findest du unsere Mannschaften und ihre aktuellen Ranglisten u
 layout:
   metadataComponent: hero
   prose: false
+sitemap:
+  loc: /mannschaften

@@ -1,11 +1,12 @@
-title: Schachfreunde Heilbronn-Biberach 1978 e. V.
-titleTemplate: '%s'
-
+title: Home
 hero:
   title: Herzlich Willkommen
   description: bei den <b>Schachfreunden Heilbronn-Biberach 1978 e.&nbsp;V.</b>&nbsp; <br class="hidden xl:block">Wir sind ein junger, dynamischer Verein aus Baden-Württemberg.
   orientation: horizontal
-  ui: {container: 'py-16', features: {description: 'whitespace-pre-line'}}
+  ui:
+    container: py-16
+    features:
+      description: whitespace-pre-line
   features:
     - title: Erfolgreiche Jugendarbeit
       description: In den letzten 9 Jahren haben wir an 10 Deutschen Vereinsmeisterschaften (DVM) teilgenommen.
@@ -21,7 +22,6 @@ hero:
       to: /#training
       icon: i-ph-arrow-bend-right-down-duotone
       color: gray
-
 cards:
   - title: Internationale Unterländer Schachtage
     description: Offenes Turnier vom 31. Juli – 3. August 2025 mit Preisgeldern von über 5.000 €.
@@ -39,3 +39,5 @@ cards:
     to: /#training
     icon: i-ph-books-duotone
     spotlight: true
+sitemap:
+  loc: /

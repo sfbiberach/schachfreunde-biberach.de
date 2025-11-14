@@ -3,6 +3,8 @@ title: Impressum
 description: Kontaktdaten und rechtliche Informationen des Webseitenbetreibers.
 layout:
   toc: true
+sitemap:
+  loc: /impressum
 ---
 
 ### Anschrift des Vereins

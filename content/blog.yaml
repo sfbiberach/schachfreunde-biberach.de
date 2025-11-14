@@ -3,3 +3,5 @@ description: Hier findest du die neuesten Mannschafts- und Turnierberichte.
 layout:
   metadataComponent: hero
   prose: false
+sitemap:
+  loc: /blog
