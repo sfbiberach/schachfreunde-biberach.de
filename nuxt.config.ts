@@ -114,6 +114,12 @@ export default defineNuxtConfig({
     devOptions: {
       enabled: false,
     },
+    client: {
+      registerPlugin: false,
+    },
+    workbox: {
+      globIgnores: ['**/_worker.js/**/*'],
+    },
   },
 
   studio: {
