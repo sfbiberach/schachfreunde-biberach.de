@@ -11,7 +11,6 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxt/content',
     'nuxt-studio',
-    // '@nuxthub/core',
     '@vite-pwa/nuxt',
   ],
 
