@@ -1,0 +1,53 @@
+---
+title: Großer Schachtag am Bildungscampus
+description: Heilbronner Teams mit beeindruckenden Leistungen
+date: 2025-11-16T00:00:00.000Z
+category: Mannschaften
+authors:
+  - Hubert Warsitz
+---
+
+Am Sonntag, den 16. November 2025, wurden im Gebäude N des Bildungscampus Heilbronn die dritten Runden der Baden-Württemberg-Liga und der Oberliga Württemberg ausgetragen – und die Heilbronner Mannschaften sorgten erneut für starke Auftritte und spannende Momente.
+
+### Baden-Württemberg-Liga: Heilbronner Schachverein 1 marschiert weiter Richtung 2. Bundesliga
+
+Der Heilbronner Schachverein 1 setzte seinen beeindruckenden Lauf in der Baden-Württemberg-Liga fort und machte einen weiteren Schritt in Richtung Aufstieg in die 2. Bundesliga. Gegen den Reisepartner SK Schmiden/Cannstatt ließen die Heilbronner nichts anbrennen und feierten einen klaren 6,5:1,5-Erfolg.
+
+Mit einem Schweizer Internationalen Meister am Spitzenbrett und sechs Fidemeistern in der Aufstellung dominierte Heilbronn das Geschehen an fast allen Brettern. Nur an Brett zwei ging eine Partie verloren, ein weiteres Brett endete remis – die übrigen sechs Spiele entschieden die Heilbronner souverän für sich.
+
+Mit diesem deutlichen Sieg verteidigt der Heilbronner Schachverein die Tabellenführung mit 19,5 Brettpunkten – vor Untergrombach und Baden-Baden III. Der Aufstiegstraum bleibt damit greifbar.
+
+### Oberliga Württemberg: Schachfreunde Heilbronn-Biberach schlagen Favoriten im Lokalderby
+
+Für das Highlight des Tages sorgte jedoch die Oberliga-Begegnung: Das Heilbronner Lokalderby zwischen den Schachfreunden Heilbronn-Biberach und dem Heilbronner Schachverein 2.
+
+Der Heilbronner SV 2 galt als klarer Favorit – DWZ-stärker besetzt, seit Juni 2023 ohne Niederlage und im Vorjahr noch mit einem deutlichen 6,5:1,5 gegen die Schachfreunde erfolgreich. Doch die Schachfreunde hatten sich fest vorgenommen, nicht erneut unterzugehen – und lieferten ihr vielleicht bestes Saisonspiel ab.
+
+Die Begegnung begann jedoch katastrophal für die Biberacher: Durch Niederlagen an Brett 3 und 4 lagen sie schnell 0:2 zurück. Ein erneutes Debakel schien sich abzuzeichnen.
+
+Doch dann begann die Aufholjagd:
+
+Philipp Müller besiegte am Spitzenbrett überraschend den mexikanischen Fidemeister Ivan Ramirez Marin.
+
+Jens Hoffmann erkämpfte sich trotz Minus-Dame ein spektakuläres Remis gegen FM Gunnar Schnepp.
+
+Plötzlich stand es nur noch 1,5:2,5, und die Biberacher witterten Morgenluft. Zwei weitere Remis an Brett 6 und 7 brachten den Zwischenstand auf 2,5:3,5 aus Sicht der Schachfreunde – das Minimalziel „besser als letztes Jahr“ war erreicht.
+
+Doch es kam noch besser:
+
+Alexander Arns gewann an Brett 5 seine Partie und stellte auf 3,5:3,5.
+
+Nun hing alles an Brett 8: Der junge Julian Schüller, eigentlich Spieler der zweiten Mannschaft, gab sein Oberliga-Debüt – ausgerechnet im Derby und gegen den Vereinsvorstand des Heilbronner SV. Trotz Nervosität behielt er die Nerven, gewann nach fünf Stunden Spielzeit und sicherte den Schachfreunden einen sensationellen 4,5:3,5-Sieg.
+
+Damit endet die 2,5 Jahre andauernde Serie ohne Niederlage des Heilbronner SV 2 und die Schachfreunde Heilbronn-Biberach verteidigen durch diesen Sieg erfolgreich ihre Tabellenführung nach drei Runden.
+
+### Fazit
+
+Der Schachsonntag am Bildungscampus bot alles, was die Fans des königlichen Spiels begeistert:
+
+- klare Favoritensiege
+- überraschende Wendungen
+- ein emotionales Lokalderby
+- und ein starkes Zeichen dafür, wie lebendig und erfolgreich die Heilbronner Schachszene derzeit ist.
+
+Die nächsten Runden versprechen bereits jetzt neuen Nervenkitzel – sowohl beim Aufstiegsrennen in der Baden-Württemberg-Liga als auch im Titelkampf der Oberliga.
