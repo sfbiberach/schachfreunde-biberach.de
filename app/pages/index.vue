@@ -47,7 +47,7 @@ const calendarSrc = computed(() => `${calendarBase}&cachebust=${encodeURICompone
       <Chessboard class="z-[-1] chessboard" />
     </UPageSection>
 
-    <UPageSection :ui="{ container: '!pt-0 py-12 sm:py-16' }">
+    <UPageSection :ui="{ container: 'pt-0! py-12 sm:py-16' }">
       <UPageGrid v-if="page.cards">
         <UPageCard v-for="(card, index) in page.cards" :key="index" v-bind="card" />
       </UPageGrid>
@@ -64,7 +64,7 @@ const calendarSrc = computed(() => `${calendarBase}&cachebust=${encodeURICompone
         </div>
       </template>
       <iframe
-        class="rounded-sm w-full h-full min-h-[384px]"
+        class="rounded-sm w-full h-full min-h-96"
         scrolling="yes"
         loading="lazy"
         :src="calendarSrc"
