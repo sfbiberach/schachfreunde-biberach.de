@@ -1,17 +1,18 @@
 export default defineNuxtConfig({
 
   extends: [
-    'github:happydesigns/ui',
+    'github:happydesigns/ui#v0.4.2',
   ],
 
   modules: [
     '@nuxtjs/seo',
-    '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/ui',
     '@nuxt/content',
     'nuxt-studio',
     '@vite-pwa/nuxt',
+    '@nuxt/scripts',
+    '@nuxt/eslint',
   ],
 
   devtools: { enabled: true },
