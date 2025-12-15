@@ -41,6 +41,7 @@
     "@vite-pwa/assets-generator": "^1.0.2",
     "cross-env": "^10.1.0",
     "eslint": "^9.39.2",
+    "mdclint": "^0.1.1",
     "typescript": "^5.9.3",
     "wrangler": "^4.54.0"
   }

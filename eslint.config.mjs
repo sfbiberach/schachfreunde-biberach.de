@@ -1,5 +1,6 @@
 // @ts-check
 import antfu from '@antfu/eslint-config'
+import { mdcLint } from 'mdclint'
 import withNuxt from './.nuxt/eslint.config.mjs'
 
 export default withNuxt(
@@ -28,5 +29,10 @@ export default withNuxt(
         'style/brace-style': ['error', 'stroustrup'],
       },
     },
-  ),
+  ).append(await mdcLint({
+    files: ['content/**/*.md'],
+    preset: 'mdc',
+    // @ts-ignore
+    config: { MD013: { line_length: 2048 } },
+  })),
 )
