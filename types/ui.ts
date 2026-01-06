@@ -209,22 +209,6 @@ export const badgeSchema = z.object({
   }).optional(),
 })
 
-// Social link schema for content data
-export const socialSchema = z.object({
-  name: z.string(),
-  url: z.string(),
-})
-
-export const userSchema = z.object({
-  name: z.string(),
-  description: z.string().optional(),
-  username: z.string().optional(),
-  to: z.string().optional(),
-  avatar: avatarSchema,
-  socials: z.array(socialSchema).optional(),
-  email: z.string().email().optional(),
-})
-
 export const authorSchema = z.object({
   name: z.string(),
   description: z.string().optional(),
@@ -260,8 +244,8 @@ export const articleSchema = contentSchema.extend({
   status: z.enum(['draft', 'published', 'archived']).default('published'),
   image: z.string().editor({ input: 'media' }),
   authors: z.array(z.string()).optional(),
-  date,
-  dateEnd: date,
+  date: z.string().date().optional(),
+  dateEnd: z.string().date().optional(),
   category: z.string().optional(),
   tournament: z.string().optional(),
   tags: z.array(z.string()),
@@ -279,7 +263,7 @@ export const tournamentSchema = createBaseSchema().extend({
   icon,
   location: z.string().optional(),
   links,
-  date,
-  dateEnd: date,
+  date: z.string().date().optional(),
+  dateEnd: z.string().date().optional(),
   resolvedBadge: badgeSchema.optional(),
 })

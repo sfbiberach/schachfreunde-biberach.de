@@ -30,10 +30,10 @@ useSeoMeta({
 
 const { searchTerm, groups } = useNavigation()
 
-const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('article'))
+const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('page'))
 const { data: teamFiles } = useLazyAsyncData('search:team', () => queryCollectionSearchSections('team'), { server: false })
 const { data: tournamentFiles } = useLazyAsyncData('search:tournament', () => queryCollectionSearchSections('tournament'), { server: false })
-const { data: blogFiles } = useLazyAsyncData('search:blog', () => queryCollectionSearchSections('blog').where('status', '=', 'published'), { server: false, transform: data => data.toReversed() })
+const { data: blogFiles } = useLazyAsyncData('search:blog', () => queryCollectionSearchSections('article').where('status', '=', 'published'), { server: false, transform: data => data.toReversed() })
 
 const files = computed(() => [
   ...(teamFiles.value || []),

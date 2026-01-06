@@ -14,8 +14,7 @@ export function useBlogArticle(options: UseBlogArticleParams) {
   return useAsyncData(
     `blog-${slug}`,
     async () => {
-      const q = queryCollection('blog')
-      q.where('path', 'LIKE', `/blog/%/${slug}`)
+      const q = queryCollection('article')
       const result = await q.all()
       if (Array.isArray(result)) {
         return (result.length > 0 ? result[0] : null)

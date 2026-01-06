@@ -13,6 +13,8 @@ const itemsPerPage = 12
 const appConfig = useAppConfig()
 const { data: content } = await usePageContent({ path: '/blog' })
 
+console.log({ content: content.value })
+
 const page = ref(1)
 
 const categories = [

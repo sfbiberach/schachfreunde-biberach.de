@@ -29,7 +29,7 @@ const { data: articles } = await useAsyncData(
     if (!tournamentSlug.value) {
       return []
     }
-    const items = await queryCollection('blog')
+    const items = await queryCollection('article')
       .where('status', '=', 'published')
       .where('tournament', '=', tournamentSlug.value)
       .order('date', 'DESC')

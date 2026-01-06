@@ -9,7 +9,7 @@ const { data: article } = await useBlogArticle({ slug: route.params.slug as stri
 
 const { data: surround } = await useAsyncData(
   `${route.path}-surround`,
-  () => queryCollectionItemSurroundings('blog', route.path, { fields: ['description'] })
+  () => queryCollectionItemSurroundings('article', route.path, { fields: ['description'] })
     .where('status', '=', 'published')
     .order('date', 'DESC'),
 )

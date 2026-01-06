@@ -6,7 +6,14 @@ import withNuxt from './.nuxt/eslint.config.mjs'
 export default withNuxt(
   antfu(
     {
-
+      yaml: {
+        overrides: {
+          'yaml/quotes': ['error', { prefer: 'double' }], // Enforce double quotes to match Studio
+        },
+      },
+      pnpm: {
+        yaml: false,
+      }
     },
     {
       name: 'tailwind/yaml/rules',
@@ -32,7 +39,5 @@ export default withNuxt(
   ).append(await mdcLint({
     files: ['content/**/*.md'],
     preset: 'mdc',
-    // @ts-ignore
-    config: { MD013: { line_length: 2048 } },
   })),
 )

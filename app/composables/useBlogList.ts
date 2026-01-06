@@ -14,7 +14,7 @@ export function useBlogList({ page = 1, itemsPerPage = 12, categoriesMap }: UseB
     `blog-list-${page}-${itemsPerPage}`,
     async () => {
       const skip = (page - 1) * itemsPerPage
-      const q = queryCollection('blog')
+      const q = queryCollection('article')
         .where('status', '=', 'published')
         .order('date', 'DESC')
         .skip(skip)

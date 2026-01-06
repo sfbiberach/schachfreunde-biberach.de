@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
     },
   })
 
-  const articles = await (queryCollection as queryCollectionWithEvent)(event, 'blog')
+  const articles = await (queryCollection as queryCollectionWithEvent)(event, 'article')
     .order('date', 'DESC')
     .all()
 
