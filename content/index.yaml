@@ -24,9 +24,8 @@ hero:
       color: gray
 cards:
   - title: Internationale Unterländer Schachtage
-    description: Offenes Turnier vom 31. Juli – 3. August 2025 mit Preisgeldern von über 5.000 €.
-    to: https://www.unterlaender-schachtage.de
-    target: _blank
+    description: Offenes Turnier vom 30. Juli – 2. August 2026 mit Preisgeldern von über 5.000 €.
+    to: /turniere/internationale-unterlaender-schachtage
     icon: i-ph-crown-duotone
     spotlight: true
   - title: Biber-Jugend-Cup
