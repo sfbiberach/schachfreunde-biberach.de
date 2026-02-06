@@ -101,7 +101,7 @@ const userSchema = z.object({
   to: z.string().optional(),
   avatar: property(z.object({})).inherit('@nuxt/ui/components/Avatar.vue').optional(),
   socials: z.array(socialSchema).optional(),
-  email: z.string().email().optional(),
+  email: z.email().optional(),
 })
 
 const pageSchema = z.object({
@@ -115,8 +115,8 @@ export const articleSchema = pageSchema.extend({
   status: z.enum(['draft', 'published', 'archived']).default('published'),
   image: property(z.string()).editor({ input: 'media' }),
   authors: z.array(z.string()).optional(),
-  date: z.string().date().optional(),
-  dateEnd: z.string().date().optional(),
+  date: z.iso.date().optional(),
+  dateEnd: z.iso.date().optional(),
   category: z.string().optional(),
   tournament: z.string().optional(),
   tags: z.array(z.string()),
