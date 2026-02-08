@@ -1,7 +1,7 @@
 import { defineCollection, defineContentConfig, property } from '@nuxt/content'
-import { asSitemapCollection } from '@nuxtjs/sitemap/content'
 import { z } from 'zod/v4'
-import { cardSchema, teamSchema, tournamentSchema } from './types'
+import { asSeoCollection } from '@nuxtjs/seo/content'
+
 
 // -----------------------------------------------------------------------------
 // Constants
@@ -16,7 +16,7 @@ const targetEnum = z.enum(['_blank', '_parent', '_self', '_top'])
 // Sub-Schemas
 // -----------------------------------------------------------------------------
 const imageSchema = z.object({
-  src: z.string(),
+  src: property(z.string()).editor({ input: 'media' }),
   alt: z.string().optional(),
   class: z.string().optional(),
 })
@@ -42,9 +42,24 @@ const featureItemSchema = baseSchema.extend({
   icon: z.string().optional(),
 })
 
-export const socialSchema = z.object({
+const socialSchema = z.object({
   name: z.string(),
   url: z.string(),
+})
+
+const teamSchema = baseSchema.extend({
+  icon: z.string().optional(),
+  location: z.string().optional(),
+  links: z.array(linkSchema).optional(),
+})
+
+const tournamentSchema = baseSchema.extend({
+  icon: z.string().optional(),
+  location: z.string().optional(),
+  links: z.array(linkSchema).optional(),
+  date: z.string().date().optional(),
+  dateEnd: z.string().date().optional(),
+  resolvedBadge: property(z.object({})).inherit('@nuxt/ui/components/Badge.vue').optional(),
 })
 
 // -----------------------------------------------------------------------------
@@ -131,7 +146,7 @@ export default defineContentConfig({
       source: 'index.yaml',
       schema: z.object({
         hero: pageSectionSchema,
-        cards: property(z.object({})).inherit('@nuxt/ui/components/PageCard.vue').optional(),
+        cards: z.array(property(z.object({})).inherit('@nuxt/ui/components/PageCard.vue')).optional(),
       }),
     }),
     snippet: defineCollection({
@@ -139,7 +154,7 @@ export default defineContentConfig({
       source: 'snippets/**/*.{md,yaml}',
     }),
     page: defineCollection(
-      asSitemapCollection({
+      asSeoCollection({
         type: 'page',
         source: {
           include: 'pages/**/*.{md,yaml}',
