@@ -160,6 +160,7 @@ export default defineContentConfig({
         prefix: '/',
       },
       schema: pageSchema,
+      toc: true,
     }),
     user: defineCollection({
       type: 'data',
@@ -170,6 +171,7 @@ export default defineContentConfig({
       type: 'page',
       source: 'blog/article/**/*.{md,yaml}',
       schema: articleSchema,
+      toc: true,
     }),
     team: defineCollection({
       type: 'page',
