@@ -59,7 +59,7 @@ const tournamentSchema = baseSchema.extend({
   links: z.array(linkSchema).optional().nullable(),
   date: z.iso.date().optional(),
   dateEnd: z.iso.date().optional(),
-  resolvedBadge: property(z.object({})).inherit('@nuxt/ui/components/Badge.vue').optional(),
+  resolvedBadge: property(z.any()).inherit('@nuxt/ui/components/Badge.vue').optional(),
 })
 
 // -----------------------------------------------------------------------------
@@ -106,7 +106,7 @@ const authorSchema = z.object({
   name: z.string(),
   description: z.string().optional(),
   to: z.string().optional(),
-  avatar: property(z.object({})).inherit('@nuxt/ui/components/Avatar.vue').optional(),
+  avatar: property(z.any()).inherit('@nuxt/ui/components/Avatar.vue').optional(),
 })
 
 const userSchema = z.object({
@@ -114,7 +114,7 @@ const userSchema = z.object({
   description: z.string().optional(),
   username: z.string().optional(),
   to: z.string().optional(),
-  avatar: property(z.object({})).inherit('@nuxt/ui/components/Avatar.vue').optional(),
+  avatar: property(z.any()).inherit('@nuxt/ui/components/Avatar.vue').optional(),
   socials: z.array(socialSchema).optional(),
   email: z.string().email().optional(),
 })
@@ -135,7 +135,7 @@ export const articleSchema = pageSchema.extend({
   category: z.string().optional(),
   tournament: z.string().optional(),
   tags: z.array(z.string()),
-  resolvedBadge: property(z.object({})).inherit('@nuxt/ui/components/Badge.vue').optional(),
+  resolvedBadge: property(z.any()).inherit('@nuxt/ui/components/Badge.vue').optional(),
   resolvedAuthors: z.array(authorSchema).optional(),
 })
 
