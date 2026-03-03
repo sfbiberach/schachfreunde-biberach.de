@@ -1,5 +1,6 @@
 import { defineCollection, defineContentConfig, property } from '@nuxt/content'
-import { asSeoCollection } from '@nuxtjs/seo/content'
+import { asSitemapCollection } from '@nuxtjs/sitemap/content'
+import { asRobotsCollection } from '@nuxtjs/robots/content'
 import { z } from 'zod/v4'
 
 // -----------------------------------------------------------------------------
@@ -152,33 +153,49 @@ export default defineContentConfig({
       type: 'page',
       source: 'snippets/**/*.{md,yaml}',
     }),
-    page: defineCollection({
-      type: 'page',
-      source: {
-        include: 'pages/**/*.{md,yaml}',
-        prefix: '/',
-      },
-      schema: pageSchema,
-    }),
+    page: defineCollection(
+      asRobotsCollection(
+        asSitemapCollection({
+          type: 'page',
+          source: {
+            include: 'pages/**/*.{md,yaml}',
+            prefix: '/',
+          },
+          schema: pageSchema,
+        }),
+      ),
+    ),
     user: defineCollection({
       type: 'data',
       source: 'users/**/*.{md,yaml}',
       schema: userSchema,
     }),
-    article: defineCollection({
-      type: 'page',
-      source: 'blog/article/**/*.{md,yaml}',
-      schema: articleSchema,
-    }),
-    team: defineCollection({
-      type: 'page',
-      source: 'mannschaften/**/*.{md,yaml}',
-      schema: teamSchema,
-    }),
-    tournament: defineCollection({
-      type: 'page',
-      source: 'turniere/**/*.{md,yaml}',
-      schema: tournamentSchema,
-    }),
+    article: defineCollection(
+      asRobotsCollection(
+        asSitemapCollection({
+          type: 'page',
+          source: 'blog/article/**/*.{md,yaml}',
+          schema: articleSchema,
+        }),
+      ),
+    ),
+    team: defineCollection(
+      asRobotsCollection(
+        asSitemapCollection({
+          type: 'page',
+          source: 'mannschaften/**/*.{md,yaml}',
+          schema: teamSchema,
+        }),
+      ),
+    ),
+    tournament: defineCollection(
+      asRobotsCollection(
+        asSitemapCollection({
+          type: 'page',
+          source: 'turniere/**/*.{md,yaml}',
+          schema: tournamentSchema,
+        }),
+      ),
+    ),
   },
 })
