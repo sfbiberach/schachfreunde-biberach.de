@@ -34,7 +34,7 @@ const linkSchema = z.object({
 const baseSchema = z.object({
   title: z.string().optional(),
   description: z.string().optional(),
-  ui: z.record(z.string(), z.any()).optional(),
+  ui: z.record(z.string(), z.any()).optional().nullable(),
 })
 
 const featureItemSchema = baseSchema.extend({
@@ -49,13 +49,13 @@ const socialSchema = z.object({
 const teamSchema = baseSchema.extend({
   icon: z.string().optional(),
   location: z.string().optional(),
-  links: z.array(linkSchema).optional(),
+  links: z.array(linkSchema).optional().nullable(),
 })
 
 const tournamentSchema = baseSchema.extend({
   icon: z.string().optional(),
   location: z.string().optional(),
-  links: z.array(linkSchema).optional(),
+  links: z.array(linkSchema).optional().nullable(),
   date: z.iso.date().optional(),
   dateEnd: z.iso.date().optional(),
   resolvedBadge: property(z.object({})).inherit('@nuxt/ui/components/Badge.vue').optional(),
@@ -71,8 +71,8 @@ const pageSectionSchema = baseSchema.extend({
   orientation: orientationEnum.optional(),
   reverse: z.boolean().optional(),
   image: imageSchema.optional(),
-  links: z.array(linkSchema).optional(),
-  features: z.array(featureItemSchema).optional(),
+  links: z.array(linkSchema).optional().nullable(),
+  features: z.array(featureItemSchema).optional().nullable(),
 })
 
 const pageHeroSchema = pageSectionSchema.pick({
@@ -88,7 +88,7 @@ const pageHeroSchema = pageSectionSchema.pick({
 
 const pageHeaderSchema = baseSchema.extend({
   headline: z.string().optional(),
-  links: z.array(linkSchema).optional(),
+  links: z.array(linkSchema).optional().nullable(),
 })
 
 const layoutSchema = z.object({
@@ -122,7 +122,7 @@ const pageSchema = z.object({
   layout: layoutSchema.optional(),
   hero: pageHeroSchema.optional(),
   header: pageHeaderSchema.optional(),
-  ui: z.record(z.string(), z.any()).optional(),
+  ui: z.record(z.string(), z.any()).optional().nullable(),
 })
 
 export const articleSchema = pageSchema.extend({
