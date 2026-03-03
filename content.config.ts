@@ -22,8 +22,8 @@ const imageSchema = z.object({
 })
 
 const linkSchema = z.object({
-  label: z.string().nonempty(),
-  to: z.string().nonempty(),
+  label: z.string().min(1),
+  to: z.string().min(1),
   icon: z.string().optional(),
   size: sizeEnum.optional(),
   trailing: z.boolean().optional(),
@@ -57,8 +57,8 @@ const tournamentSchema = baseSchema.extend({
   icon: z.string().optional(),
   location: z.string().optional(),
   links: z.array(linkSchema).optional(),
-  date: z.string().date().optional(),
-  dateEnd: z.string().date().optional(),
+  date: z.iso.date().optional(),
+  dateEnd: z.iso.date().optional(),
   resolvedBadge: property(z.object({})).inherit('@nuxt/ui/components/Badge.vue').optional(),
 })
 
@@ -116,7 +116,7 @@ const userSchema = z.object({
   to: z.string().optional(),
   avatar: property(z.object({})).inherit('@nuxt/ui/components/Avatar.vue').optional(),
   socials: z.array(socialSchema).optional(),
-  email: z.email().optional(),
+  email: z.string().email().optional(),
 })
 
 const pageSchema = z.object({
@@ -153,16 +153,14 @@ export default defineContentConfig({
       type: 'page',
       source: 'snippets/**/*.{md,yaml}',
     }),
-    page: defineCollection(
-      asSeoCollection({
-        type: 'page',
-        source: {
-          include: 'pages/**/*.{md,yaml}',
-          prefix: '/',
-        },
-        schema: pageSchema,
-      }),
-    ),
+    page: defineCollection({
+      type: 'page',
+      source: {
+        include: 'pages/**/*.{md,yaml}',
+        prefix: '/',
+      },
+      schema: pageSchema,
+    }),
     user: defineCollection({
       type: 'data',
       source: 'users/**/*.{md,yaml}',
