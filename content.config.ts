@@ -1,7 +1,6 @@
 import { defineCollection, defineContentConfig, property } from '@nuxt/content'
-import { z } from 'zod/v4'
 import { asSeoCollection } from '@nuxtjs/seo/content'
-
+import { z } from 'zod/v4'
 
 // -----------------------------------------------------------------------------
 // Constants
@@ -160,7 +159,6 @@ export default defineContentConfig({
         prefix: '/',
       },
       schema: pageSchema,
-      toc: true,
     }),
     user: defineCollection({
       type: 'data',
@@ -171,7 +169,6 @@ export default defineContentConfig({
       type: 'page',
       source: 'blog/article/**/*.{md,yaml}',
       schema: articleSchema,
-      toc: true,
     }),
     team: defineCollection({
       type: 'page',
