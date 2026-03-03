@@ -38,7 +38,6 @@ const square = z.boolean().optional()
 const leading = z.boolean().optional()
 const leadingIcon = z.string().optional()
 const trailingIcon = z.string().optional()
-const date = z.string().date().optional()
 
 function createBaseSchema() {
   return z.object({

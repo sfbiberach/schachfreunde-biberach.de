@@ -13,7 +13,7 @@ export default withNuxt(
       },
       pnpm: {
         yaml: false,
-      }
+      },
     },
     {
       name: 'tailwind/yaml/rules',

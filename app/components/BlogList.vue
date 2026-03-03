@@ -13,8 +13,6 @@ const itemsPerPage = 12
 const appConfig = useAppConfig()
 const { data: content } = await usePageContent({ path: '/blog' })
 
-console.log({ content: content.value })
-
 const page = ref(1)
 
 const categories = [
@@ -71,13 +69,6 @@ watch(page, () => {
 
 function updatePageFromQuery() {
   page.value = Math.max(props.page, 1)
-}
-
-function normalizeBadge(badge: unknown): string | BadgeProps | undefined {
-  if (!badge) {
-    return undefined
-  }
-  return badge as BadgeProps
 }
 
 useHead({

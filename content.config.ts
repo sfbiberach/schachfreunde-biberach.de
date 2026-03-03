@@ -1,6 +1,6 @@
 import { defineCollection, defineContentConfig, property } from '@nuxt/content'
-import { asSitemapCollection } from '@nuxtjs/sitemap/content'
 import { asRobotsCollection } from '@nuxtjs/robots/content'
+import { asSitemapCollection } from '@nuxtjs/sitemap/content'
 import { z } from 'zod/v4'
 
 // -----------------------------------------------------------------------------
