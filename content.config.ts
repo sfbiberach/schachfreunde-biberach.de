@@ -35,7 +35,7 @@ const linkSchema = z.object({
 const baseSchema = z.object({
   title: z.string().optional(),
   description: z.string().optional(),
-  ui: z.record(z.string(), z.any()).optional().nullable(),
+  ui: z.any().optional(),
 })
 
 const featureItemSchema = baseSchema.extend({
@@ -47,16 +47,25 @@ const socialSchema = z.object({
   url: z.string(),
 })
 
+const sitemapSchema = z.object({
+  loc: z.string().optional(),
+  lastmod: z.string().optional(),
+  changefreq: z.any().optional(),
+  priority: z.number().optional(),
+  images: z.array(z.any()).min(1).optional(),
+  videos: z.array(z.any()).min(1).optional(),
+})
+
 const teamSchema = baseSchema.extend({
   icon: z.string().optional(),
   location: z.string().optional(),
-  links: z.array(linkSchema).optional().nullable(),
+  links: z.array(linkSchema).min(1).optional(),
 })
 
 const tournamentSchema = baseSchema.extend({
   icon: z.string().optional(),
   location: z.string().optional(),
-  links: z.array(linkSchema).optional().nullable(),
+  links: z.array(linkSchema).min(1).optional(),
   date: z.iso.date().optional(),
   dateEnd: z.iso.date().optional(),
   resolvedBadge: property(z.any()).inherit('@nuxt/ui/components/Badge.vue').optional(),
@@ -72,8 +81,8 @@ const pageSectionSchema = baseSchema.extend({
   orientation: orientationEnum.optional(),
   reverse: z.boolean().optional(),
   image: imageSchema.optional(),
-  links: z.array(linkSchema).optional().nullable(),
-  features: z.array(featureItemSchema).optional().nullable(),
+  links: z.array(linkSchema).min(1).optional(),
+  features: z.array(featureItemSchema).min(1).optional(),
 })
 
 const pageHeroSchema = pageSectionSchema.pick({
@@ -89,7 +98,7 @@ const pageHeroSchema = pageSectionSchema.pick({
 
 const pageHeaderSchema = baseSchema.extend({
   headline: z.string().optional(),
-  links: z.array(linkSchema).optional().nullable(),
+  links: z.array(linkSchema).min(1).optional(),
 })
 
 const layoutSchema = z.object({
@@ -115,7 +124,7 @@ const userSchema = z.object({
   username: z.string().optional(),
   to: z.string().optional(),
   avatar: property(z.any()).inherit('@nuxt/ui/components/Avatar.vue').optional(),
-  socials: z.array(socialSchema).optional(),
+  socials: z.array(socialSchema).min(1).optional(),
   email: z.string().email().optional(),
 })
 
@@ -123,20 +132,21 @@ const pageSchema = z.object({
   layout: layoutSchema.optional(),
   hero: pageHeroSchema.optional(),
   header: pageHeaderSchema.optional(),
-  ui: z.record(z.string(), z.any()).optional().nullable(),
+  ui: z.any().optional(),
+  sitemap: sitemapSchema.optional(),
 })
 
 export const articleSchema = pageSchema.extend({
   status: z.enum(['draft', 'published', 'archived']).default('published'),
   image: property(z.string()).editor({ input: 'media' }),
-  authors: z.array(z.string()).optional(),
+  authors: z.array(z.string()).min(1).optional(),
   date: z.iso.date().optional(),
   dateEnd: z.iso.date().optional(),
   category: z.string().optional(),
   tournament: z.string().optional(),
-  tags: z.array(z.string()),
+  tags: z.array(z.string()).min(1),
   resolvedBadge: property(z.any()).inherit('@nuxt/ui/components/Badge.vue').optional(),
-  resolvedAuthors: z.array(authorSchema).optional(),
+  resolvedAuthors: z.array(authorSchema).min(1).optional(),
 })
 
 export default defineContentConfig({

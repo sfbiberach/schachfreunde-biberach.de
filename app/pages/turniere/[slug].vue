@@ -48,7 +48,9 @@ const tournamentArticles = computed(() =>
 
 <template>
   <NuxtLayout
-    name="article" :breadcrumbs="[
+    name="article"
+    collection="tournament"
+    :breadcrumbs="[
       { label: 'Turniere', to: '/turniere', icon: appConfig.app.icons.tournament },
       { label: tournament?.title, to: tournament?.path },
     ]"

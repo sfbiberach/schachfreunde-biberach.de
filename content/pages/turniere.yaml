@@ -3,3 +3,5 @@ description: Hier bekommst Du einen Überblick über die Schachturniere, die wir
 layout:
   metadataComponent: hero
   prose: false
+sitemap:
+  loc: /turniere

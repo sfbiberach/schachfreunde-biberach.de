@@ -7,17 +7,18 @@ const props = defineProps<{
   path?: string
   links?: PageLink[]
   breadcrumbs?: BreadcrumbItem[]
+  collection?: string
 }>()
 
 const appConfig = useAppConfig()
 const route = useRoute()
 const path = computed(() => props.path || route.path)
 
-const { data: page } = await usePageContent({ path: path.value, collection: 'article' })
+const { data: page } = await usePageContent({ path: path.value, collection: props.collection || 'article' })
 const authors = await resolveAuthors(page.value?.authors || [])
 
 if (!page.value) {
-  throw createError({ statusCode: 404, statusMessage: `Article ${props.path || route.path} not found`, fatal: true })
+  throw createError({ statusCode: 404, statusMessage: `Page ${props.path || route.path} not found in collection ${props.collection || 'article'}`, fatal: true })
 }
 
 usePageSeo(page)
