@@ -1,18 +1,14 @@
 export default defineNuxtConfig({
 
   extends: [
-    'github:happydesigns/ui#v0.5.1',
+    'github:happydesigns/ui#v0.6.2',
   ],
 
   modules: [
     '@nuxtjs/seo',
     '@nuxt/image',
-    '@nuxt/ui',
-    '@nuxt/content',
-    'nuxt-studio',
     '@vite-pwa/nuxt',
     '@nuxt/scripts',
-    '@nuxt/eslint',
   ],
 
   devtools: { enabled: true },
@@ -64,12 +60,6 @@ export default defineNuxtConfig({
     config: {
       stylistic: true,
       standalone: false,
-    },
-  },
-
-  fonts: {
-    experimental: {
-      processCSSVariables: true,
     },
   },
 
