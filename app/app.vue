@@ -31,15 +31,14 @@ useSeoMeta({
 const { searchTerm, groups } = useNavigation()
 
 const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('page'))
-const { data: teamFiles } = useLazyAsyncData('search:team', () => queryCollectionSearchSections('team'), { server: false })
-const { data: tournamentFiles } = useLazyAsyncData('search:tournament', () => queryCollectionSearchSections('tournament'), { server: false })
-const { data: blogFiles } = useLazyAsyncData('search:blog', () => queryCollectionSearchSections('article').where('status', '=', 'published'), { server: false, transform: data => data.toReversed() })
+const { data: files } = useFetch('/api/search.json', { server: false })
 
-const files = computed(() => [
-  ...(teamFiles.value || []),
-  ...(tournamentFiles.value || []),
-  ...(blogFiles.value || []),
-])
+// Only log on client where data will actually be fetched
+// if (import.meta.client) {
+//   watch(files, (newFiles) => {
+//     console.log('files', newFiles)
+//   }, { immediate: true })
+// }
 </script>
 
 <template>
