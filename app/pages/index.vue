@@ -1,6 +1,10 @@
 <script setup lang="ts">
 const { data: page } = await useAsyncData('landing', () => queryCollection('landing').path('/').first())
 
+useSeoMeta({
+  title: page.value?.title,
+})
+
 definePageMeta({
   heroBackground: 'opacity-80',
 })
