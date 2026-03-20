@@ -1,7 +1,7 @@
 export default defineNuxtConfig({
 
   extends: [
-    'github:happydesigns/ui#v0.6.2',
+    '@h4designs/ui',
   ],
 
   modules: [
