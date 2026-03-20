@@ -1,4 +1,21 @@
 title: Home
+cards:
+  - title: Internationale Unterländer Schachtage
+    description: Offenes Turnier vom 31. Juli – 3. August 2025 mit Preisgeldern von über 5.000 €.
+    to: https://www.unterlaender-schachtage.de
+    target: _blank
+    icon: i-ph-crown-duotone
+    spotlight: true
+  - title: Biber-Jugend-Cup
+    description: Kinder- und Jugendturnier am 14. März 2026 mit über 200 Teilnehmern und 13 Jahren Tradition.
+    to: /turniere/biber-jugend-cup
+    icon: i-ph-castle-turret-duotone
+    spotlight: true
+  - title: Training
+    description: Wir bieten regelmäßiges Training für alle Altersklassen.
+    to: /#training
+    icon: i-ph-books-duotone
+    spotlight: true
 hero:
   title: Herzlich Willkommen
   description: bei den <b>Schachfreunden Heilbronn-Biberach 1978 e.&nbsp;V.</b>&nbsp; <br class="hidden xl:block">Wir sind ein junger, dynamischer Verein aus Baden-Württemberg.
@@ -22,22 +39,5 @@ hero:
       to: /#training
       icon: i-ph-arrow-bend-right-down-duotone
       color: gray
-cards:
-  - title: Internationale Unterländer Schachtage
-    description: Offenes Turnier vom 31. Juli – 3. August 2025 mit Preisgeldern von über 5.000 €.
-    to: https://www.unterlaender-schachtage.de
-    target: _blank
-    icon: i-ph-crown-duotone
-    spotlight: true
-  - title: Biber-Jugend-Cup
-    description: Kinder- und Jugendturnier am 14. März 2026 mit über 200 Teilnehmern und 13 Jahren Tradition.
-    to: /turniere/biber-jugend-cup
-    icon: i-ph-castle-turret-duotone
-    spotlight: true
-  - title: Training
-    description: Wir bieten regelmäßiges Training für alle Altersklassen.
-    to: /#training
-    icon: i-ph-books-duotone
-    spotlight: true
 sitemap:
   loc: /
