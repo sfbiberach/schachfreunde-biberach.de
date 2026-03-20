@@ -1,168 +1,31 @@
+import { articleSchema, eventSchema, pageSchema, userSchema } from '@h4designs/ui/schemas'
 import { defineCollection, defineContentConfig, property } from '@nuxt/content'
 import { asRobotsCollection } from '@nuxtjs/robots/content'
 import { asSitemapCollection } from '@nuxtjs/sitemap/content'
 import { z } from 'zod/v4'
 
-// -----------------------------------------------------------------------------
-// Constants
-// -----------------------------------------------------------------------------
-const variantEnum = z.enum(['solid', 'outline', 'subtle', 'soft', 'ghost', 'link'])
-const colorEnum = z.enum(['primary', 'secondary', 'neutral', 'error', 'warning', 'success', 'info'])
-const sizeEnum = z.enum(['xs', 'sm', 'md', 'lg', 'xl'])
-const orientationEnum = z.enum(['vertical', 'horizontal'])
-const targetEnum = z.enum(['_blank', '_parent', '_self', '_top'])
-
-// -----------------------------------------------------------------------------
-// Sub-Schemas
-// -----------------------------------------------------------------------------
-const imageSchema = z.object({
-  src: property(z.string()).editor({ input: 'media' }),
-  alt: z.string().optional(),
-  class: z.string().optional(),
-})
-
-const linkSchema = z.object({
-  label: z.string().min(1),
-  to: z.string().min(1),
-  icon: z.string().optional(),
-  size: sizeEnum.optional(),
-  trailing: z.boolean().optional(),
-  target: z.union([targetEnum, z.string()]).optional(),
-  color: colorEnum.optional(),
-  variant: variantEnum.optional(),
-})
-
-const baseSchema = z.object({
-  title: z.string().optional(),
-  description: z.string().optional(),
-  ui: z.any().optional(),
-})
-
-const featureItemSchema = baseSchema.extend({
-  icon: z.string().optional(),
-})
-
-const socialSchema = z.object({
-  name: z.string(),
-  url: z.string(),
-})
-
-const sitemapSchema = z.object({
-  loc: z.string().optional(),
-  lastmod: z.string().optional(),
-  changefreq: z.any().optional(),
-  priority: z.number().optional(),
-  images: z.array(z.any()).min(1).optional(),
-  videos: z.array(z.any()).min(1).optional(),
-})
-
-const teamSchema = baseSchema.extend({
-  icon: z.string().optional(),
-  location: z.string().optional(),
-  links: z.array(linkSchema).min(1).optional(),
-})
-
-const tournamentSchema = baseSchema.extend({
-  icon: z.string().optional(),
-  location: z.string().optional(),
-  links: z.array(linkSchema).min(1).optional(),
-  date: z.iso.date().optional(),
-  dateEnd: z.iso.date().optional(),
-  resolvedBadge: property(z.any()).inherit('@nuxt/ui/components/Badge.vue').optional(),
-})
-
-// -----------------------------------------------------------------------------
-// Section Schemas
-// -----------------------------------------------------------------------------
-const pageSectionSchema = baseSchema.extend({
-  as: z.string().optional(),
-  headline: z.string().optional(),
-  icon: z.string().optional(),
-  orientation: orientationEnum.optional(),
-  reverse: z.boolean().optional(),
-  image: imageSchema.optional(),
-  links: z.array(linkSchema).min(1).optional(),
-  features: z.array(featureItemSchema).min(1).optional(),
-})
-
-const pageHeroSchema = pageSectionSchema.pick({
-  title: true,
-  description: true,
-  headline: true,
-  links: true,
-  orientation: true,
-  reverse: true,
-  ui: true,
-  image: true,
-}).extend({})
-
-const pageHeaderSchema = baseSchema.extend({
-  headline: z.string().optional(),
-  links: z.array(linkSchema).min(1).optional(),
-})
-
-const layoutSchema = z.object({
-  metadataComponent: z.enum(['none', 'header', 'hero']).default('header'),
-  container: z.boolean().optional(),
-  toc: z.boolean().optional(),
-  prose: z.boolean().optional(),
-})
-
-// -----------------------------------------------------------------------------
-// Content Types
-// -----------------------------------------------------------------------------
-const authorSchema = z.object({
-  name: z.string(),
-  description: z.string().optional(),
-  to: z.string().optional(),
-  avatar: property(z.any()).inherit('@nuxt/ui/components/Avatar.vue').optional(),
-})
-
-const userSchema = z.object({
-  name: z.string(),
-  description: z.string().optional(),
-  username: z.string().optional(),
-  to: z.string().optional(),
-  avatar: property(z.any()).inherit('@nuxt/ui/components/Avatar.vue').optional(),
-  socials: z.array(socialSchema).min(1).optional(),
-  email: z.string().email().optional(),
-})
-
-const pageSchema = z.object({
-  layout: layoutSchema.optional(),
-  hero: pageHeroSchema.optional(),
-  header: pageHeaderSchema.optional(),
-  ui: z.any().optional(),
-  sitemap: sitemapSchema.optional(),
-})
-
-export const articleSchema = pageSchema.extend({
-  status: z.enum(['draft', 'published', 'archived']).default('published'),
-  image: property(z.string()).editor({ input: 'media' }),
-  authors: z.array(z.string()).min(1).optional(),
-  date: z.iso.date().optional(),
-  dateEnd: z.iso.date().optional(),
-  category: z.string().optional(),
-  tournament: z.string().optional(),
-  tags: z.array(z.string()).min(1),
-  resolvedBadge: property(z.any()).inherit('@nuxt/ui/components/Badge.vue').optional(),
-  resolvedAuthors: z.array(authorSchema).min(1).optional(),
-})
-
 export default defineContentConfig({
   collections: {
+    user: defineCollection({
+      type: 'data',
+      source: 'users/**/*.{md,yaml}',
+      schema: userSchema,
+    }),
+
     landing: defineCollection({
       type: 'page',
       source: 'index.yaml',
       schema: z.object({
-        hero: pageSectionSchema,
+        hero: property(z.object({})).inherit('@nuxt/ui/components/PageSection.vue'),
         cards: z.array(property(z.object({})).inherit('@nuxt/ui/components/PageCard.vue')).optional(),
       }),
     }),
+
     snippet: defineCollection({
       type: 'page',
       source: 'snippets/**/*.{md,yaml}',
     }),
+
     page: defineCollection(
       asRobotsCollection(
         asSitemapCollection({
@@ -175,35 +38,35 @@ export default defineContentConfig({
         }),
       ),
     ),
-    user: defineCollection({
-      type: 'data',
-      source: 'users/**/*.{md,yaml}',
-      schema: userSchema,
-    }),
+
     article: defineCollection(
       asRobotsCollection(
         asSitemapCollection({
           type: 'page',
           source: 'blog/article/**/*.{md,yaml}',
-          schema: articleSchema,
+          schema: articleSchema.extend({
+            tournament: z.string().optional(),
+          }),
         }),
       ),
     ),
+
     team: defineCollection(
       asRobotsCollection(
         asSitemapCollection({
           type: 'page',
           source: 'mannschaften/**/*.{md,yaml}',
-          schema: teamSchema,
+          schema: eventSchema,
         }),
       ),
     ),
+
     tournament: defineCollection(
       asRobotsCollection(
         asSitemapCollection({
           type: 'page',
           source: 'turniere/**/*.{md,yaml}',
-          schema: tournamentSchema,
+          schema: eventSchema,
         }),
       ),
     ),
