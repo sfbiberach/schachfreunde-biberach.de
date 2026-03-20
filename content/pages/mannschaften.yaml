@@ -1,7 +1,14 @@
 title: Mannschaften
 description: Hier findest du unsere Mannschaften und ihre aktuellen Ranglisten und Ergebnisse.
-layout:
-  metadataComponent: hero
-  prose: false
+header:
+  links: []
+  ui: {}
+layout: "[object Object]"
 sitemap:
   loc: /mannschaften
+  videos: []
+  images: []
+toc: true
+hero:
+  links:
+    - {}

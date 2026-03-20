@@ -1,7 +1,13 @@
 title: Turniere
 description: Hier bekommst Du einen Überblick über die Schachturniere, die wir selbst ausrichten. Von Opens mit mehreren hundert Teilnehmern bis hin zu kleineren Turnieren ist für jeden etwas dabei.
-layout:
-  metadataComponent: hero
-  prose: false
+header:
+  links: []
+  ui: {}
+layout: default
 sitemap:
   loc: /turniere
+  videos: []
+  images: []
+toc: true
+hero:
+  links: []
