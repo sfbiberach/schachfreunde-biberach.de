@@ -1,7 +1,30 @@
 <script setup lang="ts">
 import type { BadgeProps, BreadcrumbItem } from '#ui/types'
+import type { PageCollectionItemBase } from '@nuxt/content'
 import type { PageLink } from '@nuxt/ui'
 import { BLOG_PATHS } from '~~/constants/blog'
+
+/**
+ * Common ground for any collection using this layout.
+ * This interface defines the properties the layout expects,
+ * making it independent of specific collection schemas.
+ */
+interface BaseArticlePage extends PageCollectionItemBase {
+  title: string
+  description: string
+  date?: string
+  dateEnd?: string
+  authors?: string[]
+  category?: string | BadgeProps
+  hero?: any
+  header?: any
+  layout?: {
+    prose?: boolean
+    toc?: boolean
+    metadataComponent?: 'none' | 'header' | 'hero'
+  }
+  ui?: any
+}
 
 const props = defineProps<{
   path?: string
@@ -14,22 +37,28 @@ const appConfig = useAppConfig()
 const route = useRoute()
 const path = computed(() => props.path || route.path)
 
-const { data: page } = await usePageContent({ path: path.value, collection: props.collection || 'article' })
+// We use 'as any' for the collection name to support dynamic collections
+// but we type the resulting data with our generic interface.
+const { data: pageData } = await usePageContent({
+  path: path.value,
+  collection: (props.collection || 'article') as any,
+})
+
+const page = computed(() => pageData.value as unknown as BaseArticlePage)
 const authors = await resolveAuthors(page.value?.authors || [])
 
 if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: `Page ${props.path || route.path} not found in collection ${props.collection || 'article'}`, fatal: true })
 }
 
-usePageSeo(page)
-const { containerClass } = usePageLayout(page)
+// usePageSeo(page)
 
 const badge = computed(() => {
   if (typeof page.value?.category === 'string') {
     const category = page.value?.category as keyof typeof appConfig.app.blog.categories
     return appConfig.app.blog.categories[category]
   }
-  return { label: page.value?.category ?? '', color: 'neutral' } as BadgeProps
+  return (page.value?.category || { label: '', color: 'neutral' }) as BadgeProps
 })
 </script>
 
@@ -49,7 +78,7 @@ const badge = computed(() => {
       </template>
     </UPageHero>
 
-    <UContainer :ui="page?.ui?.container ?? {}" :class="[containerClass]">
+    <UContainer :ui="page?.ui?.container ?? {}">
       <UPageHeader
         v-if="page.header"
         v-bind="page.header"
