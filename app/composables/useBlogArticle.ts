@@ -1,4 +1,8 @@
-import type { CategoriesMap } from '~/types'
+import type { BadgeProps } from '#ui/types'
+
+interface CategoriesMap {
+  [category: string]: BadgeProps
+}
 
 export interface UseBlogArticleParams {
   slug: string
