@@ -3,27 +3,30 @@ definePageMeta({
   heroBackground: 'opacity-70',
 })
 
-const { data: tournaments } = await useTournaments()
+const { data: page } = await usePageContent({
+  collection: 'page',
+  path: '/turniere',
+})
+
+usePageSeo(page)
+const header = computed(() => resolvePageHeader(page.value))
 </script>
 
 <template>
-  <NuxtLayout name="content">
-    <UPageGrid class="mt-8">
-      <UPageCard
-        v-for="(tournament, index) in tournaments"
-        :key="index"
-        v-bind="tournament"
-        :to="tournament.path"
-        variant="subtle"
-        :ui="{
-          title: 'text-lg',
-          description: 'line-clamp-3',
-        }"
-      >
-        <template v-if="tournament?.date" #footer>
-          <UBadge :label="[tournament?.date, tournament?.dateEnd].filter(Boolean).map(d => formatDate(d)).join(' - ')" color="neutral" variant="subtle" />
-        </template>
-      </UPageCard>
-    </UPageGrid>
+  <NuxtLayout>
+    <UPageHero
+      v-if="header"
+      v-bind="(header as any)"
+    />
+
+    <UContainer v-if="page">
+      <UPageBody>
+        <HArticleGrid collection="tournament">
+          <template #date="{ article }">
+            <HEventGridDate :article="article" />
+          </template>
+        </HArticleGrid>
+      </UPageBody>
+    </UContainer>
   </NuxtLayout>
 </template>
