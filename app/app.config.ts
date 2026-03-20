@@ -31,6 +31,11 @@ export default defineAppConfig({
           target: '_blank',
         },
       ] as ButtonProps[],
+      github: {
+        repo: 'sfbiberach/schachfreunde-biberach.de',
+        branch: 'main',
+        dir: 'content',
+      },
     },
 
     icons: {
@@ -123,6 +128,121 @@ export default defineAppConfig({
           ],
         },
       ],
+    },
+
+    date: {
+      locale: 'de',
+      options: {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      },
+    },
+
+    toc: {
+      title: 'Inhaltsverzeichnis',
+    },
+
+    article: {
+      breadcrumbs: [
+        {
+          label: 'Blog',
+          to: '/blog',
+          icon: 'i-ph-newspaper',
+        },
+      ],
+      categories: {
+        Jugend: {
+          label: 'Jugend',
+          color: 'jugend',
+        },
+        Mannschaft: {
+          label: 'Mannschaft',
+          color: 'mannschaft',
+        },
+        Verein: {
+          label: 'Verein',
+          color: 'verein',
+        },
+      },
+      backButton: {
+        label: 'Zurück zum Blog',
+      },
+      copyButton: {
+        label: 'URL kopieren',
+        successLabel: 'Link in Zwischenablage kopiert',
+      },
+      actionButtons: {
+        edit: {
+          label: 'Artikel bearbeiten',
+        },
+        report: {
+          label: 'Fehler melden',
+        },
+        separator: 'oder',
+      },
+      surround: {
+        prevLabel: 'Vorheriger',
+        nextLabel: 'Nächster',
+      },
+      list: {
+        labelAll: 'Alle',
+      },
+    },
+
+    collections: {
+      team: {
+        breadcrumbs: [
+          {
+            label: 'Mannschaften',
+            to: '/mannschaften',
+            icon: 'i-ph-castle-turret',
+          },
+        ],
+        backButton: {
+          label: 'Zurück zur Übersicht',
+          icon: 'i-ph-arrow-left',
+        },
+        copyButton: {
+          label: 'URL kopieren',
+          successLabel: 'Link in Zwischenablage kopiert',
+        },
+        actionButtons: {
+          edit: {
+            label: 'Mannschaft bearbeiten',
+          },
+          report: {
+            label: 'Fehler melden',
+          },
+          separator: 'oder',
+        },
+      },
+      tournament: {
+        breadcrumbs: [
+          {
+            label: 'Turniere',
+            to: '/turniere',
+            icon: 'i-ph-trophy',
+          },
+        ],
+        backButton: {
+          label: 'Zurück zur Übersicht',
+          icon: 'i-ph-arrow-left',
+        },
+        copyButton: {
+          label: 'URL kopieren',
+          successLabel: 'Link in Zwischenablage kopiert',
+        },
+        actionButtons: {
+          edit: {
+            label: 'Turnier bearbeiten',
+          },
+          report: {
+            label: 'Fehler melden',
+          },
+          separator: 'oder',
+        },
+      },
     },
 
     blog: {
