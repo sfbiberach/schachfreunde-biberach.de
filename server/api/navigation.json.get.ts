@@ -4,7 +4,9 @@ import { queryCollectionNavigation } from '@nuxt/content/server'
 export default defineEventHandler(async (event) => {
   return Promise.all([
     queryCollectionNavigation(event, 'page'),
-    queryCollectionNavigation(event, 'article'),
+    queryCollectionNavigation(event, 'article')
+      .where('status', '=', 'published')
+      .order('date', 'DESC'),
     queryCollectionNavigation(event, 'team'),
     queryCollectionNavigation(event, 'tournament'),
   ]).then(data => data.flat())
