@@ -3,7 +3,7 @@ description: Hier findest du die neuesten Mannschafts- und Turnierberichte.
 header:
   links: []
   ui: {}
-layout: "[object Object]"
+layout: default
 sitemap:
   loc: /blog
   videos: []

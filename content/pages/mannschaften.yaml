@@ -3,7 +3,7 @@ description: Hier findest du unsere Mannschaften und ihre aktuellen Ranglisten u
 header:
   links: []
   ui: {}
-layout: "[object Object]"
+layout: default
 sitemap:
   loc: /mannschaften
   videos: []
