@@ -30,15 +30,10 @@ useSeoMeta({
 
 const { searchTerm, groups } = useNavigation()
 
-const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('page'))
-const { data: files } = useFetch('/api/search.json', { server: false })
-
-// Only log on client where data will actually be fetched
-// if (import.meta.client) {
-//   watch(files, (newFiles) => {
-//     console.log('files', newFiles)
-//   }, { immediate: true })
-// }
+const [{ data: navigation }, { data: files }] = await Promise.all([
+  useFetch('/api/navigation.json'),
+  useFetch('/api/search.json', { server: false }),
+])
 </script>
 
 <template>
