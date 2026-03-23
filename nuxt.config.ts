@@ -54,6 +54,9 @@ export default defineNuxtConfig({
       deployConfig: true,
       nodeCompat: true,
     },
+    virtual: {
+      sharp: 'export default function sharp() { return {} }',
+    },
   },
 
   eslint: {
