@@ -15,7 +15,7 @@
     "generate-pwa-assets": "pwa-assets-generator"
   },
   "dependencies": {
-    "@h4designs/ui": "^0.10.4",
+    "@h4designs/ui": "^0.10.5",
     "@iconify-json/fa6-solid": "^1.2.4",
     "@iconify-json/heroicons": "^1.2.3",
     "@iconify-json/lucide": "^1.2.98",
