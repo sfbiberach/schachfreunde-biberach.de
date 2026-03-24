@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@10.32.1",
+  "packageManager": "pnpm@10.33.0",
   "scripts": {
     "dev": "nuxt dev",
     "build": "cross-env NODE_OPTIONS='--max-old-space-size=4096' nuxt build",
@@ -15,12 +15,12 @@
     "generate-pwa-assets": "pwa-assets-generator"
   },
   "dependencies": {
-    "@h4designs/ui": "^0.10.5",
+    "@h4designs/ui": "^0.10.6",
     "@iconify-json/fa6-solid": "^1.2.4",
     "@iconify-json/heroicons": "^1.2.3",
     "@iconify-json/lucide": "^1.2.98",
     "@iconify-json/ph": "^1.2.2",
-    "@iconify-json/simple-icons": "^1.2.74",
+    "@iconify-json/simple-icons": "^1.2.75",
     "@nuxt/content": "^3.12.0",
     "@nuxt/image": "^2.0.0",
     "@nuxt/scripts": "0.13.0",
@@ -41,9 +41,9 @@
     "@types/node": "^25.5.0",
     "@vite-pwa/assets-generator": "^1.0.2",
     "cross-env": "^10.1.0",
-    "eslint": "^10.0.3",
+    "eslint": "^10.1.0",
     "mdclint": "^0.1.2",
     "typescript": "^5.9.3",
-    "wrangler": "^4.75.0"
+    "wrangler": "^4.77.0"
   }
 }
