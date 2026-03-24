@@ -27,7 +27,11 @@ const tournamentSlug = computed(() => {
         Turnierberichte
       </ProseH2>
 
-      <HArticleGrid :where="[{ field: 'tournament', operator: '=', value: tournamentSlug }]" />
+      <HArticleGrid
+        status="published"
+        :where="[{ field: 'tournament', operator: '=', value: tournamentSlug }]"
+        :sort="{ field: 'date', direction: 'DESC' }"
+      />
     </section>
   </NuxtLayout>
 </template>
