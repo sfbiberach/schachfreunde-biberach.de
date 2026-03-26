@@ -143,55 +143,59 @@ export default defineAppConfig({
       title: 'Inhaltsverzeichnis',
     },
 
-    article: {
-      breadcrumbs: [
-        {
-          label: 'Blog',
-          to: '/blog',
-          icon: 'i-ph-newspaper',
-        },
-      ],
-      categories: {
-        Jugend: {
-          label: 'Jugend',
-          color: 'jugend',
-        },
-        Mannschaft: {
-          label: 'Mannschaft',
-          color: 'mannschaft',
-        },
-        Verein: {
-          label: 'Verein',
-          color: 'verein',
-        },
-      },
-      backButton: {
-        label: 'Zurück zum Blog',
-      },
-      copyButton: {
-        label: 'URL kopieren',
-        successLabel: 'Link in Zwischenablage kopiert',
-      },
-      actionButtons: {
-        edit: {
-          label: 'Artikel bearbeiten',
-        },
-        report: {
-          label: 'Fehler melden',
-        },
-        separator: 'oder',
-      },
-      surround: {
-        prevLabel: 'Vorheriger',
-        nextLabel: 'Nächster',
-      },
-      list: {
-        labelAll: 'Alle',
-      },
-    },
-
     collections: {
+      article: {
+        breadcrumbs: [
+          {
+            label: 'Blog',
+            to: '/blog',
+            icon: 'i-ph-newspaper',
+          },
+        ],
+        categories: {
+          Jugend: {
+            label: 'Jugend',
+            color: 'jugend',
+          },
+          Mannschaft: {
+            label: 'Mannschaft',
+            color: 'mannschaft',
+          },
+          Verein: {
+            label: 'Verein',
+            color: 'verein',
+          },
+        },
+        backButton: {
+          label: 'Zurück zum Blog',
+        },
+        copyButton: {
+          label: 'URL kopieren',
+          successLabel: 'Link in Zwischenablage kopiert',
+        },
+        actionButtons: {
+          edit: {
+            label: 'Seite bearbeiten',
+          },
+          report: {
+            label: 'Fehler melden',
+          },
+          separator: 'oder',
+        },
+        surround: {
+          prevLabel: 'Vorheriger',
+          nextLabel: 'Nächster',
+        },
+        list: {
+          labelAll: 'Alle',
+        },
+      },
+
       team: {
+        extends: 'article',
+        query: {
+          order: false,
+        },
         breadcrumbs: [
           {
             label: 'Mannschaften',
@@ -203,21 +207,13 @@ export default defineAppConfig({
           label: 'Zurück zur Übersicht',
           icon: 'i-ph-arrow-left',
         },
-        copyButton: {
-          label: 'URL kopieren',
-          successLabel: 'Link in Zwischenablage kopiert',
-        },
-        actionButtons: {
-          edit: {
-            label: 'Mannschaft bearbeiten',
-          },
-          report: {
-            label: 'Fehler melden',
-          },
-          separator: 'oder',
-        },
       },
+
       tournament: {
+        extends: 'article',
+        query: {
+          order: false,
+        },
         breadcrumbs: [
           {
             label: 'Turniere',
@@ -228,19 +224,6 @@ export default defineAppConfig({
         backButton: {
           label: 'Zurück zur Übersicht',
           icon: 'i-ph-arrow-left',
-        },
-        copyButton: {
-          label: 'URL kopieren',
-          successLabel: 'Link in Zwischenablage kopiert',
-        },
-        actionButtons: {
-          edit: {
-            label: 'Turnier bearbeiten',
-          },
-          report: {
-            label: 'Fehler melden',
-          },
-          separator: 'oder',
         },
       },
     },
