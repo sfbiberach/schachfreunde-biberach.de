@@ -188,6 +188,7 @@ export default defineAppConfig({
         },
         list: {
           labelAll: 'Alle',
+          noResultsMessage: 'Keine Berichte gefunden.',
         },
       },
 
