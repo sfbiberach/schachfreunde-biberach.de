@@ -30,15 +30,9 @@ useSeoMeta({
 
 const { searchTerm, groups } = useNavigation()
 
-const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('article'))
-const { data: teamFiles } = useLazyAsyncData('search:team', () => queryCollectionSearchSections('team'), { server: false })
-const { data: tournamentFiles } = useLazyAsyncData('search:tournament', () => queryCollectionSearchSections('tournament'), { server: false })
-const { data: blogFiles } = useLazyAsyncData('search:blog', () => queryCollectionSearchSections('blog').where('status', '=', 'published'), { server: false, transform: data => data.toReversed() })
-
-const files = computed(() => [
-  ...(teamFiles.value || []),
-  ...(tournamentFiles.value || []),
-  ...(blogFiles.value || []),
+const [{ data: navigation }, { data: files }] = await Promise.all([
+  useFetch('/api/navigation.json'),
+  useFetch('/api/search.json', { server: false }),
 ])
 </script>
 

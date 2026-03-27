@@ -3,23 +3,30 @@ definePageMeta({
   heroBackground: 'opacity-70',
 })
 
-const { data: teams } = await useTeams()
+const { data: page } = await usePageContent({
+  collection: 'page',
+  path: '/mannschaften',
+})
+
+usePageSeo(page)
+const header = computed(() => resolvePageHeader(page.value))
 </script>
 
 <template>
-  <NuxtLayout name="content">
-    <UPageGrid class="mt-8">
-      <UPageCard
-        v-for="(team, index) in teams"
-        :key="index"
-        v-bind="team"
-        :to="team.path"
-        variant="subtle"
-        :ui="{
-          title: 'text-lg',
-          description: 'line-clamp-3',
-        }"
-      />
-    </UPageGrid>
+  <NuxtLayout>
+    <UPageHero
+      v-if="header"
+      v-bind="(header as any)"
+    />
+
+    <UContainer v-if="page">
+      <UPageBody>
+        <HArticleGrid collection="team">
+          <template #date="{ article }">
+            <HEventGridDate :article="article" />
+          </template>
+        </HArticleGrid>
+      </UPageBody>
+    </UContainer>
   </NuxtLayout>
 </template>

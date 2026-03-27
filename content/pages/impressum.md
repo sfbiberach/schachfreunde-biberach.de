@@ -35,8 +35,8 @@ Die Schachfreunde Heilbronn-Biberach 1978 e.&nbsp;V. sind Mitglied im
 ## Redaktionell verantwortlich gemäß § 18 Abs. 2 MStV
 
 Jens Hoffmann :br
-I 1, 5 :br
-68159 Mannheim :br
+Zypressenstr. 1 :br
+68199 Mannheim :br
 <2.vorsitzender@schachfreunde-biberach.de>
 
 ## Rechtliche Hinweise

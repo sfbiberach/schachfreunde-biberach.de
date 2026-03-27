@@ -60,11 +60,11 @@ function closeImage() {
         :key="index"
         :src="image.src"
         :alt="image.alt"
-        class="object-cover w-full h-full max-h-[40rem] !rounded-none cursor-pointer"
+        class="object-cover w-full h-full max-h-160 rounded-none! cursor-pointer"
         @click="openImage(index)"
       />
     </div>
-    <UModal :open="isOpen" :ui="{ content: '!bg-transparent', wrapper: 'sm:max-w-[unset] sm:max-w-content' }" fullscreen>
+    <UModal :open="isOpen" :ui="{ content: 'bg-transparent!', wrapper: 'sm:max-w-[unset] sm:max-w-content' }" fullscreen>
       <!-- background -->
       <div class="absolute inset-0 w-full h-full z-[-1] opacity-50">
         <img
@@ -75,7 +75,7 @@ function closeImage() {
       </div>
       <UCard
         :ui="{
-          root: 'h-full flex flex-col !bg-transparent',
+          root: 'h-full flex flex-col bg-transparent!',
           header: 'px-0',
           body: 'relative grow flex flex-col justify-center',
         }"

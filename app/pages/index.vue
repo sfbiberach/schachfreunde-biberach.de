@@ -1,6 +1,10 @@
 <script setup lang="ts">
 const { data: page } = await useAsyncData('landing', () => queryCollection('landing').path('/').first())
 
+useSeoMeta({
+  title: page.value?.title,
+})
+
 definePageMeta({
   heroBackground: 'opacity-80',
 })
@@ -30,7 +34,7 @@ const calendarSrc = computed(() => `${calendarBase}&cachebust=${encodeURICompone
         <span v-html="page.hero?.description" />
       </template>
 
-      <UPageGrid class="hidden lg:grid gap-8 auto-rows-fr lg:max-h-120 overflow-hidden lg:grid-cols-(--grid-cols-landing) xl:grid-cols-(--grid-cols-landing-padded)">
+      <UPageGrid class="hidden lg:grid gap-8 auto-rows-fr lg:max-h-120 overflow-hidden lg:grid-cols-(--grid-cols-landing)! xl:grid-cols-(--grid-cols-landing-padded)">
         <template v-for="(image, index) in images" :key="index">
           <NuxtImg
             v-if="image.src"

@@ -1,7 +1,14 @@
 title: Aktuelle Beiträge
 description: Hier findest du die neuesten Mannschafts- und Turnierberichte.
-layout:
-  metadataComponent: hero
-  prose: false
+header:
+  links: []
+  ui: {}
+layout: default
 sitemap:
   loc: /blog
+  videos: []
+  images: []
+toc: true
+hero:
+  links: []
+status: published

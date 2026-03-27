@@ -1,18 +1,14 @@
 export default defineNuxtConfig({
 
   extends: [
-    'github:happydesigns/ui#v0.4.2',
+    '@h4designs/ui',
   ],
 
   modules: [
     '@nuxtjs/seo',
     '@nuxt/image',
-    '@nuxt/ui',
-    '@nuxt/content',
-    'nuxt-studio',
     '@vite-pwa/nuxt',
     '@nuxt/scripts',
-    '@nuxt/eslint',
   ],
 
   devtools: { enabled: true },
@@ -51,12 +47,15 @@ export default defineNuxtConfig({
       crawlLinks: true,
       autoSubfolderIndex: false,
       failOnError: false,
-      routes: ['/', '/sitemap.xml'],
+      routes: ['/', '/sitemap.xml', '/api/navigation.json', '/api/search.json'],
     },
     preset: 'cloudflare_module',
     cloudflare: {
       deployConfig: true,
       nodeCompat: true,
+    },
+    virtual: {
+      sharp: 'export default function sharp() { return {} }',
     },
   },
 
@@ -64,12 +63,6 @@ export default defineNuxtConfig({
     config: {
       stylistic: true,
       standalone: false,
-    },
-  },
-
-  fonts: {
-    experimental: {
-      processCSSVariables: true,
     },
   },
 

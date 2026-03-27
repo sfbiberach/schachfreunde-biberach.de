@@ -6,7 +6,7 @@ const footerButtons = appConfig?.app?.meta?.socials
 <template>
   <USeparator icon="i-ph-crown-cross-duotone" class="h-px" />
 
-  <UFooter>
+  <UFooter :ui="{ left: 'justify-start', right: 'justify-end' }">
     <template #top>
       <UContainer>
         <HFooterColumns />

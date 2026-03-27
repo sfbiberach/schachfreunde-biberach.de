@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@10.25.0",
+  "packageManager": "pnpm@10.33.0",
   "scripts": {
     "dev": "nuxt dev",
     "build": "cross-env NODE_OPTIONS='--max-old-space-size=4096' nuxt build",
@@ -15,34 +15,35 @@
     "generate-pwa-assets": "pwa-assets-generator"
   },
   "dependencies": {
+    "@h4designs/ui": "^0.12.2",
     "@iconify-json/fa6-solid": "^1.2.4",
     "@iconify-json/heroicons": "^1.2.3",
-    "@iconify-json/lucide": "^1.2.81",
+    "@iconify-json/lucide": "^1.2.98",
     "@iconify-json/ph": "^1.2.2",
-    "@iconify-json/simple-icons": "^1.2.63",
-    "@nuxt/content": "^3.9.0",
+    "@iconify-json/simple-icons": "^1.2.75",
+    "@nuxt/content": "^3.12.0",
     "@nuxt/image": "^2.0.0",
     "@nuxt/scripts": "0.13.0",
-    "@nuxt/ui": "^4.2.1",
-    "@nuxtjs/seo": "^3.3.0",
-    "@unhead/vue": "^2.0.19",
-    "@vite-pwa/nuxt": "^1.1.0",
+    "@nuxt/ui": "^4.5.1",
+    "@nuxtjs/seo": "^3.4.0",
+    "@unhead/vue": "^2.1.12",
+    "@vite-pwa/nuxt": "^1.1.1",
     "@vueuse/core": "^13.9.0",
     "@vueuse/nuxt": "^13.9.0",
-    "better-sqlite3": "^12.5.0",
-    "feed": "^5.1.0",
-    "nuxt": "^4.2.2",
-    "nuxt-studio": "^1.0.0-alpha.4"
+    "better-sqlite3": "^12.8.0",
+    "feed": "^5.2.0",
+    "nuxt": "^4.4.2",
+    "nuxt-studio": "^1.5.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^6.7.1",
-    "@nuxt/eslint": "^1.12.1",
-    "@types/node": "^24.10.4",
+    "@antfu/eslint-config": "^7.7.3",
+    "@nuxt/eslint": "^1.15.2",
+    "@types/node": "^25.5.0",
     "@vite-pwa/assets-generator": "^1.0.2",
     "cross-env": "^10.1.0",
-    "eslint": "^9.39.2",
-    "mdclint": "^0.1.1",
+    "eslint": "^10.1.0",
+    "mdclint": "^0.1.2",
     "typescript": "^5.9.3",
-    "wrangler": "^4.54.0"
+    "wrangler": "^4.77.0"
   }
 }

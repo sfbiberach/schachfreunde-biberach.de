@@ -31,6 +31,11 @@ export default defineAppConfig({
           target: '_blank',
         },
       ] as ButtonProps[],
+      github: {
+        repo: 'sfbiberach/schachfreunde-biberach.de',
+        branch: 'main',
+        dir: 'content',
+      },
     },
 
     icons: {
@@ -125,6 +130,105 @@ export default defineAppConfig({
       ],
     },
 
+    date: {
+      locale: 'de',
+      options: {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      },
+    },
+
+    toc: {
+      title: 'Inhaltsverzeichnis',
+    },
+
+    collections: {
+      article: {
+        breadcrumbs: [
+          {
+            label: 'Blog',
+            to: '/blog',
+            icon: 'i-ph-newspaper',
+          },
+        ],
+        categories: {
+          Jugend: {
+            label: 'Jugend',
+            color: 'jugend',
+          },
+          Mannschaft: {
+            label: 'Mannschaft',
+            color: 'mannschaft',
+          },
+          Verein: {
+            label: 'Verein',
+            color: 'verein',
+          },
+        },
+        backButton: {
+          label: 'Zurück zum Blog',
+        },
+        copyButton: {
+          label: 'URL kopieren',
+          successLabel: 'Link in Zwischenablage kopiert',
+        },
+        actionButtons: {
+          edit: {
+            label: 'Seite bearbeiten',
+          },
+          report: {
+            label: 'Fehler melden',
+          },
+          separator: 'oder',
+        },
+        surround: {
+          prevLabel: 'Vorheriger',
+          nextLabel: 'Nächster',
+        },
+        list: {
+          labelAll: 'Alle',
+          noResultsMessage: 'Keine Berichte gefunden.',
+        },
+      },
+
+      team: {
+        extends: 'article',
+        query: {
+          order: false,
+        },
+        breadcrumbs: [
+          {
+            label: 'Mannschaften',
+            to: '/mannschaften',
+            icon: 'i-ph-castle-turret',
+          },
+        ],
+        backButton: {
+          label: 'Zurück zur Übersicht',
+          icon: 'i-ph-arrow-left',
+        },
+      },
+
+      tournament: {
+        extends: 'article',
+        query: {
+          order: false,
+        },
+        breadcrumbs: [
+          {
+            label: 'Turniere',
+            to: '/turniere',
+            icon: 'i-ph-trophy',
+          },
+        ],
+        backButton: {
+          label: 'Zurück zur Übersicht',
+          icon: 'i-ph-arrow-left',
+        },
+      },
+    },
+
     blog: {
       categories: {
         Jugend: {
@@ -140,53 +244,6 @@ export default defineAppConfig({
           color: 'verein',
         },
       },
-    },
-
-    chessboard: {
-      summon: {
-        chance: 0.15,
-        limit: 2,
-      },
-      pieces: [
-        {
-          icon: 'i-fa6-solid-chess-pawn',
-          moves: {
-            step: [[0, 1]],
-            start: [[0, 1], [0, 2]],
-            capture: [[1, 1]],
-          },
-        },
-        {
-          icon: 'i-fa6-solid-chess-knight',
-          moves: {
-            step: [[2, 1], [1, 2]],
-          },
-        },
-        {
-          icon: 'i-fa6-solid-chess-bishop',
-          moves: {
-            step: [[1, 1], [2, 2], [3, 3]],
-          },
-        },
-        {
-          icon: 'i-fa6-solid-chess-rook',
-          moves: {
-            step: [[0, 1], [0, 2], [0, 3], [1, 0], [2, 0], [3, 0]],
-          },
-        },
-        {
-          icon: 'i-fa6-solid-chess-queen',
-          moves: {
-            step: [[0, 1], [0, 2], [0, 3], [1, 0], [2, 0], [3, 0], [1, 1], [2, 2], [3, 3]],
-          },
-        },
-        {
-          icon: 'i-fa6-solid-chess-king',
-          moves: {
-            step: [[0, 1], [1, 0], [1, 1]],
-          },
-        },
-      ],
     },
   },
 
