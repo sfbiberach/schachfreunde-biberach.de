@@ -1,3 +1,5 @@
+import process from 'node:process'
+
 export default defineNuxtConfig({
 
   extends: [
@@ -56,6 +58,10 @@ export default defineNuxtConfig({
     },
     virtual: {
       sharp: 'export default function sharp() { return {} }',
+    },
+    replace: {
+      'process.env.STUDIO_GITHUB_CLIENT_ID': JSON.stringify(process.env.STUDIO_GITHUB_CLIENT_ID),
+      'process.env.STUDIO_GITHUB_CLIENT_SECRET': JSON.stringify(process.env.STUDIO_GITHUB_CLIENT_SECRET),
     },
   },
 
