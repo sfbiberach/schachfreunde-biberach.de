@@ -1,10 +1,4 @@
 <script setup lang="ts">
-import type { BadgeProps, BreadcrumbItem } from '#ui/types'
-
-interface CategoriesMap {
-  [category: string]: BadgeProps
-}
-
 const { data: page } = await usePageContent({
   collection: 'article',
 })
@@ -25,17 +19,18 @@ const { data: tournament } = await useAsyncData(
 const tournamentLink = computed(() => tournament.value?.path)
 const tournamentTitle = computed(() => tournament.value?.title)
 
-const appConfig = useAppConfig()
+const { traitConfig } = useCollectionTraits('article')
 
-watchEffect(() => {
-  const categories = appConfig.app.blog.categories as CategoriesMap
-  const category = page.value?.category
-  const color = category ? categories[category]?.color : undefined
-
-  if (import.meta.client) {
-    usePrimaryColor(color)
-  }
-})
+if (import.meta.client) {
+  watch(
+    [() => page.value?.category, traitConfig],
+    ([category, config]) => {
+      const color = category ? config?.categories?.[category]?.color : undefined
+      usePrimaryColor(color)
+    },
+    { immediate: true },
+  )
+}
 </script>
 
 <template>

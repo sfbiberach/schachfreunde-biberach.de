@@ -19,7 +19,7 @@ const tournamentSlug = computed(() => {
 </script>
 
 <template>
-  <NuxtLayout name="event" collection="tournament">
+  <NuxtLayout name="article" collection="tournament">
     <ContentRenderer v-if="page" :value="page" />
 
     <section class="mt-12 space-y-6">

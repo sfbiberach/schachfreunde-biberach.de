@@ -9,15 +9,15 @@ const { data: pageData } = await usePageContent({
 })
 
 const route = useRoute()
-const appConfig = useAppConfig()
+const { traitConfig } = useCollectionTraits('article')
 
-const category = ref<{ label: string, color: string } | undefined>()
+const category = ref<{ label?: string, color?: string } | undefined>()
 const page = ref<number>(1)
 
 watchEffect(() => {
-  const categories = Object.values(appConfig.app.blog.categories)
+  const categories = Object.values(traitConfig.value?.categories ?? {})
   const categoryQuery = route.query.category as string
-  category.value = categories.find(c => c.label.toLocaleLowerCase() === categoryQuery?.toLocaleLowerCase())
+  category.value = categories.find(c => c.label?.toLocaleLowerCase() === categoryQuery?.toLocaleLowerCase())
 
   const pageQuery = route.query.page as string
   page.value = Number.parseInt(pageQuery ?? '1')
