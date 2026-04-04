@@ -21,6 +21,8 @@ import {
   userTrait,
 } from '@h4designs/ui/schemas'
 import { property } from '@nuxt/content'
+import { defineRobotsSchema } from '@nuxtjs/robots/content'
+import { defineSitemapSchema } from '@nuxtjs/sitemap/content'
 import { defineCollection, defineContentConfig, defineTrait } from 'nuxt-content-traits/utils'
 import { z } from 'zod'
 
@@ -61,22 +63,40 @@ export default defineContentConfig({
 
     snippet: defineCollection(snippetCollection),
 
-    page: defineCollection(pageCollection),
+    page: defineCollection({
+      ...pageCollection,
+      schema: pageCollection.schema?.extend({
+        sitemap: defineSitemapSchema(),
+        robots: defineRobotsSchema(),
+      }),
+    }),
 
     article: defineCollection({
       ...articleCollection,
       source: 'blog/article/**/*.{md,yaml}',
       traits: [...articleCollection.traits, 'tournament'],
+      schema: articleCollection.schema?.extend({
+        sitemap: defineSitemapSchema(),
+        robots: defineRobotsSchema(),
+      }),
     }),
 
     team: defineCollection({
       ...eventCollection,
       source: 'mannschaften/**/*.{md,yaml}',
+      schema: eventCollection.schema?.extend({
+        sitemap: defineSitemapSchema(),
+        robots: defineRobotsSchema(),
+      }),
     }),
 
     tournament: defineCollection({
       ...eventCollection,
       source: 'turniere/**/*.{md,yaml}',
+      schema: eventCollection.schema?.extend({
+        sitemap: defineSitemapSchema(),
+        robots: defineRobotsSchema(),
+      }),
     }),
   },
 })
