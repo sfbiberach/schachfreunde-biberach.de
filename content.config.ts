@@ -1,16 +1,54 @@
-import { articleSchema, eventSchema, pageSchema, userSchema } from '@h4designs/ui/schemas'
-import { defineCollection, defineContentConfig, property } from '@nuxt/content'
-import { asRobotsCollection } from '@nuxtjs/robots/content'
-import { asSitemapCollection } from '@nuxtjs/sitemap/content'
-import { z } from 'zod/v4'
+import {
+  articleCollection,
+  authorsTrait,
+  backButtonTrait,
+  categoryTrait,
+  copyButtonTrait,
+  datesTrait,
+  eventCollection,
+  headerTrait,
+  layoutTrait,
+  linksTrait,
+  locationTrait,
+  pageCollection,
+  separatorButtonsTrait,
+  separatorTrait,
+  snippetCollection,
+  statusTrait,
+  surroundTrait,
+  tocTrait,
+  userCollection,
+  userTrait,
+} from '@h4designs/ui/schemas'
+import { property } from '@nuxt/content'
+import { defineCollection, defineContentConfig, defineTrait } from 'nuxt-content-traits/utils'
+import { z } from 'zod'
 
 export default defineContentConfig({
-  collections: {
-    user: defineCollection({
-      type: 'data',
-      source: 'users/**/*.{md,yaml}',
-      schema: userSchema,
+  traits: {
+    dates: defineTrait(datesTrait),
+    authors: defineTrait(authorsTrait),
+    category: defineTrait(categoryTrait),
+    status: defineTrait(statusTrait),
+    header: defineTrait(headerTrait),
+    toc: defineTrait(tocTrait),
+    links: defineTrait(linksTrait),
+    location: defineTrait(locationTrait),
+    separator: defineTrait(separatorTrait),
+    surround: defineTrait(surroundTrait),
+    copyButton: defineTrait(copyButtonTrait),
+    separatorButtons: defineTrait(separatorButtonsTrait),
+    backButton: defineTrait(backButtonTrait),
+    layout: defineTrait(layoutTrait),
+    user: defineTrait(userTrait),
+    tournament: defineTrait({
+      schema: z.object({
+        tournament: z.string().optional(),
+      }),
     }),
+  },
+  collections: {
+    user: defineCollection(userCollection),
 
     landing: defineCollection({
       type: 'page',
@@ -21,54 +59,24 @@ export default defineContentConfig({
       }),
     }),
 
-    snippet: defineCollection({
-      type: 'page',
-      source: 'snippets/**/*.{md,yaml}',
+    snippet: defineCollection(snippetCollection),
+
+    page: defineCollection(pageCollection),
+
+    article: defineCollection({
+      ...articleCollection,
+      source: 'blog/article/**/*.{md,yaml}',
+      traits: [...articleCollection.traits, 'tournament'],
     }),
 
-    page: defineCollection(
-      asRobotsCollection(
-        asSitemapCollection({
-          type: 'page',
-          source: {
-            include: 'pages/**/*.{md,yaml}',
-            prefix: '/',
-          },
-          schema: pageSchema,
-        }),
-      ),
-    ),
+    team: defineCollection({
+      ...eventCollection,
+      source: 'mannschaften/**/*.{md,yaml}',
+    }),
 
-    article: defineCollection(
-      asRobotsCollection(
-        asSitemapCollection({
-          type: 'page',
-          source: 'blog/article/**/*.{md,yaml}',
-          schema: articleSchema.extend({
-            tournament: z.string().optional(),
-          }),
-        }),
-      ),
-    ),
-
-    team: defineCollection(
-      asRobotsCollection(
-        asSitemapCollection({
-          type: 'page',
-          source: 'mannschaften/**/*.{md,yaml}',
-          schema: eventSchema,
-        }),
-      ),
-    ),
-
-    tournament: defineCollection(
-      asRobotsCollection(
-        asSitemapCollection({
-          type: 'page',
-          source: 'turniere/**/*.{md,yaml}',
-          schema: eventSchema,
-        }),
-      ),
-    ),
+    tournament: defineCollection({
+      ...eventCollection,
+      source: 'turniere/**/*.{md,yaml}',
+    }),
   },
 })
