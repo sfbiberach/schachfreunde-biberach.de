@@ -1,4 +1,4 @@
-import type { ButtonProps } from '#ui/types'
+import type { ButtonProps } from '@nuxt/ui'
 
 export default defineAppConfig({
   app: {
@@ -142,16 +142,24 @@ export default defineAppConfig({
     toc: {
       title: 'Inhaltsverzeichnis',
     },
+  },
 
+  content: {
+    traits: {
+      copyButton: {
+        label: 'URL kopieren',
+        successLabel: 'Link in Zwischenablage kopiert',
+      },
+      separator: {
+        buttons: [
+          { type: 'github-edit', icon: 'i-lucide-pen', label: 'Artikel bearbeiten', target: '_blank' },
+          { type: 'report-github-issue', icon: 'i-ph-warning-circle', label: 'Fehler melden', target: '_blank' },
+        ],
+        separator: '·',
+      },
+    },
     collections: {
       article: {
-        breadcrumbs: [
-          {
-            label: 'Blog',
-            to: '/blog',
-            icon: 'i-ph-newspaper',
-          },
-        ],
         categories: {
           Jugend: {
             label: 'Jugend',
@@ -166,37 +174,22 @@ export default defineAppConfig({
             color: 'verein',
           },
         },
+        breadcrumbs: [
+          {
+            label: 'Blog',
+            to: '/blog',
+            icon: 'i-ph-newspaper',
+          },
+        ],
         backButton: {
           label: 'Zurück zum Blog',
-        },
-        copyButton: {
-          label: 'URL kopieren',
-          successLabel: 'Link in Zwischenablage kopiert',
-        },
-        actionButtons: {
-          edit: {
-            label: 'Seite bearbeiten',
-          },
-          report: {
-            label: 'Fehler melden',
-          },
-          separator: 'oder',
-        },
-        surround: {
-          prevLabel: 'Vorheriger',
-          nextLabel: 'Nächster',
         },
         list: {
           labelAll: 'Alle',
           noResultsMessage: 'Keine Berichte gefunden.',
         },
       },
-
       team: {
-        extends: 'article',
-        query: {
-          order: false,
-        },
         breadcrumbs: [
           {
             label: 'Mannschaften',
@@ -208,13 +201,12 @@ export default defineAppConfig({
           label: 'Zurück zur Übersicht',
           icon: 'i-ph-arrow-left',
         },
-      },
-
-      tournament: {
-        extends: 'article',
-        query: {
-          order: false,
+        list: {
+          labelAll: 'Alle',
+          noResultsMessage: 'Keine Mannschaften gefunden.',
         },
+      },
+      tournament: {
         breadcrumbs: [
           {
             label: 'Turniere',
@@ -226,22 +218,9 @@ export default defineAppConfig({
           label: 'Zurück zur Übersicht',
           icon: 'i-ph-arrow-left',
         },
-      },
-    },
-
-    blog: {
-      categories: {
-        Jugend: {
-          label: 'Jugend',
-          color: 'jugend',
-        },
-        Mannschaft: {
-          label: 'Mannschaft',
-          color: 'mannschaft',
-        },
-        Verein: {
-          label: 'Verein',
-          color: 'verein',
+        list: {
+          labelAll: 'Alle',
+          noResultsMessage: 'Keine Turniere gefunden.',
         },
       },
     },
