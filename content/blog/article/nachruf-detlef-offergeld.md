@@ -3,6 +3,8 @@ title: "Nachruf: Detlef Offergeld"
 description: In tiefer Trauer nehmen wir Abschied von unserem Gründungsmitglied
 category: Verein
 date: 2026-04-20
+status: published
+toc: true
 ---
 
 ### Detlef Offergeld
@@ -20,3 +22,5 @@ Wir werden ihn sehr vermissen.
 Die Trauerfeier findet am 27.04.2026 um 13:00 Uhr in der Aussegnungshalle in Unterheinriet statt.
 
 Schachfreunde HN-Biberach 1978 e.V.
+
+![Detlef auf dem Dorffest in Heilbronn-Biberach](/assets/blog/nachruf-detlef-offergeld/detlef.jpg){.mx-auto.w-80}
