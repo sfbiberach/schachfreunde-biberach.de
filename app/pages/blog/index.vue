@@ -9,23 +9,21 @@ const { data: pageData } = await usePageContent({
 })
 
 const route = useRoute()
-const { traitConfig } = useCollectionTraits('article')
+const { config } = useVariant('article')
 
-const category = ref<{ label?: string, color?: string } | undefined>()
-const page = ref<number>(1)
+const categoryColor = computed(() => {
+  const categoryQuery = Array.isArray(route.query.category)
+    ? route.query.category[0]
+    : route.query.category
 
-watchEffect(() => {
-  const categories = Object.values(traitConfig.value?.categories ?? {})
-  const categoryQuery = route.query.category as string
-  category.value = categories.find(c => c.label?.toLocaleLowerCase() === categoryQuery?.toLocaleLowerCase())
-
-  const pageQuery = route.query.page as string
-  page.value = Number.parseInt(pageQuery ?? '1')
-
-  if (import.meta.client) {
-    usePrimaryColor(category.value?.color)
-  }
+  return typeof categoryQuery === 'string'
+    ? config.value.categories?.[categoryQuery]?.color
+    : undefined
 })
+
+if (import.meta.client) {
+  watch(categoryColor, color => usePrimaryColor(color), { immediate: true })
+}
 
 usePageSeo(pageData)
 const header = computed(() => resolvePageHeader(pageData.value))

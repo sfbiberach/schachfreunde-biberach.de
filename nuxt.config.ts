@@ -3,7 +3,7 @@ import process from 'node:process'
 export default defineNuxtConfig({
 
   extends: [
-    '@h4designs/ui',
+    '@happydesigns/ui',
   ],
 
   modules: [
@@ -129,4 +129,21 @@ export default defineNuxtConfig({
       branch: 'main',
     },
   },
+  variants: {
+    registry: {
+      articleTournament: {},
+      team: {
+        extends: 'event',
+      },
+      tournament: {
+        extends: 'event',
+      },
+      article: {
+        extends: [
+          'articleTournament',
+        ],
+      },
+    },
+  },
+
 })

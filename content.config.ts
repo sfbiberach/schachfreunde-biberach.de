@@ -1,56 +1,29 @@
-import {
-  articleCollection,
-  authorsTrait,
-  backButtonTrait,
-  categoryTrait,
-  copyButtonTrait,
-  datesTrait,
-  eventCollection,
-  headerTrait,
-  layoutTrait,
-  linksTrait,
-  locationTrait,
-  pageCollection,
-  separatorButtonsTrait,
-  separatorTrait,
-  snippetCollection,
-  statusTrait,
-  surroundTrait,
-  tocTrait,
-  userCollection,
-  userTrait,
-} from '@h4designs/ui/schemas'
-import { property } from '@nuxt/content'
+import { mergeVariantSchemas } from '@happydesigns/nuxt-variants/schemas'
+import { variantSchemas } from '@happydesigns/ui/schemas'
+import { defineCollection, defineContentConfig, property } from '@nuxt/content'
 import { defineRobotsSchema } from '@nuxtjs/robots/content'
 import { defineSitemapSchema } from '@nuxtjs/sitemap/content'
-import { defineCollection, defineContentConfig, defineTrait } from 'nuxt-content-traits/utils'
 import { z } from 'zod'
 
+const seo = {
+  sitemap: defineSitemapSchema(),
+  robots: defineRobotsSchema(),
+}
+
+const siteVariantSchemas = {
+  ...variantSchemas,
+  articleTournament: z.object({
+    tournament: z.string().optional(),
+  }),
+}
+
 export default defineContentConfig({
-  traits: {
-    dates: defineTrait(datesTrait),
-    authors: defineTrait(authorsTrait),
-    category: defineTrait(categoryTrait),
-    status: defineTrait(statusTrait),
-    header: defineTrait(headerTrait),
-    toc: defineTrait(tocTrait),
-    links: defineTrait(linksTrait),
-    location: defineTrait(locationTrait),
-    separator: defineTrait(separatorTrait),
-    surround: defineTrait(surroundTrait),
-    copyButton: defineTrait(copyButtonTrait),
-    separatorButtons: defineTrait(separatorButtonsTrait),
-    backButton: defineTrait(backButtonTrait),
-    layout: defineTrait(layoutTrait),
-    user: defineTrait(userTrait),
-    tournament: defineTrait({
-      schema: z.object({
-        tournament: z.string().optional(),
-      }),
-    }),
-  },
   collections: {
-    user: defineCollection(userCollection),
+    user: defineCollection({
+      type: 'data',
+      source: 'users/**/*.{md,yaml}',
+      schema: mergeVariantSchemas(['user'], siteVariantSchemas),
+    }),
 
     landing: defineCollection({
       type: 'page',
@@ -61,42 +34,39 @@ export default defineContentConfig({
       }),
     }),
 
-    snippet: defineCollection(snippetCollection),
+    snippet: defineCollection({
+      type: 'page',
+      source: {
+        include: 'snippets/**/*.{md,yaml}',
+        prefix: '/snippets',
+      },
+    }),
 
     page: defineCollection({
-      ...pageCollection,
-      schema: pageCollection.schema?.extend({
-        sitemap: defineSitemapSchema(),
-        robots: defineRobotsSchema(),
-      }),
+      type: 'page',
+      source: {
+        include: 'pages/**/*.{md,yaml}',
+        prefix: '/',
+      },
+      schema: mergeVariantSchemas(['page'], siteVariantSchemas).extend(seo),
     }),
 
     article: defineCollection({
-      ...articleCollection,
+      type: 'page',
       source: 'blog/article/**/*.{md,yaml}',
-      traits: [...articleCollection.traits, 'tournament'],
-      schema: articleCollection.schema?.extend({
-        sitemap: defineSitemapSchema(),
-        robots: defineRobotsSchema(),
-      }),
+      schema: mergeVariantSchemas(['article'], siteVariantSchemas).extend(seo),
     }),
 
     team: defineCollection({
-      ...eventCollection,
+      type: 'page',
       source: 'mannschaften/**/*.{md,yaml}',
-      schema: eventCollection.schema?.extend({
-        sitemap: defineSitemapSchema(),
-        robots: defineRobotsSchema(),
-      }),
+      schema: mergeVariantSchemas(['team'], siteVariantSchemas).extend(seo),
     }),
 
     tournament: defineCollection({
-      ...eventCollection,
+      type: 'page',
       source: 'turniere/**/*.{md,yaml}',
-      schema: eventCollection.schema?.extend({
-        sitemap: defineSitemapSchema(),
-        robots: defineRobotsSchema(),
-      }),
+      schema: mergeVariantSchemas(['tournament'], siteVariantSchemas).extend(seo),
     }),
   },
 })

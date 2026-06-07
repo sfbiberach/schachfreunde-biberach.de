@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const fileExtensionPattern = /^\/[^.]*\.[0-9a-z]+(?:\/.*)?$/i
+
 definePageMeta({
   validate: (route) => {
     const path = route.fullPath
@@ -7,7 +9,7 @@ definePageMeta({
       return false
     }
     // Exclude paths that look like they have file extensions (e.g., /image.jpg)
-    const hasFileExtension = /^\/[^.]*\.[0-9a-z]+(?:\/.*)?$/i.test(path)
+    const hasFileExtension = fileExtensionPattern.test(path)
     return !hasFileExtension
   },
 })
