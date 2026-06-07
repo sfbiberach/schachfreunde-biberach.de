@@ -15,7 +15,7 @@
     "generate-pwa-assets": "pwa-assets-generator"
   },
   "dependencies": {
-    "@happydesigns/nuxt-variants": "file:../../2.happydesigns/nuxt-variants",
+    "@happydesigns/nuxt-variants": "^0.0.6",
     "@happydesigns/ui": "file:../../2.happydesigns/ui",
     "@iconify-json/fa6-solid": "^1.2.4",
     "@iconify-json/heroicons": "^1.2.3",

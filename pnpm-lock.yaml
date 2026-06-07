@@ -4,16 +4,13 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  '@happydesigns/nuxt-variants': file:../../2.happydesigns/nuxt-variants
-
 importers:
 
   .:
     dependencies:
       '@happydesigns/nuxt-variants':
-        specifier: file:../../2.happydesigns/nuxt-variants
-        version: file:../../2.happydesigns/nuxt-variants(magicast@0.5.2)(vite@7.3.1(@types/node@25.5.2)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.1)(yaml@2.8.3))
+        specifier: ^0.0.6
+        version: 0.0.6(magicast@0.5.2)(vite@7.3.1(@types/node@25.5.2)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.1)(yaml@2.8.3))
       '@happydesigns/ui':
         specifier: file:../../2.happydesigns/ui
         version: file:../../2.happydesigns/ui(@tiptap/extensions@3.22.1(@tiptap/core@3.22.1(@tiptap/pm@3.22.1))(@tiptap/pm@3.22.1))(@tiptap/y-tiptap@3.0.2(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.7)(y-protocols@1.0.7(yjs@13.6.30))(yjs@13.6.30))(change-case@5.4.4)(db0@0.3.4(better-sqlite3@12.8.0))(embla-carousel@8.6.0)(ioredis@5.10.1)(magicast@0.5.2)(tailwindcss@4.2.2)(typescript@6.0.2)(valibot@1.3.1(typescript@6.0.2))(vite@7.3.1(@types/node@25.5.2)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.1)(yaml@2.8.3))(vue-router@5.0.4(@vue/compiler-sfc@3.5.32)(vue@3.5.30(typescript@6.0.2)))(vue@3.5.30(typescript@6.0.2))(yjs@13.6.30)(zod@4.3.6)
@@ -1270,8 +1267,8 @@ packages:
   '@floating-ui/vue@1.1.11':
     resolution: {integrity: sha512-HzHKCNVxnGS35r9fCHBc3+uCnjw9IWIlCPL683cGgM9Kgj2BiAl8x1mS7vtvP6F9S/e/q4O6MApwSHj8hNLGfw==}
 
-  '@happydesigns/nuxt-variants@file:../../2.happydesigns/nuxt-variants':
-    resolution: {directory: ../../2.happydesigns/nuxt-variants, type: directory}
+  '@happydesigns/nuxt-variants@0.0.6':
+    resolution: {integrity: sha512-X6+XXseyl9Wti5AebOM0fYm0hD+DyRhDDxKnA2SiWxlpvMKzSnaTbSKZZCL1u+Q3qezkM9J+bRoARg5O8X5Aqw==}
 
   '@happydesigns/ui@file:../../2.happydesigns/ui':
     resolution: {directory: ../../2.happydesigns/ui, type: directory}
@@ -9726,7 +9723,7 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
-  '@happydesigns/nuxt-variants@file:../../2.happydesigns/nuxt-variants(magicast@0.5.2)(vite@7.3.1(@types/node@25.5.2)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.1)(yaml@2.8.3))':
+  '@happydesigns/nuxt-variants@0.0.6(magicast@0.5.2)(vite@7.3.1(@types/node@25.5.2)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.1)(yaml@2.8.3))':
     dependencies:
       '@nuxt/devtools-kit': 3.2.4(magicast@0.5.2)(vite@7.3.1(@types/node@25.5.2)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.1)(yaml@2.8.3))
       '@nuxt/kit': 4.4.2(magicast@0.5.2)
@@ -9736,7 +9733,7 @@ snapshots:
 
   '@happydesigns/ui@file:../../2.happydesigns/ui(@tiptap/extensions@3.22.1(@tiptap/core@3.22.1(@tiptap/pm@3.22.1))(@tiptap/pm@3.22.1))(@tiptap/y-tiptap@3.0.2(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.7)(y-protocols@1.0.7(yjs@13.6.30))(yjs@13.6.30))(change-case@5.4.4)(db0@0.3.4(better-sqlite3@12.8.0))(embla-carousel@8.6.0)(ioredis@5.10.1)(magicast@0.5.2)(tailwindcss@4.2.2)(typescript@6.0.2)(valibot@1.3.1(typescript@6.0.2))(vite@7.3.1(@types/node@25.5.2)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.1)(yaml@2.8.3))(vue-router@5.0.4(@vue/compiler-sfc@3.5.32)(vue@3.5.30(typescript@6.0.2)))(vue@3.5.30(typescript@6.0.2))(yjs@13.6.30)(zod@4.3.6)':
     dependencies:
-      '@happydesigns/nuxt-variants': file:../../2.happydesigns/nuxt-variants(magicast@0.5.2)(vite@7.3.1(@types/node@25.5.2)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.1)(yaml@2.8.3))
+      '@happydesigns/nuxt-variants': 0.0.6(magicast@0.5.2)(vite@7.3.1(@types/node@25.5.2)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.1)(yaml@2.8.3))
       '@iconify-json/heroicons': 1.2.3
       '@iconify-json/lucide': 1.2.101
       '@iconify-json/simple-icons': 1.2.76

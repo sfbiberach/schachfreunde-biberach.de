@@ -9,6 +9,3 @@ onlyBuiltDependencies:
   - unrs-resolver
   - vue-demi
   - workerd
-
-overrides:
-  "@happydesigns/nuxt-variants": file:../../2.happydesigns/nuxt-variants
