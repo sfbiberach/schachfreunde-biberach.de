@@ -16,7 +16,6 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   css: ['~/assets/css/main.css'],
-
   ui: {
     theme: {
       colors: [
@@ -42,14 +41,14 @@ export default defineNuxtConfig({
     viewTransition: true,
   },
 
-  compatibilityDate: 'latest',
+  compatibilityDate: '2026-07-10',
 
   nitro: {
     prerender: {
       crawlLinks: true,
       autoSubfolderIndex: false,
-      failOnError: false,
-      routes: ['/', '/sitemap.xml', '/api/navigation.json', '/api/search.json'],
+      failOnError: true,
+      routes: ['/', '/impressum', '/datenschutz', '/sitemap.xml', '/api/navigation.json', '/api/search.json'],
     },
     preset: 'cloudflare_module',
     cloudflare: {
@@ -69,6 +68,13 @@ export default defineNuxtConfig({
     config: {
       stylistic: true,
       standalone: false,
+    },
+  },
+
+  icon: {
+    fallbackToApi: false,
+    serverBundle: {
+      collections: ['lucide', 'ph', 'simple-icons'],
     },
   },
 
