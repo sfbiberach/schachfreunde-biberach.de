@@ -33,7 +33,7 @@
     "@vueuse/nuxt": "^14.3.0",
     "better-sqlite3": "^12.11.1",
     "feed": "^6.0.0",
-    "nuxt-studio": "^1.5.1"
+    "nuxt-studio": "^1.7.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^9.1.0",

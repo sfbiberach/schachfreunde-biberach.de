@@ -7,7 +7,6 @@ trustPolicy: no-downgrade
 overrides:
   semver@6: 6.3.0
   "workbox-build@7.4.0>rollup": 2.79.2
-  nuxt-studio: 1.5.1
   workbox-build: 7.4.0
 
 peerDependencyRules:
