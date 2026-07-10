@@ -41,7 +41,7 @@ export default defineNuxtConfig({
     viewTransition: true,
   },
 
-  compatibilityDate: '2026-07-10',
+  compatibilityDate: '2026-07-09',
 
   nitro: {
     prerender: {
@@ -82,6 +82,8 @@ export default defineNuxtConfig({
     quality: 80,
     format: ['avif', 'webp', 'jpg'],
   },
+
+  ogImage: false,
 
   pwa: {
     manifest: {

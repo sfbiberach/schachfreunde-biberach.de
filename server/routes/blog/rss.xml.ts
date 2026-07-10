@@ -1,9 +1,9 @@
 import type { CollectionQueryBuilder, Collections } from '@nuxt/content'
 import type { H3Event } from 'h3'
 import process from 'node:process'
-import { queryCollection } from '#imports'
 import { Feed } from 'feed'
 import { joinURL } from 'ufo'
+import { queryCollection } from '#imports'
 
 type queryCollectionWithEvent = <T extends keyof Collections>(event: H3Event, collection: T) => CollectionQueryBuilder<Collections[T]>
 

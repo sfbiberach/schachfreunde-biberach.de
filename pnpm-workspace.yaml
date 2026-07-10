@@ -1,11 +1,26 @@
 shellEmulator: true
+shamefullyHoist: true
+strictPeerDependencies: true
 
-onlyBuiltDependencies:
-  - "@parcel/watcher"
-  - "@tailwindcss/oxide"
-  - better-sqlite3
-  - esbuild
-  - sharp
-  - unrs-resolver
-  - vue-demi
-  - workerd
+trustPolicy: no-downgrade
+
+overrides:
+  semver@6: 6.3.0
+  "workbox-build@7.4.0>rollup": 2.79.2
+  nuxt-studio: 1.5.1
+  workbox-build: 7.4.0
+
+peerDependencyRules:
+  allowedVersions:
+    eslint: ">=8.57.0"
+
+allowBuilds:
+  "@parcel/watcher": true
+  "@tailwindcss/oxide": true
+  better-sqlite3: true
+  esbuild: true
+  rollup: true
+  sharp: true
+  unrs-resolver: true
+  vue-demi: true
+  workerd: true
