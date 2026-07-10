@@ -26,7 +26,7 @@ const calendarSrc = computed(() => `${calendarBase}&cachebust=${encodeURICompone
 
 <template>
   <NuxtLayout v-if="page">
-    <UPageSection v-bind="page.hero" class="relative">
+    <UPageSection v-bind="(page.hero as any)" class="relative">
       <template #title>
         <span v-html="page.hero?.title" />
       </template>

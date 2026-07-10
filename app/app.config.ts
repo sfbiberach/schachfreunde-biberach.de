@@ -5,8 +5,8 @@ export default defineAppConfig({
     meta: {
       copyright: {
         copyrightYear: new Date().getFullYear(),
-        copyrightHolder: 'happydesigns',
-        copyrightHomepage: 'https://happydesigns.de',
+        copyrightHolder: 'Schachfreunde Heilbronn-Biberach 1978 e. V.',
+        copyrightHomepage: '/',
       },
       socials: [
         {
@@ -157,8 +157,8 @@ export default defineAppConfig({
       config: {
         separator: {
           buttons: [
-            { type: 'github-edit', icon: 'i-lucide-pen', label: 'Artikel bearbeiten', target: '_blank' },
-            { type: 'report-github-issue', icon: 'i-ph-warning-circle', label: 'Fehler melden', target: '_blank' },
+            { action: 'github-edit' as const, icon: 'i-lucide-pen', label: 'Artikel bearbeiten', target: '_blank' },
+            { action: 'report-github-issue' as const, icon: 'i-ph-warning-circle', label: 'Fehler melden', target: '_blank' },
           ],
           separator: '·',
         },
