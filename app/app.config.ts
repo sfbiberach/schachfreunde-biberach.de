@@ -6,7 +6,6 @@ export default defineAppConfig({
       copyright: {
         copyrightYear: new Date().getFullYear(),
         copyrightHolder: 'Schachfreunde Heilbronn-Biberach 1978 e. V.',
-        copyrightHomepage: '/',
       },
       socials: [
         {
