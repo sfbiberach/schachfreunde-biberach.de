@@ -15,7 +15,7 @@ const footerButtons = appConfig?.app?.meta?.socials
     <template #left>
       <HFooterCopyright>
         <template #copyright="{ copyrightYear, copyrightHolder }">
-          <p class="text-muted text-sm">
+          <p class="text-muted text-sm text-center lg:text-left!">
             Copyright © {{ copyrightYear }} {{ copyrightHolder }}
           </p>
         </template>
