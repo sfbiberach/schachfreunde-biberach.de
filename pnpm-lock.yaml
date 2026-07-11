@@ -17,8 +17,8 @@ importers:
         specifier: ^0.0.6
         version: 0.0.6(magicast@0.5.3)(vite@7.3.6(@types/node@26.1.1)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.49.0)(yaml@2.9.0))
       '@happydesigns/ui':
-        specifier: file:..\..\2.happydesigns\ui
-        version: file:../../2.happydesigns/ui(7261d64b158c26776284e09cfc8246e7)
+        specifier: ^0.15.0
+        version: 0.15.0(7261d64b158c26776284e09cfc8246e7)
       '@iconify-json/fa6-solid':
         specifier: ^1.2.4
         version: 1.2.4
@@ -1301,8 +1301,8 @@ packages:
   '@happydesigns/nuxt-variants@0.0.6':
     resolution: {integrity: sha512-X6+XXseyl9Wti5AebOM0fYm0hD+DyRhDDxKnA2SiWxlpvMKzSnaTbSKZZCL1u+Q3qezkM9J+bRoARg5O8X5Aqw==}
 
-  '@happydesigns/ui@file:../../2.happydesigns/ui':
-    resolution: {directory: ../../2.happydesigns/ui, type: directory}
+  '@happydesigns/ui@0.15.0':
+    resolution: {integrity: sha512-1uiuU1NiHhZ82xjrphWdjukB0KDEZ9qodeQPuPke/W60O05lp5Oyb4OmcIkF1t+nv0ryy0nNy75JZ/eoTqffAQ==}
 
   '@humanfs/core@0.19.2':
     resolution: {integrity: sha512-UhXNm+CFMWcbChXywFwkmhqjs3PRCmcSa/hfBgLIb7oQ5HNb1wS0icWsGtSAUNgefHeI+eBrA8I1fxmbHsGdvA==}
@@ -10004,7 +10004,7 @@ snapshots:
       - magicast
       - vite
 
-  '@happydesigns/ui@file:../../2.happydesigns/ui(7261d64b158c26776284e09cfc8246e7)':
+  '@happydesigns/ui@0.15.0(7261d64b158c26776284e09cfc8246e7)':
     dependencies:
       '@happydesigns/nuxt-variants': 0.0.6(magicast@0.5.3)(vite@7.3.6(@types/node@26.1.1)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.49.0)(yaml@2.9.0))
       '@iconify-json/heroicons': 1.2.3
