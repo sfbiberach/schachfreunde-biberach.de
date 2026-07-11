@@ -75,7 +75,14 @@ export default defineNuxtConfig({
   icon: {
     fallbackToApi: false,
     serverBundle: {
-      collections: ['lucide', 'ph', 'simple-icons'],
+      collections: ['heroicons', 'lucide', 'ph', 'simple-icons'],
+      remote: 'jsdelivr',
+    },
+    clientBundle: {
+      scan: {
+        globInclude: ['**/*.{vue,js,mjs,ts,jsx,tsx,md,mdc,mdx,yml,yaml}'],
+      },
+      sizeLimitKb: 256,
     },
   },
 
