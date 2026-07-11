@@ -9,7 +9,7 @@ function _useHeaderLinks() {
   const headerLinks = computed(() =>
     appConfig.app.links.header.map(link => ({
       ...link,
-      active: route.path.startsWith(link.to),
+      active: isNavigationTargetActive(route.path, link.to),
     })),
   )
   return { headerLinks }
@@ -26,7 +26,7 @@ function _useFooterLinks() {
       ...link,
       children: link.children?.map(child => ({
         ...child,
-        active: route.path.startsWith(child.to),
+        active: isNavigationTargetActive(route.path, child.to),
       })),
     })),
   )

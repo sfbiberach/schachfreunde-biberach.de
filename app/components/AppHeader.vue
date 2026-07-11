@@ -1,6 +1,5 @@
 <script setup lang="ts">
-const appConfig = useAppConfig()
-const items = appConfig.app.links.header
+const { headerLinks: items } = useHeaderLinks()
 
 const route = useRoute()
 const heroBackgroundClass = computed(() => route.meta?.heroBackground || 'opacity-30')
