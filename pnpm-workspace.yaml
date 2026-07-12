@@ -25,4 +25,4 @@ allowBuilds:
   workerd: true
 
 minimumReleaseAgeExclude:
-  - "@happydesigns/ui@0.15.0"
+  - "@happydesigns/ui@0.15.0 || 0.15.1"
