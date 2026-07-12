@@ -12,6 +12,7 @@
     "serve": "wrangler dev --config .output/server/wrangler.json",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "test": "vitest run",
     "typecheck": "nuxt typecheck",
     "generate-pwa-assets": "pwa-assets-generator"
   },
@@ -32,6 +33,7 @@
     "@vueuse/core": "^14.3.0",
     "@vueuse/nuxt": "^14.3.0",
     "better-sqlite3": "^12.11.1",
+    "cheerio": "^1.2.0",
     "feed": "^6.0.0",
     "nuxt-studio": "^1.7.0"
   },
@@ -46,8 +48,9 @@
     "nuxt": "^4.4.8",
     "typescript": "^6.0.3",
     "unhead": "3.1.7",
+    "vitest": "^4.1.10",
     "vue-tsc": "^3.3.7",
-    "wrangler": "^4.107.1",
+    "wrangler": "^4.110.0",
     "zod": "^4.4.3"
   }
 }
