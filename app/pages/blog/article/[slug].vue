@@ -19,13 +19,13 @@ const { data: tournament } = await useAsyncData(
 const tournamentLink = computed(() => tournament.value?.path)
 const tournamentTitle = computed(() => tournament.value?.title)
 
-const { traitConfig } = useCollectionTraits('article')
+const { config } = useVariant('article')
 
 if (import.meta.client) {
   watch(
-    [() => page.value?.category, traitConfig],
-    ([category, config]) => {
-      const color = category ? config?.categories?.[category]?.color : undefined
+    [() => page.value?.category, config],
+    ([category, cfg]) => {
+      const color = category ? cfg?.categories?.[category]?.color : undefined
       usePrimaryColor(color)
     },
     { immediate: true },

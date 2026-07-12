@@ -5,8 +5,7 @@ export default defineAppConfig({
     meta: {
       copyright: {
         copyrightYear: new Date().getFullYear(),
-        copyrightHolder: 'happydesigns',
-        copyrightHomepage: 'https://happydesigns.de',
+        copyrightHolder: 'Schachfreunde Heilbronn-Biberach 1978 e. V.',
       },
       socials: [
         {
@@ -144,22 +143,28 @@ export default defineAppConfig({
     },
   },
 
-  content: {
-    traits: {
-      copyButton: {
-        label: 'URL kopieren',
-        successLabel: 'Link in Zwischenablage kopiert',
-      },
-      separator: {
-        buttons: [
-          { type: 'github-edit', icon: 'i-lucide-pen', label: 'Artikel bearbeiten', target: '_blank' },
-          { type: 'report-github-issue', icon: 'i-ph-warning-circle', label: 'Fehler melden', target: '_blank' },
-        ],
-        separator: '·',
+  variants: {
+    copyButton: {
+      config: {
+        copyButton: {
+          label: 'URL kopieren',
+          successLabel: 'Link in Zwischenablage kopiert',
+        },
       },
     },
-    collections: {
-      article: {
+    separator: {
+      config: {
+        separator: {
+          buttons: [
+            { action: 'github-edit' as const, icon: 'i-lucide-pen', label: 'Artikel bearbeiten', target: '_blank' },
+            { action: 'report-github-issue' as const, icon: 'i-ph-warning-circle', label: 'Fehler melden', target: '_blank' },
+          ],
+          separator: '·',
+        },
+      },
+    },
+    article: {
+      config: {
         categories: {
           Jugend: {
             label: 'Jugend',
@@ -189,7 +194,9 @@ export default defineAppConfig({
           noResultsMessage: 'Keine Berichte gefunden.',
         },
       },
-      team: {
+    },
+    team: {
+      config: {
         breadcrumbs: [
           {
             label: 'Mannschaften',
@@ -206,7 +213,9 @@ export default defineAppConfig({
           noResultsMessage: 'Keine Mannschaften gefunden.',
         },
       },
-      tournament: {
+    },
+    tournament: {
+      config: {
         breadcrumbs: [
           {
             label: 'Turniere',

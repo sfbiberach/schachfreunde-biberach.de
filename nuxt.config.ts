@@ -3,10 +3,11 @@ import process from 'node:process'
 export default defineNuxtConfig({
 
   extends: [
-    '@h4designs/ui',
+    '@happydesigns/ui',
   ],
 
   modules: [
+    '@nuxt/eslint',
     '@nuxtjs/seo',
     '@nuxt/image',
     '@vite-pwa/nuxt',
@@ -16,7 +17,6 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   css: ['~/assets/css/main.css'],
-
   ui: {
     theme: {
       colors: [
@@ -42,14 +42,14 @@ export default defineNuxtConfig({
     viewTransition: true,
   },
 
-  compatibilityDate: 'latest',
+  compatibilityDate: '2026-07-09',
 
   nitro: {
     prerender: {
       crawlLinks: true,
       autoSubfolderIndex: false,
-      failOnError: false,
-      routes: ['/', '/sitemap.xml', '/api/navigation.json', '/api/search.json'],
+      failOnError: true,
+      routes: ['/', '/impressum', '/datenschutz', '/sitemap.xml', '/api/navigation.json', '/api/search.json'],
     },
     preset: 'cloudflare_module',
     cloudflare: {
@@ -72,10 +72,26 @@ export default defineNuxtConfig({
     },
   },
 
+  icon: {
+    fallbackToApi: false,
+    serverBundle: {
+      collections: ['heroicons', 'lucide', 'ph', 'simple-icons'],
+      remote: 'jsdelivr',
+    },
+    clientBundle: {
+      scan: {
+        globInclude: ['**/*.{vue,js,mjs,ts,jsx,tsx,md,mdc,mdx,yml,yaml}'],
+      },
+      sizeLimitKb: 256,
+    },
+  },
+
   image: {
     quality: 80,
     format: ['avif', 'webp', 'jpg'],
   },
+
+  ogImage: false,
 
   pwa: {
     manifest: {
@@ -129,4 +145,21 @@ export default defineNuxtConfig({
       branch: 'main',
     },
   },
+  variants: {
+    registry: {
+      articleTournament: {},
+      team: {
+        extends: 'event',
+      },
+      tournament: {
+        extends: 'event',
+      },
+      article: {
+        extends: [
+          'articleTournament',
+        ],
+      },
+    },
+  },
+
 })

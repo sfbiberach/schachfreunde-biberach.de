@@ -35,7 +35,9 @@ export default defineNuxtPlugin({
       useHead({
         script: [{
           innerHTML: `
-            let html = document.querySelector('style#nuxt-ui-colors').innerHTML;
+            const colorStyle = document.querySelector('style#nuxt-ui-colors');
+            if (colorStyle) {
+              let html = colorStyle.innerHTML;
 
             if (localStorage.getItem('nuxt-ui-primary')) {
               const primaryColor = localStorage.getItem('nuxt-ui-primary');
@@ -54,10 +56,11 @@ export default defineNuxtPlugin({
               );
             }
 
-            document.querySelector('style#nuxt-ui-colors').innerHTML = html;
+              colorStyle.innerHTML = html;
+            }
             `.replace(/\s+/g, ' '),
           type: 'text/javascript',
-          tagPriority: -1,
+          tagPosition: 'bodyOpen',
         }, {
           innerHTML: `
             if (localStorage.getItem('nuxt-ui-radius')) {

@@ -7,11 +7,13 @@ const props = defineProps({
     default: () => [],
   },
 })
+
+const columnsClass = computed(() => props.images.length > 1 ? 'md:grid-cols-2' : '')
 </script>
 
 <template>
   <section class="gallery">
-    <div class="layout grid gap-8 my-16 grid-cols-1" :class="Math.min(props.images.length, 2)">
+    <div class="layout grid gap-8 my-16 grid-cols-1" :class="columnsClass">
       <NuxtImg
         v-for="(image, index) in images"
         :key="index"

@@ -39,6 +39,10 @@ Zypressenstr. 1 :br
 68199 Mannheim :br
 <2.vorsitzender@schachfreunde-biberach.de>
 
+## Technische Umsetzung
+
+Technische Umsetzung der Website: [happydesigns](https://happydesigns.de)
+
 ## Rechtliche Hinweise
 
 ### Haftungsausschluss

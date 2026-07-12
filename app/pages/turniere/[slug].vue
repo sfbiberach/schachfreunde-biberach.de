@@ -28,6 +28,7 @@ const tournamentSlug = computed(() => {
       </ProseH2>
 
       <HArticleGrid
+        collection="article"
         status="published"
         :where="[{ field: 'tournament', operator: '=', value: tournamentSlug }]"
         :sort="{ field: 'date', direction: 'DESC' }"

@@ -38,7 +38,13 @@ const [{ data: navigation }, { data: files }] = await Promise.all([
 
 <template>
   <UApp>
-    <NuxtPage />
+    <NuxtLoadingIndicator />
+    <AppHeader />
+
+    <UMain>
+      <NuxtPage />
+    </UMain>
+    <AppFooter />
 
     <ClientOnly>
       <LazyUContentSearch
@@ -49,6 +55,7 @@ const [{ data: navigation }, { data: files }] = await Promise.all([
         :fuse="{ resultLimit: 42 }"
       />
     </ClientOnly>
+    <HStudioLoginButton aria-label="Nuxt Studio öffnen" />
     <NuxtPwaAssets />
   </UApp>
 </template>
