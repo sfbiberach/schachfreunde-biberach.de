@@ -37,7 +37,6 @@ export default defineNuxtConfig({
     '/': { prerender: true },
     '/blog/rss.xml': { prerender: true },
     '/mannschaften': { prerender: true },
-    '/mannschaften/**': { prerender: false },
   },
 
   experimental: {
@@ -63,6 +62,7 @@ export default defineNuxtConfig({
       crawlLinks: true,
       autoSubfolderIndex: false,
       failOnError: true,
+      ignore: [route => route.startsWith('/mannschaften/') && !route.endsWith('/_payload.json')],
       routes: ['/', '/impressum', '/datenschutz', '/sitemap.xml', '/api/navigation.json', '/api/search.json'],
     },
     preset: 'cloudflare_module',
