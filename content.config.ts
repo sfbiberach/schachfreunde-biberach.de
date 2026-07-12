@@ -17,6 +17,13 @@ const siteVariantSchemas = {
   }),
 }
 
+const leagueSchema = z.object({
+  provider: z.literal('nuliga'),
+  season: z.string().min(1),
+  groupUrl: z.url(),
+  teamName: z.string().min(1),
+}).optional()
+
 export default defineContentConfig({
   collections: {
     user: defineCollection({
@@ -60,7 +67,10 @@ export default defineContentConfig({
     team: defineCollection({
       type: 'page',
       source: 'mannschaften/**/*.{md,yaml}',
-      schema: mergeVariantSchemas(['team'], siteVariantSchemas).extend(seo),
+      schema: mergeVariantSchemas(['team'], siteVariantSchemas).extend({
+        ...seo,
+        league: leagueSchema,
+      }),
     }),
 
     tournament: defineCollection({
