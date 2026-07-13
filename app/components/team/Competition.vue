@@ -4,6 +4,7 @@ import type { LeagueMatch, LeaguePlayer, LeagueTeamSnapshot } from '../../../sha
 
 const props = defineProps<{
   team: LeagueTeamSnapshot
+  refreshing?: boolean
 }>()
 
 const route = useRoute()
@@ -146,7 +147,12 @@ function outcome(match: LeagueMatch) {
 
       <template #footer>
         <div class="flex flex-wrap items-center justify-between gap-2 text-sm text-muted">
-          <span>Aktualisiert {{ formatLeagueDateTime(team.fetchedAt) }}</span>
+          <span role="status" aria-live="polite" class="flex items-center gap-1.5">
+            <UIcon v-if="refreshing" name="i-lucide-loader-circle" class="size-4 animate-spin" />
+            <span>
+              Aktualisiert {{ formatLeagueDateTime(team.fetchedAt) }}<template v-if="refreshing"> · Neue Daten werden geladen</template>
+            </span>
+          </span>
           <UButton
             :to="team.sourceUrl"
             target="_blank"

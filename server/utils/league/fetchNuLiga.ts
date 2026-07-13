@@ -1,5 +1,6 @@
 import type { H3Event } from 'h3'
 import type { LeagueSource } from '../../../shared/types/league'
+import { LEAGUE_CACHE_MAX_AGE_SECONDS } from '../../../shared/constants/league'
 import { leagueSourceSchema, leagueTeamSnapshotSchema } from './schemas'
 
 const USER_AGENT = 'schachfreunde-biberach.de/1.0 (+https://schachfreunde-biberach.de/impressum)'
@@ -54,7 +55,7 @@ export const getCachedLeagueTeam = defineCachedFunction(
   async (_event: H3Event, source: LeagueSource) => fetchNuLigaTeam(source),
   {
     name: 'nuliga-team',
-    maxAge: 6 * 60 * 60,
+    maxAge: LEAGUE_CACHE_MAX_AGE_SECONDS,
     swr: true,
     getKey: (_event: H3Event, source: LeagueSource) => sourceCacheKey(source),
   },
