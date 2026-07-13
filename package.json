@@ -5,9 +5,10 @@
   "private": true,
   "packageManager": "pnpm@11.11.0",
   "scripts": {
-    "dev": "nuxt dev",
-    "build": "cross-env NODE_OPTIONS='--max-old-space-size=4096' nuxt build",
-    "generate": "nuxt generate && node scripts/validate-generated-output.mjs",
+    "predev": "node scripts/prepare-nuxt-dev-cache.mjs",
+    "dev": "cross-env NUXT_LOCK=1 nuxt dev",
+    "build": "cross-env NUXT_LOCK=1 NODE_OPTIONS='--max-old-space-size=4096' nuxt build",
+    "generate": "cross-env NUXT_LOCK=1 nuxt generate && node scripts/validate-generated-output.mjs",
     "preview": "nuxt preview",
     "serve": "wrangler dev --config .output/server/wrangler.json",
     "lint": "eslint .",
