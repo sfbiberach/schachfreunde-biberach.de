@@ -1,4 +1,4 @@
-import type { ButtonProps } from '@nuxt/ui'
+import type { ButtonProps, CommandPaletteGroup, ContentSearchLink } from '@nuxt/ui'
 
 export default defineAppConfig({
   app: {
@@ -127,6 +127,77 @@ export default defineAppConfig({
           ],
         },
       ],
+    },
+
+    search: {
+      title: 'Suche',
+      description: 'Durchsuche die Inhalte der Schachfreunde Heilbronn-Biberach.',
+      placeholder: 'Inhalte durchsuchen …',
+      resultLimit: 25,
+      links: [
+        {
+          label: 'Startseite',
+          to: '/',
+          icon: 'i-ph-house-duotone',
+        },
+        {
+          label: 'Blog',
+          to: '/blog',
+          icon: 'i-ph-newspaper',
+        },
+        {
+          label: 'Mannschaften',
+          to: '/mannschaften',
+          icon: 'i-ph-castle-turret-duotone',
+        },
+        {
+          label: 'Turniere',
+          to: '/turniere',
+          icon: 'i-ph-trophy-duotone',
+        },
+      ] satisfies ContentSearchLink[],
+      groups: [
+        {
+          id: 'legal-search',
+          label: 'Rechtliches',
+          items: [
+            {
+              label: 'Impressum',
+              to: '/impressum',
+              icon: 'i-ph-file-text-duotone',
+            },
+            {
+              label: 'Datenschutz',
+              to: '/datenschutz',
+              icon: 'i-ph-shield-duotone',
+            },
+          ],
+        },
+        {
+          id: 'external-search',
+          label: 'Externe Links',
+          items: [
+            {
+              label: 'Unterländer Schachtage',
+              to: 'https://www.unterlaender-schachtage.de/',
+              target: '_blank',
+              icon: 'i-ph-crown-duotone',
+            },
+            {
+              label: 'Aktuelle DWZ-Liste',
+              to: 'https://schach.in/zahlen/C0652/',
+              target: '_blank',
+              icon: 'i-ph-chart-bar-duotone',
+            },
+            {
+              label: 'Google Vereinskalender',
+              to: 'https://calendar.google.com/calendar/embed?src=dimi.triantafillidis%40web.de&ctz=Europe%2FBerlin',
+              target: '_blank',
+              icon: 'i-ph-calendar-duotone',
+            },
+          ],
+        },
+      ] satisfies CommandPaletteGroup[],
     },
 
     date: {
