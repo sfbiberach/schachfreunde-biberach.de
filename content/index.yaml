@@ -37,6 +37,6 @@ hero:
     - label: Lerne uns kennen
       to: /#training
       icon: i-ph-arrow-bend-right-down-duotone
-      color: gray
+      color: neutral
 sitemap:
   loc: /
