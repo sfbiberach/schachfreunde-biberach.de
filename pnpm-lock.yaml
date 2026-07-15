@@ -9,6 +9,9 @@ overrides:
   workbox-build@7.4.0>rollup: 2.79.2
   workbox-build: 7.4.0
 
+patchedDependencies:
+  nuxt-studio@1.7.0: 7efce88971ab16ab3219f8392e8d093d6586b0d648d65f320bb97fd33a95c56f
+
 importers:
 
   .:
@@ -69,7 +72,7 @@ importers:
         version: 6.0.0
       nuxt-studio:
         specifier: ^1.7.0
-        version: 1.7.0(db0@0.3.4(better-sqlite3@12.11.1))(ioredis@5.11.1)(magicast@0.5.3)(srvx@0.11.21)(vue@3.5.39(typescript@6.0.3))
+        version: 1.7.0(patch_hash=7efce88971ab16ab3219f8392e8d093d6586b0d648d65f320bb97fd33a95c56f)(db0@0.3.4(better-sqlite3@12.11.1))(ioredis@5.11.1)(magicast@0.5.3)(srvx@0.11.21)(vue@3.5.39(typescript@6.0.3))
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^9.1.0
@@ -110,6 +113,9 @@ importers:
       wrangler:
         specifier: ^4.110.0
         version: 4.110.0
+      yaml:
+        specifier: ^2.9.0
+        version: 2.9.0
       zod:
         specifier: ^4.4.3
         version: 4.4.3
@@ -10161,7 +10167,7 @@ snapshots:
       '@nuxt/ui': 4.9.0(46bfd1636ede9bf5ce73c754e847ac60)
       '@vueuse/core': 14.3.0(vue@3.5.39(typescript@6.0.3))
       better-sqlite3: 12.11.1
-      nuxt-studio: 1.7.0(db0@0.3.4(better-sqlite3@12.11.1))(ioredis@5.11.1)(magicast@0.5.3)(srvx@0.11.21)(vue@3.5.39(typescript@6.0.3))
+      nuxt-studio: 1.7.0(patch_hash=7efce88971ab16ab3219f8392e8d093d6586b0d648d65f320bb97fd33a95c56f)(db0@0.3.4(better-sqlite3@12.11.1))(ioredis@5.11.1)(magicast@0.5.3)(srvx@0.11.21)(vue@3.5.39(typescript@6.0.3))
       pathe: 2.0.3
       zod: 4.4.3
     transitivePeerDependencies:
@@ -16871,7 +16877,7 @@ snapshots:
       - vue
       - zod
 
-  nuxt-studio@1.7.0(db0@0.3.4(better-sqlite3@12.11.1))(ioredis@5.11.1)(magicast@0.5.3)(srvx@0.11.21)(vue@3.5.39(typescript@6.0.3)):
+  nuxt-studio@1.7.0(patch_hash=7efce88971ab16ab3219f8392e8d093d6586b0d648d65f320bb97fd33a95c56f)(db0@0.3.4(better-sqlite3@12.11.1))(ioredis@5.11.1)(magicast@0.5.3)(srvx@0.11.21)(vue@3.5.39(typescript@6.0.3)):
     dependencies:
       '@ai-sdk/gateway': 3.0.145(zod@4.4.3)
       '@ai-sdk/vue': 3.0.221(vue@3.5.39(typescript@6.0.3))(zod@4.4.3)

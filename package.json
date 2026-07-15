@@ -7,15 +7,18 @@
   "scripts": {
     "predev": "node scripts/prepare-nuxt-dev-cache.mjs",
     "dev": "cross-env NUXT_LOCK=1 nuxt dev",
-    "build": "cross-env NUXT_LOCK=1 NODE_OPTIONS='--max-old-space-size=4096' nuxt build",
+    "build": "cross-env NITRO_PRESET=cloudflare_module NUXT_LOCK=1 NODE_OPTIONS='--max-old-space-size=4096' nuxt build",
     "generate": "cross-env NUXT_LOCK=1 nuxt generate && node scripts/validate-generated-output.mjs",
     "preview": "nuxt preview",
     "serve": "wrangler dev --config .output/server/wrangler.json",
-    "lint": "eslint .",
+    "lint": "eslint . && pnpm contentcheck",
     "lint:fix": "eslint . --fix",
     "test": "vitest run",
     "typecheck": "nuxt typecheck",
-    "generate-pwa-assets": "pwa-assets-generator"
+    "generate-pwa-assets": "pwa-assets-generator",
+    "prebuild": "pnpm lint",
+    "pregenerate": "pnpm lint",
+    "contentcheck": "nuxt prepare && node scripts/validate-content.mjs"
   },
   "dependencies": {
     "@happydesigns/nuxt-variants": "^0.0.6",
@@ -52,6 +55,7 @@
     "vitest": "^4.1.10",
     "vue-tsc": "^3.3.7",
     "wrangler": "^4.110.0",
+    "yaml": "^2.9.0",
     "zod": "^4.4.3"
   }
 }
