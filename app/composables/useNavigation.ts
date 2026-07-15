@@ -1,5 +1,3 @@
-import type { CommandPaletteGroup } from '@nuxt/ui'
-import type { ContentSearchItem } from '@nuxt/ui/runtime/types/content.js'
 import { createSharedComposable } from '@vueuse/core'
 
 function _useHeaderLinks() {
@@ -34,27 +32,3 @@ function _useFooterLinks() {
 }
 
 export const useFooterLinks = import.meta.client ? createSharedComposable(_useFooterLinks) : _useFooterLinks
-
-function _useNavigation() {
-  const searchTerm = ref<string>('')
-
-  const { headerLinks } = useHeaderLinks()
-  const { footerLinks } = useFooterLinks()
-
-  const groups = computed<CommandPaletteGroup<ContentSearchItem>[]>(() =>
-    footerLinks.value.map(group => ({
-      id: group.label,
-      label: group.label,
-      items: group.children || [],
-    })),
-  )
-
-  return {
-    searchTerm,
-    headerLinks,
-    footerLinks,
-    groups,
-  }
-}
-
-export const useNavigation = import.meta.client ? createSharedComposable(_useNavigation) : _useNavigation

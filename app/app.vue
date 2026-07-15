@@ -27,13 +27,6 @@ useSeoMeta({
   description: 'Schachfreunde Heilbronn-Biberach 1978 e. V. - Der Schachverein im Heilbronner Stadtteil Biberach',
   robots: 'index, follow',
 })
-
-const { searchTerm, groups } = useNavigation()
-
-const [{ data: navigation }, { data: files }] = await Promise.all([
-  useFetch('/api/navigation.json'),
-  useFetch('/api/search.json', { server: false }),
-])
 </script>
 
 <template>
@@ -46,15 +39,7 @@ const [{ data: navigation }, { data: files }] = await Promise.all([
     </UMain>
     <AppFooter />
 
-    <ClientOnly>
-      <LazyUContentSearch
-        v-model:search-term="searchTerm"
-        :files="files"
-        :navigation="navigation"
-        :groups="groups"
-        :fuse="{ resultLimit: 42 }"
-      />
-    </ClientOnly>
+    <LazyAppSearch />
     <HStudioLoginButton aria-label="Nuxt Studio öffnen" />
     <NuxtPwaAssets />
   </UApp>
