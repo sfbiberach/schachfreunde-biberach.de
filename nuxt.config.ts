@@ -65,7 +65,6 @@ export default defineNuxtConfig({
       ignore: [route => route.startsWith('/mannschaften/') && !route.endsWith('/_payload.json')],
       routes: ['/', '/impressum', '/datenschutz', '/sitemap.xml', '/api/navigation.json', '/api/search.json'],
     },
-    preset: 'cloudflare_module',
     cloudflare: {
       deployConfig: true,
       nodeCompat: true,
