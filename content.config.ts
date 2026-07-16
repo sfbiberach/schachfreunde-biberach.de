@@ -36,6 +36,14 @@ const leagueSchema = z.object({
   teamName: z.string().min(1),
 }).optional()
 
+const articleImageSchema = z.object({
+  src: property(z.string()).editor({ input: 'media' }),
+  alt: z.string().min(1),
+  width: z.number().int().positive().optional(),
+  height: z.number().int().positive().optional(),
+  position: z.string().optional(),
+}).optional()
+
 export default defineContentConfig({
   collections: {
     user: defineCollection({
@@ -49,7 +57,28 @@ export default defineContentConfig({
       source: 'index.yaml',
       schema: z.object({
         hero: property(z.object({})).inherit('@nuxt/ui/components/PageSection.vue'),
-        cards: z.array(property(z.object({})).inherit('@nuxt/ui/components/PageCard.vue')).optional(),
+        highlights: z.array(z.object({
+          title: z.string(),
+          description: z.string(),
+          to: z.string(),
+          icon: property(z.string()).editor({ input: 'icon' }),
+          visibleFrom: z.string().optional(),
+          visibleUntil: z.string().optional(),
+        })).optional(),
+        training: z.object({
+          weekday: z.number().int().min(0).max(6),
+          youthTime: z.string(),
+          adultTime: z.string(),
+          exceptions: z.array(z.object({
+            from: z.string(),
+            until: z.string().optional(),
+            label: z.string().optional(),
+          })).optional(),
+        }),
+        gallery: z.object({
+          title: z.string(),
+          description: z.string(),
+        }).optional(),
       }).extend(seo),
     }),
 
@@ -73,7 +102,10 @@ export default defineContentConfig({
     article: defineCollection({
       type: 'page',
       source: 'blog/article/**/*.{md,yaml}',
-      schema: mergeVariantSchemas(['article'], siteVariantSchemas).extend(seo),
+      schema: mergeVariantSchemas(['article'], siteVariantSchemas).extend({
+        ...seo,
+        image: articleImageSchema,
+      }),
     }),
 
     team: defineCollection({

@@ -5,7 +5,11 @@ const seeds = useState('chessboard-seeds', () =>
 
 <template>
   <Transition appear name="fade">
-    <div class="absolute inset-x-0 top-0 w-full max-h-192 overflow-visible fade-out-bottom">
+    <div
+      class="pointer-events-none absolute inset-x-0 top-0 w-full max-h-192 select-none overflow-visible fade-out-bottom"
+      aria-hidden="true"
+      inert
+    >
       <div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 grid-rows-8 w-full max-h-full aspect-4/8 md:aspect-6/8 lg:aspect-square">
         <template v-for="rowIndex in 8" :key="`row-${rowIndex}`">
           <template v-for="colIndex in 8" :key="`cell-${rowIndex}-${colIndex}`">
@@ -53,5 +57,17 @@ const seeds = useState('chessboard-seeds', () =>
 }
 .flicker {
   animation: flicker var(--duration) ease-in-out var(--delay) infinite both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: none;
+  }
+
+  .flicker {
+    animation: none;
+    opacity: 0.2;
+  }
 }
 </style>
