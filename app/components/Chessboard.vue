@@ -1,73 +1,125 @@
-<script setup>
-const seeds = useState('chessboard-seeds', () =>
-  Array.from({ length: 64 }, () => Math.random()))
+<script setup lang="ts">
+function getCellPrimaryStrength(rowIndex: number, colIndex: number) {
+  const rowProgress = (rowIndex - 1) / 11
+  const columnProgress = (colIndex - 1) / 7
+  const diagonalProgress = rowProgress * 0.4 + columnProgress * 0.6
+  const isLight = (rowIndex + colIndex) % 2 === 0
+  const strongestMix = isLight ? 19 : 7
+  const weakestMix = isLight ? 7 : 2
+
+  return `${weakestMix + (strongestMix - weakestMix) * (1 - diagonalProgress)}%`
+}
+
+function getCellSaturation(rowIndex: number, colIndex: number) {
+  const rowProgress = (rowIndex - 1) / 11
+  const columnProgress = (colIndex - 1) / 7
+  const colorProgress = Math.max(0, 1 - columnProgress * 0.82 - rowProgress * 0.18)
+
+  return 0.06 + colorProgress ** 1.45 * 1.04
+}
 </script>
 
 <template>
-  <Transition appear name="fade">
-    <div
-      class="pointer-events-none absolute inset-x-0 top-0 w-full max-h-192 select-none overflow-visible fade-out-bottom"
-      aria-hidden="true"
-      inert
-    >
-      <div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 grid-rows-8 w-full max-h-full aspect-4/8 md:aspect-6/8 lg:aspect-square">
-        <template v-for="rowIndex in 8" :key="`row-${rowIndex}`">
-          <template v-for="colIndex in 8" :key="`cell-${rowIndex}-${colIndex}`">
-            <div
-              class="flex items-center justify-center hover:bg-opacity-80 flicker"
-              :class="{
-                'bg-primary-700/20 dark:bg-primary-900/20': (rowIndex - 1 + colIndex - 1) % 2 !== 0,
-                'bg-primary-200/20 dark:bg-primary-400/20': (rowIndex - 1 + colIndex - 1) % 2 === 0,
-                'hidden md:flex': colIndex > 4,
-                'hidden lg:flex': colIndex > 6,
-              }"
-              :style="{
-                '--duration': `${8 + seeds[(rowIndex - 1) * 8 + (colIndex - 1)] * 12}s`,
-                '--delay': `${seeds[(rowIndex - 1) * 8 + (colIndex - 1)] * 3}s`,
-              }"
-            >
-              <!-- Cell content can go here, e.g., chess pieces -->
-            </div>
-          </template>
-        </template>
-      </div>
+  <div
+    class="chessboard pointer-events-none absolute inset-0 overflow-hidden select-none"
+    aria-hidden="true"
+    inert
+  >
+    <div class="chessboard-grid">
+      <template v-for="rowIndex in 12" :key="`row-${rowIndex}`">
+        <div
+          v-for="colIndex in 8"
+          :key="`cell-${rowIndex}-${colIndex}`"
+          class="chessboard-cell"
+          :class="{
+            'chessboard-cell--light': (rowIndex + colIndex) % 2 === 0,
+            'chessboard-cell--dark': (rowIndex + colIndex) % 2 !== 0,
+            'chessboard-cell--animated': (rowIndex * 5 + colIndex * 3) % 4 === 0,
+            'hidden md:block': colIndex > 4 && colIndex <= 6,
+            'hidden lg:block': colIndex > 6,
+          }"
+          :style="{
+            '--cell-primary': getCellPrimaryStrength(rowIndex, colIndex),
+            '--cell-saturation': getCellSaturation(rowIndex, colIndex),
+            '--pulse-duration': `${12 + (rowIndex * 3 + colIndex * 5) % 9}s`,
+            '--pulse-delay': `${-((rowIndex * 7 + colIndex * 2) % 15)}s`,
+          }"
+        />
+      </template>
     </div>
-  </Transition>
+  </div>
 </template>
 
 <style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s cubic-bezier(0.6, 0.05, 0.25, 1);
+.chessboard {
+  --board-columns: 4;
+  mask-image: linear-gradient(
+    to bottom left,
+    rgb(0 0 0 / 0.9) 0%,
+    rgb(0 0 0 / 0.68) 26%,
+    rgb(0 0 0 / 0.24) 52%,
+    transparent 76%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom left,
+    rgb(0 0 0 / 0.9) 0%,
+    rgb(0 0 0 / 0.68) 26%,
+    rgb(0 0 0 / 0.24) 52%,
+    transparent 76%
+  );
 }
 
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
+.chessboard-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--board-columns), minmax(0, 1fr));
+  width: 100%;
 }
 
-.fade-out-bottom {
-  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%); /* For Safari/Chrome */
+.chessboard-cell {
+  aspect-ratio: 1;
+  filter: saturate(var(--cell-saturation));
 }
 
-@keyframes flicker {
-  0%, 100% { opacity: 0.12; }
-  50%      { opacity: 0.36; }
+.chessboard-cell--light {
+  background-color: color-mix(in oklab, var(--ui-primary) var(--cell-primary), transparent);
 }
-.flicker {
-  animation: flicker var(--duration) ease-in-out var(--delay) infinite both;
+
+.chessboard-cell--dark {
+  background-color: color-mix(in oklab, var(--ui-primary) var(--cell-primary), transparent);
+}
+
+.chessboard-cell--animated {
+  animation: board-breathe var(--pulse-duration) ease-in-out var(--pulse-delay) infinite both;
+}
+
+@keyframes board-breathe {
+  0%,
+  100% {
+    opacity: 0.72;
+    filter: saturate(var(--cell-saturation)) brightness(0.96);
+  }
+
+  50% {
+    opacity: 0.94;
+    filter: saturate(var(--cell-saturation)) brightness(1.03);
+  }
+}
+
+@media (min-width: 48rem) {
+  .chessboard {
+    --board-columns: 6;
+  }
+}
+
+@media (min-width: 64rem) {
+  .chessboard {
+    --board-columns: 8;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: none;
-  }
-
-  .flicker {
+  .chessboard-cell--animated {
     animation: none;
-    opacity: 0.2;
   }
 }
 </style>

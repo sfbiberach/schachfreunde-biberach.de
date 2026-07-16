@@ -146,7 +146,7 @@ useSeoMeta({
 })
 
 definePageMeta({
-  heroBackground: 'opacity-80',
+  heroBackground: 'opacity-60',
 })
 
 function formatContentDate(date?: string | Date) {
@@ -180,7 +180,7 @@ function formatContentDate(date?: string | Date) {
         :training="nextTraining"
         :refreshing="pulseRefreshing"
       />
-      <Chessboard class="z-[-1] chessboard" />
+      <Chessboard class="-z-10" />
     </UPageSection>
 
     <UPageSection
@@ -210,10 +210,16 @@ function formatContentDate(date?: string | Date) {
       </UPageGrid>
     </UPageSection>
 
+    <USeparator />
+
     <UPageSection
       id="training"
       title="Training & Termine"
       orientation="horizontal"
+      class="bg-elevated/25"
+      :ui="{
+        container: 'py-16 sm:py-20 lg:py-24 gap-10 sm:gap-12',
+      }"
     >
       <template #description>
         <div class="prose prose-primary dark:prose-invert text-lg">
@@ -230,20 +236,39 @@ function formatContentDate(date?: string | Date) {
       />
     </UPageSection>
 
+    <USeparator />
+
     <UPageSection
       v-if="page.gallery && galleryImages.length"
       :title="page.gallery.title"
       :description="page.gallery.description"
+      :ui="{
+        container: 'py-16 sm:py-20 lg:py-24 gap-10 sm:gap-12',
+      }"
     >
       <CommunityGallery :images="galleryImages" />
     </UPageSection>
 
-    <UPageSection>
+    <UPageSection
+      class="cta-section border-y border-default"
+      :ui="{
+        container: 'relative z-10 py-16 sm:py-20 lg:py-24',
+      }"
+    >
+      <template #top>
+        <CtaBackdrop />
+      </template>
+
       <UPageCTA
         title="Lust auf eine Partie?"
         description="Schau freitags unverbindlich vorbei oder melde dich bei uns. Wir helfen dir, die passende Trainingsgruppe oder Ansprechperson zu finden."
         orientation="horizontal"
-        variant="subtle"
+        variant="naked"
+        class="rounded-none overflow-visible"
+        :ui="{
+          container: 'px-0 py-0 sm:px-0 sm:py-0 lg:px-0 lg:py-0 gap-10 sm:gap-12 lg:gap-16',
+          title: 'text-3xl sm:text-4xl lg:text-5xl',
+        }"
         :links="[
           {
             label: 'Kontakt aufnehmen',
@@ -266,9 +291,15 @@ function formatContentDate(date?: string | Date) {
           height="800"
           sizes="100vw lg:45vw"
           loading="lazy"
-          class="w-full rounded-xl object-cover shadow-xl ring-1 ring-default"
+          class="w-full rounded-xl object-cover shadow-2xl ring-1 ring-white/15"
         />
       </UPageCTA>
     </UPageSection>
   </NuxtLayout>
 </template>
+
+<style scoped>
+.cta-section {
+  background-color: var(--ui-bg-elevated);
+}
+</style>
