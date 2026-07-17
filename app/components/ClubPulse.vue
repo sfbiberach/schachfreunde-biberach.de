@@ -91,11 +91,12 @@ function formatTrainingDate(date: string) {
 
 <template>
   <section
-    class="club-pulse relative isolate min-h-116 overflow-hidden rounded-2xl border border-default bg-default/90 p-5 shadow-2xl shadow-primary-950/10 sm:p-7"
+    class="club-pulse relative isolate min-h-116 overflow-hidden rounded-2xl border border-default p-5 shadow-2xl shadow-primary-950/10 sm:p-7"
     aria-labelledby="club-pulse-title"
   >
-    <div class="pulse-grid absolute inset-0 -z-20" aria-hidden="true" />
-    <div class="pulse-glow absolute -right-32 -top-40 -z-10 size-96 rounded-full" aria-hidden="true" />
+    <div class="pulse-glow absolute -right-56 -top-64 -z-10 size-[38rem] rounded-full" aria-hidden="true" />
+    <div class="pulse-sheen absolute inset-x-0 top-0 -z-10 h-px" aria-hidden="true" />
+    <div class="pulse-corner-light" aria-hidden="true" />
 
     <header class="flex items-start justify-between gap-4">
       <div>
@@ -110,12 +111,13 @@ function formatTrainingDate(date: string) {
         </p>
       </div>
 
-      <UIcon
-        :name="refreshing ? 'i-ph-circle-notch' : 'i-ph-lightning-duotone'"
-        class="size-5 text-primary"
-        :class="{ 'animate-spin': refreshing }"
-        aria-hidden="true"
-      />
+      <span class="pulse-status-icon relative isolate flex size-10 shrink-0 items-center justify-center rounded-full" aria-hidden="true">
+        <UIcon
+          :name="refreshing ? 'i-ph-circle-notch' : 'i-ph-lightning-duotone'"
+          class="pulse-status-glyph size-5 text-primary"
+          :class="{ 'animate-spin': refreshing }"
+        />
+      </span>
     </header>
 
     <NuxtLink
@@ -253,20 +255,111 @@ function formatTrainingDate(date: string) {
 <style scoped>
 .club-pulse {
   background-image:
-    linear-gradient(145deg, color-mix(in oklab, var(--ui-bg) 96%, var(--ui-primary) 4%), var(--ui-bg));
-}
-
-.pulse-grid {
-  background-image:
-    linear-gradient(to right, color-mix(in oklab, var(--ui-primary) 9%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in oklab, var(--ui-primary) 9%, transparent) 1px, transparent 1px);
-  background-size: 3.5rem 3.5rem;
-  mask-image: linear-gradient(to bottom left, black, transparent 78%);
+    linear-gradient(
+      145deg,
+      color-mix(in oklab, var(--ui-bg) 91%, var(--ui-primary) 9%) 0%,
+      color-mix(in oklab, var(--ui-bg) 97%, var(--ui-primary) 3%) 38%,
+      var(--ui-bg) 76%
+    );
 }
 
 .pulse-glow {
-  background: radial-gradient(circle, color-mix(in oklab, var(--ui-primary) 22%, transparent), transparent 66%);
-  animation: pulse-drift 10s ease-in-out infinite alternate;
+  background: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--ui-primary) 18%, transparent) 0%,
+    color-mix(in oklab, var(--ui-primary) 11%, transparent) 28%,
+    color-mix(in oklab, var(--ui-primary) 5%, transparent) 52%,
+    color-mix(in oklab, var(--ui-primary) 1.5%, transparent) 74%,
+    transparent 100%
+  );
+  filter: blur(18px);
+  opacity: 0.82;
+  animation: pulse-drift 12s ease-in-out infinite alternate;
+}
+
+.pulse-sheen {
+  background: linear-gradient(
+    90deg,
+    transparent 8%,
+    color-mix(in oklab, var(--ui-primary) 30%, transparent) 70%,
+    transparent 100%
+  );
+  opacity: 0.7;
+}
+
+.pulse-corner-light {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  z-index: -1;
+  width: 48%;
+  height: 44%;
+  overflow: hidden;
+  border-top-right-radius: inherit;
+  background: radial-gradient(
+    ellipse at 100% 0%,
+    color-mix(in oklab, var(--ui-primary) 13%, transparent) 0%,
+    color-mix(in oklab, var(--ui-primary) 6%, transparent) 34%,
+    transparent 72%
+  );
+  pointer-events: none;
+}
+
+.pulse-corner-light::before,
+.pulse-corner-light::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: color-mix(in oklab, var(--ui-primary) 58%, white 8%);
+  content: '';
+  filter: drop-shadow(0 0 0.35rem color-mix(in oklab, var(--ui-primary) 32%, transparent));
+}
+
+.pulse-corner-light::before {
+  width: 100%;
+  height: 1px;
+  mask-image: linear-gradient(to left, black 0%, rgb(0 0 0 / 78%) 38%, transparent 100%);
+}
+
+.pulse-corner-light::after {
+  width: 1px;
+  height: 100%;
+  mask-image: linear-gradient(to bottom, black 0%, rgb(0 0 0 / 72%) 42%, transparent 100%);
+}
+
+.pulse-status-icon {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in oklab, var(--ui-primary) 18%, var(--ui-bg)),
+      color-mix(in oklab, var(--ui-primary) 7%, var(--ui-bg))
+    ) padding-box,
+    linear-gradient(
+      145deg,
+      color-mix(in oklab, var(--ui-primary) 78%, white) 0%,
+      color-mix(in oklab, var(--ui-primary) 36%, transparent) 48%,
+      color-mix(in oklab, black 54%, transparent) 100%
+    ) border-box;
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, white 22%, transparent),
+    inset 0 -0.35rem 0.8rem color-mix(in oklab, black 18%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--ui-primary) 13%, transparent),
+    0 0.55rem 1rem color-mix(in oklab, black 38%, transparent),
+    0 0 1.35rem color-mix(in oklab, var(--ui-primary) 22%, transparent);
+}
+
+.pulse-status-icon::before {
+  position: absolute;
+  inset: -0.3rem;
+  z-index: -1;
+  border: 1px solid color-mix(in oklab, var(--ui-primary) 14%, transparent);
+  border-radius: inherit;
+  content: '';
+}
+
+.pulse-status-glyph {
+  filter: drop-shadow(0 0 0.3rem color-mix(in oklab, var(--ui-primary) 68%, transparent));
 }
 
 .pulse-dot::after {
@@ -279,7 +372,7 @@ function formatTrainingDate(date: string) {
 }
 
 @keyframes pulse-drift {
-  to { transform: translate(-2rem, 2.5rem) scale(1.1); }
+  to { transform: translate(-1.25rem, 1.5rem) scale(1.04); }
 }
 
 @keyframes pulse-ring {
