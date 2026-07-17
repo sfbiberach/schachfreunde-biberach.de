@@ -1,20 +1,38 @@
 <script setup lang="ts">
 import { useMediaQuery } from '@vueuse/core'
 
+interface BoardSquare {
+  column: number
+  row: number
+}
+
+interface RouteLanding {
+  id: string
+  square: BoardSquare
+  strength: number
+}
+
 const COLUMN_COUNT = 18
 const ROW_COUNT = 14
 const CELL_COUNT = COLUMN_COUNT * ROW_COUNT
-const INITIAL_HOLE_RADIUS = 0.74
-const TARGET_HOLE_RADIUS = 2.25
-const GROW_DURATION = 1050
-const COLLAPSE_DURATION = 420
-const POINTER_FOLLOW_TIME = 75
-const CELL_EDGE_SOFTNESS = 0.42
+const MOVE_DURATION = 340
+const MOVE_PAUSE = 70
+const CAPTURE_DURATION = 620
+
+const DEFAULT_KNIGHT: BoardSquare = { column: 7, row: 8 }
+const KNIGHT_MOVES = [
+  { column: 1, row: 2 },
+  { column: 2, row: 1 },
+  { column: 2, row: -1 },
+  { column: 1, row: -2 },
+  { column: -1, row: -2 },
+  { column: -2, row: -1 },
+  { column: -2, row: 1 },
+  { column: -1, row: 2 },
+] as const
 
 const board = useTemplateRef<HTMLDivElement>('board')
 const backdrop = useTemplateRef<HTMLDivElement>('backdrop')
-const lineCanvas = useTemplateRef<HTMLCanvasElement>('lineCanvas')
-const appConfig = useAppConfig()
 const reduceMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
 const coarsePointer = useMediaQuery('(pointer: coarse)')
 
@@ -30,48 +48,124 @@ const cells = Array.from({ length: CELL_COUNT }, (_, index) => {
   }
 })
 
-const removedStates = Array<boolean>(CELL_COUNT).fill(false)
-const removalWeights = new Float32Array(CELL_COUNT)
+const knightSquare = shallowRef<BoardSquare>({ ...DEFAULT_KNIGHT })
+const hoverSquare = shallowRef<BoardSquare>()
+const targetPawn = shallowRef<BoardSquare>()
+const captureSquare = shallowRef<BoardSquare>()
+const isChasing = ref(false)
 
-let animationFrame: number | undefined
 let cellElements: HTMLElement[] = []
-let canvasContext: CanvasRenderingContext2D | null = null
 let cellSize = 0
-let boardWidth = 0
-let boardHeight = 0
 let boardOrigin = { x: 0, y: 0 }
 let boardXAxis = { x: 1, y: 0 }
 let boardYAxis = { x: 0, y: 1 }
 let backdropBounds: DOMRect | undefined
-let lineColor = ''
-let holeIsActive = false
-let lastHoleX = Number.NaN
-let lastHoleY = Number.NaN
-let targetPointerX = Number.NaN
-let targetPointerY = Number.NaN
-let currentPointerX = Number.NaN
-let currentPointerY = Number.NaN
-let effectProgress = 0
-let targetEffectProgress = 0
-let lastFrameTime = 0
 let needsMeasurement = true
+let moveTimer: number | undefined
+let captureTimer: number | undefined
 let resizeObserver: ResizeObserver | undefined
 
-function clamp(value: number, minimum = 0, maximum = 1) {
-  return Math.min(maximum, Math.max(minimum, value))
+const activePawn = computed(() => targetPawn.value ?? hoverSquare.value)
+const previewPath = computed(() => activePawn.value
+  ? findKnightPath(knightSquare.value, activePawn.value)
+  : [])
+const routeLandings = computed<RouteLanding[]>(() => {
+  const landings = previewPath.value.slice(1)
+
+  return landings.map((square, index) => {
+    return {
+      id: squareKey(square),
+      square,
+      strength: Math.max(0.4, 1 - index * 0.12),
+    }
+  })
+})
+
+function squareKey(square: BoardSquare) {
+  return `${square.column}:${square.row}`
 }
 
-function smoothstep(edgeStart: number, edgeEnd: number, value: number) {
-  const progress = clamp((value - edgeStart) / (edgeEnd - edgeStart))
-  return progress * progress * (3 - 2 * progress)
+function parseSquareKey(key: string): BoardSquare {
+  const [column, row] = key.split(':').map(Number)
+  return { column: column ?? 0, row: row ?? 0 }
+}
+
+function isSameSquare(first?: BoardSquare, second?: BoardSquare) {
+  return Boolean(first && second && first.column === second.column && first.row === second.row)
+}
+
+function isOnBoard(square: BoardSquare) {
+  return square.column >= 0
+    && square.column < COLUMN_COUNT
+    && square.row >= 0
+    && square.row < ROW_COUNT
+}
+
+function findKnightPath(start: BoardSquare, target: BoardSquare) {
+  if (isSameSquare(start, target)) {
+    return [{ ...start }]
+  }
+
+  const startKey = squareKey(start)
+  const targetKey = squareKey(target)
+  const queue: BoardSquare[] = [{ ...start }]
+  const previous = new Map<string, string | undefined>([[startKey, undefined]])
+
+  for (let queueIndex = 0; queueIndex < queue.length; queueIndex += 1) {
+    const current = queue[queueIndex]
+
+    if (!current) {
+      continue
+    }
+
+    for (const move of KNIGHT_MOVES) {
+      const next = {
+        column: current.column + move.column,
+        row: current.row + move.row,
+      }
+      const nextKey = squareKey(next)
+
+      if (!isOnBoard(next) || previous.has(nextKey)) {
+        continue
+      }
+
+      previous.set(nextKey, squareKey(current))
+      queue.push(next)
+
+      if (nextKey === targetKey) {
+        queueIndex = queue.length
+        break
+      }
+    }
+  }
+
+  if (!previous.has(targetKey)) {
+    return [{ ...start }]
+  }
+
+  const path: BoardSquare[] = []
+  let cursor: string | undefined = targetKey
+
+  while (cursor) {
+    path.unshift(parseSquareKey(cursor))
+    cursor = previous.get(cursor)
+  }
+
+  return path
+}
+
+function squareStyle(square: BoardSquare) {
+  return {
+    left: `${(square.column + 0.5) / COLUMN_COUNT * 100}%`,
+    top: `${(square.row + 0.5) / ROW_COUNT * 100}%`,
+  }
 }
 
 function measureBoard() {
   const boardElement = board.value
   const backdropElement = backdrop.value
-  const canvasElement = lineCanvas.value
 
-  if (!boardElement || !backdropElement || !canvasElement) {
+  if (!boardElement || !backdropElement) {
     return
   }
 
@@ -124,16 +218,7 @@ function measureBoard() {
     x: firstCenter.x - (boardXAxis.x + boardYAxis.x) * cellSize / 2,
     y: firstCenter.y - (boardXAxis.y + boardYAxis.y) * cellSize / 2,
   }
-  boardWidth = cellSize * COLUMN_COUNT
-  boardHeight = cellSize * ROW_COUNT
   backdropBounds = backdropElement.getBoundingClientRect()
-
-  const pixelRatio = Math.min(window.devicePixelRatio || 1, 2)
-  canvasElement.width = Math.round(boardWidth * pixelRatio)
-  canvasElement.height = Math.round(boardHeight * pixelRatio)
-  canvasContext = canvasElement.getContext('2d')
-  canvasContext?.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0)
-  lineColor = getComputedStyle(canvasElement).color
   needsMeasurement = false
 }
 
@@ -147,279 +232,104 @@ function toBoardCoordinates(pointerX: number, pointerY: number) {
   }
 }
 
-function traceVisibleGrid(context: CanvasRenderingContext2D) {
-  context.beginPath()
-
-  for (let column = 0; column <= COLUMN_COUNT; column += 1) {
-    const x = column * cellSize
-
-    for (let row = 0; row < ROW_COUNT; row += 1) {
-      const leftCell = column > 0 ? removedStates[row * COLUMN_COUNT + column - 1] : true
-      const rightCell = column < COLUMN_COUNT ? removedStates[row * COLUMN_COUNT + column] : true
-
-      if (leftCell && rightCell) {
-        continue
-      }
-
-      context.moveTo(x, row * cellSize)
-      context.lineTo(x, (row + 1) * cellSize)
-    }
-  }
-
-  for (let row = 0; row <= ROW_COUNT; row += 1) {
-    const y = row * cellSize
-
-    for (let column = 0; column < COLUMN_COUNT; column += 1) {
-      const topCell = row > 0 ? removedStates[(row - 1) * COLUMN_COUNT + column] : true
-      const bottomCell = row < ROW_COUNT ? removedStates[row * COLUMN_COUNT + column] : true
-
-      if (topCell && bottomCell) {
-        continue
-      }
-
-      context.moveTo(column * cellSize, y)
-      context.lineTo((column + 1) * cellSize, y)
-    }
-  }
-}
-
-function drawGlowPass(context: CanvasRenderingContext2D, lineWidth: number, opacity: number) {
-  context.lineWidth = lineWidth
-
-  for (let column = 0; column <= COLUMN_COUNT; column += 1) {
-    const x = column * cellSize
-
-    for (let row = 0; row < ROW_COUNT; row += 1) {
-      const leftWeight = column > 0 ? removalWeights[row * COLUMN_COUNT + column - 1] ?? 0 : 0
-      const rightWeight = column < COLUMN_COUNT ? removalWeights[row * COLUMN_COUNT + column] ?? 0 : 0
-      const edgeStrength = Math.abs(leftWeight - rightWeight)
-
-      if (edgeStrength < 0.025) {
-        continue
-      }
-
-      context.globalAlpha = opacity * edgeStrength
-      context.beginPath()
-      context.moveTo(x, row * cellSize)
-      context.lineTo(x, (row + 1) * cellSize)
-      context.stroke()
-    }
-  }
-
-  for (let row = 0; row <= ROW_COUNT; row += 1) {
-    const y = row * cellSize
-
-    for (let column = 0; column < COLUMN_COUNT; column += 1) {
-      const topWeight = row > 0 ? removalWeights[(row - 1) * COLUMN_COUNT + column] ?? 0 : 0
-      const bottomWeight = row < ROW_COUNT ? removalWeights[row * COLUMN_COUNT + column] ?? 0 : 0
-      const edgeStrength = Math.abs(topWeight - bottomWeight)
-
-      if (edgeStrength < 0.025) {
-        continue
-      }
-
-      context.globalAlpha = opacity * edgeStrength
-      context.beginPath()
-      context.moveTo(column * cellSize, y)
-      context.lineTo((column + 1) * cellSize, y)
-      context.stroke()
-    }
-  }
-}
-
-function drawHoleGlow(glowProgress: number) {
-  const context = canvasContext
-
-  if (!context || glowProgress <= 0) {
-    return
-  }
-
-  context.save()
-  context.strokeStyle = lineColor
-  context.lineCap = 'round'
-  context.lineJoin = 'round'
-  drawGlowPass(context, Math.max(4, cellSize * 0.075), 0.1 * glowProgress)
-  drawGlowPass(context, 1.35, 0.48 * glowProgress)
-  context.restore()
-}
-
-function drawGridHighlight(
-  pointerX: number,
-  pointerY: number,
-  lineProgress: number,
-  holeRadius: number,
-  glowProgress: number,
-) {
-  const context = canvasContext
-
-  if (!context || !cellSize) {
-    return
-  }
-
-  context.clearRect(0, 0, boardWidth, boardHeight)
-
-  if (lineProgress <= 0 && glowProgress <= 0) {
-    return
-  }
-
+function squareFromPointer(pointerX: number, pointerY: number) {
   const pointer = toBoardCoordinates(pointerX, pointerY)
-  const lineRadius = Math.max(
-    cellSize * 0.8,
-    holeRadius + cellSize * (0.35 + 2.65 * lineProgress),
+
+  return {
+    column: Math.min(COLUMN_COUNT - 1, Math.max(0, Math.floor(pointer.x / cellSize))),
+    row: Math.min(ROW_COUNT - 1, Math.max(0, Math.floor(pointer.y / cellSize))),
+  }
+}
+
+function isInsideBackdrop(pointerX: number, pointerY: number) {
+  const bounds = backdropBounds
+
+  return Boolean(
+    bounds
+    && pointerX >= bounds.left
+    && pointerX <= bounds.right
+    && pointerY >= bounds.top
+    && pointerY <= bounds.bottom,
   )
-
-  if (lineProgress > 0) {
-    context.save()
-    context.strokeStyle = lineColor
-    context.lineWidth = 1
-    context.globalAlpha = 0.72 * lineProgress
-    traceVisibleGrid(context)
-    context.stroke()
-    context.globalCompositeOperation = 'destination-in'
-
-    const falloff = context.createRadialGradient(
-      pointer.x,
-      pointer.y,
-      0,
-      pointer.x,
-      pointer.y,
-      lineRadius,
-    )
-    falloff.addColorStop(0, 'rgb(0 0 0 / 0.95)')
-    falloff.addColorStop(0.28, 'rgb(0 0 0 / 0.82)')
-    falloff.addColorStop(0.55, 'rgb(0 0 0 / 0.5)')
-    falloff.addColorStop(0.78, 'rgb(0 0 0 / 0.2)')
-    falloff.addColorStop(1, 'rgb(0 0 0 / 0)')
-    context.fillStyle = falloff
-    context.fillRect(0, 0, boardWidth, boardHeight)
-    context.restore()
-  }
-
-  drawHoleGlow(glowProgress)
 }
 
-function clearHighlight() {
-  canvasContext?.clearRect(0, 0, boardWidth, boardHeight)
+function clearMoveTimer() {
+  if (moveTimer) {
+    window.clearTimeout(moveTimer)
+    moveTimer = undefined
+  }
 }
 
-function resetCells() {
-  for (let index = 0; index < cellElements.length; index += 1) {
-    if (!removedStates[index]) {
-      continue
-    }
+function finishCapture() {
+  const capturedSquare = targetPawn.value
 
-    cellElements[index]?.classList.remove('cta-board__cell--removed')
-  }
-
-  removedStates.fill(false)
-  removalWeights.fill(0)
-  clearHighlight()
-  lastHoleX = Number.NaN
-  lastHoleY = Number.NaN
-  targetPointerX = Number.NaN
-  targetPointerY = Number.NaN
-  currentPointerX = Number.NaN
-  currentPointerY = Number.NaN
-  holeIsActive = false
-}
-
-function applyEffect(pointerX: number, pointerY: number, progress: number) {
-  if (needsMeasurement) {
-    measureBoard()
-  }
-
-  if (!cellElements.length || !cellSize) {
+  if (!capturedSquare) {
     return
   }
 
-  const pointer = toBoardCoordinates(pointerX, pointerY)
-  const holeProgress = smoothstep(0, 1, progress)
-  const lineProgress = smoothstep(0.36, 1, progress)
-  const glowProgress = smoothstep(0.58, 1, progress)
-  const holeRadius = progress > 0
-    ? INITIAL_HOLE_RADIUS + (TARGET_HOLE_RADIUS - INITIAL_HOLE_RADIUS) * holeProgress
-    : 0
-  const removeThreshold = cellSize * holeRadius
-  const edgeSoftness = cellSize * CELL_EDGE_SOFTNESS
+  captureSquare.value = { ...capturedSquare }
+  targetPawn.value = undefined
+  hoverSquare.value = undefined
+  isChasing.value = false
 
-  for (const cell of cells) {
-    const centerX = (cell.column + 0.5) * cellSize
-    const centerY = (cell.row + 0.5) * cellSize
-    const distance = Math.hypot(pointer.x - centerX, pointer.y - centerY)
-    const isRemoved = removeThreshold > 0 && distance < removeThreshold
-
-    removalWeights[cell.index] = removeThreshold > 0
-      ? 1 - smoothstep(removeThreshold - edgeSoftness, removeThreshold + edgeSoftness, distance)
-      : 0
-
-    if (removedStates[cell.index] === isRemoved) {
-      continue
-    }
-
-    cellElements[cell.index]?.classList.toggle('cta-board__cell--removed', isRemoved)
-    removedStates[cell.index] = isRemoved
+  if (captureTimer) {
+    window.clearTimeout(captureTimer)
   }
 
-  drawGridHighlight(pointerX, pointerY, lineProgress, removeThreshold, glowProgress)
-  lastHoleX = pointerX
-  lastHoleY = pointerY
-  holeIsActive = progress > 0 || targetEffectProgress > 0
+  captureTimer = window.setTimeout(() => {
+    captureSquare.value = undefined
+    captureTimer = undefined
+  }, CAPTURE_DURATION)
 }
 
-function ensureAnimation() {
-  if (animationFrame || reduceMotion.value || coarsePointer.value) {
+function performNextMove() {
+  moveTimer = undefined
+
+  if (reduceMotion.value) {
     return
   }
 
-  animationFrame = requestAnimationFrame(animateEffect)
-}
+  const destination = targetPawn.value
 
-function animateEffect(timestamp: number) {
-  const elapsed = lastFrameTime ? Math.min(timestamp - lastFrameTime, 48) : 16
-  lastFrameTime = timestamp
-
-  if (targetEffectProgress > effectProgress) {
-    effectProgress = Math.min(targetEffectProgress, effectProgress + elapsed / GROW_DURATION)
-  }
-  else if (targetEffectProgress < effectProgress) {
-    effectProgress = Math.max(targetEffectProgress, effectProgress - elapsed / COLLAPSE_DURATION)
-  }
-
-  if (Number.isFinite(targetPointerX) && Number.isFinite(targetPointerY)) {
-    if (!Number.isFinite(currentPointerX) || !Number.isFinite(currentPointerY)) {
-      currentPointerX = targetPointerX
-      currentPointerY = targetPointerY
-    }
-    else {
-      const followAmount = 1 - Math.exp(-elapsed / POINTER_FOLLOW_TIME)
-      currentPointerX += (targetPointerX - currentPointerX) * followAmount
-      currentPointerY += (targetPointerY - currentPointerY) * followAmount
-    }
-
-    applyEffect(currentPointerX, currentPointerY, effectProgress)
-  }
-
-  const pointerIsMoving = Math.hypot(
-    targetPointerX - currentPointerX,
-    targetPointerY - currentPointerY,
-  ) > 0.15
-  const progressIsMoving = Math.abs(targetEffectProgress - effectProgress) > 0.0001
-
-  if (pointerIsMoving || progressIsMoving || needsMeasurement) {
-    animationFrame = requestAnimationFrame(animateEffect)
+  if (!destination) {
     return
   }
 
-  animationFrame = undefined
-  lastFrameTime = 0
+  const path = findKnightPath(knightSquare.value, destination)
+  const nextSquare = path[1]
 
-  if (effectProgress <= 0) {
-    resetCells()
+  if (!nextSquare) {
+    if (targetPawn.value && isSameSquare(knightSquare.value, targetPawn.value)) {
+      finishCapture()
+    }
+    return
   }
+
+  knightSquare.value = { ...nextSquare }
+
+  moveTimer = window.setTimeout(() => {
+    if (targetPawn.value && isSameSquare(knightSquare.value, targetPawn.value)) {
+      finishCapture()
+      return
+    }
+
+    if (targetPawn.value) {
+      scheduleNextMove(MOVE_PAUSE)
+    }
+  }, MOVE_DURATION)
+}
+
+function scheduleNextMove(delay = MOVE_PAUSE) {
+  if (reduceMotion.value || (!targetPawn.value && coarsePointer.value)) {
+    return
+  }
+
+  clearMoveTimer()
+  moveTimer = window.setTimeout(performNextMove, delay)
 }
 
 function updatePointer(event: PointerEvent) {
-  if (reduceMotion.value || coarsePointer.value) {
+  if (reduceMotion.value || coarsePointer.value || isChasing.value) {
     return
   }
 
@@ -427,98 +337,83 @@ function updatePointer(event: PointerEvent) {
     measureBoard()
   }
 
-  const bounds = backdropBounds
-  const isInside = bounds
-    && event.clientX >= bounds.left
-    && event.clientX <= bounds.right
-    && event.clientY >= bounds.top
-    && event.clientY <= bounds.bottom
-
-  if (!isInside) {
-    if (holeIsActive) {
-      targetEffectProgress = 0
-      ensureAnimation()
-    }
+  if (!isInsideBackdrop(event.clientX, event.clientY)) {
+    hoverSquare.value = undefined
     return
   }
 
-  targetPointerX = event.clientX
-  targetPointerY = event.clientY
-  targetEffectProgress = 1
-  holeIsActive = true
-  ensureAnimation()
+  const nextSquare = squareFromPointer(event.clientX, event.clientY)
+
+  if (isSameSquare(nextSquare, hoverSquare.value)) {
+    return
+  }
+
+  hoverSquare.value = nextSquare
+}
+
+function placeTarget(event: PointerEvent) {
+  if (reduceMotion.value || event.button !== 0 || isChasing.value) {
+    return
+  }
+
+  if (needsMeasurement) {
+    measureBoard()
+  }
+
+  if (!isInsideBackdrop(event.clientX, event.clientY)) {
+    return
+  }
+
+  const eventTarget = event.target
+
+  if (
+    eventTarget instanceof Element
+    && eventTarget.closest('a, button, input, textarea, select, img, [role="button"]')
+  ) {
+    return
+  }
+
+  const nextTarget = squareFromPointer(event.clientX, event.clientY)
+
+  if (isSameSquare(nextTarget, knightSquare.value)) {
+    return
+  }
+
+  clearMoveTimer()
+  hoverSquare.value = { ...nextTarget }
+  targetPawn.value = { ...nextTarget }
+  isChasing.value = true
+  scheduleNextMove(80)
 }
 
 function markForMeasurement() {
   needsMeasurement = true
-
-  if (holeIsActive) {
-    ensureAnimation()
-  }
-}
-
-function applyStaticHole() {
-  if (needsMeasurement) {
-    measureBoard()
-  }
-
-  const bounds = backdropBounds
-
-  if (bounds) {
-    targetPointerX = bounds.left + bounds.width * 0.66
-    targetPointerY = bounds.top + bounds.height * 0.5
-    currentPointerX = targetPointerX
-    currentPointerY = targetPointerY
-    targetEffectProgress = 1
-    effectProgress = 1
-    holeIsActive = true
-    applyEffect(currentPointerX, currentPointerY, effectProgress)
-  }
 }
 
 onMounted(async () => {
   await nextTick()
   measureBoard()
 
-  resizeObserver = new ResizeObserver(() => {
-    markForMeasurement()
-
-    if (coarsePointer.value || reduceMotion.value) {
-      requestAnimationFrame(applyStaticHole)
-    }
-  })
+  resizeObserver = new ResizeObserver(markForMeasurement)
 
   if (backdrop.value) {
     resizeObserver.observe(backdrop.value)
   }
 
-  if (coarsePointer.value || reduceMotion.value) {
-    applyStaticHole()
-  }
-
   window.addEventListener('pointermove', updatePointer, { passive: true })
+  window.addEventListener('pointerdown', placeTarget, { passive: true })
   window.addEventListener('scroll', markForMeasurement, { passive: true })
-})
-
-watch(() => appConfig.ui.colors.primary, async () => {
-  await nextTick()
-
-  if (lineCanvas.value) {
-    lineColor = getComputedStyle(lineCanvas.value).color
-  }
-
-  if (holeIsActive) {
-    applyEffect(lastHoleX, lastHoleY, effectProgress)
-  }
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('pointermove', updatePointer)
+  window.removeEventListener('pointerdown', placeTarget)
   window.removeEventListener('scroll', markForMeasurement)
   resizeObserver?.disconnect()
+  clearMoveTimer()
 
-  if (animationFrame) {
-    cancelAnimationFrame(animationFrame)
+  if (captureTimer) {
+    window.clearTimeout(captureTimer)
   }
 })
 </script>
@@ -527,6 +422,7 @@ onBeforeUnmount(() => {
   <div
     ref="backdrop"
     class="cta-backdrop pointer-events-none absolute inset-0 overflow-hidden"
+    :data-interaction-state="isChasing ? 'chasing' : activePawn ? 'preview' : 'idle'"
     aria-hidden="true"
     inert
   >
@@ -539,7 +435,42 @@ onBeforeUnmount(() => {
         :class="cell.isLight ? 'cta-board__cell--light' : 'cta-board__cell--dark'"
       />
 
-      <canvas ref="lineCanvas" class="cta-board__canvas absolute inset-0 size-full" />
+      <span
+        v-for="landing in routeLandings"
+        :key="landing.id"
+        class="cta-board__route-landing"
+        :style="[
+          squareStyle(landing.square),
+          { '--route-strength': landing.strength },
+        ]"
+        aria-hidden="true"
+      />
+
+      <span
+        v-if="activePawn"
+        class="cta-board__piece cta-board__pawn"
+        :class="targetPawn ? 'cta-board__pawn--target' : 'cta-board__pawn--ghost'"
+        :style="squareStyle(activePawn)"
+        :data-pawn-column="activePawn.column"
+        :data-pawn-row="activePawn.row"
+      >
+        <span class="cta-board__piece-glyph" aria-hidden="true">♟</span>
+      </span>
+
+      <span
+        class="cta-board__piece cta-board__knight"
+        :style="squareStyle(knightSquare)"
+        :data-knight-column="knightSquare.column"
+        :data-knight-row="knightSquare.row"
+      >
+        <span class="cta-board__piece-glyph" aria-hidden="true">♞</span>
+      </span>
+
+      <span
+        v-if="captureSquare"
+        class="cta-board__capture"
+        :style="squareStyle(captureSquare)"
+      />
     </div>
   </div>
 </template>
@@ -551,6 +482,7 @@ onBeforeUnmount(() => {
 
 .cta-board {
   --cell-size: clamp(4rem, 5.5vw, 6rem);
+  --piece-counter-rotation: 7deg;
   top: 50%;
   left: 50%;
   display: grid;
@@ -562,7 +494,6 @@ onBeforeUnmount(() => {
 
 .cta-board__cell {
   position: relative;
-  transition: opacity 320ms cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .cta-board__cell--light {
@@ -573,25 +504,120 @@ onBeforeUnmount(() => {
   background-color: color-mix(in oklab, var(--ui-primary) 1.5%, var(--ui-bg));
 }
 
-.cta-board__cell--removed {
-  opacity: 0;
+.cta-board__route-landing {
+  position: absolute;
+  z-index: 1;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  transform: translate(-50%, -50%);
+  border-radius: 0.35rem;
+  background: color-mix(in oklab, var(--ui-primary) 5%, transparent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--ui-primary) 18%, transparent),
+    inset 0 0 1rem color-mix(in oklab, var(--ui-primary) 6%, transparent);
+  opacity: calc(0.45 + var(--route-strength) * 0.4);
+  pointer-events: none;
+  transition: left 160ms ease, top 160ms ease, opacity 160ms ease;
 }
 
-.cta-board__canvas {
-  z-index: 1;
-  color: var(--ui-primary);
+.cta-board__piece,
+.cta-board__capture {
+  position: absolute;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  transform: translate(-50%, -50%) rotate(var(--piece-counter-rotation));
+}
+
+.cta-board__piece {
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    left 340ms cubic-bezier(0.22, 1, 0.36, 1),
+    top 340ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 180ms ease,
+    filter 180ms ease;
+}
+
+.cta-board__piece::before {
+  position: absolute;
+  inset: 13%;
+  z-index: -1;
+  border-radius: 9999px;
+  background: radial-gradient(circle, color-mix(in oklab, var(--ui-primary) 24%, transparent), transparent 70%);
+  content: '';
+  filter: blur(0.35rem);
+}
+
+.cta-board__piece-glyph {
+  display: block;
+  font-family: "Segoe UI Symbol", "Noto Sans Symbols 2", sans-serif;
+  font-size: calc(var(--cell-size) * 0.72);
+  font-weight: 400;
+  line-height: 1;
+  transform: translateY(-2%);
+}
+
+.cta-board__knight {
+  color: color-mix(in oklab, var(--ui-primary) 84%, white);
+  filter:
+    drop-shadow(0 0.16rem 0.06rem color-mix(in oklab, black 55%, transparent))
+    drop-shadow(0 0 0.45rem color-mix(in oklab, var(--ui-primary) 38%, transparent));
+}
+
+.cta-board__pawn {
+  color: color-mix(in oklab, var(--ui-primary) 60%, var(--ui-text-highlighted));
+}
+
+.cta-board__pawn--ghost {
+  opacity: 0.46;
+  filter: saturate(0.7);
+}
+
+.cta-board__pawn--target {
+  opacity: 0.9;
+  filter:
+    drop-shadow(0 0.16rem 0.06rem color-mix(in oklab, black 50%, transparent))
+    drop-shadow(0 0 0.45rem color-mix(in oklab, var(--ui-primary) 42%, transparent));
+}
+
+.cta-board__pawn--target::before {
+  animation: target-breathe 1.25s ease-in-out infinite;
+}
+
+.cta-board__capture {
+  z-index: 2;
+  border: 2px solid var(--ui-primary);
+  border-radius: 9999px;
+  animation: capture-ring 620ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes target-breathe {
+  50% { opacity: 0.55; transform: scale(1.18); }
+}
+
+@keyframes capture-ring {
+  from { opacity: 0.9; transform: translate(-50%, -50%) rotate(var(--piece-counter-rotation)) scale(0.28); }
+  to { opacity: 0; transform: translate(-50%, -50%) rotate(var(--piece-counter-rotation)) scale(1.05); }
 }
 
 @media (max-width: 47.999rem) {
   .cta-board {
     --cell-size: 4rem;
+    --piece-counter-rotation: 4deg;
     transform: translate(-50%, -50%) rotate(-4deg);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cta-board__cell {
+  .cta-board__piece {
     transition: none;
+  }
+
+  .cta-board__pawn--target::before,
+  .cta-board__capture {
+    animation: none;
   }
 }
 </style>
