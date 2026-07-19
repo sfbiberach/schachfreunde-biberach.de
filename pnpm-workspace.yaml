@@ -8,10 +8,14 @@ overrides:
   semver@6: 6.3.0
   "workbox-build@7.4.0>rollup": 2.79.2
   workbox-build: 7.4.0
+  unhead@3.1.8: 3.1.7
+  "@unhead/vue@3.1.8": 3.1.7
+  "@unhead/bundler@3.1.8": 3.1.7
 
 peerDependencyRules:
   allowedVersions:
     eslint: ">=8.57.0"
+    unctx@3>oxc-parser: ">=0.137.0"
 
 allowBuilds:
   "@parcel/watcher": true
@@ -24,8 +28,15 @@ allowBuilds:
   vue-demi: true
   workerd: true
 
+
 minimumReleaseAgeExclude:
   - "@happydesigns/ui@0.15.0 || 0.15.1"
+  - nuxt@4.5.0
+  - "@nuxt/kit@4.5.0"
+  - "@nuxt/nitro-server@4.5.0"
+  - "@nuxt/schema@4.5.0"
+  - "@nuxt/vite-builder@4.5.0"
 
 patchedDependencies:
   nuxt-studio@1.7.0: patches/nuxt-studio@1.7.0.patch
+  nuxt-schema-org@6.2.3: patches/nuxt-schema-org@6.2.3.patch
