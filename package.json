@@ -5,15 +5,20 @@
   "private": true,
   "packageManager": "pnpm@11.11.0",
   "scripts": {
-    "dev": "nuxt dev",
-    "build": "cross-env NODE_OPTIONS='--max-old-space-size=4096' nuxt build",
-    "generate": "nuxt generate && node scripts/validate-generated-output.mjs",
+    "predev": "node scripts/prepare-nuxt-dev-cache.mjs",
+    "dev": "cross-env NUXT_LOCK=1 nuxt dev",
+    "build": "cross-env NITRO_PRESET=cloudflare_module NUXT_LOCK=1 NODE_OPTIONS='--max-old-space-size=4096' nuxt build",
+    "generate": "cross-env NUXT_LOCK=1 nuxt generate && node scripts/validate-generated-output.mjs",
     "preview": "nuxt preview",
     "serve": "wrangler dev --config .output/server/wrangler.json",
-    "lint": "eslint .",
+    "lint": "eslint . && pnpm contentcheck",
     "lint:fix": "eslint . --fix",
+    "test": "vitest run",
     "typecheck": "nuxt typecheck",
-    "generate-pwa-assets": "pwa-assets-generator"
+    "generate-pwa-assets": "pwa-assets-generator",
+    "prebuild": "pnpm lint",
+    "pregenerate": "pnpm lint",
+    "contentcheck": "nuxt prepare && node scripts/validate-content.mjs"
   },
   "dependencies": {
     "@happydesigns/nuxt-variants": "^0.0.6",
@@ -32,6 +37,7 @@
     "@vueuse/core": "^14.3.0",
     "@vueuse/nuxt": "^14.3.0",
     "better-sqlite3": "^12.11.1",
+    "cheerio": "^1.2.0",
     "feed": "^6.0.0",
     "nuxt-studio": "^1.7.0"
   },
@@ -46,8 +52,10 @@
     "nuxt": "^4.4.8",
     "typescript": "^6.0.3",
     "unhead": "3.1.7",
+    "vitest": "^4.1.10",
     "vue-tsc": "^3.3.7",
-    "wrangler": "^4.107.1",
+    "wrangler": "^4.110.0",
+    "yaml": "^2.9.0",
     "zod": "^4.4.3"
   }
 }

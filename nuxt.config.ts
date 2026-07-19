@@ -36,6 +36,7 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { prerender: true },
     '/blog/rss.xml': { prerender: true },
+    '/mannschaften': { prerender: true },
   },
 
   experimental: {
@@ -45,16 +46,32 @@ export default defineNuxtConfig({
   compatibilityDate: '2026-07-09',
 
   nitro: {
+    storage: {
+      cache: {
+        driver: 'cloudflare-kv-binding',
+        binding: 'NULIGA_CACHE',
+      },
+    },
+    devStorage: {
+      cache: {
+        driver: 'fs',
+        base: './.data/nuliga-cache',
+      },
+    },
     prerender: {
       crawlLinks: true,
       autoSubfolderIndex: false,
       failOnError: true,
+      ignore: [route => route.startsWith('/mannschaften/') && !route.endsWith('/_payload.json')],
       routes: ['/', '/impressum', '/datenschutz', '/sitemap.xml', '/api/navigation.json', '/api/search.json'],
     },
-    preset: 'cloudflare_module',
     cloudflare: {
       deployConfig: true,
       nodeCompat: true,
+      wrangler: {
+        d1_databases: [{ binding: 'DB' }],
+        kv_namespaces: [{ binding: 'NULIGA_CACHE' }],
+      },
     },
     virtual: {
       sharp: 'export default function sharp() { return {} }',

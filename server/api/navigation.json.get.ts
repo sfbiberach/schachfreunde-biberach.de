@@ -7,7 +7,9 @@ export default defineEventHandler(async (event) => {
     queryCollectionNavigation(event, 'article')
       .where('status', '=', 'published')
       .order('date', 'DESC'),
-    queryCollectionNavigation(event, 'team'),
-    queryCollectionNavigation(event, 'tournament'),
+    queryCollectionNavigation(event, 'team')
+      .where('status', '=', 'published'),
+    queryCollectionNavigation(event, 'tournament')
+      .where('status', '=', 'published'),
   ]).then(data => data.flat())
 })

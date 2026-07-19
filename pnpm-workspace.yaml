@@ -26,3 +26,6 @@ allowBuilds:
 
 minimumReleaseAgeExclude:
   - "@happydesigns/ui@0.15.0 || 0.15.1"
+
+patchedDependencies:
+  nuxt-studio@1.7.0: patches/nuxt-studio@1.7.0.patch

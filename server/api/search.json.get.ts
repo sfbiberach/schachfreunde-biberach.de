@@ -3,8 +3,12 @@ import { queryCollectionSearchSections } from '@nuxt/content/server'
 
 export default defineEventHandler(async (event) => {
   return Promise.all([
-    queryCollectionSearchSections(event, 'article'),
-    queryCollectionSearchSections(event, 'team'),
-    queryCollectionSearchSections(event, 'tournament'),
+    queryCollectionSearchSections(event, 'page'),
+    queryCollectionSearchSections(event, 'article')
+      .where('status', '=', 'published'),
+    queryCollectionSearchSections(event, 'team')
+      .where('status', '=', 'published'),
+    queryCollectionSearchSections(event, 'tournament')
+      .where('status', '=', 'published'),
   ]).then(data => data.flat())
 })
