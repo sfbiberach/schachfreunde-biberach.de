@@ -10,7 +10,7 @@
     "build": "cross-env NITRO_PRESET=cloudflare_module NUXT_LOCK=1 NODE_OPTIONS='--max-old-space-size=4096' nuxt build",
     "generate": "cross-env NUXT_LOCK=1 nuxt generate && node scripts/validate-generated-output.mjs",
     "preview": "nuxt preview",
-    "serve": "wrangler dev --config .output/server/wrangler.json",
+    "serve": "wrangler --cwd .output/server dev --config wrangler.json",
     "lint": "eslint . && pnpm contentcheck",
     "lint:fix": "eslint . --fix",
     "test": "vitest run",
