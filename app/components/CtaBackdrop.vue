@@ -14,7 +14,6 @@ interface RouteLanding {
 
 const COLUMN_COUNT = 18
 const ROW_COUNT = 14
-const CELL_COUNT = COLUMN_COUNT * ROW_COUNT
 const MOVE_DURATION = 340
 const MOVE_PAUSE = 70
 const CAPTURE_DURATION = 620
@@ -33,20 +32,11 @@ const KNIGHT_MOVES = [
 
 const board = useTemplateRef<HTMLDivElement>('board')
 const backdrop = useTemplateRef<HTMLDivElement>('backdrop')
+const originCell = useTemplateRef<HTMLSpanElement>('originCell')
+const columnCell = useTemplateRef<HTMLSpanElement>('columnCell')
+const rowCell = useTemplateRef<HTMLSpanElement>('rowCell')
 const reduceMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
 const coarsePointer = useMediaQuery('(pointer: coarse)')
-
-const cells = Array.from({ length: CELL_COUNT }, (_, index) => {
-  const row = Math.floor(index / COLUMN_COUNT)
-  const column = index % COLUMN_COUNT
-
-  return {
-    index,
-    row,
-    column,
-    isLight: (row + column) % 2 === 0,
-  }
-})
 
 const knightSquare = shallowRef<BoardSquare>({ ...DEFAULT_KNIGHT })
 const hoverSquare = shallowRef<BoardSquare>()
@@ -54,7 +44,6 @@ const targetPawn = shallowRef<BoardSquare>()
 const captureSquare = shallowRef<BoardSquare>()
 const isChasing = ref(false)
 
-let cellElements: HTMLElement[] = []
 let cellSize = 0
 let boardOrigin = { x: 0, y: 0 }
 let boardXAxis = { x: 1, y: 0 }
@@ -63,6 +52,8 @@ let backdropBounds: DOMRect | undefined
 let needsMeasurement = true
 let moveTimer: number | undefined
 let captureTimer: number | undefined
+let pointerFrame: number | undefined
+let pendingPointer: { x: number, y: number } | undefined
 let resizeObserver: ResizeObserver | undefined
 
 const activePawn = computed(() => targetPawn.value ?? hoverSquare.value)
@@ -169,11 +160,9 @@ function measureBoard() {
     return
   }
 
-  cellElements = Array.from(boardElement.querySelectorAll<HTMLElement>('[data-board-cell]'))
-
-  const firstCellBounds = cellElements[0]?.getBoundingClientRect()
-  const nextColumnBounds = cellElements[1]?.getBoundingClientRect()
-  const nextRowBounds = cellElements[COLUMN_COUNT]?.getBoundingClientRect()
+  const firstCellBounds = originCell.value?.getBoundingClientRect()
+  const nextColumnBounds = columnCell.value?.getBoundingClientRect()
+  const nextRowBounds = rowCell.value?.getBoundingClientRect()
 
   if (!firstCellBounds || !nextColumnBounds || !nextRowBounds) {
     return
@@ -328,7 +317,7 @@ function scheduleNextMove(delay = MOVE_PAUSE) {
   moveTimer = window.setTimeout(performNextMove, delay)
 }
 
-function updatePointer(event: PointerEvent) {
+function processPointer(pointerX: number, pointerY: number) {
   if (reduceMotion.value || coarsePointer.value || isChasing.value) {
     return
   }
@@ -337,18 +326,36 @@ function updatePointer(event: PointerEvent) {
     measureBoard()
   }
 
-  if (!isInsideBackdrop(event.clientX, event.clientY)) {
+  if (!isInsideBackdrop(pointerX, pointerY)) {
     hoverSquare.value = undefined
     return
   }
 
-  const nextSquare = squareFromPointer(event.clientX, event.clientY)
+  const nextSquare = squareFromPointer(pointerX, pointerY)
 
   if (isSameSquare(nextSquare, hoverSquare.value)) {
     return
   }
 
   hoverSquare.value = nextSquare
+}
+
+function updatePointer(event: PointerEvent) {
+  pendingPointer = { x: event.clientX, y: event.clientY }
+
+  if (pointerFrame !== undefined) {
+    return
+  }
+
+  pointerFrame = window.requestAnimationFrame(() => {
+    pointerFrame = undefined
+    const pointer = pendingPointer
+    pendingPointer = undefined
+
+    if (pointer) {
+      processPointer(pointer.x, pointer.y)
+    }
+  })
 }
 
 function placeTarget(event: PointerEvent) {
@@ -412,6 +419,10 @@ onBeforeUnmount(() => {
   resizeObserver?.disconnect()
   clearMoveTimer()
 
+  if (pointerFrame !== undefined) {
+    window.cancelAnimationFrame(pointerFrame)
+  }
+
   if (captureTimer) {
     window.clearTimeout(captureTimer)
   }
@@ -427,13 +438,9 @@ onBeforeUnmount(() => {
     inert
   >
     <div ref="board" class="cta-board absolute">
-      <div
-        v-for="cell in cells"
-        :key="cell.index"
-        data-board-cell
-        class="cta-board__cell"
-        :class="cell.isLight ? 'cta-board__cell--light' : 'cta-board__cell--dark'"
-      />
+      <span ref="originCell" class="cta-board__measure cta-board__measure--origin" />
+      <span ref="columnCell" class="cta-board__measure cta-board__measure--column" />
+      <span ref="rowCell" class="cta-board__measure cta-board__measure--row" />
 
       <span
         v-for="landing in routeLandings"
@@ -483,25 +490,42 @@ onBeforeUnmount(() => {
 .cta-board {
   --cell-size: clamp(4rem, 5.5vw, 6rem);
   --piece-counter-rotation: 7deg;
+  --board-light: color-mix(in oklab, var(--ui-primary) 5%, var(--ui-bg));
+  --board-dark: color-mix(in oklab, var(--ui-primary) 1.5%, var(--ui-bg));
   top: 50%;
   left: 50%;
-  display: grid;
-  grid-template-columns: repeat(18, var(--cell-size));
-  grid-auto-rows: var(--cell-size);
   width: calc(var(--cell-size) * 18);
+  height: calc(var(--cell-size) * 14);
+  background: conic-gradient(
+    var(--board-light) 0 25%,
+    var(--board-dark) 0 50%,
+    var(--board-light) 0 75%,
+    var(--board-dark) 0
+  );
+  background-size: calc(var(--cell-size) * 2) calc(var(--cell-size) * 2);
   transform: translate(-50%, -50%) rotate(-7deg);
 }
 
-.cta-board__cell {
-  position: relative;
+:global(.light .cta-board) {
+  --board-light: color-mix(in oklab, var(--ui-primary) 9%, var(--ui-bg-muted));
+  --board-dark: color-mix(in oklab, var(--ui-primary) 2.5%, var(--ui-bg));
 }
 
-.cta-board__cell--light {
-  background-color: color-mix(in oklab, var(--ui-primary) 5%, var(--ui-bg));
+.cta-board__measure {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  visibility: hidden;
 }
 
-.cta-board__cell--dark {
-  background-color: color-mix(in oklab, var(--ui-primary) 1.5%, var(--ui-bg));
+.cta-board__measure--column {
+  left: var(--cell-size);
+}
+
+.cta-board__measure--row {
+  top: var(--cell-size);
 }
 
 .cta-board__route-landing {
@@ -564,6 +588,17 @@ onBeforeUnmount(() => {
   filter:
     drop-shadow(0 0.16rem 0.06rem color-mix(in oklab, black 55%, transparent))
     drop-shadow(0 0 0.45rem color-mix(in oklab, var(--ui-primary) 38%, transparent));
+}
+
+:global(.light .cta-board__knight) {
+  filter:
+    drop-shadow(0 0.1rem 0.05rem color-mix(in oklab, black 24%, transparent))
+    drop-shadow(0 0 0.26rem color-mix(in oklab, var(--ui-primary) 18%, transparent));
+}
+
+:global(.light .cta-board__knight::before) {
+  background: radial-gradient(circle, color-mix(in oklab, var(--ui-primary) 11%, transparent), transparent 70%);
+  filter: blur(0.22rem);
 }
 
 .cta-board__pawn {

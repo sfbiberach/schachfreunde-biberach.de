@@ -88,6 +88,14 @@ function getCellSaturation(rowIndex: number, colIndex: number) {
   background-color: color-mix(in oklab, var(--ui-primary) var(--cell-primary), transparent);
 }
 
+:global(.light .chessboard-cell--light) {
+  background-color: color-mix(in oklab, var(--ui-primary) calc(var(--cell-primary) + 5%), var(--ui-bg-muted));
+}
+
+:global(.light .chessboard-cell--dark) {
+  background-color: color-mix(in oklab, var(--ui-primary) calc(var(--cell-primary) + 4%), var(--ui-bg));
+}
+
 .chessboard-cell--animated {
   animation: board-breathe var(--pulse-duration) ease-in-out var(--pulse-delay) infinite both;
 }

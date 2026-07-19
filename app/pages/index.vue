@@ -1,26 +1,45 @@
 <script setup lang="ts">
+import type { PageSectionProps } from '@nuxt/ui'
 import type { ClubPulseResponse } from '~~/shared/types/clubPulse'
 import type { TrainingSchedule } from '~~/shared/types/training'
 
 const today = getBerlinDateKey()
+const contentDateFormatter = new Intl.DateTimeFormat('de-DE', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+})
 
 const { data: page } = await useAsyncData('landing', () => queryCollection('landing').path('/').first())
+// Nuxt Content's inherited component schema is structurally compatible, but its
+// generated nested component props are deliberately broader than Nuxt UI's types.
+const heroProps = computed(() => page.value?.hero as PageSectionProps | undefined)
 const { data: currentContent } = await useAsyncData('landing-current-content', async () => {
-  const [tournaments, articleCandidates] = await Promise.all([
+  const [tournaments, articles, galleryArticles] = await Promise.all([
     queryCollection('tournament')
-      .select('title', 'description', 'path', 'date', 'dateEnd', 'status')
+      .where('status', '=', 'published')
+      .select('title', 'description', 'path', 'date', 'dateEnd')
       .all(),
     queryCollection('article')
       .where('status', '=', 'published')
       .order('date', 'DESC')
-      .select('title', 'description', 'path', 'date', 'status', 'category', 'image')
+      .select('title', 'description', 'path', 'date', 'category', 'image')
+      .limit(8)
+      .all(),
+    queryCollection('article')
+      .where('status', '=', 'published')
+      .where('image', 'IS NOT NULL')
+      .order('date', 'DESC')
+      .select('title', 'path', 'date', 'category', 'image')
+      .limit(3)
       .all(),
   ])
 
   return {
     tournaments,
-    articles: articleCandidates.slice(0, 8),
-    galleryArticles: articleCandidates.filter(article => article.image?.src).slice(0, 3),
+    articles,
+    galleryArticles,
   }
 })
 
@@ -35,8 +54,7 @@ const {
 
 const nextTournament = computed(() => currentContent.value?.tournaments
   .filter(tournament =>
-    tournament.status === 'published'
-    && typeof tournament.date === 'string'
+    typeof tournament.date === 'string'
     && String(tournament.dateEnd || tournament.date) >= today,
   )
   .sort((a, b) => String(a.date).localeCompare(String(b.date)))[0])
@@ -77,8 +95,7 @@ const activityCards = computed(() => {
   const curatedPaths = new Set(curated.map(card => card.to))
   const articles = (currentContent.value?.articles || [])
     .filter(article =>
-      article.status === 'published'
-      && article.path !== featuredPath
+      article.path !== featuredPath
       && !curatedPaths.has(article.path),
     )
     .map(article => ({
@@ -155,18 +172,13 @@ function formatContentDate(date?: string | Date) {
   }
   const value = date instanceof Date ? date : new Date(`${date}T12:00:00Z`)
 
-  return new Intl.DateTimeFormat('de-DE', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-    timeZone: 'UTC',
-  }).format(value)
+  return contentDateFormatter.format(value)
 }
 </script>
 
 <template>
   <NuxtLayout v-if="page">
-    <UPageSection v-bind="(page.hero as any)" class="relative overflow-hidden">
+    <UPageSection v-bind="heroProps" class="relative overflow-hidden">
       <template #title>
         <span v-html="page.hero?.title" />
       </template>
@@ -216,7 +228,7 @@ function formatContentDate(date?: string | Date) {
       id="training"
       title="Training & Termine"
       orientation="horizontal"
-      class="bg-elevated/25"
+      class="training-section"
       :ui="{
         container: 'py-16 sm:py-20 lg:py-24 gap-10 sm:gap-12',
       }"
@@ -229,7 +241,7 @@ function formatContentDate(date?: string | Date) {
 
       <iframe
         title="Vereinskalender der Schachfreunde Heilbronn-Biberach"
-        class="min-h-112 w-full rounded-xl border border-default bg-white"
+        class="min-h-112 w-full rounded-xl border-0 bg-transparent"
         scrolling="yes"
         loading="lazy"
         :src="calendarSrc"
@@ -256,7 +268,7 @@ function formatContentDate(date?: string | Date) {
       }"
     >
       <template #top>
-        <CtaBackdrop />
+        <LazyCtaBackdrop :hydrate-on-visible="{ rootMargin: '240px' }" />
       </template>
 
       <UPageCTA
@@ -301,5 +313,13 @@ function formatContentDate(date?: string | Date) {
 <style scoped>
 .cta-section {
   background-color: var(--ui-bg-elevated);
+}
+
+.training-section {
+  background-color: color-mix(in oklab, var(--ui-primary) 4%, var(--ui-bg));
+}
+
+:global(.dark .training-section) {
+  background-color: color-mix(in oklab, var(--ui-bg-elevated) 35%, var(--ui-bg));
 }
 </style>

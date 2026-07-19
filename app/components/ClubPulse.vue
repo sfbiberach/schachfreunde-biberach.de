@@ -17,6 +17,19 @@ const props = defineProps<{
   refreshing?: boolean
 }>()
 
+const calendarDateFormatter = new Intl.DateTimeFormat('de-DE', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+})
+const trainingDateFormatter = new Intl.DateTimeFormat('de-DE', {
+  weekday: 'long',
+  day: 'numeric',
+  month: 'long',
+  timeZone: 'UTC',
+})
+
 const recentMatch = computed(() => props.pulse?.recentMatches[0])
 const upcomingMatch = computed(() => props.pulse?.upcomingMatches[0])
 
@@ -59,12 +72,7 @@ const tournamentCountdown = computed(() => {
 })
 
 function formatCalendarDate(date: string) {
-  return new Intl.DateTimeFormat('de-DE', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-    timeZone: 'UTC',
-  }).format(new Date(`${date}T12:00:00Z`))
+  return calendarDateFormatter.format(new Date(`${date}T12:00:00Z`))
 }
 
 function formatTournamentRange(tournament: TournamentHighlight) {
@@ -80,12 +88,7 @@ function formatFixture(match: ClubPulseTeamMatch) {
 }
 
 function formatTrainingDate(date: string) {
-  return new Intl.DateTimeFormat('de-DE', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-    timeZone: 'UTC',
-  }).format(new Date(`${date}T12:00:00Z`))
+  return trainingDateFormatter.format(new Date(`${date}T12:00:00Z`))
 }
 </script>
 
@@ -342,11 +345,11 @@ function formatTrainingDate(date: string) {
       color-mix(in oklab, black 54%, transparent) 100%
     ) border-box;
   box-shadow:
-    inset 0 1px 0 color-mix(in oklab, white 22%, transparent),
-    inset 0 -0.35rem 0.8rem color-mix(in oklab, black 18%, transparent),
-    0 0 0 1px color-mix(in oklab, var(--ui-primary) 13%, transparent),
-    0 0.55rem 1rem color-mix(in oklab, black 38%, transparent),
-    0 0 1.35rem color-mix(in oklab, var(--ui-primary) 22%, transparent);
+    inset 0 1px 0 color-mix(in oklab, white 18%, transparent),
+    inset 0 -0.2rem 0.5rem color-mix(in oklab, black 9%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--ui-primary) 10%, transparent),
+    0 0.18rem 0.42rem color-mix(in oklab, black 16%, transparent),
+    0 0 0.7rem color-mix(in oklab, var(--ui-primary) 9%, transparent);
 }
 
 .pulse-status-icon::before {
@@ -359,7 +362,20 @@ function formatTrainingDate(date: string) {
 }
 
 .pulse-status-glyph {
-  filter: drop-shadow(0 0 0.3rem color-mix(in oklab, var(--ui-primary) 68%, transparent));
+  filter: drop-shadow(0 0 0.18rem color-mix(in oklab, var(--ui-primary) 26%, transparent));
+}
+
+:global(.light .pulse-status-icon) {
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, white 28%, transparent),
+    inset 0 -0.14rem 0.34rem color-mix(in oklab, black 3%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--ui-primary) 7%, transparent),
+    0 0.08rem 0.22rem color-mix(in oklab, black 4%, transparent),
+    0 0 0.38rem color-mix(in oklab, var(--ui-primary) 4%, transparent);
+}
+
+:global(.light .pulse-status-glyph) {
+  filter: none;
 }
 
 .pulse-dot::after {
