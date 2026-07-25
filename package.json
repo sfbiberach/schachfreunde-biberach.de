@@ -18,7 +18,8 @@
     "generate-pwa-assets": "pwa-assets-generator",
     "prebuild": "pnpm lint",
     "pregenerate": "pnpm lint",
-    "contentcheck": "nuxt prepare && node scripts/validate-content.mjs"
+    "contentcheck": "nuxt prepare && node scripts/validate-content.mjs",
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
     "@happydesigns/nuxt-variants": "^0.0.6",
