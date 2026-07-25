@@ -1,37 +1,28 @@
 title: Schach spielen in Heilbronn-Biberach
 description: Training, Mannschaftsschach und Turniere für Kinder, Jugendliche und Erwachsene bei den Schachfreunden Heilbronn-Biberach.
-highlights:
-  - title: Internationale Unterländer Schachtage
-    description: Offenes Turnier vom 30. Juli bis 2. August 2026 mit Preisgeldern von über 7.000 Euro.
-    to: /turniere/internationale-unterlaender-schachtage
-    icon: i-ph-crown-duotone
-    visibleUntil: 2026-08-02
-  - title: Biber-Jugend-Cup
-    description: Unser großes Kinder- und Jugendturnier geht am 6. März 2027 in die 16. Runde.
-    to: /turniere/biber-jugend-cup
-    icon: i-ph-castle-turret-duotone
-    visibleUntil: 2027-03-06
 training:
   weekday: 5
   youthTime: "18:00"
   adultTime: "20:15"
-  # Einzelne Ausfälle oder längere Pausen werden hier mit from, optional until und label gepflegt.
-  exceptions: []
+  exceptions:
+    - from: 2026-07-31
+      until: 2026-09-11
+      label: Sommerpause
 hero:
-  title: Schach spielen.<br><span class="text-primary">Gemeinschaft erleben.</span>
-  description: "Ob du gerade mit Schach anfängst oder schon im Mannschaftskampf um Punkte spielst: Bei uns kannst du dazulernen und findest schnell Anschluss."
+  title: Herzlich Willkommen
+  description: bei den <b>Schachfreunden Heilbronn-Biberach 1978 e.&nbsp;V.</b>&nbsp; <br class="hidden xl:block">Wir sind ein junger, dynamischer Verein aus Baden-Württemberg.
   orientation: horizontal
   ui:
     container: py-16 sm:py-20 lg:py-24
     features:
       description: whitespace-pre-line
   features:
-    - title: Freitags gemeinsam am Brett
-      description: Jugendtraining ab 18 Uhr, Erwachsene ab 20:15 Uhr – ein Probebesuch ist jederzeit möglich.
-      icon: i-ph-clock-countdown-duotone
-    - title: Sechs Mannschaften, starke Jugend
-      description: Vom Nachwuchs bis zur Oberliga spielen wir ambitioniert und mit viel Freude am Schach.
-      icon: i-ph-users-three-duotone
+    - title: Erfolgreiche Jugendarbeit
+      description: In den letzten 9 Jahren haben wir an 10 Deutschen Vereinsmeisterschaften (DVM) teilgenommen.
+      icon: i-ph-fire-duotone
+    - title: Turniere mit überregionaler Strahlkraft
+      description: Seit 2012 veranstalten wir jährlich den Biber-Jugend-Cup mit durchschnittlich 200 Teilnehmern.
+      icon: i-ph-trophy-duotone
   links:
     - label: Aktuelles
       to: /blog
