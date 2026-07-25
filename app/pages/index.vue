@@ -16,7 +16,7 @@ const { data: page } = await useAsyncData('landing', () => queryCollection('land
 // generated nested component props are deliberately broader than Nuxt UI's types.
 const heroProps = computed(() => page.value?.hero as PageSectionProps | undefined)
 const { data: currentContent } = await useAsyncData('landing-current-content', async () => {
-  const [tournaments, articles, galleryArticles] = await Promise.all([
+  const [tournaments, articles] = await Promise.all([
     queryCollection('tournament')
       .where('status', '=', 'published')
       .select('title', 'description', 'path', 'date', 'dateEnd')
@@ -24,22 +24,14 @@ const { data: currentContent } = await useAsyncData('landing-current-content', a
     queryCollection('article')
       .where('status', '=', 'published')
       .order('date', 'DESC')
-      .select('title', 'description', 'path', 'date', 'category', 'image')
+      .select('title', 'description', 'path', 'date', 'category')
       .limit(8)
-      .all(),
-    queryCollection('article')
-      .where('status', '=', 'published')
-      .where('image', 'IS NOT NULL')
-      .order('date', 'DESC')
-      .select('title', 'path', 'date', 'category', 'image')
-      .limit(3)
       .all(),
   ])
 
   return {
     tournaments,
     articles,
-    galleryArticles,
   }
 })
 
@@ -108,38 +100,6 @@ const activityCards = computed(() => {
     }))
 
   return [...curated, ...articles].slice(0, 4)
-})
-
-const galleryImages = computed(() => {
-  const candidates = currentContent.value?.galleryArticles || []
-
-  if (candidates.length === 0) {
-    return []
-  }
-
-  const candidatesWithDimensions = candidates.filter(article => article.image?.width && article.image.height)
-  const lead = candidatesWithDimensions.length > 0
-    ? candidatesWithDimensions.reduce((best, article) => {
-        const image = article.image!
-        const bestImage = best.image!
-
-        return image.width! * image.height! > bestImage.width! * bestImage.height!
-          ? article
-          : best
-      })
-    : candidates[1] || candidates[0]!
-
-  return [lead, ...candidates.filter(article => article.path !== lead.path)]
-    .map(article => ({
-      src: article.image!.src,
-      alt: article.image!.alt,
-      width: article.image!.width,
-      height: article.image!.height,
-      position: article.image!.position,
-      eyebrow: [article.category, formatContentDate(article.date)].filter(Boolean).join(' · '),
-      caption: article.title,
-      to: article.path,
-    }))
 })
 
 const pulseRefreshing = computed(() => pulseStatus.value === 'pending')
@@ -249,17 +209,6 @@ function formatContentDate(date?: string | Date) {
     </UPageSection>
 
     <USeparator />
-
-    <UPageSection
-      v-if="page.gallery && galleryImages.length"
-      :title="page.gallery.title"
-      :description="page.gallery.description"
-      :ui="{
-        container: 'py-16 sm:py-20 lg:py-24 gap-10 sm:gap-12',
-      }"
-    >
-      <CommunityGallery :images="galleryImages" />
-    </UPageSection>
 
     <UPageSection
       class="cta-section border-y border-default"
