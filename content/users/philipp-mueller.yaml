@@ -1,5 +1,13 @@
-username: philipp-mueller
-name: Philipp Müller
-to: https://www.instagram.com/muelphil
 avatar:
   src: /assets/users/philipp-mueller.jpg
+name: Philipp Müller
+to: https://www.instagram.com/muelphil
+username: philipp-mueller
+contact:
+  group: board
+  order: 10
+  role: 1. Vorsitzender
+  email: 1.vorsitzender@schachfreunde-biberach.de
+  responsibilities:
+    - Ansprechpartner für allgemeine Vereinsangelegenheiten
+    - Offizielles und Außenvertretung

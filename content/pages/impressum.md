@@ -1,8 +1,8 @@
 ---
 title: Impressum
 description: Kontaktdaten und rechtliche Informationen des Webseitenbetreibers.
-layout:
-  toc: true
+layout: content
+toc: true
 sitemap:
   loc: /impressum
 ---

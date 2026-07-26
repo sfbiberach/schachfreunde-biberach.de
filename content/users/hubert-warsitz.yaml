@@ -1,3 +1,10 @@
+name: Dr. Hubert Warsitz
 username: hubert-warsitz
-name: Hubert Warsitz
-socials: []
+contact:
+  group: sport-youth
+  order: 10
+  role: Spielleiter
+  email: spielleiter@schachfreunde-biberach.de
+  responsibilities:
+    - Mannschafts- und Spielbetrieb
+    - Ausschreibungen und Vereinsmeisterschaften

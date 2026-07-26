@@ -1,0 +1,18 @@
+diff --git a/dist/module/runtime/host.dev.js b/dist/module/runtime/host.dev.js
+index 90b762120def07fb64351041d9097ecfe405530c..c9c9e7e9a99d93a0676412b25f07c4b9e0048d43 100644
+--- a/dist/module/runtime/host.dev.js
++++ b/dist/module/runtime/host.dev.js
+@@ -25,6 +25,13 @@ export function useStudioHost(user, repository) {
+     }
+     const id = generateIdFromFsPath(fsPath, collectionInfo);
+     const document = applyCollectionSchema(id, collectionInfo, upsertedDocument);
++    const currentDocument = await host.document.db.get(fsPath);
++    if (currentDocument) {
++      const normalizedCurrentDocument = applyCollectionSchema(id, collectionInfo, currentDocument);
++      if (host.document.utils.areEqual(normalizedCurrentDocument, document)) {
++        return;
++      }
++    }
+     const sanitizedDocument = sanitizeDocumentTree(document, collectionInfo);
+     const content = await host.document.generate.contentFromDocument(sanitizedDocument);
+     await $fetch("/__nuxt_studio/dev/content/" + fsPath, {

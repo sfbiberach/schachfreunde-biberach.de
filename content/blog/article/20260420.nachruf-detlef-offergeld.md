@@ -1,8 +1,10 @@
 ---
 title: "Nachruf: Detlef Offergeld"
-description: In tiefer Trauer nehmen wir Abschied von unserem Gründungsmitglied
 category: Verein
 date: 2026-04-20
+description: In tiefer Trauer nehmen wir Abschied von unserem Gründungsmitglied
+sitemap:
+  loc: /blog/article/nachruf-detlef-offergeld
 status: published
 toc: true
 ---

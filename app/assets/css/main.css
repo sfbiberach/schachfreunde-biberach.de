@@ -2,6 +2,8 @@
 @import "@nuxt/ui";
 
 @theme static {
+  --container-8xl: 90rem;
+
   /* Fonts */
   --font-serif: 'Inter';
   --font-sans: 'Inter';
@@ -48,4 +50,8 @@
   --color-mannschaft-800: var(--color-green-800);
   --color-mannschaft-900: var(--color-green-900);
   --color-mannschaft-950: var(--color-green-950);
+}
+
+:root {
+  --ui-container: var(--container-8xl);
 }

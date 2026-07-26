@@ -1,0 +1,10 @@
+title: Kontakt
+description: Fragen zu Training, Mitgliedschaft, Spielbetrieb oder Presse? Hier findest du direkt die richtige Ansprechperson.
+layout: default
+sitemap:
+  loc: /kontakt
+  videos: []
+  images: []
+toc: false
+robots:
+  index: true
