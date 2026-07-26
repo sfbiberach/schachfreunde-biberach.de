@@ -36,10 +36,10 @@ Lies aktuelle Vorgaben, Autorenkennungen, Komponenten und Beispielbeiträge vor 
 10. Sortiere das Frontmatter verbindlich mit `title` zuerst und allen weiteren vorhandenen Top-Level-Feldern alphabetisch. Prüfe außerdem sämtliche neuen Datei- und Ordnernamen gegen das Namensschema.
 11. Prüfe Inhalt, Metadaten, Links, Tabellen und Medien gegen die Quellen.
 12. Führe die passenden Repository-Checks aus und behebe nur Fehler im eigenen Änderungssatz.
-13. Erzeuge für jeden angelegten oder geänderten Beitrag eine passende Conventional-Commit-Nachricht nach den Regeln in `references/repository-conventions.md` und gib sie in der Übergabe aus.
+13. Erzeuge für jeden angelegten oder geänderten Beitrag eine passende Conventional-Commit-Nachricht nach den Regeln in `references/repository-conventions.md`, formuliere sie standardmäßig auf Englisch und gib sie in der Übergabe aus.
 14. Wenn ein Commit beauftragt ist, stage ausschließlich den eigenen Änderungssatz und verwende die vorgeschlagene Conventional-Commit-Nachricht.
 15. Verwende bei einem Auftrag zum Veröffentlichen oder Onlinestellen standardmäßig den GitHub-PR-Ablauf aus `references/repository-conventions.md`, sofern der Benutzer nicht ausdrücklich Nuxt Studio verlangt. Prüfe zuvor die GitHub-Verbindung und den Schreibzugriff.
-16. Erstelle einen eigenen Branch, committe ausschließlich den eigenen Änderungssatz, pushe den Branch und öffne einen veröffentlichungsfertigen PR. Verwende die Conventional-Commit-Nachricht unverändert als PR-Titel und halte die PR-Beschreibung kurz. Erstelle nur auf ausdrücklichen Wunsch einen Draft-PR.
+16. Erstelle einen eigenen Branch, committe ausschließlich den eigenen Änderungssatz, pushe den Branch und öffne einen veröffentlichungsfertigen PR. Verwende die englische Conventional-Commit-Nachricht unverändert als PR-Titel und formuliere auch die kurze PR-Beschreibung standardmäßig auf Englisch. Erstelle nur auf ausdrücklichen Wunsch einen Draft-PR.
 17. Merge einen PR niemals ohne ausdrücklichen Auftrag. Stelle klar, dass der Beitrag erst durch den Merge in den Veröffentlichungsbranch und das anschließende Deployment online geht.
 18. Lies `references/nuxt-studio-publishing.md` und arbeite direkt in Nuxt Studio ausschließlich dann, wenn der Benutzer dies ausdrücklich wünscht.
 
@@ -105,7 +105,7 @@ Berichte abschließend:
 
 - angelegte oder geänderte Beitrags- und Assetdateien
 - exakter Dateiname des angelegten oder geänderten Artikels in einer eigenen, leicht erkennbaren Zeile; verwende die Form `Dateiname: YYYYMMDD.slug.md` und setze den tatsächlichen Dateinamen als Inline-Code
-- passende Conventional-Commit-Nachricht in einer eigenen, leicht erkennbaren Zeile; verwende die Form `Commit-Message: type(blog): kurze imperative Zusammenfassung` und gib sie auch dann aus, wenn kein Commit beauftragt wurde
+- passende Conventional-Commit-Nachricht in einer eigenen, leicht erkennbaren Zeile; verwende die Form `Commit-Message: type(blog): short imperative summary` und gib sie auch dann aus, wenn kein Commit beauftragt wurde
 - bei einem Fertigtext eine knappe Zusammenfassung der tatsächlich vorgenommenen Korrekturen außerhalb des Artikels; berichte `Korrekturen: keine`, wenn der Originaltext unverändert blieb
 - gewählte oder abgeleitete Metadaten
 - Ergebnis der Prüfung von Frontmatter-Reihenfolge und Dateinamensschema

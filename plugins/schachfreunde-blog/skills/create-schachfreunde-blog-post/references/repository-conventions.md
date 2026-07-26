@@ -124,12 +124,12 @@ Verändere zur Behebung von Prüffehlern keine unbeteiligten Dateien.
 
 ## Git und Conventional Commits
 
-Erzeuge für jeden angelegten oder geänderten Beitrag eine passende Conventional-Commit-Nachricht und gib sie im Abschlussbericht auf einer eigenen Zeile in der Form `Commit-Message: <Nachricht>` aus. Das gilt auch, wenn kein Commit beauftragt wurde.
+Erzeuge für jeden angelegten oder geänderten Beitrag eine passende Conventional-Commit-Nachricht und gib sie im Abschlussbericht auf einer eigenen Zeile in der Form `Commit-Message: <Nachricht>` aus. Das gilt auch, wenn kein Commit beauftragt wurde. Formuliere Commit-Betreff und optionalen Commit-Body standardmäßig auf Englisch. Verwende eine andere Sprache nur auf ausdrücklichen Wunsch; die Sprache des Blogartikels bleibt davon unberührt.
 
 Committe weiterhin nur auf ausdrücklichen Wunsch und ausschließlich Dateien des eigenen Änderungssatzes. Verwende für Empfehlung und tatsächlichen Commit das Format:
 
 ```text
-<type>(blog): <kurze imperative Zusammenfassung>
+<type>(blog): <short imperative summary>
 ```
 
 - `feat(blog): add <slug>` für einen neuen Beitrag
@@ -141,7 +141,7 @@ Halte die erste Zeile knapp, verwende keinen abschließenden Punkt und ergänze 
 
 ## GitHub-PR als Standardveröffentlichung
 
-Behandle einen allgemeinen Auftrag zum Veröffentlichen oder Onlinestellen eines Beitrags als Auftrag, einen veröffentlichungsfertigen GitHub-PR vorzubereiten. Nutze Nuxt Studio stattdessen nur, wenn der Benutzer es ausdrücklich verlangt.
+Behandle einen allgemeinen Auftrag zum Veröffentlichen oder Onlinestellen eines Beitrags als Auftrag, einen veröffentlichungsfertigen GitHub-PR vorzubereiten. Nutze Nuxt Studio stattdessen nur, wenn der Benutzer es ausdrücklich verlangt. Formuliere PR-Titel und PR-Beschreibung standardmäßig auf Englisch. Verwende eine andere Sprache nur auf ausdrücklichen Wunsch.
 
 1. Prüfe, ob die GitHub-Verbindung eingerichtet ist und Schreibzugriff auf `sfbiberach/schachfreunde-biberach.de` besteht. Fehlt der Zugriff, liefere den vollständigen lokalen Entwurf und benenne die fehlende Verbindung, statt einen PR vorzutäuschen.
 2. Erstelle vom aktuellen Standardbranch einen eigenen Branch. Verwende für einen neuen Beitrag nach Möglichkeit `blog/<slug>` und wähle bei einer Kollision einen eindeutigen, weiterhin knappen Namen.
