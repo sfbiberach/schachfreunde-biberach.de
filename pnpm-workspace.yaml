@@ -5,12 +5,14 @@ strictPeerDependencies: true
 trustPolicy: no-downgrade
 
 overrides:
+  # Nuxt 4.5 supports Unhead >=3.1.8. Keep the suite on the last patch
+  # before @vitejs/devtools-kit 0.4 introduced an inconsistent peer graph.
+  unhead: 3.2.1
+  "@unhead/vue": 3.2.1
+  "@unhead/bundler": 3.2.1
   semver@6: 6.3.0
   "workbox-build@7.4.0>rollup": 2.79.2
   workbox-build: 7.4.0
-  unhead@3.1.8: 3.1.7
-  "@unhead/vue@3.1.8": 3.1.7
-  "@unhead/bundler@3.1.8": 3.1.7
 
 peerDependencyRules:
   allowedVersions:
@@ -38,4 +40,3 @@ minimumReleaseAgeExclude:
 
 patchedDependencies:
   nuxt-studio@1.7.0: patches/nuxt-studio@1.7.0.patch
-  nuxt-schema-org@6.2.3: patches/nuxt-schema-org@6.2.3.patch

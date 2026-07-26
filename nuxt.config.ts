@@ -75,9 +75,7 @@ export default defineNuxtConfig({
       },
     },
     virtual: {
-      // Nuxt 4.5 imports this experimental streaming asset even with SSR streaming disabled.
-      '@unhead/vue/stream/iife': 'export const streamingIifeCode = ""; export const streamingIifeSize = 0',
-      'sharp': 'export default function sharp() { return {} }',
+      sharp: 'export default function sharp() { return {} }',
     },
     replace: {
       'process.env.STUDIO_GITHUB_CLIENT_ID': JSON.stringify(process.env.STUDIO_GITHUB_CLIENT_ID),
