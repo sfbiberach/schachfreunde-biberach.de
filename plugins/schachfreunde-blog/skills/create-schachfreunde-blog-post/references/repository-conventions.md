@@ -60,9 +60,9 @@ description: Präzise Kurzbeschreibung
 image:
   src: /assets/blog/YYYYMMDD.slug/dateiname.jpg
   alt: Konkreter Alternativtext
+published: true
 sitemap:
   loc: /blog/article/slug
-status: draft
 toc: true
 ---
 ```
@@ -71,7 +71,7 @@ toc: true
 - Sortiere nur die Top-Level-Felder nach dieser Regel. Erhalte bei verschachtelten Objekten die semantisch vorgesehene Reihenfolge, zum Beispiel `src` vor `alt`, wenn das Repository-Schema oder bestehende Konventionen dies vorgeben.
 - Setze `toc: true` nur bei einer sinnvollen Überschriftenstruktur.
 - Verwende `tournament` nur bei einer belegten Zuordnung zu einem vorhandenen Turnier.
-- Verwende `published` nur auf ausdrücklichen Wunsch.
+- Gib `published` immer explizit als Boolean an. Verwende standardmäßig `true`; setze nur ausdrücklich als Entwurf oder nicht öffentlich gekennzeichnete Inhalte auf `false`.
 
 ## Prüfung
 
@@ -79,6 +79,7 @@ Prüfe vor den automatisierten Befehlen ausdrücklich:
 
 - `title` ist das erste Frontmatter-Feld.
 - Alle übrigen vorhandenen Top-Level-Felder sind alphabetisch sortiert.
+- `published` ist vorhanden und enthält ausschließlich den Boolean `true` oder `false`.
 - Beitrag, Assetordner und Assetdateien entsprechen vollständig dem Namensschema.
 - Dateistamm des Beitrags und Name des Assetordners sind identisch.
 - `sitemap.loc` verwendet den Slug ohne Datumspräfix.

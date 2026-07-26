@@ -39,7 +39,7 @@ Erstelle aus dem bereitgestellten Material einen sprachlich, technisch und visue
 - Übernimm ausdrücklich genannte Werte.
 - Leite fehlende Werte aus Quelle, bestehenden Beiträgen und Repository-Kontext ab.
 - Kennzeichne wesentliche Ableitungen im Abschlussbericht.
-- Setze `status: draft`, sofern der Benutzer die Veröffentlichung nicht ausdrücklich verlangt.
+- Setze `published: true`, sofern der Benutzer den Beitrag nicht ausdrücklich als Entwurf oder nicht öffentlich kennzeichnet. Ein Commit gilt dabei als Freigabe zur Veröffentlichung.
 - Verwende nur vorhandene Kategorien und Autorenkennungen.
 - Wähle ein Artikelbild nur, wenn Motiv, Auflösung und Freigabe dafür geeignet sind.
 - Ordne die vorhandenen Top-Level-Felder immer exakt so: zuerst `title`, danach alphabetisch nach Feldname. Das gilt auch für optionale und künftig ergänzte Felder.
