@@ -12,6 +12,8 @@ Bevorzuge Standard-Markdown für:
 
 Verwende eine Nuxt-Prose-Komponente nur, wenn sie Navigation, Vergleich oder Darstellung erkennbar verbessert. Prüfe Komponentennamen, Props und vorhandene Nutzung im aktuellen Repository; erfinde keine Komponenten.
 
+Bei einem fertig ausformulierten Text darfst du sinnvolle Nuxt-UI- oder Prose-Komponenten ergänzen. Nutze sie als technische Darstellungsschicht um den unveränderten Inhalt; schreibe den Text dafür nicht um, kürze ihn nicht und ordne ihn nicht neu an.
+
 ## Tabellarische Bilder
 
 Behandle ein Bild als Tabellenquelle, wenn sein Hauptinhalt aus beschrifteten Spalten und wiederholten Datenzeilen besteht.

@@ -2,15 +2,26 @@
 
 ## Autoritative Quellen
 
+Rufe die folgenden Dateien und Verzeichnisse vor jeder Bearbeitung direkt aus dem aktuellen Standardbranch von [`sfbiberach/schachfreunde-biberach.de`](https://github.com/sfbiberach/schachfreunde-biberach.de) ab. Verwende bevorzugt die verbundene GitHub-App und ersatzweise `gh`. Ein lokaler Checkout ist Arbeitsziel und nur bei nicht verfügbarem GitHub-Zugriff eine ausdrücklich zu kennzeichnende Ersatzquelle.
+
 - `content.config.ts`: Nuxt-Content-Schema für Artikel und Bilder
 - `app/app.config.ts`: aktuell erlaubte Blogkategorien
 - `content/users/*.{md,yaml}`: gültige Autorenkennungen
 - `app/components/content/`: lokale Inhaltskomponenten
 - `content/blog/article/`: repräsentative Syntax und bestehende Pfade
 
-Lies diese Quellen bei jeder Verwendung neu. Behandle die hier genannten Werte nicht als Ersatz für den aktuellen Repository-Stand.
+Lies diese Quellen bei jeder Verwendung neu. Wähle aktuelle Beispielbeiträge möglichst passend zu Kategorie, Mannschaft oder Autorenschaft. Behandle die hier genannten Werte nicht als Ersatz für den aktuellen GitHub-Stand.
 
 ## Beitrag und Route
+
+### Titel von Mannschaftskämpfen
+
+Verwende für Berichte über Mannschaftskämpfe ausschließlich das Schema `Heimmannschaft - Gastmannschaft`.
+
+- Übernimm die offiziellen Mannschaftsnamen aus Quelle oder Repository.
+- Verwende einen einfachen Bindestrich mit genau einem Leerzeichen davor und danach.
+- Ergänze im Titel kein Ergebnis, keinen Spieltag, keinen Vorspann und keinen Untertitel.
+- Nutze sinnvolle, sprachlich und typografisch einheitliche Zwischenüberschriften im Artikel, wenn sie die Orientierung verbessern.
 
 Lege einen neuen Beitrag nach der aktuellen Konvention an:
 
@@ -101,7 +112,9 @@ Verändere zur Behebung von Prüffehlern keine unbeteiligten Dateien.
 
 ## Git und Conventional Commits
 
-Committe nur auf ausdrücklichen Wunsch und ausschließlich Dateien des eigenen Änderungssatzes. Verwende das Format:
+Erzeuge für jeden angelegten oder geänderten Beitrag eine passende Conventional-Commit-Nachricht und gib sie im Abschlussbericht auf einer eigenen Zeile in der Form `Commit-Message: <Nachricht>` aus. Das gilt auch, wenn kein Commit beauftragt wurde.
+
+Committe weiterhin nur auf ausdrücklichen Wunsch und ausschließlich Dateien des eigenen Änderungssatzes. Verwende für Empfehlung und tatsächlichen Commit das Format:
 
 ```text
 <type>(blog): <kurze imperative Zusammenfassung>
