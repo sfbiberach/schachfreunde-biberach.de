@@ -233,7 +233,7 @@ function formatContentDate(date?: string | Date) {
         :links="[
           {
             label: 'Kontakt aufnehmen',
-            to: '/impressum',
+            to: '/kontakt',
             icon: 'i-ph-chat-circle-dots-duotone',
           },
           {

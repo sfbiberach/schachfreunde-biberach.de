@@ -60,6 +60,11 @@ export default defineAppConfig({
           icon: 'i-ph-trophy-duotone',
           to: '/turniere',
         },
+        {
+          label: 'Kontakt',
+          icon: 'i-ph-envelope-simple-duotone',
+          to: '/kontakt',
+        },
       ],
       footer: [
         {
@@ -84,6 +89,11 @@ export default defineAppConfig({
               label: 'Turniere',
               to: '/turniere',
               icon: 'i-ph-trophy-duotone',
+            },
+            {
+              label: 'Kontakt',
+              to: '/kontakt',
+              icon: 'i-ph-envelope-simple-duotone',
             },
           ],
         },
@@ -154,6 +164,11 @@ export default defineAppConfig({
           label: 'Turniere',
           to: '/turniere',
           icon: 'i-ph-trophy-duotone',
+        },
+        {
+          label: 'Kontakt',
+          to: '/kontakt',
+          icon: 'i-ph-envelope-simple-duotone',
         },
       ] satisfies ContentSearchLink[],
       groups: [
