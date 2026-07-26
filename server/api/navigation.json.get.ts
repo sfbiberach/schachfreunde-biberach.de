@@ -5,11 +5,11 @@ export default defineEventHandler(async (event) => {
   return Promise.all([
     queryCollectionNavigation(event, 'page'),
     queryCollectionNavigation(event, 'article')
-      .where('status', '=', 'published')
+      .where('published', '=', true)
       .order('date', 'DESC'),
     queryCollectionNavigation(event, 'team')
-      .where('status', '=', 'published'),
+      .where('published', '=', true),
     queryCollectionNavigation(event, 'tournament')
-      .where('status', '=', 'published'),
+      .where('published', '=', true),
   ]).then(data => data.flat())
 })

@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
     .path(`/mannschaften/${slug}`)
     .first()
 
-  if (!page || page.status !== 'published' || !page.league) {
+  if (!page?.published || !page.league) {
     throw createError({
       statusCode: 404,
       statusMessage: 'Team league data not found',

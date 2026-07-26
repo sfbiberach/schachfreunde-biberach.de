@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@happydesigns/nuxt-variants": "^0.0.6",
-    "@happydesigns/ui": "^0.15.1",
+    "@happydesigns/ui": "^0.16.0",
     "@iconify-json/fa6-solid": "^1.2.4",
     "@iconify-json/heroicons": "^1.2.3",
     "@iconify-json/lucide": "^1.2.116",

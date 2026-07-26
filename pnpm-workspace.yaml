@@ -31,7 +31,7 @@ allowBuilds:
   workerd: true
 
 minimumReleaseAgeExclude:
-  - "@happydesigns/ui@0.15.0 || 0.15.1"
+  - "@happydesigns/ui@0.15.0 || 0.15.1 || 0.16.0"
   - nuxt@4.5.0
   - "@nuxt/kit@4.5.0"
   - "@nuxt/nitro-server@4.5.0"

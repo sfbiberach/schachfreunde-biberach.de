@@ -18,11 +18,11 @@ const heroProps = computed(() => page.value?.hero as PageSectionProps | undefine
 const { data: currentContent } = await useAsyncData('landing-current-content', async () => {
   const [tournaments, articles] = await Promise.all([
     queryCollection('tournament')
-      .where('status', '=', 'published')
+      .where('published', '=', true)
       .select('title', 'description', 'path', 'date', 'dateEnd')
       .all(),
     queryCollection('article')
-      .where('status', '=', 'published')
+      .where('published', '=', true)
       .order('date', 'DESC')
       .select('title', 'description', 'path', 'date', 'category')
       .limit(8)

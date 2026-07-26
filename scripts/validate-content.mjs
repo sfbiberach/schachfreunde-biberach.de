@@ -18,9 +18,14 @@ const collectionMatchers = [
 ]
 
 const requiredFields = {
+  article: ['published'],
   landing: ['hero'],
+  team: ['published'],
+  tournament: ['published'],
   user: ['username'],
 }
+
+const orderedMetadataCollections = new Set(['article', 'team', 'tournament'])
 
 const fieldValidators = {
   boolean: value => typeof value === 'boolean',
@@ -83,6 +88,18 @@ function parseManifest(source) {
   return JSON.parse(source.slice(start + marker.length))
 }
 
+function expectedMetadataOrder(document) {
+  return Object.keys(document).sort((left, right) => {
+    if (left === 'title') {
+      return -1
+    }
+    if (right === 'title') {
+      return 1
+    }
+    return left.localeCompare(right, 'en')
+  })
+}
+
 const manifest = parseManifest(await readFile(manifestPath, 'utf8'))
 const errors = []
 const files = await findContentFiles()
@@ -108,6 +125,15 @@ for (const file of files) {
     for (const field of requiredFields[collectionName] || []) {
       if (document[field] === undefined) {
         errors.push(`${contentPath}: required field "${field}" is missing.`)
+      }
+    }
+
+    if (orderedMetadataCollections.has(collectionName)) {
+      const actualOrder = Object.keys(document)
+      const expectedOrder = expectedMetadataOrder(document)
+
+      if (actualOrder.join('\0') !== expectedOrder.join('\0')) {
+        errors.push(`${contentPath}: metadata fields must start with "title" and continue alphabetically; expected ${expectedOrder.join(', ')}.`)
       }
     }
 

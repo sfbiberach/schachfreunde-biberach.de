@@ -100,14 +100,14 @@ async function findUnpublishedRoutes({ directory, routePrefix }) {
       }
 
       const source = await readFile(filePath, 'utf8')
-      const statusLine = source.split(/\r?\n/).find(line => line.startsWith('status:'))
-      const status = statusLine
-        ?.slice('status:'.length)
+      const publishedLine = source.split(/\r?\n/).find(line => line.startsWith('published:'))
+      const published = publishedLine
+        ?.slice('published:'.length)
         .trim()
         .replace(/^['"]/, '')
         .replace(/['"]$/, '')
 
-      if (!status || status === 'published') {
+      if (published === 'true') {
         continue
       }
 

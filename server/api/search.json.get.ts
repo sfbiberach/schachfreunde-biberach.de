@@ -5,10 +5,10 @@ export default defineEventHandler(async (event) => {
   return Promise.all([
     queryCollectionSearchSections(event, 'page'),
     queryCollectionSearchSections(event, 'article')
-      .where('status', '=', 'published'),
+      .where('published', '=', true),
     queryCollectionSearchSections(event, 'team')
-      .where('status', '=', 'published'),
+      .where('published', '=', true),
     queryCollectionSearchSections(event, 'tournament')
-      .where('status', '=', 'published'),
+      .where('published', '=', true),
   ]).then(data => data.flat())
 })

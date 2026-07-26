@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
     .all()
 
   for (const article of articles) {
-    if (article.status !== 'published') {
+    if (!article.published) {
       continue
     }
     feed.addItem({

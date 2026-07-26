@@ -16,8 +16,8 @@ function getBerlinDateKey(date = new Date()) {
 
 export default defineEventHandler(async (event) => {
   const pages = await queryCollection(event, 'team')
-    .where('status', '=', 'published')
-    .select('path', 'title', 'league', 'status')
+    .where('published', '=', true)
+    .select('path', 'title', 'league', 'published')
     .all()
 
   const configuredPages = pages.filter(page => page.league)

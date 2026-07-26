@@ -23,8 +23,8 @@ importers:
         specifier: ^0.0.6
         version: 0.0.6(magic-string@1.1.0)(magicast@0.5.3)(oxc-parser@0.140.0)(rolldown@1.2.0)(unplugin@3.3.0(esbuild@0.28.1)(rolldown@1.2.0)(rollup@4.62.2)(vite@8.1.5(@types/node@26.1.1)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0)(yaml@2.9.0)))(vite@8.1.5(@types/node@26.1.1)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0)(yaml@2.9.0))
       '@happydesigns/ui':
-        specifier: ^0.15.1
-        version: 0.15.1(1da403bb44eedb3819ee5b14f43a384f)
+        specifier: ^0.16.0
+        version: 0.16.0(1da403bb44eedb3819ee5b14f43a384f)
       '@iconify-json/fa6-solid':
         specifier: ^1.2.4
         version: 1.2.4
@@ -1320,8 +1320,8 @@ packages:
   '@happydesigns/nuxt-variants@0.0.6':
     resolution: {integrity: sha512-X6+XXseyl9Wti5AebOM0fYm0hD+DyRhDDxKnA2SiWxlpvMKzSnaTbSKZZCL1u+Q3qezkM9J+bRoARg5O8X5Aqw==}
 
-  '@happydesigns/ui@0.15.1':
-    resolution: {integrity: sha512-Nm5cVLTEdsKznA+jEwE3CIGK+NFZIIMPCbLEaPvDnhtdclyYmbesoAZitKTT90KtMH9UAt30X3e5Fv6uNTn49w==}
+  '@happydesigns/ui@0.16.0':
+    resolution: {integrity: sha512-kE70ojivO/r0zgUm8jkud578smIC40Uq/HXLcgIZTv5c0u0BDvhYFfO9Wle0eW1vS/XOKE9dMGEuVlbIpQ4CMw==}
 
   '@humanfs/core@0.19.2':
     resolution: {integrity: sha512-UhXNm+CFMWcbChXywFwkmhqjs3PRCmcSa/hfBgLIb7oQ5HNb1wS0icWsGtSAUNgefHeI+eBrA8I1fxmbHsGdvA==}
@@ -10062,7 +10062,7 @@ snapshots:
       - unplugin
       - vite
 
-  '@happydesigns/ui@0.15.1(1da403bb44eedb3819ee5b14f43a384f)':
+  '@happydesigns/ui@0.16.0(1da403bb44eedb3819ee5b14f43a384f)':
     dependencies:
       '@happydesigns/nuxt-variants': 0.0.6(magic-string@1.1.0)(magicast@0.5.3)(oxc-parser@0.140.0)(rolldown@1.2.0)(unplugin@3.3.0(esbuild@0.28.1)(rolldown@1.2.0)(rollup@4.62.2)(vite@8.1.5(@types/node@26.1.1)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0)(yaml@2.9.0)))(vite@8.1.5(@types/node@26.1.1)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0)(yaml@2.9.0))
       '@iconify-json/heroicons': 1.2.3

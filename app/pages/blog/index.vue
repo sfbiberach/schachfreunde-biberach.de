@@ -56,7 +56,7 @@ const header = computed(() => resolvePageHeader(pageData.value))
 
     <UContainer v-if="pageData">
       <UPageBody>
-        <HArticleList :sort="{ field: 'date', direction: 'DESC' }" status="published" />
+        <HArticleList :sort="{ field: 'date', direction: 'DESC' }" />
       </UPageBody>
     </UContainer>
   </NuxtLayout>
