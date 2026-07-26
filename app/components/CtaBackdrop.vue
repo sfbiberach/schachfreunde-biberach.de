@@ -487,6 +487,21 @@ onBeforeUnmount(() => {
   background-color: var(--ui-bg);
 }
 
+.cta-backdrop::after {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      var(--ui-bg) 0,
+      transparent 12%,
+      transparent 88%,
+      var(--ui-bg) 100%
+    );
+  content: '';
+}
+
 .cta-board {
   --cell-size: clamp(4rem, 5.5vw, 6rem);
   --piece-counter-rotation: 7deg;
@@ -496,6 +511,13 @@ onBeforeUnmount(() => {
   left: 50%;
   width: calc(var(--cell-size) * 18);
   height: calc(var(--cell-size) * 14);
+  transform: translate(-50%, -50%) rotate(-7deg);
+}
+
+.cta-board::before {
+  position: absolute;
+  z-index: -1;
+  inset: -100vh -100vw;
   background: conic-gradient(
     var(--board-light) 0 25%,
     var(--board-dark) 0 50%,
@@ -503,7 +525,8 @@ onBeforeUnmount(() => {
     var(--board-dark) 0
   );
   background-size: calc(var(--cell-size) * 2) calc(var(--cell-size) * 2);
-  transform: translate(-50%, -50%) rotate(-7deg);
+  background-position: 100vw 100vh;
+  content: '';
 }
 
 :global(.light .cta-board) {
