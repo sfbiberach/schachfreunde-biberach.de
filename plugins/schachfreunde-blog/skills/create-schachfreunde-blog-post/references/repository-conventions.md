@@ -82,7 +82,8 @@ toc: true
 - Sortiere nur die Top-Level-Felder nach dieser Regel. Erhalte bei verschachtelten Objekten die semantisch vorgesehene Reihenfolge, zum Beispiel `src` vor `alt`, wenn das Repository-Schema oder bestehende Konventionen dies vorgeben.
 - Setze `toc: true` nur bei einer sinnvollen Überschriftenstruktur.
 - Verwende `tournament` nur bei einer belegten Zuordnung zu einem vorhandenen Turnier.
-- Gib `published` immer explizit als Boolean an. Verwende standardmäßig `true`; setze nur ausdrücklich als Entwurf oder nicht öffentlich gekennzeichnete Inhalte auf `false`.
+- Gib `published` immer explizit als Boolean an. Verwende für neue Beiträge standardmäßig `true`; ein beauftragter Commit gilt dabei als Veröffentlichungsfreigabe. Setze ausdrücklich als Entwurf oder nicht öffentlich gekennzeichnete Inhalte auf `false`.
+- Bewahre bei bestehenden Beiträgen ein vorhandenes `published: false` auch bei einem beauftragten Commit. Ändere den Wert nur auf ausdrücklichen Wunsch des Benutzers zu `true`.
 
 ## Prüfung
 

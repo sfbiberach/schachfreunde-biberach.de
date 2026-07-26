@@ -53,7 +53,8 @@ Lies aktuelle Vorgaben, Autorenkennungen, Komponenten und Beispielbeiträge vor 
 - Übernimm ausdrücklich genannte Werte.
 - Leite fehlende Werte aus Quelle, bestehenden Beiträgen und Repository-Kontext ab.
 - Kennzeichne wesentliche Ableitungen im Abschlussbericht.
-- Setze `published: true`, sofern der Benutzer den Beitrag nicht ausdrücklich als Entwurf oder nicht öffentlich kennzeichnet. Ein Commit gilt dabei als Freigabe zur Veröffentlichung.
+- Setze `published: true`, sofern der Benutzer den Beitrag nicht ausdrücklich als Entwurf oder nicht öffentlich kennzeichnet. Ein beauftragter Commit gilt bei neuen Beiträgen oder Beiträgen ohne vorhandenen `published`-Wert als Freigabe zur Veröffentlichung.
+- Bewahre bei der Überarbeitung eines bestehenden Beitrags dessen ausdrückliches `published: false` auch bei einem beauftragten Commit. Ändere diesen Wert nur, wenn der Benutzer die Veröffentlichung ausdrücklich verlangt.
 - Verwende nur vorhandene Kategorien und Autorenkennungen.
 - Wähle ein Artikelbild nur, wenn Motiv, Auflösung und Freigabe dafür geeignet sind.
 - Formuliere die `description` als einen kurzen, kartentauglichen Satz mit Anlass und wichtigstem Ergebnis. Ziele in der Regel auf 100 bis 140 Zeichen und überschreite 160 Zeichen nur, wenn wesentliche Fakten sonst verloren gehen.
