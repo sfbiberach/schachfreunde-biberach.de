@@ -18,7 +18,8 @@
     "generate-pwa-assets": "pwa-assets-generator",
     "postbuild": "node scripts/validate-generated-output.mjs",
     "pregenerate": "pnpm lint",
-    "contentcheck": "nuxt prepare && node scripts/validate-content.mjs",
+    "content:format": "nuxt prepare && node scripts/format-content.mjs --write",
+    "contentcheck": "nuxt prepare && node scripts/format-content.mjs && node scripts/validate-content.mjs",
     "postinstall": "nuxt prepare",
     "verify": "pnpm lint && pnpm typecheck && pnpm test"
   },
@@ -51,6 +52,7 @@
     "cross-env": "^10.1.0",
     "eslint": "^10.6.0",
     "h3": "1.15.11",
+    "js-yaml": "4.1.1",
     "mdclint": "^0.1.2",
     "nostics": "1.1.4",
     "nuxt": "^4.5.0",

@@ -1,13 +1,8 @@
 title: Schach spielen in Heilbronn-Biberach
 description: Training, Mannschaftsschach und Turniere für Kinder, Jugendliche und Erwachsene bei den Schachfreunden Heilbronn-Biberach.
-training:
-  weekday: 5
-  youthTime: "18:00"
-  adultTime: "20:15"
-  exceptions:
-    - from: 2026-07-31
-      until: 2026-09-11
-      label: Sommerpause
+gallery:
+  title: Einblicke ins Vereinsleben
+  description: Die neuesten bebilderten Berichte aus Mannschaftskämpfen, Turnieren und unserer Jugendarbeit – ein Klick führt zum vollständigen Beitrag.
 hero:
   title: Herzlich Willkommen
   description: bei den <b>Schachfreunden Heilbronn-Biberach 1978 e.&nbsp;V.</b>&nbsp; <br class="hidden xl:block">Wir sind ein junger, dynamischer Verein aus Baden-Württemberg.
@@ -32,8 +27,13 @@ hero:
       icon: i-ph-arrow-bend-right-down-duotone
       color: neutral
       variant: ghost
-gallery:
-  title: Einblicke ins Vereinsleben
-  description: Die neuesten bebilderten Berichte aus Mannschaftskämpfen, Turnieren und unserer Jugendarbeit – ein Klick führt zum vollständigen Beitrag.
 sitemap:
   loc: /
+training:
+  weekday: 5
+  youthTime: '18:00'
+  adultTime: '20:15'
+  exceptions:
+    - from: '2026-07-31'
+      until: '2026-09-11'
+      label: Sommerpause

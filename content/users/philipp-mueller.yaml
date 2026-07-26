@@ -1,8 +1,5 @@
 avatar:
   src: /assets/users/philipp-mueller.jpg
-name: Philipp Müller
-to: https://www.instagram.com/muelphil
-username: philipp-mueller
 contact:
   group: board
   order: 10
@@ -11,3 +8,6 @@ contact:
   responsibilities:
     - Ansprechpartner für allgemeine Vereinsangelegenheiten
     - Offizielles und Außenvertretung
+name: Philipp Müller
+to: https://www.instagram.com/muelphil
+username: philipp-mueller
