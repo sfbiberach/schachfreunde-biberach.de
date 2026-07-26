@@ -16,10 +16,11 @@
     "test": "vitest run",
     "typecheck": "nuxt typecheck",
     "generate-pwa-assets": "pwa-assets-generator",
-    "prebuild": "pnpm lint",
+    "postbuild": "node scripts/validate-generated-output.mjs",
     "pregenerate": "pnpm lint",
     "contentcheck": "nuxt prepare && node scripts/validate-content.mjs",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "verify": "pnpm lint && pnpm typecheck && pnpm test"
   },
   "dependencies": {
     "@happydesigns/nuxt-variants": "^0.0.6",

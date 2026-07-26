@@ -41,6 +41,7 @@ export default defineNuxtConfig({
   },
 
   experimental: {
+    buildCache: true,
     viewTransition: true,
   },
 
@@ -153,6 +154,10 @@ export default defineNuxtConfig({
     workbox: {
       globIgnores: ['**/_worker.js/**/*'],
     },
+  },
+
+  sitemap: {
+    zeroRuntime: true,
   },
 
   studio: {
