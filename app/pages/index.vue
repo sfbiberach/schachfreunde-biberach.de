@@ -167,6 +167,7 @@ function formatContentDate(date?: string | Date) {
           :description="card.description"
           :to="card.to"
           :icon="card.icon"
+          :ui="{ description: 'line-clamp-3' }"
           spotlight
           class="transition-transform duration-300 motion-safe:hover:-translate-y-1"
         >
