@@ -17,8 +17,17 @@ const userAvatarSchema = z.object({
   text: z.string().optional(),
 }).optional()
 
+const userContactSchema = z.object({
+  group: z.enum(['board', 'sport-youth', 'organization']),
+  order: z.number().int().nonnegative(),
+  role: z.string().min(1),
+  email: z.email(),
+  responsibilities: z.array(z.string().min(1)).min(1),
+}).optional()
+
 const userVariantSchema = variantSchemas.user.extend({
   avatar: userAvatarSchema,
+  contact: userContactSchema,
 })
 
 const siteVariantSchemas = {

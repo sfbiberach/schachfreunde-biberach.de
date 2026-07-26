@@ -1,2 +1,10 @@
 name: Stephanie Gerold
 username: stephanie-gerold
+contact:
+  group: organization
+  order: 10
+  role: Schriftführerin
+  email: schriftfuehrer@schachfreunde-biberach.de
+  responsibilities:
+    - Protokolle und interner Newsletter
+    - Organisatorisches vor Ort

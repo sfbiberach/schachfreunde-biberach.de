@@ -2,3 +2,11 @@ avatar:
   src: /assets/users/jens-hoffmann.jpg
 name: Jens Hoffmann
 username: jens-hoffmann
+contact:
+  group: board
+  order: 20
+  role: 2. Vorsitzender
+  email: 2.vorsitzender@schachfreunde-biberach.de
+  responsibilities:
+    - Stellvertretung und Unterstützung des 1. Vorsitzenden
+    - Vereinshomepage

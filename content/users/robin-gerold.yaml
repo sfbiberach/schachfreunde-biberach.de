@@ -1,2 +1,10 @@
 name: Robin Gerold
 username: robin-gerold
+contact:
+  group: sport-youth
+  order: 20
+  role: Jugendleiter
+  email: jugendleiter@schachfreunde-biberach.de
+  responsibilities:
+    - Nachwuchsförderung und neue Interessenten
+    - Jugendtraining und -turniere
