@@ -1,6 +1,6 @@
 ---
 name: create-schachfreunde-blog-post
-description: Create or revise blog posts for schachfreunde-biberach.de from raw text, notes, images, attachments, or existing drafts; infer and validate Nuxt Content metadata, turn readable tabular images into semantic tables, organize assets, use repository-native prose components, run content checks, and prepare a reviewable local draft or draft pull request. Use when a user asks to create, import, improve, stage, or publish a Schachfreunde blog article.
+description: Create or revise blog posts for schachfreunde-biberach.de from raw text, notes, images, attachments, or existing drafts; infer and validate Nuxt Content metadata, turn readable tabular images into semantic tables, organize assets, use repository-native prose components, run content checks, prepare a reviewable local draft or draft pull request, or publish directly through Nuxt Studio only when explicitly requested. Use when a user asks to create, import, improve, stage, or publish a Schachfreunde blog article.
 ---
 
 # Schachfreunde-Blogbeitrag erstellen
@@ -26,6 +26,7 @@ Erstelle aus dem bereitgestellten Material einen sprachlich, technisch und visue
 11. Führe die passenden Repository-Checks aus und behebe nur Fehler im eigenen Änderungssatz.
 12. Wenn ein Commit beauftragt ist, stage ausschließlich den eigenen Änderungssatz und verwende eine Conventional-Commit-Nachricht nach den Regeln in `references/repository-conventions.md`.
 13. Erstelle einen Draft-PR nur, wenn dies beauftragt ist und GitHub-Schreibzugriff besteht. Veröffentliche oder merge niemals eigenmächtig.
+14. Lies `references/nuxt-studio-publishing.md` und arbeite direkt in Nuxt Studio ausschließlich dann, wenn der Benutzer dies ausdrücklich wünscht.
 
 ## Eingaben behandeln
 
