@@ -1,6 +1,6 @@
 ---
 name: create-schachfreunde-blog-post
-description: Create or revise blog posts for schachfreunde-biberach.de from raw text, notes, images, attachments, or existing drafts; preserve fully written source text by default while correcting errors, write natural non-formulaic German when drafting, read current conventions and examples directly from the GitHub repository, infer and validate Nuxt Content metadata, turn readable tabular images into semantic tables, organize assets, use repository-native prose components, run content checks, prepare a reviewable local draft or draft pull request, or publish directly through Nuxt Studio only when explicitly requested. Use when a user asks to create, import, improve, stage, or publish a Schachfreunde blog article.
+description: Create or revise blog posts for schachfreunde-biberach.de from raw text, notes, images, attachments, or existing drafts; preserve fully written source text by default while correcting errors, write natural non-formulaic German when drafting, read current conventions and examples directly from the GitHub repository, infer and validate Nuxt Content metadata, turn readable tabular images into semantic tables, organize assets, use repository-native prose components, run content checks, prepare a reviewable local draft, use a publication-ready GitHub pull request as the default publishing path, or publish directly through Nuxt Studio only when explicitly requested. Use when a user asks to create, import, improve, stage, or publish a Schachfreunde blog article.
 ---
 
 # Schachfreunde-Blogbeitrag erstellen
@@ -38,8 +38,10 @@ Lies aktuelle Vorgaben, Autorenkennungen, Komponenten und Beispielbeiträge vor 
 12. Führe die passenden Repository-Checks aus und behebe nur Fehler im eigenen Änderungssatz.
 13. Erzeuge für jeden angelegten oder geänderten Beitrag eine passende Conventional-Commit-Nachricht nach den Regeln in `references/repository-conventions.md` und gib sie in der Übergabe aus.
 14. Wenn ein Commit beauftragt ist, stage ausschließlich den eigenen Änderungssatz und verwende die vorgeschlagene Conventional-Commit-Nachricht.
-15. Erstelle einen Draft-PR nur, wenn dies beauftragt ist und GitHub-Schreibzugriff besteht. Veröffentliche oder merge niemals eigenmächtig.
-16. Lies `references/nuxt-studio-publishing.md` und arbeite direkt in Nuxt Studio ausschließlich dann, wenn der Benutzer dies ausdrücklich wünscht.
+15. Verwende bei einem Auftrag zum Veröffentlichen oder Onlinestellen standardmäßig den GitHub-PR-Ablauf aus `references/repository-conventions.md`, sofern der Benutzer nicht ausdrücklich Nuxt Studio verlangt. Prüfe zuvor die GitHub-Verbindung und den Schreibzugriff.
+16. Erstelle einen eigenen Branch, committe ausschließlich den eigenen Änderungssatz, pushe den Branch und öffne einen veröffentlichungsfertigen PR. Verwende die Conventional-Commit-Nachricht unverändert als PR-Titel und halte die PR-Beschreibung kurz. Erstelle nur auf ausdrücklichen Wunsch einen Draft-PR.
+17. Merge einen PR niemals ohne ausdrücklichen Auftrag. Stelle klar, dass der Beitrag erst durch den Merge in den Veröffentlichungsbranch und das anschließende Deployment online geht.
+18. Lies `references/nuxt-studio-publishing.md` und arbeite direkt in Nuxt Studio ausschließlich dann, wenn der Benutzer dies ausdrücklich wünscht.
 
 ## Eingaben behandeln
 
@@ -110,5 +112,5 @@ Berichte abschließend:
 - in Tabellen übertragene Bilddaten
 - Qualitätswarnungen und offene Punkte
 - ausgeführte Prüfungen und deren Ergebnis
-- lokalen Entwurf oder URL des Draft-PRs
-- bei einer beauftragten Direktveröffentlichung die öffentliche Artikel-URL und das Ergebnis der Erreichbarkeitsprüfung
+- lokalen Entwurf oder URL des PRs sowie dessen Status als Draft oder bereit zur Prüfung
+- nach einem ausdrücklich beauftragten Merge oder einer Direktveröffentlichung die öffentliche Artikel-URL und das Ergebnis der Erreichbarkeitsprüfung

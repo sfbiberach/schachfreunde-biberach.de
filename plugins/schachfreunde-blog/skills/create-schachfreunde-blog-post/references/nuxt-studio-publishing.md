@@ -1,6 +1,6 @@
 # Direkt über Nuxt Studio veröffentlichen
 
-Nutze diesen Ablauf ausschließlich, wenn der Benutzer ausdrücklich verlangt, den Beitrag direkt auf `schachfreunde-biberach.de` bzw. über Nuxt Studio anzulegen oder zu veröffentlichen. Ein allgemeiner Auftrag zum Erstellen oder Vorbereiten eines Beitrags autorisiert diesen externen Schreib- und Commitvorgang nicht.
+Nutze diesen Ablauf ausschließlich, wenn der Benutzer ausdrücklich verlangt, den Beitrag direkt auf `schachfreunde-biberach.de` bzw. über Nuxt Studio anzulegen oder zu veröffentlichen. Verwende bei einem allgemeinen Auftrag zum Veröffentlichen oder Onlinestellen stattdessen den GitHub-PR-Ablauf aus `repository-conventions.md`. Ein allgemeiner Auftrag zum Erstellen oder Vorbereiten eines Beitrags autorisiert keinen externen Schreib- oder Commitvorgang.
 
 ## Einstieg und Anmeldung
 

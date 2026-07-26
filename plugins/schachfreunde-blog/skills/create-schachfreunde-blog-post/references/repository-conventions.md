@@ -138,3 +138,16 @@ Committe weiterhin nur auf ausdrücklichen Wunsch und ausschließlich Dateien de
 - `chore(blog): optimize assets for <slug>` für reine Asset- oder Wartungsarbeiten
 
 Halte die erste Zeile knapp, verwende keinen abschließenden Punkt und ergänze bei Bedarf einen Commit-Body für wesentliche Ableitungen, Umbenennungen oder bekannte Einschränkungen.
+
+## GitHub-PR als Standardveröffentlichung
+
+Behandle einen allgemeinen Auftrag zum Veröffentlichen oder Onlinestellen eines Beitrags als Auftrag, einen veröffentlichungsfertigen GitHub-PR vorzubereiten. Nutze Nuxt Studio stattdessen nur, wenn der Benutzer es ausdrücklich verlangt.
+
+1. Prüfe, ob die GitHub-Verbindung eingerichtet ist und Schreibzugriff auf `sfbiberach/schachfreunde-biberach.de` besteht. Fehlt der Zugriff, liefere den vollständigen lokalen Entwurf und benenne die fehlende Verbindung, statt einen PR vorzutäuschen.
+2. Erstelle vom aktuellen Standardbranch einen eigenen Branch. Verwende für einen neuen Beitrag nach Möglichkeit `blog/<slug>` und wähle bei einer Kollision einen eindeutigen, weiterhin knappen Namen.
+3. Committe ausschließlich Beitrag und Assets des eigenen Änderungssatzes mit der zuvor bestimmten Conventional-Commit-Nachricht.
+4. Pushe den Branch und öffne einen PR. Verwende die Commit-Nachricht unverändert als PR-Titel.
+5. Halte die PR-Beschreibung kurz. Nenne in ein bis drei Sätzen oder knappen Punkten den Anlass beziehungsweise Inhalt, den exakten Artikelnamen und gegebenenfalls die hinzugefügten Assets. Führe die ausgeführten Prüfungen nicht eigens in der PR-Beschreibung auf.
+6. Erstelle den PR standardmäßig als bereit zur Prüfung. Verwende den Draft-Status nur, wenn der Benutzer ausdrücklich einen Entwurf oder Draft-PR verlangt.
+7. Merge den PR nur auf ausdrücklichen Auftrag. Ein erstellter PR allein veröffentlicht den Beitrag nicht; erst der Merge in den Veröffentlichungsbranch löst das Deployment aus.
+8. Prüfe nach einem ausdrücklich beauftragten Merge das Deployment und die öffentliche Beitragsroute. Melde ein fehlgeschlagenes Deployment, statt denselben Merge oder Commit zu wiederholen.
