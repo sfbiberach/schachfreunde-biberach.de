@@ -121,10 +121,10 @@ pnpm contentcheck
 pnpm lint
 ```
 
-Führe nach Möglichkeit vor der Freigabe zusätzlich aus:
+Verwende `pnpm generate` nicht als Prüfung für Blogbeiträge. Führe im normalen Artikelablauf keinen vollständigen Produktions-Build aus. Wenn der Benutzer ausdrücklich einen Build oder die Diagnose eines konkreten Build- beziehungsweise Deploymentfehlers beauftragt, führe aus:
 
 ```text
-pnpm generate
+pnpm build
 ```
 
 Verändere zur Behebung von Prüffehlern keine unbeteiligten Dateien.

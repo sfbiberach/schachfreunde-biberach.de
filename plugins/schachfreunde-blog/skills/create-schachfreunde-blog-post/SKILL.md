@@ -104,7 +104,7 @@ pnpm contentcheck
 pnpm lint
 ```
 
-Führe vor einer Veröffentlichungsfreigabe nach Möglichkeit zusätzlich `pnpm generate` und eine visuelle Kontrolle der Beitragsroute durch.
+Verwende `pnpm generate` nicht als Prüfung für Blogbeiträge. Führe im normalen Artikelablauf keinen vollständigen Produktions-Build aus. Wenn der Benutzer ausdrücklich einen Build oder die Diagnose eines konkreten Build- beziehungsweise Deploymentfehlers beauftragt, verwende dafür `pnpm build`. Eine visuelle Kontrolle darf ohne vorgelagerten Build erfolgen, etwa über einen bereits laufenden Entwicklungsserver.
 
 Berichte abschließend:
 
