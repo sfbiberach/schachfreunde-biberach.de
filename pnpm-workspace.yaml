@@ -28,7 +28,6 @@ allowBuilds:
   vue-demi: true
   workerd: true
 
-
 minimumReleaseAgeExclude:
   - "@happydesigns/ui@0.15.0 || 0.15.1"
   - nuxt@4.5.0
