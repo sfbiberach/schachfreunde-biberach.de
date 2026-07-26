@@ -94,7 +94,7 @@ function formatTrainingDate(date: string) {
 
 <template>
   <section
-    class="club-pulse relative isolate min-h-116 overflow-hidden rounded-2xl border border-default p-5 shadow-2xl shadow-primary-950/10 sm:p-7"
+    class="club-pulse relative isolate min-h-116 overflow-hidden rounded-2xl border border-default p-4 shadow-2xl shadow-primary-950/10 sm:p-7"
     aria-labelledby="club-pulse-title"
   >
     <div class="pulse-glow absolute -right-56 -top-64 -z-10 size-[38rem] rounded-full" aria-hidden="true" />
@@ -126,15 +126,15 @@ function formatTrainingDate(date: string) {
     <NuxtLink
       v-if="tournament"
       :to="tournament.path"
-      class="group mt-8 block rounded-xl border border-primary/20 bg-primary/8 p-5 transition hover:border-primary/40 hover:bg-primary/12 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+      class="group mt-6 block min-w-0 rounded-xl border border-primary/20 bg-primary/8 p-4 transition hover:border-primary/40 hover:bg-primary/12 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:mt-8 sm:p-5"
     >
-      <div class="flex flex-wrap items-center justify-between gap-3">
-        <span class="text-xs font-semibold uppercase tracking-widest text-primary">Nächstes Highlight</span>
-        <UBadge color="primary" variant="subtle">
+      <div class="flex items-center justify-between gap-2">
+        <span class="min-w-0 text-xs font-semibold uppercase tracking-wide text-primary sm:tracking-widest">Nächstes Highlight</span>
+        <UBadge color="primary" variant="subtle" class="shrink-0">
           {{ tournamentCountdown }}
         </UBadge>
       </div>
-      <h2 class="mt-5 max-w-md text-2xl font-bold text-highlighted sm:text-3xl">
+      <h2 class="mt-4 max-w-md text-2xl font-bold text-highlighted sm:mt-5 sm:text-3xl">
         {{ tournament.title }}
       </h2>
       <p class="mt-2 text-sm font-medium text-primary">
@@ -152,11 +152,11 @@ function formatTrainingDate(date: string) {
     <NuxtLink
       v-else-if="upcomingMatch"
       :to="upcomingMatch.team.path"
-      class="group mt-8 block rounded-xl border border-primary/20 bg-primary/8 p-5 transition hover:border-primary/40 hover:bg-primary/12 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+      class="group mt-6 block min-w-0 rounded-xl border border-primary/20 bg-primary/8 p-4 transition hover:border-primary/40 hover:bg-primary/12 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:mt-8 sm:p-5"
     >
-      <div class="flex flex-wrap items-center justify-between gap-3">
-        <span class="text-xs font-semibold uppercase tracking-widest text-primary">Nächster Mannschaftskampf</span>
-        <UBadge color="primary" variant="subtle">
+      <div class="flex items-center justify-between gap-2">
+        <span class="min-w-0 text-xs font-semibold uppercase tracking-wide text-primary sm:tracking-widest">Nächster Mannschaftskampf</span>
+        <UBadge color="primary" variant="subtle" class="shrink-0">
           {{ formatLeagueDate(upcomingMatch.match.date) }}
         </UBadge>
       </div>
@@ -188,10 +188,10 @@ function formatTrainingDate(date: string) {
       </UButton>
     </div>
 
-    <div class="mt-4 grid gap-4 sm:grid-cols-2">
+    <div class="mt-4 grid min-w-0 gap-4 sm:grid-cols-2">
       <NuxtLink
         to="/#training"
-        class="group rounded-xl border border-default bg-elevated/70 p-4 transition hover:border-primary/30 hover:bg-elevated focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        class="group min-w-0 overflow-hidden rounded-xl border border-default bg-elevated/70 p-4 transition hover:border-primary/30 hover:bg-elevated focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
       >
         <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted">
           <UIcon name="i-ph-clock-duotone" class="size-4 text-primary" aria-hidden="true" />
@@ -211,7 +211,7 @@ function formatTrainingDate(date: string) {
       <NuxtLink
         v-if="recentMatch"
         :to="recentMatch.team.path"
-        class="group rounded-xl border border-default bg-elevated/70 p-4 transition hover:border-primary/30 hover:bg-elevated focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        class="group min-w-0 overflow-hidden rounded-xl border border-default bg-elevated/70 p-4 transition hover:border-primary/30 hover:bg-elevated focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
       >
         <div class="flex items-center justify-between gap-2">
           <span class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted">
@@ -225,8 +225,8 @@ function formatTrainingDate(date: string) {
         <p class="mt-3 truncate text-sm font-semibold text-highlighted">
           {{ recentMatch.team.title }}
         </p>
-        <div class="mt-1 flex items-baseline justify-between gap-3 text-sm text-muted">
-          <span class="truncate">{{ formatFixture(recentMatch) }}</span>
+        <div class="mt-1 grid min-w-0 grid-cols-[minmax(0,1fr)_auto] items-baseline gap-3 text-sm text-muted">
+          <span class="min-w-0 truncate">{{ formatFixture(recentMatch) }}</span>
           <strong class="shrink-0 text-highlighted">{{ recentMatch.match.result }}</strong>
         </div>
       </NuxtLink>
@@ -234,7 +234,7 @@ function formatTrainingDate(date: string) {
       <NuxtLink
         v-else
         to="/mannschaften"
-        class="group rounded-xl border border-default bg-elevated/70 p-4 transition hover:border-primary/30 hover:bg-elevated focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        class="group min-w-0 overflow-hidden rounded-xl border border-default bg-elevated/70 p-4 transition hover:border-primary/30 hover:bg-elevated focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
       >
         <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted">
           <UIcon name="i-ph-users-three-duotone" class="size-4 text-primary" aria-hidden="true" />
