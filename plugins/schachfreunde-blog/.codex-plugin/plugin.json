@@ -1,6 +1,6 @@
 {
   "name": "schachfreunde-blog",
-  "version": "0.1.0+codex.20260726214456",
+  "version": "0.1.0+codex.20260726215511",
   "description": "Erstellt und \u00fcberarbeitet Blogbeitr\u00e4ge f\u00fcr schachfreunde-biberach.de.",
   "author": {
     "name": "Schachfreunde Heilbronn-Biberach 1978 e. V.",
@@ -18,7 +18,7 @@
   "interface": {
     "displayName": "Schachfreunde Blog",
     "shortDescription": "Blogbeitr\u00e4ge aus Texten, Bildern und Anh\u00e4ngen",
-    "longDescription": "Bereitet Rohmaterial redaktionell auf, erg\u00e4nzt Nuxt-Content-Metadaten, organisiert Assets und erstellt einen gepr\u00fcften Blogentwurf oder Draft-PR.",
+    "longDescription": "Bereitet Rohmaterial redaktionell auf, erg\u00e4nzt Nuxt-Content-Metadaten, organisiert Assets und erstellt einen gepr\u00fcften Blogentwurf oder ver\u00f6ffentlichungsfertigen GitHub-PR.",
     "developerName": "Schachfreunde Heilbronn-Biberach 1978 e. V.",
     "category": "Productivity",
     "capabilities": [
@@ -27,7 +27,7 @@
     ],
     "defaultPrompt": [
       "Erstelle aus diesen Materialien einen Blogentwurf.",
-      "\u00dcberarbeite diesen Beitrag und bereite einen Draft-PR vor."
+      "Erstelle aus diesen Materialien einen Beitrag und bereite einen GitHub-PR vor."
     ]
   }
 }
