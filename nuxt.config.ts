@@ -41,7 +41,6 @@ export default defineNuxtConfig({
   },
 
   experimental: {
-    buildCache: true,
     viewTransition: true,
   },
 
