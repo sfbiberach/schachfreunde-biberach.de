@@ -29,7 +29,7 @@ Lies aktuelle Vorgaben, Autorenkennungen, Komponenten und Beispielbeiträge vor 
    - vorhandene Turnierzuordnungen aus `content/turniere/` und aktuellen Turnierberichten
 3. Inventarisiere Rohtext, Bilder, Anhänge, Links und ausdrücklich vorgegebene Metadaten.
 4. Bestimme, ob der Benutzer einen fertig ausformulierten Text oder Rohmaterial liefert. Behandle zusammenhängenden, veröffentlichungsfähigen Fließtext ohne anderslautenden Auftrag als Fertigtext.
-5. Trenne belegte Fakten von redaktionellen Ableitungen. Erfinde keine Namen, Ergebnisse, Termine, Zitate, Bildinhalte oder Quellen.
+5. Trenne jede faktische Angabe und jeden Metadatenwert nachvollziehbar in ausdrücklich vom Benutzer geliefert, aus einer benannten Quelle oder Repository-Regel abgeleitet und offen oder unbestätigt. Erfinde keine Namen, Ergebnisse, Termine, Zitate, Bildinhalte, Quellen oder Metadaten. Kann ein erforderlicher Wert nicht belegt werden, frage vor dem Anlegen der Datei oder des PRs nach.
 6. Lies `references/editorial-style.md` für jede inhaltliche Überarbeitung.
 7. Lies `references/repository-conventions.md`, bevor du Dateien oder Frontmatter anlegst.
 8. Lies `references/content-and-media.md`, sobald Bilder, Anhänge, tabellarische Daten oder besondere Prose-Komponenten vorkommen.
@@ -54,8 +54,10 @@ Lies aktuelle Vorgaben, Autorenkennungen, Komponenten und Beispielbeiträge vor 
 ## Metadaten ableiten
 
 - Übernimm ausdrücklich genannte Werte.
-- Leite fehlende Werte aus Quelle, bestehenden Beiträgen und Repository-Kontext ab.
-- Kennzeichne wesentliche Ableitungen im Abschlussbericht.
+- Leite fehlende Werte nur aus benannten Quellen, bestehenden Beiträgen oder verbindlichen Repository-Regeln ab.
+- Dokumentiere im Abschlussbericht jede abgeleitete oder standardmäßig gesetzte Angabe mit Feld, Wert und Quelle oder Regel. Das gilt insbesondere für `date`, `authors`, `category`, `description`, `tournament`, `published`, Dateiname und Slug.
+- Behandle ein aus Mannschaftsseite, nuLiga, Turnierdatei, Quelldokument oder einer anderen überprüften Quelle ermitteltes Datum als abgeleitet, nicht als erfunden, und nenne die konkrete Quelle.
+- Übernimm keinen unbelegten Wert stillschweigend. Falls ein Wert ausnahmsweise ohne Beleg in einem Zwischenstand vorkommt, kennzeichne ihn ausdrücklich als erfunden, entferne ihn vor Datei und PR und fordere eine Bestätigung oder Korrektur an.
 - Setze bei jedem neuen Beitrag standardmäßig `published: true`. Verwende `published: false` nur, wenn der Benutzer den Beitrag ausdrücklich als nicht öffentlich kennzeichnet.
 - Bewahre bei der Überarbeitung eines bestehenden Beitrags dessen ausdrückliches `published: false` auch bei einem beauftragten Commit. Ändere diesen Wert nur, wenn der Benutzer die Veröffentlichung ausdrücklich verlangt.
 - Verwende niemals ein Frontmatter-Feld `status`. Der Veröffentlichungszustand wird ausschließlich mit dem Boolean `published: true` oder `published: false` abgebildet. Entferne übernommenes `status: draft`; setze dabei standardmäßig `published: true` und nur bei einem ausdrücklich nicht öffentlichen Entwurf `published: false`.
@@ -110,7 +112,9 @@ Berichte abschließend:
 - exakter Dateiname des angelegten oder geänderten Artikels in einer eigenen, leicht erkennbaren Zeile; verwende die Form `Dateiname: YYYYMMDD.slug.md` und setze den tatsächlichen Dateinamen als Inline-Code
 - passende Conventional-Commit-Nachricht in einer eigenen, leicht erkennbaren Zeile; verwende die Form `Commit-Message: type(blog): short imperative summary` und gib sie auch dann aus, wenn kein Commit beauftragt wurde
 - bei einem Fertigtext eine knappe Zusammenfassung der tatsächlich vorgenommenen Korrekturen außerhalb des Artikels; berichte `Korrekturen: keine`, wenn der Originaltext unverändert blieb
-- gewählte oder abgeleitete Metadaten
+- eine eigene Zeile `Abgeleitete Daten: ...`, in der alle abgeleiteten oder standardmäßig gesetzten Angaben mit Feld, Wert und Quelle oder Regel genannt werden; verwende `Abgeleitete Daten: keine`, wenn nichts abgeleitet wurde
+- eine eigene Zeile `Erfundene Daten: keine`; falls wider Erwarten ein unbelegter Wert in einem Zwischenstand verwendet wurde, nenne ihn stattdessen vollständig, übernimm ihn nicht in Datei oder PR und fordere eine Bestätigung oder Korrektur an
+- eine eigene Zeile `Offene oder unbestätigte Daten: ...`; verwende `Offene oder unbestätigte Daten: keine`, wenn keine offenen Angaben bestehen
 - bei Turnierbeiträgen den gesetzten `tournament`-Slug und die geprüfte Turnierseite
 - Ergebnis der Prüfung von Frontmatter-Reihenfolge und Dateinamensschema
 - in Tabellen übertragene Bilddaten
