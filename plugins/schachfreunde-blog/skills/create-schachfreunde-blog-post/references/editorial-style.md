@@ -41,6 +41,7 @@
 
 - Prüfe Namen und Autorenkennungen gegen das Repository.
 - Prüfe alle Zahlen, Ergebnisse, Platzierungen und Datumsangaben gegen das Quellmaterial.
+- Prüfe bei Mannschaftsberichten das Spieldatum zusätzlich über die passende Mannschaftsseite und erforderlichenfalls über den dort hinterlegten nuLiga-Spielplan.
 - Löse Widersprüche nicht stillschweigend. Frage nach oder dokumentiere die Unsicherheit.
 - Erfinde keine Bildunterschriften aus Personenidentitäten, die nicht sicher belegt sind.
 - Ergänze keine externen Fakten aus dem Gedächtnis. Recherchiere nur, wenn dies beauftragt oder für eine notwendige Prüfung erforderlich ist.

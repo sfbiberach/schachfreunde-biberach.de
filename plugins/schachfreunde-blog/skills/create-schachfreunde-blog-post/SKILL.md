@@ -61,6 +61,7 @@ Lies aktuelle Vorgaben, Autorenkennungen, Komponenten und Beispielbeiträge vor 
 - Ordne die vorhandenen Top-Level-Felder immer exakt so: zuerst `title`, danach alphabetisch nach Feldname. Das gilt auch für optionale und künftig ergänzte Felder.
 - Halte für Beitrag, Assetordner und jede Assetdatei das verbindliche Schema aus `references/repository-conventions.md` ein. Normalisiere abweichende Eingaben und dokumentiere die Zuordnung.
 - Verwende bei Berichten über Mannschaftskämpfe als `title` ausschließlich `Heimmannschaft - Gastmannschaft` mit den offiziellen Mannschaftsnamen und einem einfachen Bindestrich mit Leerzeichen. Ergänze weder Ergebnis noch Vorspann oder Untertitel.
+- Ermittle bei Berichten über Mannschaftskämpfe das tatsächliche Spieldatum vor Dateiname und Frontmatter aus dem Spielplan. Prüfe dafür die passende Mannschaftsseite unter `/mannschaften/mannschaft-N` und bei Bedarf die dort verlinkte nuLiga-Runde. Verwende niemals den aktuellen Tag oder den Erstellungszeitpunkt als Ersatz.
 
 ## Tabellen aus Bildern
 

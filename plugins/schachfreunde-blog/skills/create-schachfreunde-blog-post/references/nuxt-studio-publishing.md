@@ -29,7 +29,7 @@ Nutze diesen Ablauf ausschließlich, wenn der Benutzer ausdrücklich verlangt, d
 
 1. Öffne erst nach der vollständigen Seiten- und Assetprüfung oben rechts `Review`.
 2. Prüfe jede als erstellt, geändert oder gelöscht markierte Datei. Der Review darf nur den beauftragten Beitrag und dessen Assets enthalten.
-3. Prüfe den endgültigen Diff erneut auf Frontmatter-Reihenfolge, `published`, Dateinamen, Assetpfade, Tabellenwerte, unbeabsichtigte MDC-Formatierung und Textverluste.
+3. Prüfe den endgültigen Diff erneut auf Frontmatter-Reihenfolge, `published`, Dateinamen, Assetpfade, Tabellenwerte, unbeabsichtigte MDC-Formatierung und Textverluste. Gleiche bei Mannschaftsberichten das Spieldatum noch einmal mit der Mannschaftsseite beziehungsweise nuLiga ab.
 4. Verwende eine Conventional-Commit-Nachricht nach `repository-conventions.md`, für einen neuen Beitrag normalerweise `feat(blog): add <slug>`.
 5. Führe den Studio-Commit nur aus, wenn die ausdrückliche Direktveröffentlichung weiterhin vom Auftrag gedeckt ist. Studio schreibt damit unmittelbar in den in `nuxt.config.ts` konfigurierten Branch und löst dessen Deployment aus.
 6. Warte auf die Synchronisierung bzw. das Deployment und prüfe danach die öffentliche Beitragsroute und alle Assets erneut. Melde Konflikte oder ein fehlgeschlagenes Deployment, statt blind erneut zu committen.

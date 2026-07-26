@@ -23,6 +23,17 @@ Verwende für Berichte über Mannschaftskämpfe ausschließlich das Schema `Heim
 - Ergänze im Titel kein Ergebnis, keinen Spieltag, keinen Vorspann und keinen Untertitel.
 - Nutze sinnvolle, sprachlich und typografisch einheitliche Zwischenüberschriften im Artikel, wenn sie die Orientierung verbessern.
 
+### Datum von Mannschaftsberichten
+
+Das Beitragsdatum eines Mannschaftsberichts ist das tatsächliche Spieldatum, nicht das Erstellungs-, Commit- oder Veröffentlichungsdatum.
+
+- Übernimm ein ausdrücklich genanntes Spieldatum nur, wenn es zum beschriebenen Mannschaftskampf passt.
+- Fehlt das Datum oder ist es unsicher, öffne die passende öffentliche Mannschaftsseite unter `/mannschaften/mannschaft-N`. Gleiche dort Heimteam, Auswärtsteam und Runde beziehungsweise Ergebnis mit dem Bericht ab.
+- Nutze bei Bedarf den auf der Mannschaftsseite oder in `content/mannschaften/` hinterlegten `league.groupUrl`, um den Termin direkt in nuLiga zu bestätigen.
+- Verwende niemals den aktuellen Tag, das Datum der Benutzeranfrage, einen Screenshot-Zeitstempel, das Dateierstellungsdatum oder das Commitdatum als Ersatz für das Spieldatum.
+- Lässt sich kein Spiel eindeutig zuordnen, frage nach, bevor du Dateiname oder Frontmatter anlegst.
+- Verwende das bestätigte Spieldatum sowohl als `date: YYYY-MM-DD` als auch als Präfix `YYYYMMDD` für Beitragsdatei und Assetordner.
+
 Lege einen neuen Beitrag nach der aktuellen Konvention an:
 
 ```text
