@@ -1,0 +1,33 @@
+{
+  "name": "schachfreunde-blog",
+  "version": "0.1.0+codex.20260726013033",
+  "description": "Erstellt und \u00fcberarbeitet Blogbeitr\u00e4ge f\u00fcr schachfreunde-biberach.de.",
+  "author": {
+    "name": "Schachfreunde Heilbronn-Biberach 1978 e. V.",
+    "url": "https://www.schachfreunde-biberach.de/"
+  },
+  "homepage": "https://www.schachfreunde-biberach.de/blog",
+  "repository": "https://github.com/sfbiberach/schachfreunde-biberach.de",
+  "keywords": [
+    "blog",
+    "nuxt-content",
+    "redaktion",
+    "schach"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Schachfreunde Blog",
+    "shortDescription": "Blogbeitr\u00e4ge aus Texten, Bildern und Anh\u00e4ngen",
+    "longDescription": "Bereitet Rohmaterial redaktionell auf, erg\u00e4nzt Nuxt-Content-Metadaten, organisiert Assets und erstellt einen gepr\u00fcften Blogentwurf oder Draft-PR.",
+    "developerName": "Schachfreunde Heilbronn-Biberach 1978 e. V.",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Erstelle aus diesen Materialien einen Blogentwurf.",
+      "\u00dcberarbeite diesen Beitrag und bereite einen Draft-PR vor."
+    ]
+  }
+}
