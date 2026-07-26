@@ -1,6 +1,6 @@
 ---
 name: create-schachfreunde-blog-post
-description: Create or revise blog posts for schachfreunde-biberach.de from raw text, notes, images, attachments, or existing drafts; preserve fully written source text by default while correcting errors, write natural non-formulaic German when drafting, read current conventions and examples directly from the GitHub repository, infer and validate Nuxt Content metadata, turn readable tabular images into semantic tables, organize assets, use repository-native prose components, run content checks, prepare a reviewable local draft, use a publication-ready GitHub pull request as the default publishing path, or publish directly through Nuxt Studio only when explicitly requested. Use when a user asks to create, import, improve, stage, or publish a Schachfreunde blog article.
+description: Create or revise blog posts for schachfreunde-biberach.de from raw text, notes, images, attachments, or existing drafts; preserve fully written source text by default while correcting errors, write natural non-formulaic German when drafting, read current conventions and examples directly from the GitHub repository, infer and validate Nuxt Content metadata, turn readable tabular images into semantic tables, organize assets, use repository-native prose components, run content checks, create a publication-ready GitHub pull request by default for every new or revised article, use a local draft only when explicitly requested or GitHub write access is unavailable, or publish directly through Nuxt Studio only when explicitly requested. Use when a user asks to create, import, improve, stage, or publish a Schachfreunde blog article.
 ---
 
 # Schachfreunde-Blogbeitrag erstellen
@@ -26,6 +26,7 @@ Lies aktuelle Vorgaben, Autorenkennungen, Komponenten und Beispielbeiträge vor 
    - gültige Autorenkennungen aus `content/users/`
    - verfügbare Inhaltskomponenten aus `app/components/content/` und vorhandenen Beiträgen
    - aktuelle, repräsentative Beispielbeiträge aus `content/blog/article/`
+   - vorhandene Turnierzuordnungen aus `content/turniere/` und aktuellen Turnierberichten
 3. Inventarisiere Rohtext, Bilder, Anhänge, Links und ausdrücklich vorgegebene Metadaten.
 4. Bestimme, ob der Benutzer einen fertig ausformulierten Text oder Rohmaterial liefert. Behandle zusammenhängenden, veröffentlichungsfähigen Fließtext ohne anderslautenden Auftrag als Fertigtext.
 5. Trenne belegte Fakten von redaktionellen Ableitungen. Erfinde keine Namen, Ergebnisse, Termine, Zitate, Bildinhalte oder Quellen.
@@ -37,9 +38,9 @@ Lies aktuelle Vorgaben, Autorenkennungen, Komponenten und Beispielbeiträge vor 
 11. Prüfe Inhalt, Metadaten, Links, Tabellen und Medien gegen die Quellen.
 12. Führe die passenden Repository-Checks aus und behebe nur Fehler im eigenen Änderungssatz.
 13. Erzeuge für jeden angelegten oder geänderten Beitrag eine passende Conventional-Commit-Nachricht nach den Regeln in `references/repository-conventions.md`, formuliere sie standardmäßig auf Englisch und gib sie in der Übergabe aus.
-14. Wenn ein Commit beauftragt ist, stage ausschließlich den eigenen Änderungssatz und verwende die vorgeschlagene Conventional-Commit-Nachricht.
-15. Verwende bei einem Auftrag zum Veröffentlichen oder Onlinestellen standardmäßig den GitHub-PR-Ablauf aus `references/repository-conventions.md`, sofern der Benutzer nicht ausdrücklich Nuxt Studio verlangt. Prüfe zuvor die GitHub-Verbindung und den Schreibzugriff.
-16. Erstelle einen eigenen Branch, committe ausschließlich den eigenen Änderungssatz, pushe den Branch und öffne einen veröffentlichungsfertigen PR. Verwende die englische Conventional-Commit-Nachricht unverändert als PR-Titel und formuliere auch die kurze PR-Beschreibung standardmäßig auf Englisch. Erstelle nur auf ausdrücklichen Wunsch einen Draft-PR.
+14. Behandle jeden Auftrag zum Erstellen oder Überarbeiten eines Beitrags standardmäßig als Auftrag für den GitHub-PR-Ablauf aus `references/repository-conventions.md`. Erstelle nur dann ausschließlich einen lokalen Entwurf, wenn der Benutzer dies ausdrücklich verlangt oder kein GitHub-Schreibzugriff verfügbar ist.
+15. Prüfe die GitHub-Verbindung und den Schreibzugriff. Nutze Nuxt Studio anstelle des PR-Ablaufs nur, wenn der Benutzer Nuxt Studio ausdrücklich verlangt.
+16. Erstelle einen eigenen Branch, stage und committe ausschließlich den eigenen Änderungssatz, pushe den Branch und öffne einen veröffentlichungsfertigen PR. Verwende die englische Conventional-Commit-Nachricht unverändert als PR-Titel und formuliere auch die kurze PR-Beschreibung standardmäßig auf Englisch. Erstelle nur auf ausdrücklichen Wunsch einen GitHub-Draft-PR.
 17. Merge einen PR niemals ohne ausdrücklichen Auftrag. Stelle klar, dass der Beitrag erst durch den Merge in den Veröffentlichungsbranch und das anschließende Deployment online geht.
 18. Lies `references/nuxt-studio-publishing.md` und arbeite direkt in Nuxt Studio ausschließlich dann, wenn der Benutzer dies ausdrücklich wünscht.
 
@@ -55,9 +56,11 @@ Lies aktuelle Vorgaben, Autorenkennungen, Komponenten und Beispielbeiträge vor 
 - Übernimm ausdrücklich genannte Werte.
 - Leite fehlende Werte aus Quelle, bestehenden Beiträgen und Repository-Kontext ab.
 - Kennzeichne wesentliche Ableitungen im Abschlussbericht.
-- Setze `published: true`, sofern der Benutzer den Beitrag nicht ausdrücklich als Entwurf oder nicht öffentlich kennzeichnet. Ein beauftragter Commit gilt bei neuen Beiträgen oder Beiträgen ohne vorhandenen `published`-Wert als Freigabe zur Veröffentlichung.
+- Setze bei jedem neuen Beitrag standardmäßig `published: true`. Verwende `published: false` nur, wenn der Benutzer den Beitrag ausdrücklich als nicht öffentlich kennzeichnet.
 - Bewahre bei der Überarbeitung eines bestehenden Beitrags dessen ausdrückliches `published: false` auch bei einem beauftragten Commit. Ändere diesen Wert nur, wenn der Benutzer die Veröffentlichung ausdrücklich verlangt.
+- Verwende niemals ein Frontmatter-Feld `status`. Der Veröffentlichungszustand wird ausschließlich mit dem Boolean `published: true` oder `published: false` abgebildet. Entferne übernommenes `status: draft`; setze dabei standardmäßig `published: true` und nur bei einem ausdrücklich nicht öffentlichen Entwurf `published: false`.
 - Verwende nur vorhandene Kategorien und Autorenkennungen.
+- Setze bei jedem Beitrag über ein vorhandenes Turnier zwingend `tournament` auf den exakten Turnier-Slug aus `content/turniere/`, damit der Beitrag auf der zugehörigen Turnierseite unter „Turnierberichte“ erscheint. Gleiche Thema, Turniername und vorhandene Zuordnungen ab; erfinde keinen Slug und frage bei mehreren oder fehlenden Treffern nach.
 - Wähle ein Artikelbild nur, wenn Motiv, Auflösung und Freigabe dafür geeignet sind.
 - Formuliere die `description` als einen kurzen, kartentauglichen Satz mit Anlass und wichtigstem Ergebnis. Ziele in der Regel auf 100 bis 140 Zeichen und überschreite 160 Zeichen nur, wenn wesentliche Fakten sonst verloren gehen.
 - Ordne die vorhandenen Top-Level-Felder immer exakt so: zuerst `title`, danach alphabetisch nach Feldname. Das gilt auch für optionale und künftig ergänzte Felder.
@@ -108,9 +111,10 @@ Berichte abschließend:
 - passende Conventional-Commit-Nachricht in einer eigenen, leicht erkennbaren Zeile; verwende die Form `Commit-Message: type(blog): short imperative summary` und gib sie auch dann aus, wenn kein Commit beauftragt wurde
 - bei einem Fertigtext eine knappe Zusammenfassung der tatsächlich vorgenommenen Korrekturen außerhalb des Artikels; berichte `Korrekturen: keine`, wenn der Originaltext unverändert blieb
 - gewählte oder abgeleitete Metadaten
+- bei Turnierbeiträgen den gesetzten `tournament`-Slug und die geprüfte Turnierseite
 - Ergebnis der Prüfung von Frontmatter-Reihenfolge und Dateinamensschema
 - in Tabellen übertragene Bilddaten
 - Qualitätswarnungen und offene Punkte
 - ausgeführte Prüfungen und deren Ergebnis
-- lokalen Entwurf oder URL des PRs sowie dessen Status als Draft oder bereit zur Prüfung
+- URL des standardmäßig angelegten PRs; einen lokalen Entwurf nur bei ausdrücklichem Wunsch oder fehlendem GitHub-Schreibzugriff
 - nach einem ausdrücklich beauftragten Merge oder einer Direktveröffentlichung die öffentliche Artikel-URL und das Ergebnis der Erreichbarkeitsprüfung

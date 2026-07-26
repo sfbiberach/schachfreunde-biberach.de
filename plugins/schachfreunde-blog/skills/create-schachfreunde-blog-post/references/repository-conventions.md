@@ -9,6 +9,7 @@ Rufe die folgenden Dateien und Verzeichnisse vor jeder Bearbeitung direkt aus de
 - `content/users/*.{md,yaml}`: gültige Autorenkennungen
 - `app/components/content/`: lokale Inhaltskomponenten
 - `content/blog/article/`: repräsentative Syntax und bestehende Pfade
+- `content/turniere/`: gültige Turnierseiten und die daraus abzuleitenden `tournament`-Slugs
 
 Lies diese Quellen bei jeder Verwendung neu. Wähle aktuelle Beispielbeiträge möglichst passend zu Kategorie, Mannschaft oder Autorenschaft. Behandle die hier genannten Werte nicht als Ersatz für den aktuellen GitHub-Stand.
 
@@ -86,15 +87,20 @@ published: true
 sitemap:
   loc: /blog/article/slug
 toc: true
+tournament: vorhandener-turnier-slug
 ---
 ```
 
 - Lasse optionale Felder weg, statt Platzhalter einzutragen.
 - Sortiere nur die Top-Level-Felder nach dieser Regel. Erhalte bei verschachtelten Objekten die semantisch vorgesehene Reihenfolge, zum Beispiel `src` vor `alt`, wenn das Repository-Schema oder bestehende Konventionen dies vorgeben.
 - Setze `toc: true` nur bei einer sinnvollen Überschriftenstruktur.
-- Verwende `tournament` nur bei einer belegten Zuordnung zu einem vorhandenen Turnier.
+- Wenn ein Beitrag ein vorhandenes Turnier ankündigt, begleitet oder darüber berichtet, ist `tournament` verpflichtend.
+- Verwende als Wert exakt den Slug der passenden Seite aus `content/turniere/`, beispielsweise `biber-jugend-cup` für `/turniere/biber-jugend-cup`. Die Turnierseite filtert ihre „Turnierberichte“ nach diesem exakten Wert.
+- Gleiche Turniername, Thema und vorhandene Artikelzuordnungen ab. Erfinde keinen Turnier-Slug. Frage nach, wenn kein vorhandenes Turnier eindeutig passt oder mehrere Zuordnungen möglich sind.
+- Lasse `tournament` nur bei Beiträgen ohne Bezug zu einem vorhandenen Turnier weg.
 - Gib `published` immer explizit als Boolean an. Verwende für neue Beiträge standardmäßig `true`; ein beauftragter Commit gilt dabei als Veröffentlichungsfreigabe. Setze ausdrücklich als Entwurf oder nicht öffentlich gekennzeichnete Inhalte auf `false`.
 - Bewahre bei bestehenden Beiträgen ein vorhandenes `published: false` auch bei einem beauftragten Commit. Ändere den Wert nur auf ausdrücklichen Wunsch des Benutzers zu `true`.
+- Verwende kein Frontmatter-Feld `status`; es gehört nicht zum aktuellen Artikelschema. Bilde den Veröffentlichungszustand ausschließlich mit dem Boolean `published` ab. Entferne ein übernommenes `status: draft` und verwende für neue Beiträge standardmäßig `published: true`; nur ein ausdrücklich nicht öffentlicher Entwurf erhält `published: false`.
 
 ## Prüfung
 
@@ -106,6 +112,7 @@ Prüfe vor den automatisierten Befehlen ausdrücklich:
 - Beitrag, Assetordner und Assetdateien entsprechen vollständig dem Namensschema.
 - Dateistamm des Beitrags und Name des Assetordners sind identisch.
 - `sitemap.loc` verwendet den Slug ohne Datumspräfix.
+- Bei einem Beitrag über ein vorhandenes Turnier ist `tournament` gesetzt und entspricht exakt einem Slug aus `content/turniere/`.
 
 Führe für Beitragsänderungen mindestens aus:
 
@@ -126,7 +133,7 @@ Verändere zur Behebung von Prüffehlern keine unbeteiligten Dateien.
 
 Erzeuge für jeden angelegten oder geänderten Beitrag eine passende Conventional-Commit-Nachricht und gib sie im Abschlussbericht auf einer eigenen Zeile in der Form `Commit-Message: <Nachricht>` aus. Das gilt auch, wenn kein Commit beauftragt wurde. Formuliere Commit-Betreff und optionalen Commit-Body standardmäßig auf Englisch. Verwende eine andere Sprache nur auf ausdrücklichen Wunsch; die Sprache des Blogartikels bleibt davon unberührt.
 
-Committe weiterhin nur auf ausdrücklichen Wunsch und ausschließlich Dateien des eigenen Änderungssatzes. Verwende für Empfehlung und tatsächlichen Commit das Format:
+Bei einem ausdrücklich gewünschten lokalen Entwurf committe nur auf ausdrücklichen Wunsch. Der standardmäßige GitHub-PR-Ablauf für einen neuen oder überarbeiteten Beitrag umfasst dagegen Branch, Commit, Push und PR. Committe dabei ausschließlich Dateien des eigenen Änderungssatzes und verwende für Empfehlung und tatsächlichen Commit das Format:
 
 ```text
 <type>(blog): <short imperative summary>
@@ -139,15 +146,15 @@ Committe weiterhin nur auf ausdrücklichen Wunsch und ausschließlich Dateien de
 
 Halte die erste Zeile knapp, verwende keinen abschließenden Punkt und ergänze bei Bedarf einen Commit-Body für wesentliche Ableitungen, Umbenennungen oder bekannte Einschränkungen.
 
-## GitHub-PR als Standardveröffentlichung
+## GitHub-PR als Standardergebnis
 
-Behandle einen allgemeinen Auftrag zum Veröffentlichen oder Onlinestellen eines Beitrags als Auftrag, einen veröffentlichungsfertigen GitHub-PR vorzubereiten. Nutze Nuxt Studio stattdessen nur, wenn der Benutzer es ausdrücklich verlangt. Formuliere PR-Titel und PR-Beschreibung standardmäßig auf Englisch. Verwende eine andere Sprache nur auf ausdrücklichen Wunsch.
+Behandle jeden Auftrag zum Erstellen oder Überarbeiten eines Beitrags standardmäßig als Auftrag, einen veröffentlichungsfertigen GitHub-PR anzulegen. Ein ausschließlich lokaler Entwurf entsteht nur auf ausdrücklichen Wunsch oder wenn kein GitHub-Schreibzugriff verfügbar ist. Nutze Nuxt Studio statt des PR-Ablaufs nur, wenn der Benutzer es ausdrücklich verlangt. Formuliere PR-Titel und PR-Beschreibung standardmäßig auf Englisch. Verwende eine andere Sprache nur auf ausdrücklichen Wunsch.
 
 1. Prüfe, ob die GitHub-Verbindung eingerichtet ist und Schreibzugriff auf `sfbiberach/schachfreunde-biberach.de` besteht. Fehlt der Zugriff, liefere den vollständigen lokalen Entwurf und benenne die fehlende Verbindung, statt einen PR vorzutäuschen.
 2. Erstelle vom aktuellen Standardbranch einen eigenen Branch. Verwende für einen neuen Beitrag nach Möglichkeit `blog/<slug>` und wähle bei einer Kollision einen eindeutigen, weiterhin knappen Namen.
 3. Committe ausschließlich Beitrag und Assets des eigenen Änderungssatzes mit der zuvor bestimmten Conventional-Commit-Nachricht.
 4. Pushe den Branch und öffne einen PR. Verwende die Commit-Nachricht unverändert als PR-Titel.
 5. Halte die PR-Beschreibung kurz. Nenne in ein bis drei Sätzen oder knappen Punkten den Anlass beziehungsweise Inhalt, den exakten Artikelnamen und gegebenenfalls die hinzugefügten Assets. Führe die ausgeführten Prüfungen nicht eigens in der PR-Beschreibung auf.
-6. Erstelle den PR standardmäßig als bereit zur Prüfung. Verwende den Draft-Status nur, wenn der Benutzer ausdrücklich einen Entwurf oder Draft-PR verlangt.
+6. Erstelle den PR standardmäßig als bereit zur Prüfung. Verwende den GitHub-Draft-PR-Status nur auf ausdrücklichen Wunsch. Dieser GitHub-Status ist kein Artikelmetadatum und darf niemals als `status: draft` im Frontmatter erscheinen.
 7. Merge den PR nur auf ausdrücklichen Auftrag. Ein erstellter PR allein veröffentlicht den Beitrag nicht; erst der Merge in den Veröffentlichungsbranch löst das Deployment aus.
 8. Prüfe nach einem ausdrücklich beauftragten Merge das Deployment und die öffentliche Beitragsroute. Melde ein fehlgeschlagenes Deployment, statt denselben Merge oder Commit zu wiederholen.
