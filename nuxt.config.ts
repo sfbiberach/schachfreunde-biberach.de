@@ -41,7 +41,6 @@ export default defineNuxtConfig({
   },
 
   experimental: {
-    emitRouteChunkError: 'automatic-immediate',
     viewTransition: true,
   },
 
