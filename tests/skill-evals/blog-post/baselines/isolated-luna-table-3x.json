@@ -1,0 +1,190 @@
+{
+  "metadata": {
+    "generatedAt": "2026-07-30T22:31:59.373Z",
+    "label": "isolated-luna-final-table-3x",
+    "model": "gpt-5.6-luna",
+    "reasoning": "low",
+    "runs": 3,
+    "skillPath": "C:\\Users\\janfr\\Documents\\GitHub\\2.sfbiberach\\schachfreunde-biberach.de\\plugins\\schachfreunde-blog\\skills\\create-schachfreunde-blog-post\\SKILL.md"
+  },
+  "cases": [
+    {
+      "id": "table-image",
+      "description": "Tabular media should activate media guidance without unrelated lookups.",
+      "attempts": [
+        {
+          "actual": {
+            "operation": "create",
+            "inputKind": "finished-text",
+            "repositoryAccess": "local",
+            "contentKinds": [
+              "general"
+            ],
+            "questions": [],
+            "sources": [
+              "editorial-style",
+              "repository-conventions",
+              "content-schema",
+              "content-and-media"
+            ],
+            "actions": [
+              "inspect-materials",
+              "process-media",
+              "edit-article",
+              "run-lint",
+              "create-pr",
+              "check-ci"
+            ],
+            "defaults": [
+              "Neuer allgemeiner Beitrag",
+              "Veröffentlichungsdatum: 2026-07-31",
+              "published: true",
+              "Tabelle aus dem Bild als echte Markdown-Tabelle übertragen",
+              "Bild nicht veröffentlichen, da es ausschließlich als Datenquelle dient",
+              "Kategorie und Autor nur bei eindeutiger Ableitbarkeit setzen",
+              "Standardmäßig veröffentlichungsfertigen GitHub-PR erstellen"
+            ],
+            "blockers": []
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 13387,
+            "inputTokens": 27112,
+            "cachedInputTokens": 20992,
+            "uncachedInputTokens": 6120,
+            "outputTokens": 495,
+            "reasoningTokens": 166,
+            "toolCalls": 2
+          }
+        },
+        {
+          "actual": {
+            "operation": "create",
+            "inputKind": "finished-text",
+            "repositoryAccess": "local",
+            "contentKinds": [
+              "general"
+            ],
+            "questions": [],
+            "sources": [
+              "content-schema",
+              "categories",
+              "content-and-media",
+              "editorial-style",
+              "repository-conventions"
+            ],
+            "actions": [
+              "inspect-materials",
+              "process-media",
+              "edit-article",
+              "run-lint",
+              "create-pr",
+              "check-ci"
+            ],
+            "defaults": [
+              "published: true",
+              "Aktuelles lokales Redaktionsdatum verwenden",
+              "Tabelle als echte Markdown-Tabelle übertragen",
+              "Kein Mannschafts- oder Turnierbezug",
+              "Standardmäßig veröffentlichungsfertigen GitHub-PR erstellen"
+            ],
+            "blockers": []
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 18444,
+            "inputTokens": 26701,
+            "cachedInputTokens": 22016,
+            "uncachedInputTokens": 4685,
+            "outputTokens": 510,
+            "reasoningTokens": 220,
+            "toolCalls": 2
+          }
+        },
+        {
+          "actual": {
+            "operation": "create",
+            "inputKind": "finished-text",
+            "repositoryAccess": "local",
+            "contentKinds": [
+              "general"
+            ],
+            "questions": [],
+            "sources": [
+              "editorial-style",
+              "repository-conventions",
+              "content-and-media",
+              "content-schema"
+            ],
+            "actions": [
+              "inspect-materials",
+              "edit-article",
+              "process-media",
+              "run-lint",
+              "create-pr",
+              "check-ci"
+            ],
+            "defaults": [
+              "Neuen allgemeinen Beitrag anlegen",
+              "Fertigtext inhaltlich bewahren und nur sprachlich korrigieren",
+              "Vollständig lesbare Tabelle als echte Markdown-Tabelle übertragen",
+              "published: true setzen",
+              "PR-Ablauf verwenden"
+            ],
+            "blockers": []
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 12950,
+            "inputTokens": 26716,
+            "cachedInputTokens": 22016,
+            "uncachedInputTokens": 4700,
+            "outputTokens": 478,
+            "reasoningTokens": 168,
+            "toolCalls": 2
+          }
+        }
+      ],
+      "summary": {
+        "attempts": 3,
+        "completed": 3,
+        "passed": 3,
+        "passRate": 1,
+        "medianDurationMs": 13387,
+        "p95DurationMs": 17938.3,
+        "medianInputTokens": 26716,
+        "medianCachedInputTokens": 22016,
+        "medianUncachedInputTokens": 4700,
+        "p95UncachedInputTokens": 5978,
+        "medianOutputTokens": 495,
+        "medianReasoningTokens": 168,
+        "medianToolCalls": 2
+      }
+    }
+  ],
+  "totals": {
+    "cases": 1,
+    "attempts": 3,
+    "completed": 3,
+    "passed": 3,
+    "passRate": 1,
+    "medianDurationMs": 13387,
+    "p95DurationMs": 17938.3,
+    "medianInputTokens": 26716,
+    "medianCachedInputTokens": 22016,
+    "medianUncachedInputTokens": 4700,
+    "p95UncachedInputTokens": 5978,
+    "medianOutputTokens": 495,
+    "medianReasoningTokens": 168,
+    "medianToolCalls": 2
+  }
+}

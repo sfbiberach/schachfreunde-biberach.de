@@ -1,0 +1,316 @@
+{
+  "metadata": {
+    "generatedAt": "2026-07-30T22:28:30.768Z",
+    "label": "isolated-luna-final-risk-3x",
+    "model": "gpt-5.6-luna",
+    "reasoning": "low",
+    "runs": 3,
+    "skillPath": "C:\\Users\\janfr\\Documents\\GitHub\\2.sfbiberach\\schachfreunde-biberach.de\\plugins\\schachfreunde-blog\\skills\\create-schachfreunde-blog-post\\SKILL.md"
+  },
+  "cases": [
+    {
+      "id": "ambiguous-team-report",
+      "description": "A genuinely ambiguous match should result in one bundled clarification.",
+      "attempts": [
+        {
+          "actual": {
+            "operation": "create",
+            "inputKind": "raw-material",
+            "repositoryAccess": "local",
+            "contentKinds": [
+              "team-match"
+            ],
+            "questions": [
+              "Welche unserer Mannschaften spielte gegen Stuttgart, und an welchem Datum beziehungsweise Spieltag fand der Kampf statt? Bitte nenne möglichst die Mannschaft (z. B. 1. Mannschaft) oder teile eine Quelle bzw. einen Link dazu mit."
+            ],
+            "sources": [
+              "team-page",
+              "nuliga"
+            ],
+            "actions": [
+              "inspect-materials",
+              "ask-user"
+            ],
+            "defaults": [],
+            "blockers": [
+              "Mannschaft und tatsächliches Spieldatum sind aus den Angaben nicht eindeutig identifizierbar."
+            ]
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 13589,
+            "inputTokens": 26589,
+            "cachedInputTokens": 11008,
+            "uncachedInputTokens": 15581,
+            "outputTokens": 453,
+            "reasoningTokens": 170,
+            "toolCalls": 2
+          }
+        },
+        {
+          "actual": {
+            "operation": "create",
+            "inputKind": "raw-material",
+            "repositoryAccess": "local",
+            "contentKinds": [
+              "team-match"
+            ],
+            "questions": [
+              "Welche Biberacher Mannschaft hat gegen Stuttgart gespielt, und an welchem Spieltag beziehungsweise Datum fand der Mannschaftskampf statt? Der Endstand war 4:4."
+            ],
+            "sources": [
+              "team-page",
+              "nuliga"
+            ],
+            "actions": [
+              "inspect-materials",
+              "ask-user"
+            ],
+            "defaults": [],
+            "blockers": [
+              "Mannschaft und tatsächliches Spieldatum sind ohne weitere eindeutige Belege nicht identifizierbar."
+            ]
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 13735,
+            "inputTokens": 27010,
+            "cachedInputTokens": 9984,
+            "uncachedInputTokens": 17026,
+            "outputTokens": 561,
+            "reasoningTokens": 291,
+            "toolCalls": 2
+          }
+        },
+        {
+          "actual": {
+            "operation": "create",
+            "inputKind": "raw-material",
+            "repositoryAccess": "local",
+            "contentKinds": [
+              "team-match"
+            ],
+            "questions": [
+              "Welche Biberacher Mannschaft und welcher Spieltag beziehungsweise welches Spieldatum gehören zum 4:4 gegen Stuttgart? Falls vorhanden, sende bitte den nuLiga-Link oder weitere identifizierende Angaben."
+            ],
+            "sources": [
+              "team-page",
+              "nuliga"
+            ],
+            "actions": [
+              "inspect-materials",
+              "ask-user"
+            ],
+            "defaults": [
+              "Ergebnis: 4:4"
+            ],
+            "blockers": [
+              "Mannschaft und tatsächliches Spieldatum des Mannschaftskampfs sind noch nicht eindeutig identifizierbar."
+            ]
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 15414,
+            "inputTokens": 26640,
+            "cachedInputTokens": 22016,
+            "uncachedInputTokens": 4624,
+            "outputTokens": 653,
+            "reasoningTokens": 308,
+            "toolCalls": 2
+          }
+        }
+      ],
+      "summary": {
+        "attempts": 3,
+        "completed": 3,
+        "passed": 3,
+        "passRate": 1,
+        "medianDurationMs": 13735,
+        "p95DurationMs": 15246.1,
+        "medianInputTokens": 26640,
+        "medianCachedInputTokens": 11008,
+        "medianUncachedInputTokens": 15581,
+        "p95UncachedInputTokens": 16881.5,
+        "medianOutputTokens": 561,
+        "medianReasoningTokens": 291,
+        "medianToolCalls": 2
+      }
+    },
+    {
+      "id": "github-only-new-article",
+      "description": "A missing local checkout should route through GitHub without becoming a blocker.",
+      "attempts": [
+        {
+          "actual": {
+            "operation": "create",
+            "inputKind": "finished-text",
+            "repositoryAccess": "github-only",
+            "contentKinds": [
+              "general"
+            ],
+            "questions": [],
+            "sources": [
+              "editorial-style",
+              "repository-conventions",
+              "content-schema",
+              "categories"
+            ],
+            "actions": [
+              "inspect-materials",
+              "edit-article",
+              "check-ci",
+              "create-pr"
+            ],
+            "defaults": [
+              "published: true",
+              "Kategorie: Verein",
+              "PR mit englischer Conventional-Commit-Nachricht",
+              "Kein lokaler Lintlauf bei GitHub-only"
+            ],
+            "blockers": []
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 16055,
+            "inputTokens": 27108,
+            "cachedInputTokens": 22016,
+            "uncachedInputTokens": 5092,
+            "outputTokens": 493,
+            "reasoningTokens": 181,
+            "toolCalls": 2
+          }
+        },
+        {
+          "actual": {
+            "operation": "create",
+            "inputKind": "finished-text",
+            "repositoryAccess": "github-only",
+            "contentKinds": [
+              "general"
+            ],
+            "questions": [],
+            "sources": [
+              "editorial-style",
+              "repository-conventions",
+              "content-schema",
+              "categories"
+            ],
+            "actions": [
+              "inspect-materials",
+              "edit-article",
+              "create-pr",
+              "check-ci"
+            ],
+            "defaults": [
+              "published: true",
+              "Autorenschaft weglassen",
+              "toc weglassen",
+              "Kein Artikelbild ohne bereitgestelltes Material",
+              "Commit-Titel auf Englisch im Conventional-Commit-Format"
+            ],
+            "blockers": []
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 13139,
+            "inputTokens": 27115,
+            "cachedInputTokens": 22016,
+            "uncachedInputTokens": 5099,
+            "outputTokens": 527,
+            "reasoningTokens": 207,
+            "toolCalls": 2
+          }
+        },
+        {
+          "actual": {
+            "operation": "create",
+            "inputKind": "finished-text",
+            "repositoryAccess": "github-only",
+            "contentKinds": [
+              "general"
+            ],
+            "questions": [],
+            "sources": [
+              "editorial-style",
+              "repository-conventions",
+              "content-schema",
+              "categories"
+            ],
+            "actions": [
+              "inspect-materials",
+              "edit-article",
+              "create-pr",
+              "check-ci"
+            ],
+            "defaults": [
+              "published: true",
+              "Kategorie: Verein übernehmen",
+              "Datum: 2099-09-03 übernehmen",
+              "Kein Autor, keine Medien und kein Inhaltsverzeichnis ergänzen"
+            ],
+            "blockers": []
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 13905,
+            "inputTokens": 27191,
+            "cachedInputTokens": 9984,
+            "uncachedInputTokens": 17207,
+            "outputTokens": 561,
+            "reasoningTokens": 190,
+            "toolCalls": 2
+          }
+        }
+      ],
+      "summary": {
+        "attempts": 3,
+        "completed": 3,
+        "passed": 3,
+        "passRate": 1,
+        "medianDurationMs": 13905,
+        "p95DurationMs": 15840,
+        "medianInputTokens": 27115,
+        "medianCachedInputTokens": 22016,
+        "medianUncachedInputTokens": 5099,
+        "p95UncachedInputTokens": 15996.199999999999,
+        "medianOutputTokens": 527,
+        "medianReasoningTokens": 190,
+        "medianToolCalls": 2
+      }
+    }
+  ],
+  "totals": {
+    "cases": 2,
+    "attempts": 6,
+    "completed": 6,
+    "passed": 6,
+    "passRate": 1,
+    "medianDurationMs": 13820,
+    "p95DurationMs": 15894.75,
+    "medianInputTokens": 27059,
+    "medianCachedInputTokens": 16512,
+    "medianUncachedInputTokens": 10340,
+    "p95UncachedInputTokens": 17161.75,
+    "medianOutputTokens": 544,
+    "medianReasoningTokens": 198.5,
+    "medianToolCalls": 2
+  }
+}

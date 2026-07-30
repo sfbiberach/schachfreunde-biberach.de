@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "operation": {
+      "type": "string",
+      "enum": [
+        "create",
+        "revise",
+        "direct-publish",
+        "unrelated"
+      ]
+    },
+    "inputKind": {
+      "type": "string",
+      "enum": [
+        "finished-text",
+        "raw-material",
+        "existing-content",
+        "unknown"
+      ]
+    },
+    "repositoryAccess": {
+      "type": "string",
+      "enum": [
+        "local",
+        "github-only",
+        "none"
+      ]
+    },
+    "contentKinds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "general",
+          "team-match",
+          "tournament",
+          "media",
+          "unrelated"
+        ]
+      }
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "target-article",
+          "content-schema",
+          "categories",
+          "authors",
+          "examples",
+          "components",
+          "tournaments",
+          "team-page",
+          "nuliga",
+          "editorial-style",
+          "repository-conventions",
+          "content-and-media",
+          "nuxt-studio"
+        ]
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "inspect-materials",
+          "edit-article",
+          "process-media",
+          "run-lint",
+          "create-pr",
+          "check-ci",
+          "use-nuxt-studio",
+          "ask-user",
+          "none"
+        ]
+      }
+    },
+    "defaults": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "operation",
+    "inputKind",
+    "repositoryAccess",
+    "contentKinds",
+    "questions",
+    "sources",
+    "actions",
+    "defaults",
+    "blockers"
+  ],
+  "additionalProperties": false
+}

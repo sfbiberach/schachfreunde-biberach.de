@@ -1,0 +1,179 @@
+[
+  {
+    "id": "correct-existing-article",
+    "fixture": {
+      "source": "fixtures/existing-article.md",
+      "target": "content/blog/article/20990101.eval-vereinsabend.md"
+    },
+    "prompt": "Korrigiere im bestehenden Beitrag content/blog/article/20990101.eval-vereinsabend.md ausschließlich den Tippfehler ‚Schnellschch‘. Inhalt und Metadaten sollen ansonsten bytegenau unverändert bleiben. Erstelle nur einen lokalen Entwurf.",
+    "expected": {
+      "status": "completed",
+      "maxQuestions": 0,
+      "requiredFiles": [
+        "content/blog/article/20990101.eval-vereinsabend.md"
+      ],
+      "allowedFiles": [
+        "content/blog/article/20990101.eval-vereinsabend.md"
+      ],
+      "contentAssertions": [
+        {
+          "path": "content/blog/article/20990101.eval-vereinsabend.md",
+          "includes": [
+            "Schnellschach und Blitzschach"
+          ],
+          "excludes": [
+            "Schnellschch"
+          ],
+          "frontmatterOrder": true,
+          "exactReplacement": {
+            "source": "fixtures/existing-article.md",
+            "search": "Schnellschch",
+            "replace": "Schnellschach"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "create-complete-article",
+    "prompt": "Erstelle einen ausschließlich lokalen, nicht öffentlichen Beitrag. Titel: ‚Eval Vereinsabend im Februar‘. Datum: 2099-02-02. Autor: hubert-warsitz. Kategorie: Verein. Fertigtext: ‚Am Freitag treffen wir uns ab 19:30 Uhr zum offenen Vereinsabend. Gäste sind willkommen.‘ Keine Bilder. Verändere den Fertigtext nicht.",
+    "expected": {
+      "status": "completed",
+      "maxQuestions": 0,
+      "requiredFiles": [
+        "content/blog/article/20990202.eval-vereinsabend-im-februar.md"
+      ],
+      "allowedFiles": [
+        "content/blog/article/20990202.eval-vereinsabend-im-februar.md"
+      ],
+      "contentAssertions": [
+        {
+          "path": "content/blog/article/20990202.eval-vereinsabend-im-februar.md",
+          "includes": [
+            "title: Eval Vereinsabend im Februar",
+            "authors:\n  - hubert-warsitz",
+            "category: Verein",
+            "date: 2099-02-02",
+            "published: false",
+            "loc: /blog/article/eval-vereinsabend-im-februar",
+            "Am Freitag treffen wir uns ab 19:30 Uhr zum offenen Vereinsabend. Gäste sind willkommen."
+          ],
+          "excludes": [
+            "status: draft"
+          ],
+          "frontmatterOrder": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "block-ambiguous-team-report",
+    "prompt": "Erstelle einen ausschließlich lokalen Bericht über unseren Mannschaftskampf gegen Stuttgart. Welche unserer Mannschaften gespielt hat und an welchem Spieltag das war, ist unbekannt. Der Kampf endete 4:4.",
+    "expected": {
+      "status": "blocked",
+      "minQuestions": 1,
+      "maxQuestions": 1,
+      "requiredFiles": [
+
+      ],
+      "allowedFiles": [
+
+      ],
+      "contentAssertions": [
+
+      ]
+    }
+  },
+  {
+    "id": "preserve-dirty-worktree",
+    "fixture": {
+      "source": "fixtures/existing-article.md",
+      "target": "content/blog/article/20990101.eval-vereinsabend.md"
+    },
+    "preservedFixtures": [
+      {
+        "source": "fixtures/unrelated-user-change.txt",
+        "target": "notes/eval-user-notes.txt"
+      }
+    ],
+    "prompt": "Korrigiere im bestehenden Beitrag content/blog/article/20990101.eval-vereinsabend.md ausschließlich „Schnellschch“ zu „Schnellschach“. Die bereits vorhandene fremde Änderung unter notes/eval-user-notes.txt darf nicht verändert werden. Erstelle nur einen lokalen Entwurf.",
+    "expected": {
+      "status": "completed",
+      "maxQuestions": 0,
+      "requiredFiles": [
+        "content/blog/article/20990101.eval-vereinsabend.md"
+      ],
+      "allowedFiles": [
+        "content/blog/article/20990101.eval-vereinsabend.md"
+      ],
+      "contentAssertions": [
+        {
+          "path": "content/blog/article/20990101.eval-vereinsabend.md",
+          "includes": [
+            "Schnellschach und Blitzschach"
+          ],
+          "excludes": [
+            "Schnellschch"
+          ],
+          "frontmatterOrder": true,
+          "exactReplacement": {
+            "source": "fixtures/existing-article.md",
+            "search": "Schnellschch",
+            "replace": "Schnellschach"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "create-without-optional-metadata",
+    "prompt": "Erstelle ausschließlich lokal einen nicht öffentlichen Beitrag. Titel: „Eval Sommerfest ohne Autor“. Datum: 2099-07-12. Rohmaterial: 27 Mitglieder beim Sommerfest, gemeinsames Grillen, kleines Blitzturnier, Dank an alle Helfer. Es gibt keine Bilder. Autor und Kategorie wurden nicht angegeben; frage deswegen nicht nach.",
+    "expected": {
+      "status": "completed",
+      "maxQuestions": 0,
+      "requiredFiles": [
+        "content/blog/article/20990712.eval-sommerfest-ohne-autor.md"
+      ],
+      "allowedFiles": [
+        "content/blog/article/20990712.eval-sommerfest-ohne-autor.md"
+      ],
+      "contentAssertions": [
+        {
+          "path": "content/blog/article/20990712.eval-sommerfest-ohne-autor.md",
+          "includes": [
+            "title: Eval Sommerfest ohne Autor",
+            "date: 2099-07-12",
+            "published: false",
+            "loc: /blog/article/eval-sommerfest-ohne-autor",
+            "27 Mitglieder",
+            "Blitzturnier",
+            "Helfer"
+          ],
+          "excludes": [
+            "authors:",
+            "status: draft"
+          ],
+          "frontmatterOrder": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "block-conflicting-match-date",
+    "prompt": "Erstelle ausschließlich lokal einen Mannschaftsbericht. Die gelieferten Unterlagen nennen für denselben Kampf widersprüchlich den 4. April 2099 und den 5. April 2099; beide Angaben wirken gleich verlässlich und das tatsächliche Spieldatum ist nicht anderweitig belegbar. Ergebnis: 4:4. Erfinde kein Datum.",
+    "expected": {
+      "status": "blocked",
+      "minQuestions": 1,
+      "maxQuestions": 1,
+      "requiredFiles": [
+
+      ],
+      "allowedFiles": [
+
+      ],
+      "contentAssertions": [
+
+      ]
+    }
+  }
+]

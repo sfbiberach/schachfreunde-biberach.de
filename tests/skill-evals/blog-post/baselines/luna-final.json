@@ -1,0 +1,578 @@
+{
+  "metadata": {
+    "generatedAt": "2026-07-30T21:18:59.198Z",
+    "label": "luna-final",
+    "model": "gpt-5.6-luna",
+    "reasoning": "low",
+    "runs": 1,
+    "skillPath": "C:\\Users\\janfr\\Documents\\GitHub\\2.sfbiberach\\schachfreunde-biberach.de\\plugins\\schachfreunde-blog\\skills\\create-schachfreunde-blog-post\\SKILL.md"
+  },
+  "cases": [
+    {
+      "id": "simple-proofreading",
+      "description": "A small correction to an existing article should take the shortest path.",
+      "attempts": [
+        {
+          "actual": {
+            "operation": "revise",
+            "inputKind": "existing-content",
+            "contentKinds": [
+              "general"
+            ],
+            "questions": [],
+            "sources": [
+              "target-article",
+              "editorial-style",
+              "repository-conventions"
+            ],
+            "actions": [
+              "inspect-materials",
+              "edit-article",
+              "run-lint",
+              "create-pr"
+            ],
+            "defaults": [
+              "Only replace “Schnellschch” with “Schnellschach”.",
+              "Keep content and metadata otherwise unchanged.",
+              "Do not process media or use Nuxt Studio."
+            ],
+            "blockers": [
+              "Read-only evaluation prevents executing the planned edit, validation, branch/commit/push, and PR creation."
+            ]
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 18037,
+            "inputTokens": 26366,
+            "cachedInputTokens": 20992,
+            "outputTokens": 558,
+            "reasoningTokens": 215,
+            "toolCalls": 2
+          }
+        }
+      ],
+      "summary": {
+        "attempts": 1,
+        "completed": 1,
+        "passed": 1,
+        "passRate": 1,
+        "medianDurationMs": 18037,
+        "medianInputTokens": 26366,
+        "medianCachedInputTokens": 20992,
+        "medianOutputTokens": 558,
+        "medianReasoningTokens": 215,
+        "medianToolCalls": 2
+      }
+    },
+    {
+      "id": "complete-new-article",
+      "description": "Complete source material should not trigger clarification.",
+      "attempts": [
+        {
+          "actual": {
+            "operation": "create",
+            "inputKind": "finished-text",
+            "contentKinds": [
+              "general"
+            ],
+            "questions": [],
+            "sources": [
+              "content-schema",
+              "categories",
+              "authors",
+              "editorial-style",
+              "repository-conventions"
+            ],
+            "actions": [
+              "inspect-materials",
+              "edit-article",
+              "run-lint",
+              "create-pr"
+            ],
+            "defaults": [
+              "Use the supplied title, date, author, category, and finished text.",
+              "Set published to true.",
+              "Derive description and slug deterministically; add no toc or image."
+            ],
+            "blockers": []
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 19569,
+            "inputTokens": 26424,
+            "cachedInputTokens": 20992,
+            "outputTokens": 638,
+            "reasoningTokens": 234,
+            "toolCalls": 2
+          }
+        }
+      ],
+      "summary": {
+        "attempts": 1,
+        "completed": 1,
+        "passed": 1,
+        "passRate": 1,
+        "medianDurationMs": 19569,
+        "medianInputTokens": 26424,
+        "medianCachedInputTokens": 20992,
+        "medianOutputTokens": 638,
+        "medianReasoningTokens": 234,
+        "medianToolCalls": 2
+      }
+    },
+    {
+      "id": "raw-material-with-optional-metadata",
+      "description": "Missing optional metadata should be inferred or omitted without a question.",
+      "attempts": [
+        {
+          "actual": {
+            "operation": "create",
+            "inputKind": "raw-material",
+            "contentKinds": [
+              "general"
+            ],
+            "questions": [],
+            "sources": [
+              "content-schema",
+              "categories",
+              "examples",
+              "editorial-style",
+              "repository-conventions"
+            ],
+            "actions": [
+              "inspect-materials",
+              "edit-article",
+              "run-lint",
+              "create-pr"
+            ],
+            "defaults": [
+              "Aktuelles lokales Redaktionsdatum verwenden.",
+              "Beitrag veröffentlichen (`published: true`).",
+              "Ohne Artikelbild veröffentlichen.",
+              "Keine Autorenschaft angeben, da keine belegt ist.",
+              "Kategorie nur setzen, wenn eine passende vorhandene Kategorie eindeutig ist."
+            ],
+            "blockers": []
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 17848,
+            "inputTokens": 26884,
+            "cachedInputTokens": 20992,
+            "outputTokens": 840,
+            "reasoningTokens": 361,
+            "toolCalls": 2
+          }
+        }
+      ],
+      "summary": {
+        "attempts": 1,
+        "completed": 1,
+        "passed": 1,
+        "passRate": 1,
+        "medianDurationMs": 17848,
+        "medianInputTokens": 26884,
+        "medianCachedInputTokens": 20992,
+        "medianOutputTokens": 840,
+        "medianReasoningTokens": 361,
+        "medianToolCalls": 2
+      }
+    },
+    {
+      "id": "resolvable-team-date",
+      "description": "A missing match date should first trigger targeted official lookup, not a question.",
+      "attempts": [
+        {
+          "actual": {
+            "operation": "create",
+            "inputKind": "finished-text",
+            "contentKinds": [
+              "team-match"
+            ],
+            "questions": [],
+            "sources": [
+              "content-schema",
+              "categories",
+              "editorial-style",
+              "repository-conventions",
+              "team-page",
+              "nuliga"
+            ],
+            "actions": [
+              "inspect-materials",
+              "edit-article",
+              "run-lint",
+              "create-pr"
+            ],
+            "defaults": [
+              "Spieldatum aus dem Spielplan ableiten.",
+              "Ergebnis 4:4 übernehmen.",
+              "Fertigtext unverändert bewahren, abgesehen von notwendigen Korrekturen.",
+              "Standardmäßig veröffentlichungsfertigen PR erstellen."
+            ],
+            "blockers": []
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 20114,
+            "inputTokens": 27019,
+            "cachedInputTokens": 20992,
+            "outputTokens": 963,
+            "reasoningTokens": 390,
+            "toolCalls": 2
+          }
+        }
+      ],
+      "summary": {
+        "attempts": 1,
+        "completed": 1,
+        "passed": 1,
+        "passRate": 1,
+        "medianDurationMs": 20114,
+        "medianInputTokens": 27019,
+        "medianCachedInputTokens": 20992,
+        "medianOutputTokens": 963,
+        "medianReasoningTokens": 390,
+        "medianToolCalls": 2
+      }
+    },
+    {
+      "id": "ambiguous-team-report",
+      "description": "A genuinely ambiguous match should result in one bundled clarification.",
+      "attempts": [
+        {
+          "actual": {
+            "operation": "create",
+            "inputKind": "raw-material",
+            "contentKinds": [
+              "team-match"
+            ],
+            "questions": [
+              "Kannst du bitte die genaue Mannschaft, den Spieltag und das tatsächliche Spieldatum nennen (sowie ggf. den genauen Stuttgarter Gegner)?"
+            ],
+            "sources": [
+              "team-page",
+              "nuliga"
+            ],
+            "actions": [
+              "inspect-materials",
+              "ask-user",
+              "edit-article",
+              "run-lint",
+              "create-pr"
+            ],
+            "defaults": [],
+            "blockers": [
+              "Der Mannschaftskampf ist ohne Mannschaft, Spieltag und tatsächliches Spieldatum nicht eindeutig identifizierbar."
+            ]
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 38551,
+            "inputTokens": 90219,
+            "cachedInputTokens": 76288,
+            "outputTokens": 1451,
+            "reasoningTokens": 553,
+            "toolCalls": 10
+          }
+        }
+      ],
+      "summary": {
+        "attempts": 1,
+        "completed": 1,
+        "passed": 1,
+        "passRate": 1,
+        "medianDurationMs": 38551,
+        "medianInputTokens": 90219,
+        "medianCachedInputTokens": 76288,
+        "medianOutputTokens": 1451,
+        "medianReasoningTokens": 553,
+        "medianToolCalls": 10
+      }
+    },
+    {
+      "id": "tournament-article",
+      "description": "A clear tournament article should load tournament data but not team data.",
+      "attempts": [
+        {
+          "actual": {
+            "operation": "create",
+            "inputKind": "raw-material",
+            "contentKinds": [
+              "tournament"
+            ],
+            "questions": [],
+            "sources": [
+              "content-schema",
+              "categories",
+              "examples",
+              "tournaments",
+              "editorial-style",
+              "repository-conventions"
+            ],
+            "actions": [
+              "inspect-materials",
+              "edit-article",
+              "run-lint",
+              "create-pr"
+            ],
+            "defaults": [
+              "published: true",
+              "aktuelles lokales Redaktionsdatum",
+              "Turnierbezug: 1.biber-jugend-cup"
+            ],
+            "blockers": []
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 25356,
+            "inputTokens": 58837,
+            "cachedInputTokens": 45056,
+            "outputTokens": 923,
+            "reasoningTokens": 369,
+            "toolCalls": 6
+          }
+        }
+      ],
+      "summary": {
+        "attempts": 1,
+        "completed": 1,
+        "passed": 1,
+        "passRate": 1,
+        "medianDurationMs": 25356,
+        "medianInputTokens": 58837,
+        "medianCachedInputTokens": 45056,
+        "medianOutputTokens": 923,
+        "medianReasoningTokens": 369,
+        "medianToolCalls": 6
+      }
+    },
+    {
+      "id": "table-image",
+      "description": "Tabular media should activate media guidance without unrelated lookups.",
+      "attempts": [
+        {
+          "actual": {
+            "operation": "create",
+            "inputKind": "finished-text",
+            "contentKinds": [
+              "general"
+            ],
+            "questions": [],
+            "sources": [
+              "content-schema",
+              "categories",
+              "content-and-media",
+              "editorial-style",
+              "repository-conventions"
+            ],
+            "actions": [
+              "inspect-materials",
+              "edit-article",
+              "process-media",
+              "run-lint",
+              "create-pr"
+            ],
+            "defaults": [
+              "Veröffentlichungsfertiger Beitrag mit published: true",
+              "Aktuelles lokales Redaktionsdatum verwenden",
+              "Klar erkennbare Kategorie ableiten; sonst weglassen",
+              "Tabelle aus dem Bild als echte Markdown-Tabelle übertragen",
+              "Standardmäßig einen GitHub-PR erstellen"
+            ],
+            "blockers": []
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 17960,
+            "inputTokens": 26338,
+            "cachedInputTokens": 20992,
+            "outputTokens": 725,
+            "reasoningTokens": 409,
+            "toolCalls": 2
+          }
+        }
+      ],
+      "summary": {
+        "attempts": 1,
+        "completed": 1,
+        "passed": 1,
+        "passRate": 1,
+        "medianDurationMs": 17960,
+        "medianInputTokens": 26338,
+        "medianCachedInputTokens": 20992,
+        "medianOutputTokens": 725,
+        "medianReasoningTokens": 409,
+        "medianToolCalls": 2
+      }
+    },
+    {
+      "id": "explicit-nuxt-studio",
+      "description": "Direct Studio publishing should only activate when explicitly requested.",
+      "attempts": [
+        {
+          "actual": {
+            "operation": "direct-publish",
+            "inputKind": "existing-content",
+            "contentKinds": [
+              "general",
+              "tournament"
+            ],
+            "questions": [],
+            "sources": [
+              "target-article",
+              "nuxt-studio"
+            ],
+            "actions": [
+              "inspect-materials",
+              "use-nuxt-studio"
+            ],
+            "defaults": [
+              "Beitrag als unverändert vollständig vorbereitet behandeln.",
+              "Direkt über Nuxt Studio im konfigurierten Veröffentlichungsbranch veröffentlichen.",
+              "Keinen GitHub-PR erstellen.",
+              "Nach dem Commit Synchronisierung/Deployment sowie öffentliche Beitragsroute und Assets prüfen."
+            ],
+            "blockers": []
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 20706,
+            "inputTokens": 42146,
+            "cachedInputTokens": 36096,
+            "outputTokens": 864,
+            "reasoningTokens": 405,
+            "toolCalls": 4
+          }
+        }
+      ],
+      "summary": {
+        "attempts": 1,
+        "completed": 1,
+        "passed": 1,
+        "passRate": 1,
+        "medianDurationMs": 20706,
+        "medianInputTokens": 42146,
+        "medianCachedInputTokens": 36096,
+        "medianOutputTokens": 864,
+        "medianReasoningTokens": 405,
+        "medianToolCalls": 4
+      }
+    },
+    {
+      "id": "unrelated-code-change",
+      "description": "A request unrelated to blog content should not use the workflow.",
+      "attempts": [
+        {
+          "actual": {
+            "operation": "unrelated",
+            "inputKind": "unknown",
+            "contentKinds": [
+              "unrelated"
+            ],
+            "questions": [],
+            "sources": [],
+            "actions": [
+              "none"
+            ],
+            "defaults": [],
+            "blockers": []
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 13638,
+            "inputTokens": 26556,
+            "cachedInputTokens": 19968,
+            "outputTokens": 257,
+            "reasoningTokens": 77,
+            "toolCalls": 2
+          }
+        }
+      ],
+      "summary": {
+        "attempts": 1,
+        "completed": 1,
+        "passed": 1,
+        "passRate": 1,
+        "medianDurationMs": 13638,
+        "medianInputTokens": 26556,
+        "medianCachedInputTokens": 19968,
+        "medianOutputTokens": 257,
+        "medianReasoningTokens": 77,
+        "medianToolCalls": 2
+      }
+    }
+  ],
+  "totals": {
+    "cases": 9,
+    "attempts": 9,
+    "completed": 9,
+    "passed": 9,
+    "passRate": 1,
+    "medianDurationMs": 19569,
+    "medianInputTokens": 26884,
+    "medianCachedInputTokens": 20992,
+    "medianOutputTokens": 840,
+    "medianReasoningTokens": 369,
+    "medianToolCalls": 2
+  },
+  "comparison": {
+    "medianDurationMs": {
+      "baseline": 18180,
+      "candidate": 19569,
+      "changePercent": 7.64026402640264
+    },
+    "medianInputTokens": {
+      "baseline": 28129,
+      "candidate": 26884,
+      "changePercent": -4.4260371858224605
+    },
+    "medianCachedInputTokens": {
+      "baseline": 20992,
+      "candidate": 20992,
+      "changePercent": 0
+    },
+    "medianOutputTokens": {
+      "baseline": 835,
+      "candidate": 840,
+      "changePercent": 0.5988023952095809
+    },
+    "medianReasoningTokens": {
+      "baseline": 364,
+      "candidate": 369,
+      "changePercent": 1.3736263736263736
+    },
+    "medianToolCalls": {
+      "baseline": 2,
+      "candidate": 2,
+      "changePercent": 0
+    }
+  }
+}

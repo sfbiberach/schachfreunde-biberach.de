@@ -1,0 +1,185 @@
+{
+  "metadata": {
+    "generatedAt": "2026-07-30T22:37:14.505Z",
+    "label": "isolated-luna-final-date-v2-3x",
+    "model": "gpt-5.6-luna",
+    "reasoning": "low",
+    "runs": 3,
+    "skillPath": "C:\\Users\\janfr\\Documents\\GitHub\\2.sfbiberach\\schachfreunde-biberach.de\\plugins\\schachfreunde-blog\\skills\\create-schachfreunde-blog-post\\SKILL.md"
+  },
+  "cases": [
+    {
+      "id": "resolvable-team-date",
+      "description": "A missing match date should first trigger targeted official lookup, not a question.",
+      "attempts": [
+        {
+          "actual": {
+            "operation": "create",
+            "inputKind": "finished-text",
+            "repositoryAccess": "local",
+            "contentKinds": [
+              "team-match"
+            ],
+            "questions": [],
+            "sources": [
+              "content-schema",
+              "categories",
+              "editorial-style",
+              "repository-conventions",
+              "team-page",
+              "nuliga"
+            ],
+            "actions": [
+              "inspect-materials",
+              "edit-article",
+              "run-lint",
+              "create-pr",
+              "check-ci"
+            ],
+            "defaults": [
+              "Spieldatum über den eindeutig passenden Spielplan ermitteln",
+              "Fertigtext unverändert bewahren, abgesehen von notwendigen Korrekturen",
+              "Beitrag als veröffentlicht markieren",
+              "Kein Autor, Bild oder Turnier ohne Beleg ergänzen"
+            ],
+            "blockers": []
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 14266,
+            "inputTokens": 27251,
+            "cachedInputTokens": 22016,
+            "uncachedInputTokens": 5235,
+            "outputTokens": 552,
+            "reasoningTokens": 217,
+            "toolCalls": 2
+          }
+        },
+        {
+          "actual": {
+            "operation": "create",
+            "inputKind": "finished-text",
+            "repositoryAccess": "local",
+            "contentKinds": [
+              "team-match"
+            ],
+            "questions": [],
+            "sources": [
+              "editorial-style",
+              "repository-conventions",
+              "content-schema",
+              "team-page",
+              "nuliga"
+            ],
+            "actions": [
+              "inspect-materials",
+              "edit-article",
+              "run-lint",
+              "create-pr",
+              "check-ci"
+            ],
+            "defaults": [
+              "Tatsächliches Spieldatum eindeutig über den Spielplan ermitteln.",
+              "Ergebnis 4:4 übernehmen.",
+              "Fertigtext unverändert bewahren; nur notwendige Korrekturen vornehmen.",
+              "Standardmäßig einen veröffentlichungsfertigen GitHub-PR erstellen."
+            ],
+            "blockers": []
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 17109,
+            "inputTokens": 27508,
+            "cachedInputTokens": 20992,
+            "uncachedInputTokens": 6516,
+            "outputTokens": 826,
+            "reasoningTokens": 260,
+            "toolCalls": 2
+          }
+        },
+        {
+          "actual": {
+            "operation": "create",
+            "inputKind": "finished-text",
+            "repositoryAccess": "local",
+            "contentKinds": [
+              "team-match"
+            ],
+            "questions": [],
+            "sources": [
+              "content-schema",
+              "team-page",
+              "nuliga",
+              "editorial-style",
+              "repository-conventions"
+            ],
+            "actions": [
+              "inspect-materials",
+              "edit-article",
+              "run-lint",
+              "create-pr",
+              "check-ci"
+            ],
+            "defaults": [
+              "published: true",
+              "Spieldatum wird eindeutig aus dem Spielplan abgeleitet",
+              "Autorenschaft wird weggelassen, sofern nicht belegt",
+              "Artikelbild wird nicht ergänzt, da kein geeignetes freigegebenes Material vorliegt"
+            ],
+            "blockers": []
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 13694,
+            "inputTokens": 26828,
+            "cachedInputTokens": 19968,
+            "uncachedInputTokens": 6860,
+            "outputTokens": 528,
+            "reasoningTokens": 188,
+            "toolCalls": 2
+          }
+        }
+      ],
+      "summary": {
+        "attempts": 3,
+        "completed": 3,
+        "passed": 3,
+        "passRate": 1,
+        "medianDurationMs": 14266,
+        "p95DurationMs": 16824.7,
+        "medianInputTokens": 27251,
+        "medianCachedInputTokens": 20992,
+        "medianUncachedInputTokens": 6516,
+        "p95UncachedInputTokens": 6825.6,
+        "medianOutputTokens": 552,
+        "medianReasoningTokens": 217,
+        "medianToolCalls": 2
+      }
+    }
+  ],
+  "totals": {
+    "cases": 1,
+    "attempts": 3,
+    "completed": 3,
+    "passed": 3,
+    "passRate": 1,
+    "medianDurationMs": 14266,
+    "p95DurationMs": 16824.7,
+    "medianInputTokens": 27251,
+    "medianCachedInputTokens": 20992,
+    "medianUncachedInputTokens": 6516,
+    "p95UncachedInputTokens": 6825.6,
+    "medianOutputTokens": 552,
+    "medianReasoningTokens": 217,
+    "medianToolCalls": 2
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "metadata": {
+    "generatedAt": "2026-07-30T22:31:38.482Z",
+    "label": "isolated-luna-final-integration",
+    "model": "gpt-5.6-luna",
+    "reasoning": "low",
+    "runs": 1,
+    "isolated": true,
+    "skillPath": "C:\\Users\\janfr\\Documents\\GitHub\\2.sfbiberach\\schachfreunde-biberach.de\\plugins\\schachfreunde-blog\\skills\\create-schachfreunde-blog-post\\SKILL.md"
+  },
+  "cases": [
+    {
+      "id": "correct-existing-article",
+      "attempt": 1,
+      "actual": {
+        "status": "completed",
+        "questions": [],
+        "reportedFiles": [
+          "content/blog/article/20990101.eval-vereinsabend.md"
+        ]
+      },
+      "evaluation": {
+        "passed": true,
+        "failures": [],
+        "changedFiles": [
+          "content/blog/article/20990101.eval-vereinsabend.md"
+        ]
+      },
+      "metrics": {
+        "durationMs": 44442,
+        "inputTokens": 173156,
+        "cachedInputTokens": 153600,
+        "uncachedInputTokens": 19556,
+        "outputTokens": 1419,
+        "reasoningTokens": 241,
+        "toolCalls": 10
+      }
+    },
+    {
+      "id": "create-complete-article",
+      "attempt": 1,
+      "actual": {
+        "status": "completed",
+        "questions": [],
+        "reportedFiles": [
+          "content/blog/article/20990202.eval-vereinsabend-im-februar.md"
+        ]
+      },
+      "evaluation": {
+        "passed": true,
+        "failures": [],
+        "changedFiles": [
+          "content/blog/article/20990202.eval-vereinsabend-im-februar.md"
+        ]
+      },
+      "metrics": {
+        "durationMs": 60359,
+        "inputTokens": 253235,
+        "cachedInputTokens": 226816,
+        "uncachedInputTokens": 26419,
+        "outputTokens": 1912,
+        "reasoningTokens": 336,
+        "toolCalls": 14
+      }
+    },
+    {
+      "id": "block-ambiguous-team-report",
+      "attempt": 1,
+      "actual": {
+        "status": "blocked",
+        "questions": [
+          "Welche unserer Mannschaften spielte gegen Stuttgart, und an welchem Spieltag beziehungsweise an welchem konkreten Datum fand der 4:4-Kampf statt?"
+        ],
+        "reportedFiles": []
+      },
+      "evaluation": {
+        "passed": true,
+        "failures": [],
+        "changedFiles": []
+      },
+      "metrics": {
+        "durationMs": 22249,
+        "inputTokens": 33058,
+        "cachedInputTokens": 23040,
+        "uncachedInputTokens": 10018,
+        "outputTokens": 413,
+        "reasoningTokens": 149,
+        "toolCalls": 2
+      }
+    },
+    {
+      "id": "preserve-dirty-worktree",
+      "attempt": 1,
+      "actual": {
+        "status": "completed",
+        "questions": [],
+        "reportedFiles": [
+          "content/blog/article/20990101.eval-vereinsabend.md"
+        ]
+      },
+      "evaluation": {
+        "passed": true,
+        "failures": [],
+        "changedFiles": [
+          "content/blog/article/20990101.eval-vereinsabend.md"
+        ]
+      },
+      "metrics": {
+        "durationMs": 42065,
+        "inputTokens": 150778,
+        "cachedInputTokens": 130304,
+        "uncachedInputTokens": 20474,
+        "outputTokens": 1514,
+        "reasoningTokens": 240,
+        "toolCalls": 8
+      }
+    },
+    {
+      "id": "create-without-optional-metadata",
+      "attempt": 1,
+      "actual": {
+        "status": "completed",
+        "questions": [],
+        "reportedFiles": [
+          "content/blog/article/20990712.eval-sommerfest-ohne-autor.md"
+        ]
+      },
+      "evaluation": {
+        "passed": true,
+        "failures": [],
+        "changedFiles": [
+          "content/blog/article/20990712.eval-sommerfest-ohne-autor.md"
+        ]
+      },
+      "metrics": {
+        "durationMs": 53640,
+        "inputTokens": 214895,
+        "cachedInputTokens": 187392,
+        "uncachedInputTokens": 27503,
+        "outputTokens": 2088,
+        "reasoningTokens": 417,
+        "toolCalls": 10
+      }
+    },
+    {
+      "id": "block-conflicting-match-date",
+      "attempt": 1,
+      "actual": {
+        "status": "blocked",
+        "questions": [
+          "Welches tatsächliche Spieldatum soll für den Mannschaftsbericht verwendet werden: 4. April 2099 oder 5. April 2099?"
+        ],
+        "reportedFiles": []
+      },
+      "evaluation": {
+        "passed": true,
+        "failures": [],
+        "changedFiles": []
+      },
+      "metrics": {
+        "durationMs": 15356,
+        "inputTokens": 37735,
+        "cachedInputTokens": 23040,
+        "uncachedInputTokens": 14695,
+        "outputTokens": 416,
+        "reasoningTokens": 144,
+        "toolCalls": 2
+      }
+    }
+  ],
+  "totals": {
+    "cases": 6,
+    "attempts": 6,
+    "completed": 6,
+    "passed": 6,
+    "passRate": 1,
+    "medianDurationMs": 43253.5,
+    "p95DurationMs": 58679.25,
+    "medianInputTokens": 161967,
+    "medianCachedInputTokens": 141952,
+    "medianUncachedInputTokens": 20015,
+    "p95UncachedInputTokens": 27232,
+    "medianOutputTokens": 1466.5,
+    "medianToolCalls": 9
+  }
+}

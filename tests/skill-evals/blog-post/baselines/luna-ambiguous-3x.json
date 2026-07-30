@@ -1,0 +1,160 @@
+{
+  "metadata": {
+    "generatedAt": "2026-07-30T21:14:47.587Z",
+    "label": "luna-ambiguous-3x",
+    "model": "gpt-5.6-luna",
+    "reasoning": "low",
+    "runs": 3,
+    "skillPath": "C:\\Users\\janfr\\Documents\\GitHub\\2.sfbiberach\\schachfreunde-biberach.de\\plugins\\schachfreunde-blog\\skills\\create-schachfreunde-blog-post\\SKILL.md"
+  },
+  "cases": [
+    {
+      "id": "ambiguous-team-report",
+      "description": "A genuinely ambiguous match should result in one bundled clarification.",
+      "attempts": [
+        {
+          "actual": {
+            "operation": "create",
+            "inputKind": "raw-material",
+            "contentKinds": [
+              "team-match"
+            ],
+            "questions": [
+              "Welche unserer Mannschaft spielte gegen Stuttgart, in welcher Saison bzw. welchem Wettbewerb und an welchem Spieltag fand der 4:4-Kampf statt? Bitte nenne außerdem, falls bekannt, das tatsächliche Spieldatum."
+            ],
+            "sources": [
+              "team-page",
+              "nuliga"
+            ],
+            "actions": [
+              "inspect-materials",
+              "ask-user",
+              "edit-article",
+              "run-lint",
+              "create-pr"
+            ],
+            "defaults": [
+              "Neuer, veröffentlichungsfertiger Mannschaftsbericht",
+              "Bei Klärung der Fakten wird das tatsächliche Spieldatum verwendet",
+              "Standardmäßig wird ein GitHub-PR erstellt"
+            ],
+            "blockers": [
+              "Der beschriebene Mannschaftskampf ist ohne Mannschaft, Saison/Wettbewerb und Spieltag nicht eindeutig identifizierbar; dadurch fehlen zentrale Fakten und das tatsächliche Spieldatum."
+            ]
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 16042,
+            "inputTokens": 26368,
+            "cachedInputTokens": 19968,
+            "outputTokens": 679,
+            "reasoningTokens": 253,
+            "toolCalls": 2
+          }
+        },
+        {
+          "actual": {
+            "operation": "create",
+            "inputKind": "raw-material",
+            "contentKinds": [
+              "team-match"
+            ],
+            "questions": [
+              "Welche unserer Mannschaften, in welcher Saison und an welchem Spieltag beziehungsweise Datum fand der 4:4-Kampf gegen Stuttgart statt?"
+            ],
+            "sources": [
+              "team-page",
+              "nuliga"
+            ],
+            "actions": [
+              "inspect-materials",
+              "ask-user"
+            ],
+            "defaults": [],
+            "blockers": [
+              "Der Mannschaftskampf und sein tatsächliches Spieldatum sind anhand der Angaben nicht eindeutig identifizierbar."
+            ]
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 17325,
+            "inputTokens": 26425,
+            "cachedInputTokens": 20992,
+            "outputTokens": 768,
+            "reasoningTokens": 344,
+            "toolCalls": 2
+          }
+        },
+        {
+          "actual": {
+            "operation": "create",
+            "inputKind": "raw-material",
+            "contentKinds": [
+              "team-match"
+            ],
+            "questions": [
+              "Welche Mannschaft der Schachfreunde Biberach spielte gegen Stuttgart, und an welchem Datum beziehungsweise Spieltag fand der Mannschaftskampf statt? Bitte teile mir außerdem vorhandene Details zum Verlauf oder zu den Einzelergebnissen mit, falls sie im Bericht berücksichtigt werden sollen."
+            ],
+            "sources": [
+              "team-page",
+              "nuliga"
+            ],
+            "actions": [
+              "inspect-materials",
+              "ask-user"
+            ],
+            "defaults": [
+              "Das Endergebnis 4:4 wird übernommen."
+            ],
+            "blockers": [
+              "Mannschaft und tatsächliches Spieldatum sind nach den verfügbaren Angaben noch nicht eindeutig identifiziert."
+            ]
+          },
+          "evaluation": {
+            "passed": true,
+            "failures": []
+          },
+          "metrics": {
+            "durationMs": 16950,
+            "inputTokens": 26756,
+            "cachedInputTokens": 19968,
+            "outputTokens": 781,
+            "reasoningTokens": 382,
+            "toolCalls": 2
+          }
+        }
+      ],
+      "summary": {
+        "attempts": 3,
+        "completed": 3,
+        "passed": 3,
+        "passRate": 1,
+        "medianDurationMs": 16950,
+        "medianInputTokens": 26425,
+        "medianCachedInputTokens": 19968,
+        "medianOutputTokens": 768,
+        "medianReasoningTokens": 344,
+        "medianToolCalls": 2
+      }
+    }
+  ],
+  "totals": {
+    "cases": 1,
+    "attempts": 3,
+    "completed": 3,
+    "passed": 3,
+    "passRate": 1,
+    "medianDurationMs": 16950,
+    "medianInputTokens": 26425,
+    "medianCachedInputTokens": 19968,
+    "medianOutputTokens": 768,
+    "medianReasoningTokens": 344,
+    "medianToolCalls": 2
+  }
+}

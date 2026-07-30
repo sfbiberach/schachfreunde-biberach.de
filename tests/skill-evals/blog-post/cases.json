@@ -1,0 +1,361 @@
+[
+  {
+    "id": "simple-proofreading",
+    "description": "A small correction to an existing article should take the shortest path.",
+    "prompt": "Korrigiere im bestehenden Beitrag content/blog/article/20260727.biberacher-schach-sommer-2026.md ausschließlich den Tippfehler ‚Schnellschch‘. Inhalt und Metadaten sollen ansonsten unverändert bleiben.",
+    "expected": {
+      "operation": "revise",
+      "inputKind": "existing-content",
+      "maxQuestions": 0,
+      "maxSources": 3,
+      "requiredSources": [
+        "target-article",
+        "editorial-style"
+      ],
+      "forbiddenSources": [
+        "authors",
+        "categories",
+        "components",
+        "examples",
+        "nuliga",
+        "nuxt-studio",
+        "team-page",
+        "tournaments"
+      ],
+      "requiredActions": [
+        "edit-article",
+        "run-lint",
+        "create-pr"
+      ],
+      "forbiddenActions": [
+        "ask-user",
+        "process-media",
+        "use-nuxt-studio"
+      ],
+      "repositoryAccess": "local"
+    }
+  },
+  {
+    "id": "complete-new-article",
+    "description": "Complete source material should not trigger clarification.",
+    "prompt": "Erstelle einen neuen Beitrag mit dem Titel ‚Vereinsabend im August‘, Datum 2026-08-07, Autor hubert-warsitz und Kategorie Verein. Fertigtext: ‚Am Freitag treffen wir uns ab 19:30 Uhr zum offenen Vereinsabend. Gäste sind willkommen.‘",
+    "expected": {
+      "operation": "create",
+      "inputKind": "finished-text",
+      "maxQuestions": 0,
+      "maxSources": 5,
+      "requiredSources": [
+        "content-schema",
+        "categories",
+        "authors",
+        "editorial-style",
+        "repository-conventions"
+      ],
+      "forbiddenSources": [
+        "components",
+        "examples",
+        "nuliga",
+        "nuxt-studio",
+        "team-page",
+        "tournaments"
+      ],
+      "requiredActions": [
+        "edit-article",
+        "run-lint",
+        "create-pr"
+      ],
+      "forbiddenActions": [
+        "ask-user",
+        "process-media",
+        "use-nuxt-studio"
+      ],
+      "repositoryAccess": "local"
+    }
+  },
+  {
+    "id": "raw-material-with-optional-metadata",
+    "description": "Missing optional metadata should be inferred or omitted without a question.",
+    "prompt": "Mach daraus bitte einen Blogbeitrag: Sommerfest am Samstag, rund 30 Mitglieder waren da, Grillen und Blitzturnier, Dank an alle Helfer. Es gibt keine Bilder.",
+    "expected": {
+      "operation": "create",
+      "inputKind": "raw-material",
+      "maxQuestions": 0,
+      "maxSources": 5,
+      "requiredSources": [
+        "content-schema",
+        "categories",
+        "examples",
+        "editorial-style",
+        "repository-conventions"
+      ],
+      "forbiddenSources": [
+        "components",
+        "content-and-media",
+        "nuliga",
+        "nuxt-studio",
+        "team-page",
+        "tournaments"
+      ],
+      "requiredActions": [
+        "edit-article",
+        "run-lint",
+        "create-pr"
+      ],
+      "forbiddenActions": [
+        "ask-user",
+        "process-media",
+        "use-nuxt-studio"
+      ],
+      "repositoryAccess": "local"
+    }
+  },
+  {
+    "id": "resolvable-team-date",
+    "description": "A missing match date should first trigger targeted official lookup, not a question.",
+    "prompt": "Erstelle aus diesem fertigen Bericht einen Beitrag über den Mannschaftskampf unserer 1. Mannschaft gegen die Stuttgarter SF 1. Das Datum steht nicht im Text, lässt sich aber über den Spielplan eindeutig ermitteln. Ergebnis: 4:4. Text: ‚Nach einem langen Spieltag trennten sich beide Mannschaften mit einem gerechten Unentschieden.‘",
+    "expected": {
+      "operation": "create",
+      "inputKind": "finished-text",
+      "maxQuestions": 0,
+      "maxSources": 6,
+      "requiredSources": [
+        "team-page",
+        "editorial-style",
+        "repository-conventions"
+      ],
+      "forbiddenSources": [
+        "components",
+        "content-and-media",
+        "nuxt-studio",
+        "tournaments"
+      ],
+      "requiredActions": [
+        "edit-article",
+        "run-lint",
+        "create-pr"
+      ],
+      "forbiddenActions": [
+        "ask-user",
+        "process-media",
+        "use-nuxt-studio"
+      ],
+      "repositoryAccess": "local"
+    }
+  },
+  {
+    "id": "ambiguous-team-report",
+    "description": "A genuinely ambiguous match should result in one bundled clarification.",
+    "prompt": "Erstelle einen Bericht über unseren Mannschaftskampf gegen Stuttgart. Welche unserer Mannschaften gespielt hat und an welchem Spieltag das war, weiß ich nicht mehr. Der Kampf endete 4:4.",
+    "expected": {
+      "operation": "create",
+      "inputKind": "raw-material",
+      "minQuestions": 1,
+      "maxQuestions": 1,
+      "maxSources": 3,
+      "requiredSources": [
+        "team-page",
+        "nuliga"
+      ],
+      "forbiddenSources": [
+        "components",
+        "content-and-media",
+        "editorial-style",
+        "repository-conventions",
+        "nuxt-studio",
+        "tournaments"
+      ],
+      "requiredActions": [
+        "ask-user"
+      ],
+      "forbiddenActions": [
+        "process-media",
+        "use-nuxt-studio"
+      ],
+      "repositoryAccess": "local"
+    }
+  },
+  {
+    "id": "tournament-article",
+    "description": "A clear tournament article should load tournament data but not team data.",
+    "prompt": "Erstelle einen kurzen Beitrag aus diesen Stichpunkten zum Biber-Jugend-Cup: 42 Kinder nahmen teil, gespielt wurden sieben Runden, Dank an Helfer und Eltern.",
+    "expected": {
+      "operation": "create",
+      "inputKind": "raw-material",
+      "maxQuestions": 0,
+      "maxSources": 6,
+      "requiredSources": [
+        "tournaments",
+        "editorial-style",
+        "repository-conventions"
+      ],
+      "forbiddenSources": [
+        "components",
+        "content-and-media",
+        "nuliga",
+        "nuxt-studio",
+        "team-page"
+      ],
+      "requiredActions": [
+        "edit-article",
+        "run-lint",
+        "create-pr"
+      ],
+      "forbiddenActions": [
+        "ask-user",
+        "process-media",
+        "use-nuxt-studio"
+      ],
+      "repositoryAccess": "local"
+    }
+  },
+  {
+    "id": "table-image",
+    "description": "Tabular media should activate media guidance without unrelated lookups.",
+    "prompt": "Erstelle aus meinem fertigen Text einen Beitrag. Das beigefügte Bild zeigt eine vollständig lesbare Tabelle mit den Endständen und soll als echte Markdown-Tabelle übertragen werden. Es handelt sich nicht um einen Mannschaftskampf oder ein vorhandenes Turnier.",
+    "expected": {
+      "operation": "create",
+      "inputKind": "finished-text",
+      "maxQuestions": 0,
+      "maxSources": 5,
+      "requiredSources": [
+        "content-and-media",
+        "editorial-style",
+        "repository-conventions"
+      ],
+      "forbiddenSources": [
+        "components",
+        "nuliga",
+        "nuxt-studio",
+        "team-page",
+        "tournaments"
+      ],
+      "requiredActions": [
+        "edit-article",
+        "process-media",
+        "run-lint",
+        "create-pr"
+      ],
+      "forbiddenActions": [
+        "ask-user",
+        "use-nuxt-studio"
+      ],
+      "repositoryAccess": "local"
+    }
+  },
+  {
+    "id": "explicit-nuxt-studio",
+    "description": "Direct Studio publishing should only activate when explicitly requested.",
+    "prompt": "Veröffentliche den bereits vollständig vorbereiteten Beitrag content/blog/article/20260727.biberacher-schach-sommer-2026.md ausdrücklich direkt über Nuxt Studio. Verwende keinen GitHub-PR.",
+    "expected": {
+      "operation": "direct-publish",
+      "inputKind": "existing-content",
+      "maxQuestions": 0,
+      "maxSources": 2,
+      "requiredSources": [
+        "target-article",
+        "nuxt-studio"
+      ],
+      "forbiddenSources": [
+        "authors",
+        "categories",
+        "components",
+        "content-and-media",
+        "content-schema",
+        "editorial-style",
+        "examples",
+        "nuliga",
+        "repository-conventions",
+        "team-page",
+        "tournaments"
+      ],
+      "requiredActions": [
+        "use-nuxt-studio"
+      ],
+      "forbiddenActions": [
+        "ask-user",
+        "create-pr",
+        "process-media"
+      ],
+      "repositoryAccess": "local"
+    }
+  },
+  {
+    "id": "unrelated-code-change",
+    "description": "A request unrelated to blog content should not use the workflow.",
+    "prompt": "Behebe den TypeScript-Fehler in der Navigationskomponente und führe die Unit-Tests aus.",
+    "expected": {
+      "operation": "unrelated",
+      "inputKind": "unknown",
+      "maxQuestions": 0,
+      "maxSources": 0,
+      "requiredSources": [
+
+      ],
+      "forbiddenSources": [
+        "authors",
+        "categories",
+        "components",
+        "content-and-media",
+        "content-schema",
+        "editorial-style",
+        "examples",
+        "nuliga",
+        "nuxt-studio",
+        "repository-conventions",
+        "target-article",
+        "team-page",
+        "tournaments"
+      ],
+      "requiredActions": [
+        "none"
+      ],
+      "forbiddenActions": [
+        "ask-user",
+        "create-pr",
+        "edit-article",
+        "process-media",
+        "run-lint",
+        "use-nuxt-studio"
+      ],
+      "repositoryAccess": "none"
+    }
+  },
+  {
+    "id": "github-only-new-article",
+    "description": "A missing local checkout should route through GitHub without becoming a blocker.",
+    "prompt": "Dir steht kein lokaler Checkout zur Verfügung. Erstelle ausschließlich über GitHub einen neuen Beitrag: Titel „Vereinsabend im September“, Datum 2099-09-03, Kategorie Verein. Fertigtext: „Am Freitag beginnt der offene Vereinsabend um 19:30 Uhr. Gäste sind willkommen.“ Erstelle den üblichen Pull Request.",
+    "expected": {
+      "operation": "create",
+      "inputKind": "finished-text",
+      "maxQuestions": 0,
+      "maxSources": 6,
+      "requiredSources": [
+        "content-schema",
+        "categories",
+        "editorial-style",
+        "repository-conventions"
+      ],
+      "forbiddenSources": [
+        "authors",
+        "components",
+        "examples",
+        "nuliga",
+        "nuxt-studio",
+        "team-page",
+        "tournaments"
+      ],
+      "requiredActions": [
+        "edit-article",
+        "create-pr",
+        "check-ci"
+      ],
+      "forbiddenActions": [
+        "ask-user",
+        "process-media",
+        "run-lint",
+        "use-nuxt-studio"
+      ],
+      "repositoryAccess": "github-only"
+    }
+  }
+]
