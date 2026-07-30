@@ -2,16 +2,16 @@
 
 ## Autoritative Quellen
 
-Rufe die folgenden Dateien und Verzeichnisse vor jeder Bearbeitung direkt aus dem aktuellen Standardbranch von [`sfbiberach/schachfreunde-biberach.de`](https://github.com/sfbiberach/schachfreunde-biberach.de) ab. Verwende bevorzugt die verbundene GitHub-App und ersatzweise `gh`. Ein lokaler Checkout ist Arbeitsziel und nur bei nicht verfügbarem GitHub-Zugriff eine ausdrücklich zu kennzeichnende Ersatzquelle.
+Bestimme nach der Bestandsaufnahme, welche veränderlichen Repositorydaten der konkrete Auftrag benötigt. Nutze einen geeigneten lokalen Checkout zuerst und prüfe seine Aktualität nur, wenn aktuelle Repositorydaten für den Inhalt relevant sind oder spätestens vor dem PR. Fehlt ein geeigneter Checkout, rufe die benötigten Pfade aus dem aktuellen Standardbranch von [`sfbiberach/schachfreunde-biberach.de`](https://github.com/sfbiberach/schachfreunde-biberach.de) bevorzugt über die GitHub-App und ersatzweise über `gh` ab. Ein fehlender lokaler Checkout ist allein kein Blocker.
 
-- `content.config.ts`: Nuxt-Content-Schema für Artikel und Bilder
-- `app/app.config.ts`: aktuell erlaubte Blogkategorien
-- `content/users/*.{md,yaml}`: gültige Autorenkennungen
-- `app/components/content/`: lokale Inhaltskomponenten
-- `content/blog/article/`: repräsentative Syntax und bestehende Pfade
-- `content/turniere/`: gültige Turnierseiten und die daraus abzuleitenden `tournament`-Slugs
+- Neuer Beitrag oder geänderte Struktur: `content.config.ts`
+- Gesetzte oder abzuleitende Kategorie: `app/app.config.ts`
+- Ausdrücklich genannte oder anderweitig belegte Autorenschaft: nur den passenden Eintrag unter `content/users/` zur ID-Prüfung; lade keine Autorenliste allein wegen eines neuen Beitrags
+- Besondere Inhaltskomponente: `app/components/content/` und ein vorhandenes Nutzungsbeispiel
+- Rohmaterial oder unklare Syntax beziehungsweise Tonalität: wenige passende Dateien unter `content/blog/article/`
+- Turnierbezug: passende Dateien unter `content/turniere/` und bei Bedarf bestehende Artikelzuordnungen
 
-Lies diese Quellen bei jeder Verwendung neu. Wähle aktuelle Beispielbeiträge möglichst passend zu Kategorie, Mannschaft oder Autorenschaft. Behandle die hier genannten Werte nicht als Ersatz für den aktuellen GitHub-Stand.
+Lade keine vollständigen Verzeichnisinhalte, wenn ein gezielter Pfad oder Treffer ausreicht. Prüfe unveränderte Metadaten eines bestehenden Beitrags nicht erneut gegen sämtliche Autoren und Kategorien.
 
 ## Beitrag und Route
 
@@ -114,14 +114,13 @@ Prüfe vor den automatisierten Befehlen ausdrücklich:
 - `sitemap.loc` verwendet den Slug ohne Datumspräfix.
 - Bei einem Beitrag über ein vorhandenes Turnier ist `tournament` gesetzt und entspricht exakt einem Slug aus `content/turniere/`.
 
-Führe für Beitragsänderungen mindestens aus:
+Führe bei einem lokalen Checkout für Beitragsänderungen aus:
 
 ```text
-pnpm contentcheck
 pnpm lint
 ```
 
-Verwende `pnpm generate` nicht als Prüfung für Blogbeiträge. Führe im normalen Artikelablauf keinen vollständigen Produktions-Build aus. Wenn der Benutzer ausdrücklich einen Build oder die Diagnose eines konkreten Build- beziehungsweise Deploymentfehlers beauftragt, führe aus:
+`pnpm lint` führt `pnpm contentcheck` bereits aus; starte `contentcheck` nicht zusätzlich. Ohne Checkout führe keinen lokalen Paketbefehl auf Verdacht aus, sondern prüfe die oben genannten Regeln direkt und verwende die PR-CI als ausführbaren Nachweis. Verwende `pnpm generate` nicht als Prüfung für Blogbeiträge. Führe im normalen Artikelablauf keinen vollständigen Produktions-Build aus. Wenn der Benutzer ausdrücklich einen Build oder die Diagnose eines konkreten Build- beziehungsweise Deploymentfehlers beauftragt und ein Checkout vorhanden ist, führe aus:
 
 ```text
 pnpm build
@@ -133,7 +132,7 @@ Verändere zur Behebung von Prüffehlern keine unbeteiligten Dateien.
 
 Erzeuge für jeden angelegten oder geänderten Beitrag eine passende Conventional-Commit-Nachricht und gib sie im Abschlussbericht auf einer eigenen Zeile in der Form `Commit-Message: <Nachricht>` aus. Das gilt auch, wenn kein Commit beauftragt wurde. Formuliere Commit-Betreff und optionalen Commit-Body standardmäßig auf Englisch. Verwende eine andere Sprache nur auf ausdrücklichen Wunsch; die Sprache des Blogartikels bleibt davon unberührt.
 
-Bei einem ausdrücklich gewünschten lokalen Entwurf committe nur auf ausdrücklichen Wunsch. Der standardmäßige GitHub-PR-Ablauf für einen neuen oder überarbeiteten Beitrag umfasst dagegen Branch, Commit, Push und PR. Committe dabei ausschließlich Dateien des eigenen Änderungssatzes und verwende für Empfehlung und tatsächlichen Commit das Format:
+Bei einem ausdrücklich gewünschten lokalen Entwurf committe nur auf ausdrücklichen Wunsch. Der standardmäßige GitHub-PR-Ablauf umfasst bei lokalem Git Branch, Commit, Push und PR; bei GitHub-only erzeugt er denselben abgegrenzten Änderungssatz direkt auf einem Branch und öffnet daraus den PR. Verwende in beiden Wegen für Empfehlung, Commit beziehungsweise PR-Titel das Format:
 
 ```text
 <type>(blog): <short imperative summary>
@@ -150,11 +149,12 @@ Halte die erste Zeile knapp, verwende keinen abschließenden Punkt und ergänze 
 
 Behandle jeden Auftrag zum Erstellen oder Überarbeiten eines Beitrags standardmäßig als Auftrag, einen veröffentlichungsfertigen GitHub-PR anzulegen. Ein ausschließlich lokaler Entwurf entsteht nur auf ausdrücklichen Wunsch oder wenn kein GitHub-Schreibzugriff verfügbar ist. Nutze Nuxt Studio statt des PR-Ablaufs nur, wenn der Benutzer es ausdrücklich verlangt. Formuliere PR-Titel und PR-Beschreibung standardmäßig auf Englisch. Verwende eine andere Sprache nur auf ausdrücklichen Wunsch.
 
-1. Prüfe, ob die GitHub-Verbindung eingerichtet ist und Schreibzugriff auf `sfbiberach/schachfreunde-biberach.de` besteht. Fehlt der Zugriff, liefere den vollständigen lokalen Entwurf und benenne die fehlende Verbindung, statt einen PR vorzutäuschen.
-2. Erstelle vom aktuellen Standardbranch einen eigenen Branch. Verwende für einen neuen Beitrag nach Möglichkeit `blog/<slug>` und wähle bei einer Kollision einen eindeutigen, weiterhin knappen Namen.
-3. Committe ausschließlich Beitrag und Assets des eigenen Änderungssatzes mit der zuvor bestimmten Conventional-Commit-Nachricht.
-4. Pushe den Branch und öffne einen PR. Verwende die Commit-Nachricht unverändert als PR-Titel.
-5. Halte die PR-Beschreibung kurz. Nenne in ein bis drei Sätzen oder knappen Punkten den Anlass beziehungsweise Inhalt, den exakten Artikelnamen und gegebenenfalls die hinzugefügten Assets. Führe die ausgeführten Prüfungen nicht eigens in der PR-Beschreibung auf.
-6. Erstelle den PR standardmäßig als bereit zur Prüfung. Verwende den GitHub-Draft-PR-Status nur auf ausdrücklichen Wunsch. Dieser GitHub-Status ist kein Artikelmetadatum und darf niemals als `status: draft` im Frontmatter erscheinen.
-7. Merge den PR nur auf ausdrücklichen Auftrag. Ein erstellter PR allein veröffentlicht den Beitrag nicht; erst der Merge in den Veröffentlichungsbranch löst das Deployment aus.
-8. Prüfe nach einem ausdrücklich beauftragten Merge das Deployment und die öffentliche Beitragsroute. Melde ein fehlgeschlagenes Deployment, statt denselben Merge oder Commit zu wiederholen.
+1. Prüfe, ob die GitHub-Verbindung eingerichtet ist und Schreibzugriff auf `sfbiberach/schachfreunde-biberach.de` besteht. Fehlt der Zugriff, liefere den vollständigen Entwurf mit exakten Zielpfaden und benenne die fehlende Verbindung, statt einen PR vorzutäuschen.
+2. Erstelle vom aktuellen Standardbranch einen eigenen Branch lokal oder direkt über GitHub. Verwende für einen neuen Beitrag nach Möglichkeit `blog/<slug>` und wähle bei einer Kollision einen eindeutigen, weiterhin knappen Namen.
+3. Übertrage ausschließlich Beitrag und Assets des eigenen Änderungssatzes. Committe und pushe bei lokalem Git; erstelle bei GitHub-only dieselben Dateiänderungen direkt auf dem Zielbranch.
+4. Öffne einen PR und verwende die Conventional-Commit-Nachricht unverändert als PR-Titel.
+5. Prüfe verfügbare CI-Ergebnisse. Wenn kein lokaler Checkout vorhanden war, benenne die CI als alleinigen ausführbaren Nachweis und behaupte keinen lokalen Lintlauf.
+6. Halte die PR-Beschreibung kurz. Nenne in ein bis drei Sätzen oder knappen Punkten den Anlass beziehungsweise Inhalt, den exakten Artikelnamen und gegebenenfalls die hinzugefügten Assets. Führe die ausgeführten Prüfungen nicht eigens in der PR-Beschreibung auf.
+7. Erstelle den PR standardmäßig als bereit zur Prüfung. Verwende den GitHub-Draft-PR-Status nur auf ausdrücklichen Wunsch. Dieser GitHub-Status ist kein Artikelmetadatum und darf niemals als `status: draft` im Frontmatter erscheinen.
+8. Merge den PR nur auf ausdrücklichen Auftrag. Ein erstellter PR allein veröffentlicht den Beitrag nicht; erst der Merge in den Veröffentlichungsbranch löst das Deployment aus.
+9. Prüfe nach einem ausdrücklich beauftragten Merge das Deployment und die öffentliche Beitragsroute. Melde ein fehlgeschlagenes Deployment, statt denselben Merge oder Commit zu wiederholen.

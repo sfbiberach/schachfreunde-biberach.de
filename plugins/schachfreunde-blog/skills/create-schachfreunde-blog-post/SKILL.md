@@ -1,124 +1,114 @@
 ---
 name: create-schachfreunde-blog-post
-description: Create or revise blog posts for schachfreunde-biberach.de from raw text, notes, images, attachments, or existing drafts; preserve fully written source text by default while correcting errors, write natural non-formulaic German when drafting, read current conventions and examples directly from the GitHub repository, infer and validate Nuxt Content metadata, turn readable tabular images into semantic tables, organize assets, use repository-native prose components, run content checks, create a publication-ready GitHub pull request by default for every new or revised article, use a local draft only when explicitly requested or GitHub write access is unavailable, or publish directly through Nuxt Studio only when explicitly requested. Use when a user asks to create, import, improve, stage, or publish a Schachfreunde blog article.
+description: Create or revise publication-ready blog posts for schachfreunde-biberach.de from text, notes, images, attachments, or existing drafts; preserve finished source text, derive Nuxt Content metadata without inventing facts, process media when present, validate repository conventions, and create a GitHub pull request by default. Use for creating, importing, correcting, updating, staging, or explicitly publishing Schachfreunde blog articles.
 ---
 
 # Schachfreunde-Blogbeitrag erstellen
 
-Erstelle aus dem bereitgestellten Material einen sprachlich, technisch und visuell geprüften Beitrag für `schachfreunde-biberach.de`. Behandle Word-Dateien nur als eine mögliche Quelle unter vielen.
+Erstelle oder überarbeite einen sprachlich, technisch und visuell geprüften Beitrag für `schachfreunde-biberach.de`. Wähle den kleinsten Ablauf, der für das bereitgestellte Material nötig ist.
 
-## Verbindliche Repositoryquelle
+## 1. Zuerst inventarisieren
 
-Lies aktuelle Vorgaben, Autorenkennungen, Komponenten und Beispielbeiträge vor jeder Bearbeitung direkt aus dem GitHub-Repository [`sfbiberach/schachfreunde-biberach.de`](https://github.com/sfbiberach/schachfreunde-biberach.de).
+Prüfe vor Repository-, GitHub- oder Webabfragen ausschließlich Auftrag und bereitgestelltes Material:
 
-- Verwende bevorzugt die verbundene GitHub-App und ersatzweise `gh`, um den aktuellen Standardbranch und die benötigten Dateien abzurufen.
-- Behandle einen lokalen Checkout nur als Arbeitsziel für Entwurf, Assets und Prüfungen, nicht als maßgebliche Quelle, solange GitHub erreichbar ist.
-- Verwende keinen möglicherweise veralteten lokalen Stand stillschweigend als Referenz. Falls GitHub nicht erreichbar ist, melde dies und kennzeichne ausdrücklich, wenn du ersatzweise aus einem lokalen Checkout liest.
-- Lies für Format und Ton aktuelle, repräsentative Beiträge direkt aus GitHub. Bevorzuge Beispiele derselben Kategorie, Mannschaft oder Autorenschaft, sofern vorhanden.
-- Lade nur die benötigten Dateien und Verzeichnislisten; klone das Repository nicht allein für Lesezugriffe.
+- Vorgang: neuer Beitrag, Überarbeitung, lokaler Entwurf oder ausdrücklich direkte Studio-Veröffentlichung
+- Textstatus: fertig ausformulierter Text, Rohmaterial oder bestehender Beitrag
+- Inhaltstyp: allgemein, Mannschaftskampf, Turnier oder Kombination daraus
+- Material: Text, Bilder, Tabellenbilder, Anhänge und Links
+- ausdrücklich gelieferte Metadaten und Quellen
+- erkennbare Widersprüche oder rechtliche Unsicherheiten
 
-## Arbeitsablauf
+Behandle zusammenhängenden, veröffentlichungsfähigen Fließtext als Fertigtext. Fahre bei optionalen fehlenden Angaben mit sicheren Ableitungen oder ohne das optionale Feld fort. Frage zu diesem Zeitpunkt noch nicht nach.
 
-1. Prüfe vor Änderungen den Git-Status und bewahre vorhandene, nicht zugehörige Änderungen.
-2. Lies die aktuellen Vorgaben direkt aus dem GitHub-Repository:
-   - Artikelschema aus `content.config.ts`
-   - Kategorien aus `app/app.config.ts`
-   - gültige Autorenkennungen aus `content/users/`
-   - verfügbare Inhaltskomponenten aus `app/components/content/` und vorhandenen Beiträgen
-   - aktuelle, repräsentative Beispielbeiträge aus `content/blog/article/`
-   - vorhandene Turnierzuordnungen aus `content/turniere/` und aktuellen Turnierberichten
-3. Inventarisiere Rohtext, Bilder, Anhänge, Links und ausdrücklich vorgegebene Metadaten.
-4. Bestimme, ob der Benutzer einen fertig ausformulierten Text oder Rohmaterial liefert. Behandle zusammenhängenden, veröffentlichungsfähigen Fließtext ohne anderslautenden Auftrag als Fertigtext.
-5. Trenne jede faktische Angabe und jeden Metadatenwert nachvollziehbar in ausdrücklich vom Benutzer geliefert, aus einer benannten Quelle oder Repository-Regel abgeleitet und offen oder unbestätigt. Erfinde keine Namen, Ergebnisse, Termine, Zitate, Bildinhalte, Quellen oder Metadaten. Kann ein erforderlicher Wert nicht belegt werden, frage vor dem Anlegen der Datei oder des PRs nach.
-6. Lies `references/editorial-style.md` für jede inhaltliche Überarbeitung.
-7. Lies `references/repository-conventions.md`, bevor du Dateien oder Frontmatter anlegst.
-8. Lies `references/content-and-media.md`, sobald Bilder, Anhänge, tabellarische Daten oder besondere Prose-Komponenten vorkommen.
-9. Erzeuge Beitrag und Assets in den vorgesehenen Repository-Pfaden.
-10. Sortiere das Frontmatter verbindlich mit `title` zuerst und allen weiteren vorhandenen Top-Level-Feldern alphabetisch. Prüfe außerdem sämtliche neuen Datei- und Ordnernamen gegen das Namensschema.
-11. Prüfe Inhalt, Metadaten, Links, Tabellen und Medien gegen die Quellen.
-12. Führe die passenden Repository-Checks aus und behebe nur Fehler im eigenen Änderungssatz.
-13. Erzeuge für jeden angelegten oder geänderten Beitrag eine passende Conventional-Commit-Nachricht nach den Regeln in `references/repository-conventions.md`, formuliere sie standardmäßig auf Englisch und gib sie in der Übergabe aus.
-14. Behandle jeden Auftrag zum Erstellen oder Überarbeiten eines Beitrags standardmäßig als Auftrag für den GitHub-PR-Ablauf aus `references/repository-conventions.md`. Erstelle nur dann ausschließlich einen lokalen Entwurf, wenn der Benutzer dies ausdrücklich verlangt oder kein GitHub-Schreibzugriff verfügbar ist.
-15. Prüfe die GitHub-Verbindung und den Schreibzugriff. Nutze Nuxt Studio anstelle des PR-Ablaufs nur, wenn der Benutzer Nuxt Studio ausdrücklich verlangt.
-16. Erstelle einen eigenen Branch, stage und committe ausschließlich den eigenen Änderungssatz, pushe den Branch und öffne einen veröffentlichungsfertigen PR. Verwende die englische Conventional-Commit-Nachricht unverändert als PR-Titel und formuliere auch die kurze PR-Beschreibung standardmäßig auf Englisch. Erstelle nur auf ausdrücklichen Wunsch einen GitHub-Draft-PR.
-17. Merge einen PR niemals ohne ausdrücklichen Auftrag. Stelle klar, dass der Beitrag erst durch den Merge in den Veröffentlichungsbranch und das anschließende Deployment online geht.
-18. Lies `references/nuxt-studio-publishing.md` und arbeite direkt in Nuxt Studio ausschließlich dann, wenn der Benutzer dies ausdrücklich wünscht.
+## 2. Nur benötigte Quellen lesen
 
-## Eingaben behandeln
+Lies `references/editorial-style.md` bei jeder Textbearbeitung. Lies `references/repository-conventions.md`, bevor du Beitrag, Frontmatter, Assets oder Git-Änderungen anlegst. Wenn bereits die Bestandsaufnahme einen Identifizierungsblocker zeigt, lade zunächst nur die zur Auflösung nötigen Fachquellen; Stil- und Repositoryregeln folgen erst nach der Klärung.
 
-- Akzeptiere Fließtext, Stichpunkte, Bilder, Tabellenbilder, PDFs, Word-Dateien, Links und bestehende Markdown-Entwürfe.
-- Bevorzuge separat bereitgestellte Originalbilder gegenüber in Dokumenten eingebetteten Kopien.
-- Fahre mit einem Textentwurf fort, wenn ein optionales Bild technisch nicht extrahierbar ist. Melde die Lücke und bitte nur dann um eine separate Datei, wenn sie das Ergebnis materiell verbessert.
-- Frage nur bei Unsicherheiten nach, die Autorenschaft, Fakten, rechtliche Freigaben oder die Veröffentlichungsentscheidung wesentlich verändern würden.
+Lade weitere Quellen ausschließlich bei passendem Bedarf:
 
-## Metadaten ableiten
+| Bedarf | Zusätzliche Quelle |
+| --- | --- |
+| bestehender Beitrag | nur den Zielbeitrag und unmittelbar betroffene Dateien |
+| neuer Beitrag oder geänderte Metadaten | `content.config.ts`; Kategorien nur bei gesetzter oder abzuleitender Kategorie; Autoren nur zur ID-Prüfung einer ausdrücklich genannten oder anderweitig belegten Person, niemals allein weil der Beitrag neu ist |
+| Rohmaterial oder unklare Syntax beziehungsweise Tonalität | wenige aktuelle, passende Beispielbeiträge |
+| besondere Inhaltskomponente | `app/components/content/` und ein passendes Nutzungsbeispiel |
+| Mannschaftskampf | passende Mannschaftsseite; wenn sie den Kampf nicht eindeutig belegt, prüfe vor jeder Rückfrage zwingend die verlinkte nuLiga-Runde |
+| vorhandenes Turnier | passende Dateien aus `content/turniere/` und bei Bedarf bestehende Zuordnungen |
+| Bilder, Tabellenbilder oder Anhänge | `references/content-and-media.md` |
+| ausdrücklich Nuxt Studio | `references/nuxt-studio-publishing.md`; bei einem unverändert vorbereiteten Zielbeitrag nur Zielbeitrag und Studio-Anleitung, Repositoryregeln erst bei Inhalts- oder Metadatenänderungen |
 
-- Übernimm ausdrücklich genannte Werte.
-- Leite fehlende Werte nur aus benannten Quellen, bestehenden Beiträgen oder verbindlichen Repository-Regeln ab.
-- Dokumentiere im Abschlussbericht jede abgeleitete oder standardmäßig gesetzte Angabe mit Feld, Wert und Quelle oder Regel. Das gilt insbesondere für `date`, `authors`, `category`, `description`, `tournament`, `published`, Dateiname und Slug.
-- Behandle ein aus Mannschaftsseite, nuLiga, Turnierdatei, Quelldokument oder einer anderen überprüften Quelle ermitteltes Datum als abgeleitet, nicht als erfunden, und nenne die konkrete Quelle.
-- Übernimm keinen unbelegten Wert stillschweigend. Falls ein Wert ausnahmsweise ohne Beleg in einem Zwischenstand vorkommt, kennzeichne ihn ausdrücklich als erfunden, entferne ihn vor Datei und PR und fordere eine Bestätigung oder Korrektur an.
-- Setze bei jedem neuen Beitrag standardmäßig `published: true`. Verwende `published: false` nur, wenn der Benutzer den Beitrag ausdrücklich als nicht öffentlich kennzeichnet.
-- Bewahre bei der Überarbeitung eines bestehenden Beitrags dessen ausdrückliches `published: false` auch bei einem beauftragten Commit. Ändere diesen Wert nur, wenn der Benutzer die Veröffentlichung ausdrücklich verlangt.
-- Verwende niemals ein Frontmatter-Feld `status`. Der Veröffentlichungszustand wird ausschließlich mit dem Boolean `published: true` oder `published: false` abgebildet. Entferne übernommenes `status: draft`; setze dabei standardmäßig `published: true` und nur bei einem ausdrücklich nicht öffentlichen Entwurf `published: false`.
-- Verwende nur vorhandene Kategorien und Autorenkennungen.
-- Setze bei jedem Beitrag über ein vorhandenes Turnier zwingend `tournament` auf den exakten Turnier-Slug aus `content/turniere/`, damit der Beitrag auf der zugehörigen Turnierseite unter „Turnierberichte“ erscheint. Gleiche Thema, Turniername und vorhandene Zuordnungen ab; erfinde keinen Slug und frage bei mehreren oder fehlenden Treffern nach.
-- Wähle ein Artikelbild nur, wenn Motiv, Auflösung und Freigabe dafür geeignet sind.
-- Formuliere die `description` als einen kurzen, kartentauglichen Satz mit Anlass und wichtigstem Ergebnis. Ziele in der Regel auf 100 bis 140 Zeichen und überschreite 160 Zeichen nur, wenn wesentliche Fakten sonst verloren gehen.
-- Ordne die vorhandenen Top-Level-Felder immer exakt so: zuerst `title`, danach alphabetisch nach Feldname. Das gilt auch für optionale und künftig ergänzte Felder.
-- Halte für Beitrag, Assetordner und jede Assetdatei das verbindliche Schema aus `references/repository-conventions.md` ein. Normalisiere abweichende Eingaben und dokumentiere die Zuordnung.
-- Verwende bei Berichten über Mannschaftskämpfe als `title` ausschließlich `Heimmannschaft - Gastmannschaft` mit den offiziellen Mannschaftsnamen und einem einfachen Bindestrich mit Leerzeichen. Ergänze weder Ergebnis noch Vorspann oder Untertitel.
-- Ermittle bei Berichten über Mannschaftskämpfe das tatsächliche Spieldatum vor Dateiname und Frontmatter aus dem Spielplan. Prüfe dafür die passende Mannschaftsseite unter `/mannschaften/mannschaft-N` und bei Bedarf die dort verlinkte nuLiga-Runde. Verwende niemals den aktuellen Tag oder den Erstellungszeitpunkt als Ersatz.
+Wähle nach der Bestandsaufnahme genau einen Repositoryzugang:
 
-## Tabellen aus Bildern
+- **Geeigneter lokaler Checkout vorhanden:** Nutze die lokalen Dateien zuerst. Prüfe den aktuellen Standardbranch nur, wenn veränderliche Repositorydaten für den Inhalt relevant sind oder spätestens vor dem PR. Entspricht der Checkout bereits demselben Commit, vermeide doppelte GitHub-Lesezugriffe.
+- **Kein geeigneter lokaler Checkout:** Nutze den aktuellen Standardbranch von [`sfbiberach/schachfreunde-biberach.de`](https://github.com/sfbiberach/schachfreunde-biberach.de) über die GitHub-App und ersatzweise `gh`. Lade nur die ausgewählten Pfade und führe den Auftrag bei vorhandenem GitHub-Schreibzugriff vollständig über Branch, Dateiänderungen und PR aus. Frage nicht allein wegen des fehlenden Checkouts nach einem lokalen Pfad.
+- **Weder Checkout noch GitHub-Lesezugriff:** Stelle eine Sammelfrage nur dann, wenn die benötigten Repositoryregeln oder Zieldateien nicht aus dem bereitgestellten Material hervorgehen.
 
-Übertrage klar erkennbare tabellarische Bildinhalte standardmäßig in echte Markdown-Tabellen.
+Lies nicht pauschal sämtliche Autoren, Komponenten, Beispiele, Mannschaften oder Turniere.
 
-- Bewahre Überschriften, Spalten, Zeilen, Reihenfolge, Schreibweisen, Dezimaltrennzeichen und leere Felder.
-- Teile getrennte Bereiche wie „Stammspieler“ und „Ersatzspieler“ in eigene, beschriftete Tabellen.
-- Prüfe jede Zelle noch einmal am Bild. Rekonstruiere unleserliche Werte nicht durch Raten.
-- Erhalte das Bild nur auf ausdrücklichen Wunsch oder wenn Gestaltung, Diagramme oder unzuverlässig lesbare Inhalte einen zusätzlichen Informationswert haben.
-- Dupliziere dieselben Daten nicht als Tabelle und Bild, sofern dies nicht begründet oder gewünscht ist.
+**Stop-Regel:** Bleibt ein Zielbeitrag, Mannschaftskampf oder Turnier nach den ausgewählten Fachquellen nicht eindeutig identifizierbar, lade keine Stil-, Schema-, Beispiel-, Medien- oder Repositoryquellen und beginne keine Umsetzung. Stelle sofort die eine Sammelfrage aus Abschnitt 3; weitere Quellen und Arbeitsschritte folgen erst nach der Antwort.
 
-## Redaktionelle Grenzen
+## 3. Ableiten, bevor du fragst
 
-- Behandle einen fertig ausformulierten Text standardmäßig als verbindlichen Originalwortlaut.
-- Korrigiere darin nur Rechtschreibung, Grammatik, Zeichensetzung, Typografie und eindeutige Tippfehler.
-- Bewahre Wortwahl, Satzbau, Reihenfolge, Absätze, Wiederholungen, Länge und persönliche Stimme. Straffe oder formuliere den Text nicht aus rein stilistischen Gründen um.
-- Ergänze bei Bedarf sinnvolle Zwischenüberschriften, ohne den Originaltext umzuschreiben oder Absätze neu anzuordnen. Halte die Zwischenüberschriften innerhalb des Beitrags sprachlich und typografisch einheitlich und setze nicht für jeden kurzen Absatz eine Überschrift.
-- Nimm weitergehende redaktionelle Änderungen nur vor, wenn der Benutzer sie ausdrücklich verlangt.
-- Behalte bei einer möglicherweise sinnverändernden Korrektur den Originalwortlaut bei und dokumentiere die Unsicherheit.
-- Entferne keine relevanten Ergebnisse, Danksagungen, Namen oder Anhänge.
-- Schreibe neue Passagen natürlich, ungekünstelt und passend zur persönlichen Vereinssprache. Vermeide formelhafte Übergänge, symmetrische Muster, werbliche Zuspitzungen und andere typische KI-Floskeln.
-- Verwende Doppelpunkte, Gedankenstriche, Klammern, Aufzählungen und kurze rhetorische Satzfragmente nur dort, wo sie im natürlichen Sprachfluss wirklich passen. Häufe diese Stilmittel nicht.
-- Formuliere Titel und Beschreibung konkret, sachlich und ohne unbelegte Zuspitzung. Beachte für Mannschaftskämpfe das feste Titelschema.
-- Ergänze technische Einbettungen wie Frontmatter, Links, Medien, semantische Tabellen sowie sinnvolle Nuxt-UI- oder Prose-Komponenten, ohne dadurch den Originaltext umzuschreiben oder neu anzuordnen.
+Erfinde keine Namen, Ergebnisse, Termine, Zitate, Bildinhalte oder Quellen. Verwende folgende sicheren Regeln ohne Rückfrage:
+
+- Bewahre bei bestehenden Beiträgen unveränderte Metadaten.
+- Leite `title`, `description`, Slug und `sitemap.loc` deterministisch aus Material und Repositoryregeln ab.
+- Verwende für einen neuen allgemeinen Beitrag ohne anderes belegtes Beitragsdatum das aktuelle lokale Redaktionsdatum. Für Mannschaftsberichte gilt ausschließlich das tatsächliche Spieldatum.
+- Übernimm eine belegte Autorenschaft; ist keine vorhanden, lasse das optionale Feld weg.
+- Leite bei einem neuen allgemeinen Beitrag mit klar erkennbarem Thema eine vorhandene Kategorie ab und prüfe dafür gezielt die Kategorienliste; ist sie nicht eindeutig, lasse das optionale Feld weg.
+- Setze bei neuen Beiträgen `published: true`, außer der Benutzer bezeichnet sie ausdrücklich als nicht öffentlich. Bewahre bei bestehenden Beiträgen `published: false`.
+- Setze `toc` nur bei einer sinnvollen Überschriftenstruktur.
+- Verwende ein Artikelbild nur bei geeignetem und freigegebenem Material.
+- Setze `tournament` nur bei tatsächlichem Bezug zu einem vorhandenen Turnier und dann auf dessen exakten Slug.
+
+Frage erst nach den gezielten Nachforschungen und nur, wenn mindestens ein echter Blocker bleibt:
+
+- Zielbeitrag oder beschriebener Mannschaftskampf ist nicht eindeutig identifizierbar.
+- Eine zentrale faktische Angabe ist widersprüchlich oder nicht belegbar und kann nicht entfallen.
+- Das tatsächliche Spieldatum eines Mannschaftsberichts bleibt offen.
+- Mehrere Turnierzuordnungen sind plausibel oder ein erforderliches Turnier fehlt.
+- Bild-, Personen- oder Veröffentlichungsrechte sind materiell unklar. Frage nicht nach Bildrechten, wenn ein Bild ausschließlich als Quelle für übertragene Daten dient und selbst nicht veröffentlicht wird.
+- Benutzeranweisungen zum Veröffentlichungsweg widersprechen einander.
+
+Bündele alle verbleibenden Blocker in genau einer Sammelfrage; stelle nicht mehrere Einzelfragen und eröffne höchstens eine Rückfragerunde. Frage nicht nach optionaler Autorenschaft, optionaler Kategorie, ableitbarer Beschreibung, ableitbarem Slug oder dem standardmäßigen PR-Ablauf.
+
+## 4. Inhalt bearbeiten
+
+- Bewahre bei Fertigtext Wortwahl, Satzbau, Reihenfolge, Absätze, Wiederholungen, Länge und persönliche Stimme.
+- Korrigiere darin nur Rechtschreibung, Grammatik, Zeichensetzung, Typografie und eindeutige Tippfehler, sofern keine weitergehende Bearbeitung verlangt wurde.
+- Ergänze bei Bedarf einheitliche Zwischenüberschriften, ohne den Originaltext umzuschreiben oder neu anzuordnen.
+- Formuliere aus Rohmaterial natürliches, sachliches Deutsch ohne KI-Floskeln, Clickbait oder erfundene Dramatisierung.
+- Übertrage klar lesbare Tabellenbilder nach `references/content-and-media.md` in echte Markdown-Tabellen.
 - Verwende Komponenten nur, wenn sie die Lesbarkeit gegenüber Standard-Markdown tatsächlich verbessern.
 
-## Validierung und Übergabe
+## 5. Implementieren und prüfen
 
-Führe mindestens aus:
+1. Prüfe bei einem lokalen Checkout unmittelbar vor Änderungen den Git-Status und bewahre fremde Änderungen. Prüfe bei GitHub-only den aktuellen Zielbranch und verändere ausschließlich die ausgewählten Pfade.
+2. Lege Beitrag und benötigte Assets nach `references/repository-conventions.md` lokal oder über GitHub an.
+3. Prüfe Fakten, Frontmatter, Dateinamen, Links und Medien gegen die tatsächlich verwendeten Quellen.
+4. Führe `pnpm lint` ausschließlich bei einem lokalen Checkout aus; dieses Skript enthält bereits `pnpm contentcheck`. Führe `pnpm contentcheck` nicht zusätzlich aus. Plane bei GitHub-only keinen lokalen Lintschritt, validiere die editierbaren Regeln direkt und verwende die PR-CI als ausführbaren Nachweis.
+5. Verwende `pnpm build` nur auf ausdrücklichen Wunsch oder zur Diagnose eines konkreten Build- beziehungsweise Deploymentfehlers. Verwende `pnpm generate` nicht für den normalen Artikelablauf.
+6. Behebe ausschließlich Fehler im eigenen Änderungssatz.
 
-```text
-pnpm contentcheck
-pnpm lint
-```
+## 6. Übergeben oder veröffentlichen
 
-Verwende `pnpm generate` nicht als Prüfung für Blogbeiträge. Führe im normalen Artikelablauf keinen vollständigen Produktions-Build aus. Wenn der Benutzer ausdrücklich einen Build oder die Diagnose eines konkreten Build- beziehungsweise Deploymentfehlers beauftragt, verwende dafür `pnpm build`. Eine visuelle Kontrolle darf ohne vorgelagerten Build erfolgen, etwa über einen bereits laufenden Entwicklungsserver.
+Ein allgemeiner Auftrag zum Erstellen oder Überarbeiten eines Beitrags führt ohne verbleibenden Blocker standardmäßig zu einem veröffentlichungsfertigen GitHub-PR. Dieser vollständige Übergabeweg gehört zum geplanten Ablauf, auch wenn eine vorgeschaltete Analyse ihn noch nicht ausführt:
 
-Berichte abschließend:
+1. Prüfe den GitHub-Schreibzugriff.
+2. Erstelle einen eigenen Branch lokal oder über GitHub.
+3. Übertrage ausschließlich den eigenen Änderungssatz; committe lokal oder erstelle die entsprechenden GitHub-Dateiänderungen.
+4. Pushe bei lokalem Git und öffne in beiden Zugangswegen einen zur Prüfung bereiten PR mit englischem Conventional-Commit-Titel.
+5. Prüfe verfügbare CI-Ergebnisse; war lokal kein Lint möglich, kennzeichne die CI als alleinigen ausführbaren Nachweis.
 
-- angelegte oder geänderte Beitrags- und Assetdateien
-- exakter Dateiname des angelegten oder geänderten Artikels in einer eigenen, leicht erkennbaren Zeile; verwende die Form `Dateiname: YYYYMMDD.slug.md` und setze den tatsächlichen Dateinamen als Inline-Code
-- passende Conventional-Commit-Nachricht in einer eigenen, leicht erkennbaren Zeile; verwende die Form `Commit-Message: type(blog): short imperative summary` und gib sie auch dann aus, wenn kein Commit beauftragt wurde
-- bei einem Fertigtext eine knappe Zusammenfassung der tatsächlich vorgenommenen Korrekturen außerhalb des Artikels; berichte `Korrekturen: keine`, wenn der Originaltext unverändert blieb
-- eine eigene Zeile `Abgeleitete Daten: ...`, in der alle abgeleiteten oder standardmäßig gesetzten Angaben mit Feld, Wert und Quelle oder Regel genannt werden; verwende `Abgeleitete Daten: keine`, wenn nichts abgeleitet wurde
-- eine eigene Zeile `Erfundene Daten: keine`; falls wider Erwarten ein unbelegter Wert in einem Zwischenstand verwendet wurde, nenne ihn stattdessen vollständig, übernimm ihn nicht in Datei oder PR und fordere eine Bestätigung oder Korrektur an
-- eine eigene Zeile `Offene oder unbestätigte Daten: ...`; verwende `Offene oder unbestätigte Daten: keine`, wenn keine offenen Angaben bestehen
-- bei Turnierbeiträgen den gesetzten `tournament`-Slug und die geprüfte Turnierseite
-- Ergebnis der Prüfung von Frontmatter-Reihenfolge und Dateinamensschema
-- in Tabellen übertragene Bilddaten
-- Qualitätswarnungen und offene Punkte
-- ausgeführte Prüfungen und deren Ergebnis
-- URL des standardmäßig angelegten PRs; einen lokalen Entwurf nur bei ausdrücklichem Wunsch oder fehlendem GitHub-Schreibzugriff
-- nach einem ausdrücklich beauftragten Merge oder einer Direktveröffentlichung die öffentliche Artikel-URL und das Ergebnis der Erreichbarkeitsprüfung
+Erstelle nur bei ausdrücklichem Wunsch oder fehlendem GitHub-Schreibzugriff ausschließlich einen lokalen beziehungsweise als Dateien klar übergebbaren Entwurf. Nutze Nuxt Studio statt des PR-Ablaufs nur auf ausdrücklichen Wunsch. Merge niemals ohne ausdrücklichen Auftrag.
+
+Berichte abschließend knapp:
+
+- geänderte Beitrags- und Assetdateien
+- `Dateiname: <tatsächlicher Dateiname>`
+- `Commit-Message: <englische Conventional-Commit-Nachricht>`
+- bei Fertigtext die vorgenommenen Korrekturen oder `Korrekturen: keine`
+- nicht offensichtliche Ableitungen und verbleibende offene Punkte, aber keine leeren Standardrubriken
+- ausgeführte Prüfung und Ergebnis
+- PR-URL oder Grund für einen lokalen Entwurf
+- nach beauftragtem Merge oder direkter Veröffentlichung die geprüfte öffentliche URL
