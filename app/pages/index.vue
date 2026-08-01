@@ -121,6 +121,7 @@ useSeoMeta({
   ogTitle: page.value?.title,
   ogDescription: page.value?.description,
 })
+useSiteOgImage(page, { kind: 'landing' })
 
 definePageMeta({
   heroBackground: 'opacity-60',

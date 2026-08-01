@@ -12,6 +12,7 @@ const route = useRoute()
 const { data: page } = await usePageContent({
   collection: 'team',
 })
+useSiteOgImage(page, { kind: 'team' })
 const leagueEndpoint = computed(() => `/api/teams/${String(route.params.slug)}`)
 const {
   data: league,

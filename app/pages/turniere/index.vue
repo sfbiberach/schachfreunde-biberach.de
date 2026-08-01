@@ -9,6 +9,7 @@ const { data: page } = await usePageContent({
 })
 
 usePageSeo(page)
+useSiteOgImage(page, { kind: 'page', eyebrow: 'Turniere' })
 const header = computed(() => resolvePageHeader(page.value))
 </script>
 

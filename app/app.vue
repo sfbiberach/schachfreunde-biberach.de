@@ -25,7 +25,9 @@ useHead({
 useSeoMeta({
   author: 'Schachfreunde Heilbronn-Biberach 1978 e. V.',
   description: 'Schachfreunde Heilbronn-Biberach 1978 e. V. - Der Schachverein im Heilbronner Stadtteil Biberach',
+  ogSiteName: 'Schachfreunde Heilbronn-Biberach',
   robots: 'index, follow',
+  twitterCard: 'summary_large_image',
 })
 </script>
 

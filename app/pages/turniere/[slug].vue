@@ -6,6 +6,7 @@ definePageMeta({
 const { data: page } = await usePageContent({
   collection: 'tournament',
 })
+useSiteOgImage(page, { kind: 'tournament' })
 
 const route = useRoute()
 

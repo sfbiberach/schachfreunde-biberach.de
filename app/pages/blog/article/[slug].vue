@@ -2,6 +2,7 @@
 const { data: page } = await usePageContent({
   collection: 'article',
 })
+useSiteOgImage(page, { kind: 'article' })
 
 const { data: tournament } = await useAsyncData(
   `tournament:${page.value?.tournament}`,

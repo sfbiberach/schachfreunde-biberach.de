@@ -1,4 +1,4 @@
-![schachfreunde-biberach de](https://github.com/sfbiberach/schachfreunde-biberach.de/assets/22038857/68444f21-b306-4f77-9f83-53c2df2915b9)
+![Aktuelle Vorschau der Website](.github/assets/readme-homepage.png)
 
 # schachfreunde-biberach.de
 
@@ -7,6 +7,26 @@
 Eine Homepage für die Schachfreunde HN-Biberach inkl. Blog auf Basis von [Nuxt UI Pro](https://ui.nuxt.com/pro).
 
 Die Seite ist in einem frühen Stadium, weitere Details folgen.
+
+## Medien aktualisieren
+
+Die Vorschau am Anfang dieser README wird aus der laufenden Nuxt-Seite gerendert:
+
+```powershell
+pnpm media:readme
+```
+
+Für Link-Previews erzeugt Nuxt automatisch OG-Bilder im Format 1200 × 630. Zusätzlich lassen sich dieselben Motive lokal als Social-Post-Bilder exportieren:
+
+```powershell
+pnpm media:social -- --path /blog/article/15-biber-jugend-cup --format all
+```
+
+`--format` unterstützt `og`, `square`, `portrait` und `all`. Die Exporte landen im git-ignorierten Ordner `.artifacts/social`. Vor dem ersten README-Export muss Chromium einmalig installiert werden:
+
+```powershell
+pnpm exec playwright install chromium
+```
 
 ## Codex-Skill für Blogbeiträge
 

@@ -15,6 +15,7 @@ definePageMeta({
 })
 
 const { data: page } = await usePageContent()
+useSiteOgImage(page, { kind: 'page' })
 </script>
 
 <template>

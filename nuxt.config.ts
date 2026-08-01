@@ -84,6 +84,15 @@ export default defineNuxtConfig({
   },
 
   hooks: {
+    'pages:extend': (pages) => {
+      if (process.env.NUXT_MEDIA_PREVIEW !== '1') {
+        for (let index = pages.length - 1; index >= 0; index -= 1) {
+          if (pages[index]?.path.startsWith('/__media')) {
+            pages.splice(index, 1)
+          }
+        }
+      }
+    },
     'build:manifest': (manifest) => {
       for (const chunk of Object.values(manifest)) {
         if (chunk.resourceType === 'script') {
@@ -119,8 +128,26 @@ export default defineNuxtConfig({
     format: ['avif', 'webp', 'jpg'],
   },
 
-  ogImage: false,
-
+  ogImage: {
+    enabled: true,
+    defaults: {
+      width: 1200,
+      height: 630,
+      extension: 'png',
+      emojis: false,
+      cacheMaxAgeSeconds: 60 * 60 * 24 * 7,
+    },
+    buildCache: true,
+    runtimeCacheStorage: 'cache',
+    security: {
+      maxDimension: 1350,
+      maxDpr: 1,
+      renderTimeout: 10_000,
+      imageFetchTimeout: 3_000,
+      maxQueryParamSize: 2048,
+      restrictRuntimeImagesToOrigin: true,
+    },
+  },
   pwa: {
     manifest: {
       name: 'Schachfreunde Heilbronn-Biberach 1978 e. V.',
