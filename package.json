@@ -58,7 +58,7 @@
     "js-yaml": "4.1.1",
     "mdclint": "^0.1.2",
     "nostics": "1.1.4",
-    "nuxt": "^4.5.0",
+    "nuxt": "^4.5.1",
     "typescript": "^6.0.3",
     "vitest": "^4.1.10",
     "vue-tsc": "^3.3.7",
