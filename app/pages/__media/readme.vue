@@ -9,9 +9,6 @@ useSeoMeta({ robots: 'noindex, nofollow' })
 
 <template>
   <div id="readme-art" aria-label="Vorschau der Website der Schachfreunde Heilbronn-Biberach">
-    <div class="readme-glow readme-glow-left" />
-    <div class="readme-glow readme-glow-right" />
-
     <header class="readme-intro">
       <div class="readme-brand">
         <span class="readme-logo"><img src="/favicon.svg" alt=""></span>
@@ -32,15 +29,6 @@ useSeoMeta({ robots: 'noindex, nofollow' })
     </header>
 
     <section class="readme-browser">
-      <div class="readme-browser-bar">
-        <div class="readme-dots">
-          <i /><i /><i />
-        </div>
-        <div class="readme-address">
-          <span class="readme-lock">&#9670;</span>
-          schachfreunde-biberach.de
-        </div>
-      </div>
       <div class="readme-browser-content">
         <iframe id="readme-site" src="/?media-preview=1" title="Aktuelle Startseite" />
       </div>
@@ -57,38 +45,25 @@ useSeoMeta({ robots: 'noindex, nofollow' })
   width: 1600px;
   height: 1000px;
   overflow: hidden;
-  padding: 48px 120px 42px;
+  padding: 52px 120px 0;
   background:
-    linear-gradient(rgba(96, 165, 250, 0.09) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(96, 165, 250, 0.09) 1px, transparent 1px),
-    #0f172a;
-  background-size: 72px 72px;
+    radial-gradient(circle at 16% -8%, rgba(37, 99, 235, 0.26), transparent 34%),
+    radial-gradient(circle at 92% 108%, rgba(8, 145, 178, 0.16), transparent 38%),
+    linear-gradient(135deg, #0d1525 0%, #080d17 58%, #07111c 100%);
   color: #f8fafc;
   font-family: Inter, ui-sans-serif, system-ui, sans-serif;
 }
 
-.readme-glow {
+#readme-art::before {
   position: absolute;
-  border-radius: 9999px;
-  filter: blur(90px);
-  opacity: 0.45;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(96, 165, 250, 0.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96, 165, 250, 0.075) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.72) 38%, transparent 72%);
   pointer-events: none;
-}
-
-.readme-glow-left {
-  top: -260px;
-  left: -120px;
-  width: 620px;
-  height: 620px;
-  background: #2563eb;
-}
-
-.readme-glow-right {
-  right: -260px;
-  bottom: -350px;
-  width: 760px;
-  height: 760px;
-  background: #0ea5e9;
+  content: '';
 }
 
 .readme-intro {
@@ -97,7 +72,9 @@ useSeoMeta({ robots: 'noindex, nofollow' })
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 175px;
+  box-sizing: border-box;
+  height: 190px;
+  padding-inline: 28px;
 }
 
 .readme-intro::after {
@@ -194,74 +171,29 @@ useSeoMeta({ robots: 'noindex, nofollow' })
   position: relative;
   z-index: 2;
   width: 1360px;
-  height: 735px;
+  height: calc(1000px - 52px - 190px);
   overflow: hidden;
   border: 1px solid rgba(148, 163, 184, 0.34);
-  border-radius: 24px;
-  background: #fff;
-  box-shadow: 0 40px 90px rgba(2, 6, 23, 0.58), 0 0 90px rgba(37, 99, 235, 0.16), 0 0 0 8px rgba(255, 255, 255, 0.04);
-}
-
-.readme-browser-bar {
-  display: grid;
-  box-sizing: border-box;
-  grid-template-columns: 150px 1fr 150px;
-  align-items: center;
-  height: 46px;
-  padding: 0 20px;
-  border-bottom: 1px solid #dbe3ef;
-  background: #f8fafc;
-}
-
-.readme-dots {
-  display: flex;
-  gap: 9px;
-}
-
-.readme-dots i {
-  width: 10px;
-  height: 10px;
-  border-radius: 9999px;
-  background: #cbd5e1;
-}
-
-.readme-dots i:first-child { background: #fb7185; }
-.readme-dots i:nth-child(2) { background: #fbbf24; }
-.readme-dots i:last-child { background: #4ade80; }
-
-.readme-address {
-  justify-self: center;
-  box-sizing: border-box;
-  width: 480px;
-  padding: 7px 20px;
-  border: 1px solid #dbe3ef;
-  border-radius: 12px;
-  background: #fff;
-  color: #475569;
-  font-size: 14px;
-  text-align: center;
-}
-
-.readme-lock {
-  margin-right: 8px;
-  color: #22c55e;
-  font-size: 9px;
+  border-bottom: 0;
+  border-radius: 24px 24px 0 0;
+  background: #0b1220;
+  box-shadow: 0 34px 72px rgba(2, 6, 23, 0.48), 0 0 72px rgba(37, 99, 235, 0.1);
 }
 
 .readme-browser-content {
   width: 1360px;
-  height: 689px;
+  height: 100%;
   overflow: hidden;
-  background: #fff;
+  background: #0b1220;
 }
 
 #readme-site {
   display: block;
-  width: 1554.286px;
-  height: 900px;
+  width: 1956.835px;
+  height: 1300px;
   border: 0;
-  background: #fff;
-  transform: scale(0.875);
+  background: #0b1220;
+  transform: scale(0.695);
   transform-origin: top left;
 }
 </style>

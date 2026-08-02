@@ -248,10 +248,6 @@ function formatTrainingDate(date: string) {
         </p>
       </NuxtLink>
     </div>
-
-    <footer class="mt-5 border-t border-default pt-4 text-xs text-dimmed">
-      Ergebnisse aus nuLiga
-    </footer>
   </section>
 </template>
 

@@ -5,8 +5,8 @@
   --container-8xl: 90rem;
 
   /* Fonts */
-  --font-serif: 'Inter';
-  --font-sans: 'Inter';
+  --font-serif: 'Lora', ui-serif, Georgia, serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
   /* Grid */
   --grid-cols-landing: 0 1fr 8fr 1fr 1fr 0;
@@ -53,5 +53,7 @@
 }
 
 :root {
+  --font-serif: 'Lora', ui-serif, Georgia, serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --ui-container: var(--container-8xl);
 }

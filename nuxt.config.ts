@@ -32,7 +32,6 @@ export default defineNuxtConfig({
       ],
     },
   },
-
   routeRules: {
     '/': { prerender: true },
     '/blog/rss.xml': { prerender: true },
@@ -107,6 +106,27 @@ export default defineNuxtConfig({
       stylistic: true,
       standalone: false,
     },
+  },
+
+  fonts: {
+    families: [
+      {
+        name: 'Inter',
+        provider: 'google',
+        weights: [400, 500, 600, 700],
+        styles: ['normal'],
+        subsets: ['latin'],
+        global: true,
+      },
+      {
+        name: 'Lora',
+        provider: 'google',
+        weights: [400, 500, 600, 700],
+        styles: ['normal'],
+        subsets: ['latin'],
+        global: true,
+      },
+    ],
   },
 
   icon: {
