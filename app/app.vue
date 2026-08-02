@@ -1,12 +1,13 @@
 <script setup lang="ts">
 const appConfig = useAppConfig()
+const siteName = 'Schachfreunde Heilbronn-Biberach'
 
 const radius = computed(() => `:root { --ui-radius: ${appConfig.theme.radius}rem; }`)
 const blackAsPrimary = computed(() => appConfig.theme.blackAsPrimary ? `:root { --ui-primary: black; } .dark { --ui-primary: white; }` : ':root {}')
 
 useHead({
-  title: 'Schachfreunde Heilbronn-Biberach 1978 e. V.',
-  titleTemplate: '%s | Schachfreunde Heilbronn-Biberach 1978 e. V.',
+  title: siteName,
+  titleTemplate: title => !title || title === siteName ? siteName : `${title} | ${siteName}`,
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
     { name: 'theme-color', content: '#171717' },
@@ -24,7 +25,7 @@ useHead({
 
 useSeoMeta({
   author: 'Schachfreunde Heilbronn-Biberach 1978 e. V.',
-  description: 'Schachfreunde Heilbronn-Biberach 1978 e. V. - Der Schachverein im Heilbronner Stadtteil Biberach',
+  description: 'Schachverein in Heilbronn-Biberach für Kinder, Jugendliche und Erwachsene mit regelmäßigem Training, Mannschaftsspielbetrieb und Turnieren.',
   ogSiteName: 'Schachfreunde Heilbronn-Biberach',
   robots: 'index, follow',
   twitterCard: 'summary_large_image',
