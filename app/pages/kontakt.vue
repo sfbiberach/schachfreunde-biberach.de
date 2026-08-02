@@ -51,7 +51,7 @@ const { copy, copied } = useClipboard()
 const copiedEmail = ref<string>()
 
 usePageSeo(page)
-useSiteOgImage(page, { kind: 'page' })
+useSiteOgImage(page, { kind: 'page', eyebrow: 'Ansprechpartner' })
 const header = computed(() => resolvePageHeader(page.value))
 const contactGroups = computed(() => {
   const contacts = (users.value || []) as ContactPerson[]

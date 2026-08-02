@@ -15,7 +15,7 @@ definePageMeta({
 })
 
 const { data: page } = await usePageContent()
-useSiteOgImage(page, { kind: 'page' })
+useSiteOgImage(page, { kind: 'page', eyebrow: 'Rechtliches' })
 </script>
 
 <template>

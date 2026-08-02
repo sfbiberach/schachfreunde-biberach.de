@@ -58,8 +58,16 @@ describe('site social cards', () => {
     const card = createSiteCardProps(source, { kind: 'page' })
 
     expect(card.image).toBeUndefined()
-    expect(card.eyebrow).toBe('Verein')
+    expect(card.eyebrow).toBe('Information')
     expect(createSiteSocialAlt(source)).toBe('Kontakt – Schachfreunde Heilbronn-Biberach')
+  })
+
+  it('uses distinct context labels for landing and top-level pages', () => {
+    const landing = createSiteCardProps({ title: 'Schachfreunde Heilbronn-Biberach' }, { kind: 'landing' })
+    const overview = createSiteCardProps({ title: 'Mannschaften' }, { kind: 'page', eyebrow: 'Spielbetrieb' })
+
+    expect(landing.eyebrow).toBe('Schachverein')
+    expect(overview.eyebrow).toBe('Spielbetrieb')
   })
 
   it('keeps long copy inside the template limits', () => {

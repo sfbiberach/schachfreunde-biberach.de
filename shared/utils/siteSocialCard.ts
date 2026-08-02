@@ -105,7 +105,7 @@ function resolveAccent(kind: SiteSocialKind, category?: string): SiteSocialAccen
 
 function resolveEyebrow(kind: SiteSocialKind, category?: string) {
   if (kind === 'landing') {
-    return 'Schach in Heilbronn-Biberach'
+    return 'Schachverein'
   }
   if (kind === 'article') {
     return category || 'Aktuelles'
@@ -116,7 +116,7 @@ function resolveEyebrow(kind: SiteSocialKind, category?: string) {
   if (kind === 'team') {
     return 'Mannschaft'
   }
-  return 'Verein'
+  return 'Information'
 }
 
 function resolveMeta(source: SiteSocialSource | null | undefined, kind: SiteSocialKind) {

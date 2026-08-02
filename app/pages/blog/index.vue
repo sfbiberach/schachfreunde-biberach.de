@@ -26,7 +26,7 @@ if (import.meta.client) {
 }
 
 usePageSeo(pageData)
-useSiteOgImage(pageData, { kind: 'page', eyebrow: 'Aktuelles' })
+useSiteOgImage(pageData, { kind: 'page', eyebrow: 'Blog' })
 const header = computed(() => resolvePageHeader(pageData.value))
 </script>
 
