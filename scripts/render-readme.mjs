@@ -100,9 +100,10 @@ await withNuxtDevServer(async (baseUrl) => {
       return (frame.parentElement?.clientHeight || 0) / scale
     })
     const activityCardsBottom = Math.max(...activityCardBoxes.map(card => card.bottom))
+    const minimumCardPadding = 32
 
-    if (activityCardCount !== 4 || activityCardsBottom > visibleSiteHeight) {
-      throw new Error(`README render must include all four activity cards (found ${activityCardCount}, cards end at ${activityCardsBottom}px, visible site height ${visibleSiteHeight}px).`)
+    if (activityCardCount !== 4 || activityCardsBottom > visibleSiteHeight - minimumCardPadding) {
+      throw new Error(`README render must include all four activity cards (found ${activityCardCount}, cards end at ${activityCardsBottom}px, visible site height ${visibleSiteHeight}px, required bottom padding ${minimumCardPadding}px).`)
     }
 
     await page.waitForTimeout(800)

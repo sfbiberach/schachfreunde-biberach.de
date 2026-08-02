@@ -47,9 +47,9 @@ useSeoMeta({ robots: 'noindex, nofollow' })
   overflow: hidden;
   padding: 52px 120px 0;
   background:
-    radial-gradient(circle at 16% -8%, rgba(37, 99, 235, 0.26), transparent 34%),
-    radial-gradient(circle at 92% 108%, rgba(8, 145, 178, 0.16), transparent 38%),
-    linear-gradient(135deg, #0d1525 0%, #080d17 58%, #07111c 100%);
+    radial-gradient(ellipse 66% 42% at 50% -8%, rgba(71, 85, 105, 0.16), transparent 72%),
+    radial-gradient(ellipse 48% 34% at 52% 22%, rgba(59, 130, 246, 0.045), transparent 76%),
+    linear-gradient(145deg, #15171c 0%, #101218 56%, #0c0e13 100%);
   color: #f8fafc;
   font-family: Inter, ui-sans-serif, system-ui, sans-serif;
 }
@@ -58,10 +58,18 @@ useSeoMeta({ robots: 'noindex, nofollow' })
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(96, 165, 250, 0.075) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(96, 165, 250, 0.075) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.72) 38%, transparent 72%);
+    linear-gradient(rgba(148, 163, 184, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.035) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 78% 60% at 50% 0%, #000 0%, rgba(0, 0, 0, 0.76) 52%, transparent 90%);
+  pointer-events: none;
+  content: '';
+}
+
+#readme-art::after {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 160px rgba(0, 0, 0, 0.22);
   pointer-events: none;
   content: '';
 }
@@ -177,7 +185,7 @@ useSeoMeta({ robots: 'noindex, nofollow' })
   border-bottom: 0;
   border-radius: 24px 24px 0 0;
   background: #0b1220;
-  box-shadow: 0 34px 72px rgba(2, 6, 23, 0.48), 0 0 72px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.38), 0 0 56px rgba(51, 65, 85, 0.12);
 }
 
 .readme-browser-content {
@@ -189,11 +197,11 @@ useSeoMeta({ robots: 'noindex, nofollow' })
 
 #readme-site {
   display: block;
-  width: 1956.835px;
+  width: 2014.815px;
   height: 1300px;
   border: 0;
   background: #0b1220;
-  transform: scale(0.695);
+  transform: scale(0.675);
   transform-origin: top left;
 }
 </style>
