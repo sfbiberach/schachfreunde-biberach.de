@@ -197,7 +197,7 @@ function formatContentDate(date?: string | Date) {
     >
       <template #description>
         <div class="prose prose-primary dark:prose-invert text-lg">
-          <Snippet path="/snippets/training" />
+          <HSnippet path="/snippets/training" />
         </div>
       </template>
 
