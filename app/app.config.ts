@@ -144,6 +144,27 @@ export default defineAppConfig({
       description: 'Durchsuche die Inhalte der Schachfreunde Heilbronn-Biberach.',
       placeholder: 'Inhalte durchsuchen …',
       resultLimit: 25,
+      error: {
+        title: 'Suche nicht verfügbar',
+        description: 'Der Suchindex konnte nicht geladen werden.',
+        retryLabel: 'Erneut versuchen',
+      },
+      collections: [
+        { name: 'page' },
+        {
+          name: 'article',
+          where: [{ field: 'published', operator: '=', value: true }],
+          order: { field: 'date', direction: 'DESC' },
+        },
+        {
+          name: 'team',
+          where: [{ field: 'published', operator: '=', value: true }],
+        },
+        {
+          name: 'tournament',
+          where: [{ field: 'published', operator: '=', value: true }],
+        },
+      ],
       links: [
         {
           label: 'Startseite',
