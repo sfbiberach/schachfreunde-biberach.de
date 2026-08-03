@@ -31,12 +31,12 @@ allowBuilds:
   workerd: true
 
 minimumReleaseAgeExclude:
-  - "@happydesigns/ui@0.15.0 || 0.15.1 || 0.16.0"
-  - nuxt@4.5.0
-  - "@nuxt/kit@4.5.0"
-  - "@nuxt/nitro-server@4.5.0"
-  - "@nuxt/schema@4.5.0"
-  - "@nuxt/vite-builder@4.5.0"
+  - "@happydesigns/ui@0.15.0 || 0.15.1 || 0.16.0 || 0.17.0"
+  - nuxt@4.5.1
+  - "@nuxt/kit@4.5.1"
+  - "@nuxt/nitro-server@4.5.1"
+  - "@nuxt/schema@4.5.1"
+  - "@nuxt/vite-builder@4.5.1"
 
 patchedDependencies:
   nuxt-studio@1.7.0: patches/nuxt-studio@1.7.0.patch
