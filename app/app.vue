@@ -42,7 +42,7 @@ useSeoMeta({
     </UMain>
     <AppFooter />
 
-    <LazyAppSearch />
+    <HContentSearch />
     <HStudioLoginButton aria-label="Nuxt Studio öffnen" />
     <NuxtPwaAssets />
   </UApp>
