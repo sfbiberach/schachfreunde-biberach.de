@@ -20,6 +20,7 @@ const collectionMatchers = [
 
 const requiredFields = {
   article: ['published'],
+  content: ['toc'],
   landing: ['hero'],
   team: ['published'],
   tournament: ['published'],
