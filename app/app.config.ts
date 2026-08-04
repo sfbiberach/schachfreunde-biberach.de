@@ -151,6 +151,7 @@ export default defineAppConfig({
       },
       collections: [
         { name: 'page' },
+        { name: 'content' },
         {
           name: 'article',
           where: [{ field: 'published', operator: '=', value: true }],

@@ -14,12 +14,12 @@ definePageMeta({
   },
 })
 
-const { data: page } = await usePageContent()
+const { data: page } = await usePageContent({ collection: 'content' })
 useSiteOgImage(page, { kind: 'page', eyebrow: 'Rechtliches' })
 </script>
 
 <template>
-  <NuxtLayout name="content">
+  <NuxtLayout name="content" collection="content">
     <ContentRenderer v-if="page" :value="page" />
   </NuxtLayout>
 </template>

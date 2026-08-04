@@ -11,6 +11,7 @@ const collectionMatchers = [
   ['landing', path => path === 'index.yaml'],
   ['user', path => path.startsWith('users/')],
   ['snippet', path => path.startsWith('snippets/')],
+  ['content', path => path.startsWith('legal/')],
   ['page', path => path.startsWith('pages/')],
   ['article', path => path.startsWith('blog/article/')],
   ['team', path => path.startsWith('mannschaften/')],

@@ -99,6 +99,15 @@ export default defineContentConfig({
       },
     }),
 
+    content: defineCollection({
+      type: 'page',
+      source: {
+        include: 'legal/**/*.{md,yaml}',
+        prefix: '/',
+      },
+      schema: mergeVariantSchemas(['content'], siteVariantSchemas).extend(seo),
+    }),
+
     page: defineCollection({
       type: 'page',
       source: {
