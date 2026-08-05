@@ -114,7 +114,7 @@ export default defineContentConfig({
         include: 'pages/**/*.{md,yaml}',
         prefix: '/',
       },
-      schema: mergeVariantSchemas(['page'], siteVariantSchemas).extend(seo),
+      schema: mergeVariantSchemas(['content'], siteVariantSchemas).extend(seo),
     }),
 
     article: defineCollection({

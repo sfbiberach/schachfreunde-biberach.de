@@ -19,14 +19,19 @@ function readFrontmatter(path: string): Record<string, unknown> {
   return parseYaml(match[1]) as Record<string, unknown>
 }
 
+function readYaml(path: string): Record<string, unknown> {
+  return parseYaml(readFileSync(new URL(path, projectUrl), 'utf8')) as Record<string, unknown>
+}
+
 describe('content variant collections', () => {
-  it('defines separate schemas for content and interface-led pages', () => {
+  it('uses the same content schema for legal and interface-led pages', () => {
     expect(contentConfig).toContain('include: \'legal/**/*.{md,yaml}\'')
-    expect(contentConfig).toContain('mergeVariantSchemas([\'content\'], siteVariantSchemas)')
-    expect(contentConfig).toContain('mergeVariantSchemas([\'page\'], siteVariantSchemas)')
+    expect(contentConfig).toContain('include: \'pages/**/*.{md,yaml}\'')
+    expect(contentConfig.match(/mergeVariantSchemas\(\['content'\], siteVariantSchemas\)/g)).toHaveLength(2)
+    expect(contentConfig).not.toContain('mergeVariantSchemas([\'page\'], siteVariantSchemas)')
   })
 
-  it('binds the legal catch-all route to the content collection', () => {
+  it('binds the legal catch-all route to the shared content layout', () => {
     expect(catchAllPage).toContain('usePageContent({ collection: \'content\' })')
     expect(catchAllPage).toContain('<NuxtLayout name="content" collection="content">')
   })
@@ -35,13 +40,13 @@ describe('content variant collections', () => {
     expect(readFrontmatter(`content/legal/${slug}.md`).toc).toBe(true)
   })
 
-  it.each(['blog', 'kontakt', 'mannschaften', 'turniere'])('keeps toc out of the %s page schema', (slug) => {
-    const document = parseYaml(readFileSync(new URL(`content/pages/${slug}.yaml`, projectUrl), 'utf8')) as Record<string, unknown>
-    expect(document).not.toHaveProperty('toc')
+  it.each(['blog', 'kontakt', 'mannschaften', 'turniere'])('disables toc explicitly for the %s interface page', (slug) => {
+    expect(readYaml(`content/pages/${slug}.yaml`).toc).toBe(false)
   })
 
-  it('keeps legal content searchable and requires explicit toc metadata', () => {
+  it('keeps both page collections searchable and validates explicit toc metadata', () => {
     expect(appConfig).toMatch(/collections:\s*\[\s*\{ name: 'page' \},\s*\{ name: 'content' \}/)
     expect(contentValidator).toContain('content: [\'toc\']')
+    expect(contentValidator).toContain('page: [\'toc\']')
   })
 })
