@@ -23,8 +23,8 @@ const requiredFields = {
   content: ['toc'],
   page: ['toc'],
   landing: ['hero'],
-  team: ['published'],
-  tournament: ['published'],
+  team: ['published', 'toc'],
+  tournament: ['published', 'toc'],
   user: ['username'],
 }
 

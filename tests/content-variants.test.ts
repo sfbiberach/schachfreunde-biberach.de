@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs'
+import { readdirSync, readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import { parse as parseYaml } from 'yaml'
 
@@ -55,6 +55,19 @@ describe('content variant collections', () => {
     expect(readYaml(`content/pages/${slug}.yaml`).toc).toBe(false)
   })
 
+  it.each([
+    ['team', 'content/mannschaften'],
+    ['tournament', 'content/turniere'],
+  ])('enables toc for every %s detail page', (collection, directory) => {
+    const files = readdirSync(new URL(`${directory}/`, projectUrl))
+      .filter(file => file.endsWith('.md'))
+
+    expect(files.length).toBeGreaterThan(0)
+    for (const file of files) {
+      expect(readFrontmatter(`${directory}/${file}`).toc, file).toBe(true)
+    }
+    expect(contentValidator).toContain(`${collection}: ['published', 'toc']`)
+  })
   it('keeps both page collections searchable and validates explicit toc metadata', () => {
     expect(appConfig).toMatch(/collections:\s*\[\s*\{ name: 'page' \},\s*\{ name: 'content' \}/)
     expect(contentValidator).toContain('content: [\'toc\']')
