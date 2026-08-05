@@ -6,6 +6,7 @@ const projectUrl = new URL('../', import.meta.url)
 const contentConfig = readFileSync(new URL('content.config.ts', projectUrl), 'utf8')
 const catchAllPage = readFileSync(new URL('app/pages/[...slug].vue', projectUrl), 'utf8')
 const appConfig = readFileSync(new URL('app/app.config.ts', projectUrl), 'utf8')
+const nuxtConfig = readFileSync(new URL('nuxt.config.ts', projectUrl), 'utf8')
 const contentValidator = readFileSync(new URL('scripts/validate-content.mjs', projectUrl), 'utf8')
 
 function readFrontmatter(path: string): Record<string, unknown> {
@@ -27,13 +28,23 @@ describe('content variant collections', () => {
   it('uses the same content schema for legal and interface-led pages', () => {
     expect(contentConfig).toContain('include: \'legal/**/*.{md,yaml}\'')
     expect(contentConfig).toContain('include: \'pages/**/*.{md,yaml}\'')
-    expect(contentConfig.match(/mergeVariantSchemas\(\['content'\], siteVariantSchemas\)/g)).toHaveLength(2)
-    expect(contentConfig).not.toContain('mergeVariantSchemas([\'page\'], siteVariantSchemas)')
+    expect(contentConfig.match(/schema: collectionSchemas\.content\.extend\(seo\)/g)).toHaveLength(2)
+    expect(contentConfig).not.toContain('mergeVariantSchemas')
   })
 
-  it('binds the legal catch-all route to the shared content layout', () => {
+  it('uses the shared indexes for queried collections', () => {
+    expect(contentConfig).toContain('indexes: userCollectionIndexes')
+    expect(contentConfig.match(/indexes: articleCollectionIndexes/g)).toHaveLength(3)
+  })
+
+  it('binds the legal catch-all route to the shared content variant and layout', () => {
     expect(catchAllPage).toContain('usePageContent({ collection: \'content\' })')
     expect(catchAllPage).toContain('<NuxtLayout name="content" collection="content">')
+  })
+
+  it('keeps only the runtime aliases required by custom event collections', () => {
+    expect(nuxtConfig.match(/extends: 'event'/g)).toHaveLength(2)
+    expect(nuxtConfig).not.toContain('articleTournament')
   })
 
   it.each(['impressum', 'datenschutz'])('declares toc for the %s content page', (slug) => {

@@ -226,17 +226,11 @@ export default defineNuxtConfig({
   },
   variants: {
     registry: {
-      articleTournament: {},
       team: {
         extends: 'event',
       },
       tournament: {
         extends: 'event',
-      },
-      article: {
-        extends: [
-          'articleTournament',
-        ],
       },
     },
   },

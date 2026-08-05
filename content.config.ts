@@ -1,5 +1,4 @@
-import { mergeVariantSchemas } from '@happydesigns/nuxt-variants/schemas'
-import { variantSchemas } from '@happydesigns/ui/schemas'
+import { articleCollectionIndexes, collectionSchemas, userCollectionIndexes } from '@happydesigns/ui/schemas'
 import { defineCollection, defineContentConfig, property } from '@nuxt/content'
 import { defineRobotsSchema } from '@nuxtjs/robots/content'
 import { defineSitemapSchema } from '@nuxtjs/sitemap/content'
@@ -25,18 +24,10 @@ const userContactSchema = z.object({
   responsibilities: z.array(z.string().min(1)).min(1),
 }).optional()
 
-const userVariantSchema = variantSchemas.user.extend({
+const userVariantSchema = collectionSchemas.user.extend({
   avatar: userAvatarSchema,
   contact: userContactSchema,
 })
-
-const siteVariantSchemas = {
-  ...variantSchemas,
-  user: z.object({}),
-  articleTournament: z.object({
-    tournament: z.string().optional(),
-  }),
-}
 
 const leagueSchema = z.object({
   provider: z.literal('nuliga'),
@@ -59,6 +50,7 @@ export default defineContentConfig({
       type: 'data',
       source: 'users/**/*.{md,yaml}',
       schema: userVariantSchema,
+      indexes: userCollectionIndexes,
     }),
 
     landing: defineCollection({
@@ -105,7 +97,7 @@ export default defineContentConfig({
         include: 'legal/**/*.{md,yaml}',
         prefix: '/',
       },
-      schema: mergeVariantSchemas(['content'], siteVariantSchemas).extend(seo),
+      schema: collectionSchemas.content.extend(seo),
     }),
 
     page: defineCollection({
@@ -114,31 +106,35 @@ export default defineContentConfig({
         include: 'pages/**/*.{md,yaml}',
         prefix: '/',
       },
-      schema: mergeVariantSchemas(['content'], siteVariantSchemas).extend(seo),
+      schema: collectionSchemas.content.extend(seo),
     }),
 
     article: defineCollection({
       type: 'page',
       source: 'blog/article/**/*.{md,yaml}',
-      schema: mergeVariantSchemas(['article'], siteVariantSchemas).extend({
+      schema: collectionSchemas.article.extend({
         ...seo,
+        tournament: z.string().optional(),
         image: articleImageSchema,
       }),
+      indexes: articleCollectionIndexes,
     }),
 
     team: defineCollection({
       type: 'page',
       source: 'mannschaften/**/*.{md,yaml}',
-      schema: mergeVariantSchemas(['team'], siteVariantSchemas).extend({
+      schema: collectionSchemas.event.extend({
         ...seo,
         league: leagueSchema,
       }),
+      indexes: articleCollectionIndexes,
     }),
 
     tournament: defineCollection({
       type: 'page',
       source: 'turniere/**/*.{md,yaml}',
-      schema: mergeVariantSchemas(['tournament'], siteVariantSchemas).extend(seo),
+      schema: collectionSchemas.event.extend(seo),
+      indexes: articleCollectionIndexes,
     }),
   },
 })
