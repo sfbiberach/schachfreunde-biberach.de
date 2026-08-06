@@ -1,6 +1,7 @@
 ---
 name: create-schachfreunde-blog-post
 description: Create or revise publication-ready blog posts for schachfreunde-biberach.de from text, notes, images, attachments, or existing drafts; preserve finished source text, derive Nuxt Content metadata without inventing facts, process media when present, validate repository conventions, and create a GitHub pull request by default. Use for creating, importing, correcting, updating, staging, or explicitly publishing Schachfreunde blog articles.
+compatibility: Requires read access to sfbiberach/schachfreunde-biberach.de through a local checkout or GitHub; creating pull requests also requires GitHub write access.
 ---
 
 # Schachfreunde-Blogbeitrag erstellen

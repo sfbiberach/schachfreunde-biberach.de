@@ -67,9 +67,9 @@ pnpm media:social -- --path /blog/article/15-biber-jugend-cup --format all
 
 Supported formats are `og`, `square`, `portrait`, and `all`. Local exports are written to the git-ignored `.artifacts/social` directory.
 
-## Editorial workflow with Codex
+## Editorial Agent Plugin
 
-The optional `schachfreunde-blog` Codex plugin creates and revises publication-ready blog posts from text, notes, images, and attachments.
+The optional `schachfreunde-blog` Agent Plugin creates and revises publication-ready blog posts from text, notes, images, and attachments in compatible clients such as ChatGPT and Codex.
 
 [Open the plugin documentation](plugins/schachfreunde-blog/README.md)
 

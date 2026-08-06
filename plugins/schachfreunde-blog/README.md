@@ -1,18 +1,26 @@
 # Schachfreunde Blog
 
-A Codex plugin for editing blog posts published on [schachfreunde-biberach.de](https://www.schachfreunde-biberach.de/blog).
+A portable Agent Plugin for editing blog posts published on [schachfreunde-biberach.de](https://www.schachfreunde-biberach.de/blog). It can run in clients that support the Agent Plugins and Agent Skills specifications, including ChatGPT and Codex.
 
 Its skill turns text, notes, images, and attachments into Nuxt Content entries that follow the repository conventions. By default, it prepares a publication-ready GitHub pull request.
 
 ## Requirements
 
-- a current version of Codex CLI or the Codex desktop app
-- Git
-- access to the repository through GitHub or a local checkout
+- an Agent Plugins client with Agent Skills support
+- read access to the repository through GitHub or a local checkout
+- GitHub write access when the plugin should create a pull request
 
-Check the installed CLI version with `codex --version`.
+Local Git and `gh` are optional. The skill can use a connected GitHub integration instead.
 
-## Install from GitHub
+## Portable package
+
+The portable manifest is [`plugin.json`](plugin.json). Compatible clients discover the skill automatically under [`skills/`](skills/); the manifest does not repeat that fixed path.
+
+The skill's [`references/`](skills/create-schachfreunde-blog-post/references/) directory follows the Agent Skills convention for documentation loaded on demand. The package does not include client-specific agents, hooks, or MCP servers.
+
+Installation and distribution are intentionally client-managed by the Agent Plugins specification. Follow the chosen client's installation instructions.
+
+## Install in ChatGPT and Codex
 
 Register the marketplace and install the plugin:
 
@@ -21,7 +29,7 @@ codex plugin marketplace add sfbiberach/schachfreunde-biberach.de --ref main
 codex plugin add schachfreunde-blog@schachfreunde-biberach
 ```
 
-The marketplace only needs to be registered once. Restart Codex or open a new task after installation.
+The marketplace only needs to be registered once. Refresh ChatGPT or Codex and start a new task after installation.
 
 Confirm the installation with:
 
@@ -40,7 +48,7 @@ codex plugin marketplace add .
 codex plugin add schachfreunde-blog@schachfreunde-biberach
 ```
 
-Do not enable the local and GitHub variants at the same time. After changing the plugin, also update its version or cachebuster in [`.codex-plugin/plugin.json`](.codex-plugin/plugin.json).
+Do not enable the local and GitHub variants at the same time. After changing the portable package, update its version in [`plugin.json`](plugin.json).
 
 ## Usage
 
@@ -91,7 +99,7 @@ git pull
 codex plugin add schachfreunde-blog@schachfreunde-biberach
 ```
 
-Then restart Codex or open a new task.
+Then refresh ChatGPT or Codex and open a new task.
 
 ## Development and tests
 
@@ -106,7 +114,7 @@ pnpm skill:eval:integration
 pnpm verify
 ```
 
-Model evaluations require a working Codex login. Run several repetitions when comparing execution time and token usage.
+Model evaluations require a working OpenAI login. Run several repetitions when comparing execution time and token usage.
 
 ## Troubleshooting and removal
 

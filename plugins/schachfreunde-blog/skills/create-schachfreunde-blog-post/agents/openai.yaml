@@ -1,7 +1,0 @@
-interface:
-  display_name: "Schachfreunde-Blogbeitrag erstellen"
-  short_description: "Erstellt Blogbeiträge und bereitet GitHub-PRs vor"
-  default_prompt: "Nutze $create-schachfreunde-blog-post, um aus diesen Materialien einen Blogbeitrag zu erstellen und als GitHub-PR vorzubereiten."
-
-policy:
-  allow_implicit_invocation: true
