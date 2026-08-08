@@ -1,4 +1,4 @@
-import { articleCollectionIndexes, collectionSchemas, userCollectionIndexes } from '@happydesigns/ui/schemas'
+import { articleCollectionIndexes, collectionSchemas, contentImageSchema, createPageSectionSchema, userCollectionIndexes } from '@happydesigns/ui/schemas'
 import { defineCollection, defineContentConfig, property } from '@nuxt/content'
 import { defineRobotsSchema } from '@nuxtjs/robots/content'
 import { defineSitemapSchema } from '@nuxtjs/sitemap/content'
@@ -36,8 +36,7 @@ const leagueSchema = z.object({
   teamName: z.string().min(1),
 }).optional()
 
-const articleImageSchema = z.object({
-  src: property(z.string()).editor({ input: 'media' }),
+const articleImageSchema = contentImageSchema.extend({
   alt: z.string().min(1),
   width: z.number().int().positive().optional(),
   height: z.number().int().positive().optional(),
@@ -57,7 +56,7 @@ export default defineContentConfig({
       type: 'page',
       source: 'index.yaml',
       schema: z.object({
-        hero: property(z.object({})).inherit('@nuxt/ui/components/PageSection.vue'),
+        hero: createPageSectionSchema({}),
         highlights: z.array(z.object({
           title: z.string(),
           description: z.string(),

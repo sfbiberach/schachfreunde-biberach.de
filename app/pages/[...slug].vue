@@ -1,17 +1,6 @@
 <script setup lang="ts">
-const fileExtensionPattern = /^\/[^.]*\.[0-9a-z]+(?:\/.*)?$/i
-
 definePageMeta({
-  validate: (route) => {
-    const path = route.fullPath
-    // Exclude paths that start with _ or /api/
-    if (path.startsWith('/_') || path.startsWith('/api/')) {
-      return false
-    }
-    // Exclude paths that look like they have file extensions (e.g., /image.jpg)
-    const hasFileExtension = fileExtensionPattern.test(path)
-    return !hasFileExtension
-  },
+  validate: isContentPageRoute,
 })
 
 const { data: page } = await usePageContent({ collection: 'content' })
@@ -19,7 +8,5 @@ useSiteOgImage(page, { kind: 'page', eyebrow: 'Rechtliches' })
 </script>
 
 <template>
-  <NuxtLayout name="content" collection="content">
-    <ContentRenderer v-if="page" :value="page" />
-  </NuxtLayout>
+  <HContentPage :page collection="content" />
 </template>

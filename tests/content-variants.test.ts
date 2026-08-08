@@ -39,7 +39,8 @@ describe('content variant collections', () => {
 
   it('binds the legal catch-all route to the shared content variant and layout', () => {
     expect(catchAllPage).toContain('usePageContent({ collection: \'content\' })')
-    expect(catchAllPage).toContain('<NuxtLayout name="content" collection="content">')
+    expect(catchAllPage).toContain('validate: isContentPageRoute')
+    expect(catchAllPage).toContain('<HContentPage :page collection="content" />')
   })
 
   it('keeps only the runtime aliases required by custom event collections', () => {
