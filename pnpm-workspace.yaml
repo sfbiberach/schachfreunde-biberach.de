@@ -20,7 +20,7 @@ peerDependencyRules:
     unctx@3>oxc-parser: ">=0.137.0"
 
 allowBuilds:
-  "@happydesigns/blog@https://codeload.github.com/happydesigns/blog/tar.gz/ea7633d7fdeddc8fa1728769333b4fa7865647b0": true
+  "@happydesigns/blog@https://codeload.github.com/happydesigns/blog/tar.gz/012233c9b85bd327f6d0709a8892421df01ddf2f": true
   "@parcel/watcher": true
   "@tailwindcss/oxide": true
   better-sqlite3: true
