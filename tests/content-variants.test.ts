@@ -34,7 +34,8 @@ describe('content variant collections', () => {
 
   it('uses the shared indexes for queried collections', () => {
     expect(contentConfig).toContain('indexes: userCollectionIndexes')
-    expect(contentConfig.match(/indexes: articleCollectionIndexes/g)).toHaveLength(3)
+    expect(contentConfig.match(/indexes: articleCollectionIndexes/g)).toHaveLength(2)
+    expect(contentConfig).toContain('defineBlogCollections(blog')
   })
 
   it('binds the legal catch-all route to the shared content variant and layout', () => {
