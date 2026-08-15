@@ -29,7 +29,7 @@
     "verify": "pnpm lint && pnpm typecheck && pnpm test"
   },
   "dependencies": {
-    "@happydesigns/ui": "^0.19.2",
+    "@happydesigns/ui": "^0.19.3",
     "@iconify-json/fa6-solid": "^1.2.4",
     "@iconify-json/heroicons": "^1.2.3",
     "@iconify-json/lucide": "^1.2.116",
@@ -50,7 +50,8 @@
     "feed": "^6.0.0",
     "nuxt-og-image": "^6.7.5",
     "nuxt-studio": "^1.7.0",
-    "tailwindcss": "^4.3.2"
+    "tailwindcss": "^4.3.2",
+    "vue": "^3.5.41"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^9.1.0",
