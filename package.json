@@ -29,6 +29,7 @@
     "verify": "pnpm lint && pnpm typecheck && pnpm test"
   },
   "dependencies": {
+    "@happydesigns/blog": "github:happydesigns/blog#ea7633d7fdeddc8fa1728769333b4fa7865647b0",
     "@happydesigns/ui": "^0.19.3",
     "@iconify-json/fa6-solid": "^1.2.4",
     "@iconify-json/heroicons": "^1.2.3",
@@ -47,7 +48,6 @@
     "@vueuse/nuxt": "^14.3.0",
     "better-sqlite3": "^12.11.1",
     "cheerio": "^1.2.0",
-    "feed": "^6.0.0",
     "nuxt-og-image": "^6.7.5",
     "nuxt-studio": "^1.7.0",
     "tailwindcss": "^4.3.2",
