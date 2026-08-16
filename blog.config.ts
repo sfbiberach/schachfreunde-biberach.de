@@ -9,6 +9,7 @@ export default defineBlogConfig({
       title: 'Schachfreunde Heilbronn-Biberach Blog',
       description: 'Die neuesten Mannschafts- und Turnierberichte von den Schachfreunden Heilbronn-Biberach.',
       locale: 'de',
+      showPreviewImages: false,
       sort: {
         field: 'date',
         direction: 'DESC',
