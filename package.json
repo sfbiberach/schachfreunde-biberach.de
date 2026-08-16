@@ -29,7 +29,7 @@
     "verify": "pnpm lint && pnpm typecheck && pnpm test"
   },
   "dependencies": {
-    "@happydesigns/blog": "github:happydesigns/blog#e43cdc08985556ae355eaee5bee15c51ec767895",
+    "@happydesigns/blog": "github:happydesigns/blog#5934e49406fab531d340211ee1bf6668faad0afb",
     "@happydesigns/ui": "^0.19.3",
     "@iconify-json/fa6-solid": "^1.2.4",
     "@iconify-json/heroicons": "^1.2.3",

@@ -16,9 +16,11 @@ const categoryColor = computed(() => {
     ? route.query.category[0]
     : route.query.category
 
-  return typeof categoryQuery === 'string'
-    ? section.value.categories[categoryQuery]?.color
-    : undefined
+  if (typeof categoryQuery !== 'string' || !section.value.features.taxonomy) {
+    return undefined
+  }
+
+  return section.value.features.taxonomy.categories[categoryQuery]?.color
 })
 
 if (import.meta.client) {

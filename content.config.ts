@@ -113,6 +113,7 @@ export default defineContentConfig({
     ...defineBlogCollections(blog, {
       blog: {
         source: 'blog/article/**/*.{md,yaml}',
+        baseSchema: collectionSchemas.article,
         schema: {
           ...seo,
           tournament: z.string().optional(),
