@@ -4,6 +4,7 @@ import { parse as parseYaml } from 'yaml'
 
 const projectUrl = new URL('../', import.meta.url)
 const contentConfig = readFileSync(new URL('content.config.ts', projectUrl), 'utf8')
+const blogConfig = readFileSync(new URL('blog.config.ts', projectUrl), 'utf8')
 const catchAllPage = readFileSync(new URL('app/pages/[...slug].vue', projectUrl), 'utf8')
 const appConfig = readFileSync(new URL('app/app.config.ts', projectUrl), 'utf8')
 const nuxtConfig = readFileSync(new URL('nuxt.config.ts', projectUrl), 'utf8')
@@ -34,7 +35,15 @@ describe('content variant collections', () => {
 
   it('uses the shared indexes for queried collections', () => {
     expect(contentConfig).toContain('indexes: userCollectionIndexes')
-    expect(contentConfig.match(/indexes: articleCollectionIndexes/g)).toHaveLength(3)
+    expect(contentConfig.match(/indexes: articleCollectionIndexes/g)).toHaveLength(2)
+    expect(contentConfig).toContain('defineBlogCollections(blog')
+  })
+
+  it('composes the Blog capability with the shared article variant', () => {
+    expect(contentConfig).toContain('baseSchema: collectionSchemas.article')
+    expect(blogConfig).toContain('features: {')
+    expect(blogConfig).toContain('previewImages: false')
+    expect(blogConfig).toContain('syndication: {')
   })
 
   it('binds the legal catch-all route to the shared content variant and layout', () => {

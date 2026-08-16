@@ -9,16 +9,18 @@ const { data: pageData } = await usePageContent({
 })
 
 const route = useRoute()
-const { config } = useVariant('article')
+const { section } = useBlogSection('blog')
 
 const categoryColor = computed(() => {
   const categoryQuery = Array.isArray(route.query.category)
     ? route.query.category[0]
     : route.query.category
 
-  return typeof categoryQuery === 'string'
-    ? config.value.categories?.[categoryQuery]?.color
-    : undefined
+  if (typeof categoryQuery !== 'string' || !section.value.features.taxonomy) {
+    return undefined
+  }
+
+  return section.value.features.taxonomy.categories[categoryQuery]?.color
 })
 
 if (import.meta.client) {
@@ -57,7 +59,7 @@ const header = computed(() => resolvePageHeader(pageData.value))
 
     <UContainer v-if="pageData">
       <UPageBody>
-        <HArticleList :sort="{ field: 'date', direction: 'DESC' }" />
+        <HBlogList section="blog" />
       </UPageBody>
     </UContainer>
   </NuxtLayout>
