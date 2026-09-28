@@ -1,4 +1,5 @@
 import process from 'node:process'
+import blog from './blog.config'
 
 export default defineNuxtConfig({
 
@@ -7,6 +8,7 @@ export default defineNuxtConfig({
   ],
 
   modules: [
+    ['@happydesigns/blog', blog],
     '@nuxt/eslint',
     '@nuxtjs/seo',
     '@nuxt/image',

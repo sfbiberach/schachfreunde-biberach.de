@@ -1,8 +1,10 @@
+import { defineBlogCollections } from '@happydesigns/blog/content'
 import { articleCollectionIndexes, collectionSchemas, contentImageSchema, createPageSectionSchema, userCollectionIndexes } from '@happydesigns/ui/schemas'
 import { defineCollection, defineContentConfig, property } from '@nuxt/content'
 import { defineRobotsSchema } from '@nuxtjs/robots/content'
 import { defineSitemapSchema } from '@nuxtjs/sitemap/content'
 import { z } from 'zod'
+import blog from './blog.config'
 
 const seo = {
   sitemap: defineSitemapSchema(),
@@ -108,15 +110,16 @@ export default defineContentConfig({
       schema: collectionSchemas.content.extend(seo),
     }),
 
-    article: defineCollection({
-      type: 'page',
-      source: 'blog/article/**/*.{md,yaml}',
-      schema: collectionSchemas.article.extend({
-        ...seo,
-        tournament: z.string().optional(),
-        image: articleImageSchema,
-      }),
-      indexes: articleCollectionIndexes,
+    ...defineBlogCollections(blog, {
+      blog: {
+        source: 'blog/article/**/*.{md,yaml}',
+        baseSchema: collectionSchemas.article,
+        schema: {
+          ...seo,
+          tournament: z.string().optional(),
+          image: articleImageSchema,
+        },
+      },
     }),
 
     team: defineCollection({
