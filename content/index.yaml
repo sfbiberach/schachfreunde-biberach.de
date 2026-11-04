@@ -4,8 +4,8 @@ gallery:
   title: Einblicke ins Vereinsleben
   description: Die neuesten bebilderten Berichte aus Mannschaftskämpfen, Turnieren und unserer Jugendarbeit – ein Klick führt zum vollständigen Beitrag.
 hero:
-  title: Herzlich Willkommen
-  description: bei den <b>Schachfreunden Heilbronn-Biberach 1978 e.&nbsp;V.</b>&nbsp; <br class="hidden xl:block">Wir sind ein junger, dynamischer Verein aus Baden-Württemberg.
+  title: Schach in Heilbronn-Biberach
+  description: Willkommen bei den <b>Schachfreunden Heilbronn-Biberach 1978 e.&nbsp;V.</b>! Bei uns spielen und trainieren Kinder, Jugendliche und Erwachsene – im Verein, in Mannschaften und bei Turnieren.
   orientation: horizontal
   ui:
     container: py-16 sm:py-20 lg:py-24
@@ -22,9 +22,14 @@ hero:
     - label: Aktuelles
       to: /blog
       icon: i-ph-newspaper-duotone
-    - label: Lerne uns kennen
+    - label: Training & Spielort
       to: /#training
       icon: i-ph-arrow-bend-right-down-duotone
+      color: neutral
+      variant: ghost
+    - label: Turniere entdecken
+      to: /turniere
+      icon: i-ph-trophy-duotone
       color: neutral
       variant: ghost
 sitemap:

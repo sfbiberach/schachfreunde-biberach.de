@@ -140,11 +140,9 @@ function formatContentDate(date?: string | Date) {
 <template>
   <NuxtLayout v-if="page">
     <UPageSection v-bind="heroProps" class="relative overflow-hidden">
-      <template #title>
-        <span v-html="page.hero?.title" />
-      </template>
-      <template #description>
-        <span v-html="page.hero?.description" />
+      <template #header>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl text-pretty tracking-tight font-bold text-highlighted" v-html="page.hero?.title" />
+        <div class="mt-6 text-base sm:text-lg text-muted text-pretty" v-html="page.hero?.description" />
       </template>
 
       <ClubPulse
@@ -188,7 +186,7 @@ function formatContentDate(date?: string | Date) {
 
     <UPageSection
       id="training"
-      title="Training & Termine"
+      title="Schachtraining & Termine"
       orientation="horizontal"
       class="training-section"
       :ui="{
@@ -239,8 +237,8 @@ function formatContentDate(date?: string | Date) {
             icon: 'i-ph-chat-circle-dots-duotone',
           },
           {
-            label: 'Verein kennenlernen',
-            to: '/blog',
+            label: 'Mannschaften & Ergebnisse',
+            to: '/mannschaften',
             color: 'neutral',
             variant: 'outline',
             trailingIcon: 'i-ph-arrow-right',

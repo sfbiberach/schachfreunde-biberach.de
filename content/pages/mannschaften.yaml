@@ -1,7 +1,11 @@
 title: Mannschaften
 description: Hier findest du unsere Mannschaften und ihre aktuellen Ranglisten und Ergebnisse.
 header:
-  links: []
+  links:
+    - label: Training kennenlernen
+      to: /#training
+      color: neutral
+      variant: outline
   ui: {}
 layout: default
 sitemap:

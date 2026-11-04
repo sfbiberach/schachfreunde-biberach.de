@@ -1,7 +1,12 @@
-title: Turniere
-description: Hier bekommst Du einen Überblick über die Schachturniere, die wir selbst ausrichten. Von Opens mit mehreren hundert Teilnehmern bis hin zu kleineren Turnieren ist für jeden etwas dabei.
+title: Schachturniere
+description: Biber-Jugend-Cup, Unterländer Schachtage und Vereinsturniere – hier findest du Termine, Spielorte und Berichte zu unseren Schachturnieren.
 header:
-  links: []
+  title: Schachturniere in Heilbronn-Biberach
+  links:
+    - label: Training & Spielort
+      to: /#training
+      color: neutral
+      variant: outline
   ui: {}
 layout: default
 sitemap:
