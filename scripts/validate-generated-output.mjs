@@ -1,6 +1,7 @@
 import { access, readdir, readFile } from 'node:fs/promises'
 import { dirname, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { load } from 'cheerio'
 
 const rootDir = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const contentDir = resolve(rootDir, 'content')
@@ -67,6 +68,45 @@ async function assertRoute(route, expected) {
     if (!html.includes(needle)) {
       throw new Error(`Generated route /${route} is missing ${needle}`)
     }
+  }
+}
+
+function assertAbsoluteWebUrl(value, context) {
+  let url
+
+  try {
+    url = new URL(value)
+  }
+  catch {
+    throw new Error(`${context} must use an absolute URL, received: ${value}`)
+  }
+
+  if (!['https:', 'http:'].includes(url.protocol)) {
+    throw new Error(`${context} must use an HTTP(S) URL, received: ${value}`)
+  }
+}
+
+async function assertSeoUrls() {
+  const sitemap = await readFile(resolve(publicDir, 'sitemap.xml'), 'utf8')
+  const locations = [...sitemap.matchAll(/<(?:image:)?loc>([^<]*)<\/(?:image:)?loc>/g)]
+
+  if (!locations.length) {
+    throw new Error('Generated sitemap does not contain any URLs.')
+  }
+
+  for (const [, location] of locations) {
+    assertAbsoluteWebUrl(location, 'Sitemap location')
+  }
+
+  for (const route of ['', 'turniere', 'mannschaften']) {
+    const html = await readRoute(route)
+    const canonical = load(html)('link[rel="canonical"]').attr('href')
+
+    if (!canonical) {
+      throw new Error(`Generated route /${route} is missing its canonical URL.`)
+    }
+
+    assertAbsoluteWebUrl(canonical, `Canonical URL for /${route}`)
   }
 }
 
@@ -168,6 +208,7 @@ for (const endpoint of endpoints) {
 }
 
 await assertSearchIndex()
+await assertSeoUrls()
 await assertPayloadReferences()
 
-console.log('Validated the generated site shell, legal routes, published search index, public endpoints, and payload references.')
+console.log('Validated the generated site shell, legal routes, published search index, public endpoints, absolute SEO URLs, and payload references.')

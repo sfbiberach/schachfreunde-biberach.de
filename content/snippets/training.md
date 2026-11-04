@@ -4,7 +4,12 @@ title: Training
 
 ### Wöchentliche Trainingszeiten
 
-Wir treffen uns jeden Freitag um 18:00 Uhr zum Jugendtraining in unserem Spiellokal. Anschließend findet um 20:15 Uhr das Erwachsenentraining statt. Schau doch gerne mal vorbei, eine Voranmeldung ist nicht nötig!
+Wir treffen uns freitags zum Schachtraining in der Grundschule Biberach:
+
+- **Kinder und Jugendliche:** 18:00 Uhr
+- **Erwachsene:** 20:15 Uhr
+
+Schau gerne unverbindlich vorbei, eine Voranmeldung ist nicht nötig! Wirf vor deinem Besuch auch einen Blick in unseren Vereinskalender. Bei Fragen zum Einstieg oder zur Mitgliedschaft findest du auf unserer [Kontaktseite](/kontakt) die passende Ansprechperson.
 
 ### Adresse
 

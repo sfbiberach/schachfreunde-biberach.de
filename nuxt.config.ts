@@ -17,6 +17,11 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   css: ['~/assets/css/main.css'],
+
+  site: {
+    url: 'https://www.schachfreunde-biberach.de',
+  },
+
   ui: {
     theme: {
       colors: [
